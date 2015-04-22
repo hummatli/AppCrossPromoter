@@ -2,8 +2,8 @@
 By the help of this lib you can provide your apps to users of your other apps.
 
 #Images
-<img src="http://....jpg" width="200px"/>
-<img src="http://....jpg" width="200px"/>
+<img src="https://github.com/settarxan/MAHAds/blob/master/imgs/exit_dlg.png" width="200px"/>
+<img src="https://github.com/settarxan/MAHAds/blob/master/imgs/programs_dlg.png" width="200px"/>
 
 #Service structure
 You need small service provide your application list. Structure of the service as below
