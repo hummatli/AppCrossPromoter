@@ -26,9 +26,9 @@ root->
   
 ```json
 	{"programs":[ 
-		{"name":"Avto Nişanlar", "desc":"Bütün yol nişanları", "uri":"com.mobapphome.avtonishanlar",          "img":"imgs/avto_nishanlar2.png", "release_date":"10/10/2014"} 
+		{"name":"Avto Nişanlar", "desc":"Bütün yol nişanları", "uri":"com.mobapphome.avtonishanlar",  img":"imgs/avto_nishanlar2.png", "release_date":"10/10/2014"} 
 		,
-		{"name":"Məzənnə", "desc":"Valyuta çeviricisi və məzənnələr", "uri":"com.mobapphome.currency", "img":"imgs/mezenne2.png", "release_date":"05/12/2014"}
+		{"name":"Məzənnə", "desc":"Valyuta çeviricisi və məzənnələr", "uri":"com.mobapphome.currency",  "img":"imgs/mezenne2.png", "release_date":"05/12/2014"}
 		]
 	}
 ```
