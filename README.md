@@ -37,16 +37,16 @@ root->
 3)Add following to your project somewere start or splash
 Code: 
 ```java
-    	MAHAdsController.init(this, url_str);
-    	MAHAdsController.setInternalCalled(getIntent().getBooleanExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, false));
+	MAHAdsController.init(this, url_str);
+	MAHAdsController.setInternalCalled(getIntent().getBooleanExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, false));
 ```
 
 
 4)When you dont want open exit dialog on exit you call activity as below adn send argument
 ```java
-    	Intent app = pack.getLaunchIntentForPackage(pckgName);
-    	app.putExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, true);
-    	getContext().startActivity(app);						
+	Intent app = pack.getLaunchIntentForPackage(pckgName);
+	app.putExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, true);
+	getContext().startActivity(app);						
 ```
 
 ```java
@@ -98,28 +98,28 @@ Code:
 7) Add this to string.xml in main project8
 
 ```xml
-    	<string name="mah_ads_close">Close</string>
-    	<string name="mah_ads_dlg_title">Recommended applications</string>
-    	<string name="mah_ads_text_google_play">Open in GooglePlay</string>
-    	<string name="mah_ads_info_version">Version</string>
-    	<string name="mah_ads_internet_update_error">Error, please check internet connection or link</string>
-    	<string name="mah_ads_open_program">Open</string>
-    	<string name="mah_ads_install_program">Install</string>
-    	<string name="mah_ads_refresh_btn">Retry</string>
-    	<string name="mah_ads_free_aps">Recommended applications</string>
-    	<string name="mah_ads_new_text">New</string>
-    
-    	<string name="mah_ads_dlg_exit_question">Do you want exit?</string>
-    	<string name="mah_ads_dlg_exit_positive_btn_txt">Exit</string>
-    	<string name="mah_ads_dlg_exit_negativ_btn_txt">Stay</string>
-    
-    	<string name="mah_ads_dlg_exit_btn_more_txt_1">Applications</string>
-    	<string name="mah_ads_dlg_exit_btn_more_txt_2">Detailed</string>
+	<string name="mah_ads_close">Close</string>
+	<string name="mah_ads_dlg_title">Recommended applications</string>
+	<string name="mah_ads_text_google_play">Open in GooglePlay</string>
+	<string name="mah_ads_info_version">Version</string>
+	<string name="mah_ads_internet_update_error">Error, please check internet connection or link</string>
+	<string name="mah_ads_open_program">Open</string>
+	<string name="mah_ads_install_program">Install</string>
+	<string name="mah_ads_refresh_btn">Retry</string>
+	<string name="mah_ads_free_aps">Recommended applications</string>
+	<string name="mah_ads_new_text">New</string>
+	
+	<string name="mah_ads_dlg_exit_question">Do you want exit?</string>
+	<string name="mah_ads_dlg_exit_positive_btn_txt">Exit</string>
+	<string name="mah_ads_dlg_exit_negativ_btn_txt">Stay</string>
+	
+	<string name="mah_ads_dlg_exit_btn_more_txt_1">Applications</string>
+	<string name="mah_ads_dlg_exit_btn_more_txt_2">Detailed</string>
 ```
     	
 8) Add following permission to main project
 ```xml
-    	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.INTERNET" />
 ```
 
 9)To show on menu on activity do following
