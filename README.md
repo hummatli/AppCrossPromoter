@@ -1,4 +1,6 @@
-# MAHAds - Library for advertisement own apps through other apps. 
+# MAHAds - <a href="https://play.google.com/store/search?q=mobapphome">MobAppHome</a>  advertisment library 
+
+Library for advertisement own apps through other apps. 
 By the help of this lib you can provide your apps to users of your other apps.
 
 #Images
