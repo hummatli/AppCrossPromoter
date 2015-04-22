@@ -156,7 +156,7 @@ Settar Hummetli - settarxan@gmail.com
 
 
 #License
-Copyright 2015 Settar Hummetli
+Copyright 2015  - Settar Hummetli
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
