@@ -1,12 +1,9 @@
-# MAHAds
-Library for advertisement own apps through other apps. 
-s
+# MAHAds - Library for advertisement own apps through other apps. 
+
 By the help of this lib you can provide your apps to users of your other apps.
 
-
-
-
-How to use. 
+===========
+#How to use. 
 
 a) You need small service provide your application list. Structure of the service as below
 
