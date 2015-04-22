@@ -40,19 +40,27 @@ b) Installation manual
 
 3)Add following to your project somewere start or splash
 Code: 
+```java
     MAHAdsController.init(this, url_str);
     MAHAdsController.setInternalCalled(getIntent().getBooleanExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, false));
+```
+
 
 4)When you dont want open exit dialog on exit you call activity as below adn send argument
+```java
     Intent app = pack.getLaunchIntentForPackage(pckgName);
     app.putExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, true);
     getContext().startActivity(app);						
+```
 
+```java
 MAHAdsController.setInternalCalled(getIntent().getBooleanExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, false));
+```
 sets this value on initialization and checks on exit as below
 
 5)Put following code to your start activity. (Because open exit dialog on exit)
 Code:	
+```java
 	public void onBackPressed() {
 		if(MAHAdsController.isInternalCalled()){
 			super.onBackPressed();
@@ -74,8 +82,10 @@ Code:
 		}	
 		//super.onBackPressed();
 	}
+```
 
 6) Change color values for MAHAds for your project. And customize  the values
+```xml
 	<color name="mah_ads_title_bar_color">#FF0a23e1</color>						
 	<color name="mah_ads_btn_open_install_text_color">#FF0a23e1</color>						
 	<color name="mah_ads_text_color">#FF0a23e1</color>						
@@ -87,9 +97,11 @@ Code:
 	<color name="mah_ads_dark_color">#FF0a23e1</color>						
 	<color name="mah_ads_middle_color">#660a23e1</color>						
 	<color name="mah_ads_light_color">#FFFFFFFF</color>			
+```
 
 7) Add this to string.xml in main project8
 
+```xml
     <string name="mah_ads_close">Close</string>
     <string name="mah_ads_dlg_title">Recommended applications</string>
     <string name="mah_ads_text_google_play">Open in GooglePlay</string>
@@ -107,21 +119,27 @@ Code:
     
     <string name="mah_ads_dlg_exit_btn_more_txt_1">Applications</string>
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Detailed</string>
+```
     	
 8) Add following permission to main project
+```xml
     <uses-permission android:name="android.permission.INTERNET" />
+```
 
 9)To show on menu on activity do following
 
     a) add to menu.xml
+```xml
 	<item
         android:id="@+id/action_mahads"
         android:orderInCategory="100"
         android:title="@string/mah_ads_free_aps"
         android:icon="@drawable/ic_action_more"
         app:showAsAction="ifRoom"/> 
+```
 	
      b)on menu click methd write
+```java
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
@@ -133,4 +151,5 @@ Code:
 		}
 		return super.onOptionsItemSelected(item);
 	}
+```
 	
