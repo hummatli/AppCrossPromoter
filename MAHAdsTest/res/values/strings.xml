@@ -2,7 +2,15 @@
 <resources>
 
     <string name="app_name">MAHAdsTest</string>
-    <string name="hello_world">Hello MAHAds users!</string>
+    <string name="hello_world">
+        Hello MAHAds users!\n
+        \n
+        For use MAHAds opportunity there is two way\n
+        \n
+        1) Menu button above. Press it to show more apps dialog\n
+        2) Press exit to show ExitDialog\n
+        
+        </string>
     <string name="action_settings">Settings</string>
     
     
