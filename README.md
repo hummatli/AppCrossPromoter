@@ -1,8 +1,10 @@
 # MAHAds - Library for advertisement own apps through other apps. 
 
+```java
+```
+
 By the help of this lib you can provide your apps to users of your other apps.
 
-===========
 #How to use. 
 
 a) You need small service provide your application list. Structure of the service as below
@@ -15,11 +17,17 @@ root->
   I)imgs  
   II) program_version.php returns json as below 
 
-    {"version":"13"}
+```json
+{"version":"13"}
+```
+
   
   II) program_list.php returns json as below. There is two  application in this sample:
 
-    {"programs":[ {"name":"Avto Nişanlar", "desc":"Bütün yol nişanları", "uri":"com.mobapphome.avtonishanlar",          "img":"imgs/avto_nishanlar2.png", "release_date":"10/10/2014"} ,{"name":"Məzənnə", "desc":"Valyuta çeviricisi və məzənnələr", "uri":"com.mobapphome.currency", "img":"imgs/mezenne2.png", "release_date":"05/12/2014"}]}
+```json
+{"programs":[ {"name":"Avto Nişanlar", "desc":"Bütün yol nişanları", "uri":"com.mobapphome.avtonishanlar",          "img":"imgs/avto_nishanlar2.png", "release_date":"10/10/2014"} ,{"name":"Məzənnə", "desc":"Valyuta çeviricisi və məzənnələr", "uri":"com.mobapphome.currency", "img":"imgs/mezenne2.png", "release_date":"05/12/2014"}]}
+```
+
   
 b) Installation manual
 
