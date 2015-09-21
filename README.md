@@ -57,7 +57,7 @@ root->
 	II)android-smart-image-view-1.0.0.jar
 	III)jsoup-1.7.3.jar
 
-3)Add following to your project somewere start or splash
+3)Add following to your project somewere start or splash. In place of url_st write your service files root.
 Code: 
 ```java
 	MAHAdsController.init(this, url_str);
