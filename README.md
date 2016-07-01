@@ -1,7 +1,7 @@
 # MAHAds - <a href="https://play.google.com/store/apps/developer?id=MobAppHome">MobAppHome</a>  advertisment library 
 
 Library for advertisement own apps through other apps.. 
-By the help of this lib you can provide your apps to users of your other apps..
+By the help of this lib you can provide your apps to users of your other apps...
 
 #Images
 <img src="https://github.com/settarxan/MAHAds/blob/master/imgs/exit_dlg.png" width="200px"/>
