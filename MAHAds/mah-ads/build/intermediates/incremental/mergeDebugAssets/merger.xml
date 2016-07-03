@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/mah-ads/src/main/assets"><file name="ReadMe" path="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/mah-ads/src/main/assets/ReadMe"/></source><source path="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/mah-ads/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/mah-ads/src/debug/assets"/></dataSet></merger>

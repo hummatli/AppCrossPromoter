@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Volumes/Disk_2/softs/Android/AndroidSDK/sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/pre-dexed/debug/support-annotations-23.4.0_d596a75cb4555be660eaecc43c995397953b02e8.jar" />
+    </item>
+    <item
+        jar="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.4.0_c7162bfa7193331c981d6ac097211290df1b0e98.jar" />
+    </item>
+    <item
+        jar="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/exploded-aar/MAHAds/mah-ads/unspecified/jars/libs/jsoup-1.7.3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a7516db5e1be4ebd32078a312a6edddd37ec1f1e">
+        <dex dex="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/pre-dexed/debug/jsoup-1.7.3_81202c56221344b798a444f4eebc2dedbe3e9d0f.jar" />
+    </item>
+    <item
+        jar="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.4.0_0a0307dc0fd958f636b4cbe27748c7d9b5688844.jar" />
+    </item>
+    <item
+        jar="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/pre-dexed/debug/internal_impl-23.4.0_8363e572a44898b673398f4412e27a4580fe1737.jar" />
+    </item>
+    <item
+        jar="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.4.0_3c2c201213ba059ea4b3da37c9c1d78304c1d63a.jar" />
+    </item>
+    <item
+        jar="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/exploded-aar/MAHAds/mah-ads/unspecified/jars/libs/android-smart-image-view-1.0.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="802277a73a007828edeab8c29589597c87c050f3">
+        <dex dex="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/pre-dexed/debug/android-smart-image-view-1.0.0_e855c0c685605191483ac878f195e7ab77ffe883.jar" />
+    </item>
+    <item
+        jar="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.4.0_f2dc53b46aed094a43fd0837b0a67d9d68eba4b7.jar" />
+    </item>
+    <item
+        jar="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/exploded-aar/MAHAds/mah-ads/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="32018cfb6fa2715f2feced8c5c4480d2caec4797">
+        <dex dex="/Volumes/Disk_2/projects/github/MAHAds/MAHAds/MAHAdsSample/build/intermediates/pre-dexed/debug/MAHAds-mah-ads-unspecified_2cbc0bcf0e82c1ec0990b3759a79d1ebeba14d47.jar" />
+    </item>
+
+</items>
