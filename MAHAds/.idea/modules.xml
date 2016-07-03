@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MAHAds.iml" filepath="$PROJECT_DIR$/MAHAds.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MAHAdsSample/MAHAdsSample.iml" filepath="$PROJECT_DIR$/MAHAdsSample/MAHAdsSample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mah-ads/mah-ads.iml" filepath="$PROJECT_DIR$/mah-ads/mah-ads.iml" />
+    </modules>
+  </component>
+</project>
