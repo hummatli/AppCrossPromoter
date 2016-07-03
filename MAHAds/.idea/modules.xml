@@ -4,8 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MAHAds.iml" filepath="$PROJECT_DIR$/MAHAds.iml" />
       <module fileurl="file://$PROJECT_DIR$/MAHAdsSample/MAHAdsSample.iml" filepath="$PROJECT_DIR$/MAHAdsSample/MAHAdsSample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MAHAdsLib/mAHAds.iml" filepath="$PROJECT_DIR$/MAHAdsLib/mAHAds.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mah-ads/MAHAdsLib.iml" filepath="$PROJECT_DIR$/mah-ads/MAHAdsLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mah-ads/mah-ads.iml" filepath="$PROJECT_DIR$/mah-ads/mah-ads.iml" />
     </modules>
   </component>
 </project>
