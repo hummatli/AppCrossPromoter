@@ -247,34 +247,25 @@
             android:paddingRight="10dp"
             android:paddingLeft="10dp">
 
-            <TextView
+            <Button
                 android:id="@+id/mah_ads_dlg_exit_btn_yes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingRight="15dp"
-                android:paddingLeft="15dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-     			android:layout_marginRight="10dp"
-      			android:background="@color/mah_dlg_btn_yes_no_background_selector"
+                style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                 android:text="@string/mah_ads_dlg_exit_positive_btn_txt"
                 android:textColor="@color/mah_ads_yes_no_txt_color"
-                android:textSize="22sp" />
+                android:textSize="17sp" />
 
-            <TextView
+            <Button
                 android:id="@+id/mah_ads_dlg_exit_btn_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingRight="15dp"
-                android:paddingLeft="15dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-      			android:background="@color/mah_dlg_btn_yes_no_background_selector"
-                android:text="@string/mah_ads_dlg_exit_negativ_btn_txt"
+                style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+      		    android:text="@string/mah_ads_dlg_exit_negativ_btn_txt"
                 android:textColor="@color/mah_ads_yes_no_txt_color"
-                android:textSize="22sp" />
+                android:textSize="17sp" />
         </LinearLayout>
     </LinearLayout>
 

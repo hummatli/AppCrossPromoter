@@ -29,8 +29,8 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        minSdkVersion 8
-        targetSdkVersion 19
+        minSdkVersion 15
+        targetSdkVersion 23
     }
 
     buildTypes {
@@ -47,5 +47,7 @@ dependencies {
     compile files('libs/jsoup-1.7.3.jar')
 }
 
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+apply from: 'conf_for_maven/installv1.gradle.txt'
+apply from: 'conf_for_maven/bintrayv1.gradle.txt'

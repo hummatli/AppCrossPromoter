@@ -84,10 +84,10 @@ class AlertDialogClassExit extends Dialog implements
 		
 		getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));		
 		
-		TextView btnYes = ((TextView) findViewById(R.id.mah_ads_dlg_exit_btn_yes));
+		Button btnYes = ((Button) findViewById(R.id.mah_ads_dlg_exit_btn_yes));
 		btnYes.setOnClickListener(this);
 		
-		TextView btnNo = (TextView) findViewById(R.id.mah_ads_dlg_exit_btn_no);
+		Button btnNo = (Button) findViewById(R.id.mah_ads_dlg_exit_btn_no);
 		btnNo.setOnClickListener(this);
 		
 		TextView tvAsBtnMore = (TextView) findViewById(R.id.mah_ads_dlg_exit_tv_as_btn_more);

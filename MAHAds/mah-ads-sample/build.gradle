@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.mobapphome.mahads"
+        applicationId "com.mobapphome.mahads.sample"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
