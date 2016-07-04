@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MAHAds.iml" filepath="$PROJECT_DIR$/MAHAds.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MAHAdsSample/MAHAdsSample.iml" filepath="$PROJECT_DIR$/MAHAdsSample/MAHAdsSample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mah-ads/mah-ads.iml" filepath="$PROJECT_DIR$/mah-ads/mah-ads.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mah-ads/mAHAds.iml" filepath="$PROJECT_DIR$/mah-ads/mAHAds.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mah-ads-sample/app.iml" filepath="$PROJECT_DIR$/mah-ads-sample/app.iml" />
     </modules>
   </component>
 </project>

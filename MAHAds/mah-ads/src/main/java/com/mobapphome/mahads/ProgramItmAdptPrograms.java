@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.annotation.MainThread;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.PopupMenuCompat;
@@ -94,9 +95,13 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
 		                vi.getContext().startActivity(app);						
 					}else {
 						if(!pckgName.isEmpty()){
-							Intent marketIntent = new Intent(Intent.ACTION_VIEW);
-							marketIntent.setData(Uri.parse("market://details?id="+pckgName));
-							vi.getContext().startActivity(marketIntent);
+							try{
+								Intent marketIntent = new Intent(Intent.ACTION_VIEW);
+								marketIntent.setData(Uri.parse("market://details?id="+pckgName));
+								vi.getContext().startActivity(marketIntent);
+							}catch(Exception e){
+								Log.d("test", e.getMessage());
+							}
 						}
 					}
 				}
@@ -130,7 +135,15 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
 				lytProgramNewText.setVisibility(View.GONE);				
 			}
 			
-			((ImageButton) vi.findViewById(R.id.btnOverflowMAHAds)).setOnClickListener(new View.OnClickListener() {
+			
+		    ImageView ivMore = (ImageButton) vi.findViewById(R.id.btnOverflowMAHAds);
+		    if(MAHAdsController.isLightTheme()){
+			    ivMore.setImageResource(R.drawable.ic_more_vert_grey600_24dp);	    	
+		    }else{
+			    ivMore.setImageResource(R.drawable.ic_more_vert_grey600_24dp_white);	    		    	
+		    }
+		    
+			ivMore.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
@@ -155,6 +168,10 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
 				}
 			});
 
+			MAHAdsController.setFontTextView((TextView)vi.findViewById(R.id.tvNewText));
+			MAHAdsController.setFontTextView(nameTV);
+			MAHAdsController.setFontTextView(descTV);
+			MAHAdsController.setFontTextView(tvOpenGooglePLay);
 			return vi;
 		} else {
 			return null;

@@ -41,15 +41,16 @@
                 android:orientation="vertical" >
 
                 <TextView
+                    android:id="@+id/tvNewText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/mah_dlg_new_text_view_shape"
+                    android:background="@color/mah_dlg_text_view_new_shape"
                     android:paddingBottom="0dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:paddingTop="0dp"
                     android:text="@string/mah_ads_new_text"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/mah_ads_text_view_new_text_color"
                     android:textSize="13sp"
                     android:textStyle="bold" />
             </com.mobapphome.mahads.tools.gui.AngledLinearLayout>
@@ -81,7 +82,7 @@
                     android:layout_marginRight="10dp"
                     android:gravity="center_vertical"
                     android:text="-xcd"
-                    android:textColor="@color/mah_ads_text_color"
+                    android:textColor="@color/mah_ads_all_and_btn_text_color"
                     android:textSize="19sp" />
 
                 <TextView
@@ -91,7 +92,7 @@
                     android:layout_marginRight="10dp"
                     android:gravity="center_vertical"
                     android:text="-xcxcxcxcxcxcxcxcxc"
-                    android:textColor="@color/mah_ads_text_color"
+                    android:textColor="@color/mah_ads_all_and_btn_text_color"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -133,7 +134,7 @@
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="Upd"
-                android:textColor="@color/mah_ads_btn_open_install_text_color"
+                android:textColor="@color/mah_ads_colorAccent"
                 android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>

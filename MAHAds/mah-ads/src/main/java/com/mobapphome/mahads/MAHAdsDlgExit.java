@@ -33,10 +33,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.MainThread;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,11 +82,17 @@ class AlertDialogClassExit extends Dialog implements
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.mah_ads_dialog_exit);
 		
-		getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-		((TextView) findViewById(R.id.mah_ads_dlg_exit_btn_yes)).setOnClickListener(this);
-		((TextView) findViewById(R.id.mah_ads_dlg_exit_btn_no)).setOnClickListener(this);
+		getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));		
+		
+		TextView btnYes = ((TextView) findViewById(R.id.mah_ads_dlg_exit_btn_yes));
+		btnYes.setOnClickListener(this);
+		
+		TextView btnNo = (TextView) findViewById(R.id.mah_ads_dlg_exit_btn_no);
+		btnNo.setOnClickListener(this);
+		
 		TextView tvAsBtnMore = (TextView) findViewById(R.id.mah_ads_dlg_exit_tv_as_btn_more);
 		tvAsBtnMore.setOnClickListener(this);
+
 		((ImageButton) findViewById(R.id.mah_ads_dlg_exit_btnCancel)).setOnClickListener(this);
 		lytProgsPanel = ((LinearLayout)findViewById(R.id.lytProgsPanel));
 		lytProg1MAHAdsExtDlg = ((LinearLayout)findViewById(R.id.lytProg1MAHAdsExtDlg));
@@ -143,6 +151,17 @@ class AlertDialogClassExit extends Dialog implements
 			lytProg2MAHAdsExtDlg.setOnClickListener(this);
 			tvAsBtnMore.setText(parent.getResources().getString(R.string.mah_ads_dlg_exit_btn_more_txt_2));
 		}
+		
+		MAHAdsController.setFontTextView((TextView) findViewById(R.id.tvTitle));
+		MAHAdsController.setFontTextView((TextView) findViewById(R.id.tvProg1NewText));
+		MAHAdsController.setFontTextView((TextView) findViewById(R.id.tvProg2NewText));
+		MAHAdsController.setFontTextView((TextView) findViewById(R.id.tvProg1NameMAHAdsExtDlg));
+		MAHAdsController.setFontTextView((TextView) findViewById(R.id.tvProg2NameMAHAdsExtDlg));
+		MAHAdsController.setFontTextView(tvAsBtnMore);
+		MAHAdsController.setFontTextView((TextView) findViewById(R.id.tvQuestionTxt));
+		MAHAdsController.setFontTextView(btnYes);
+		MAHAdsController.setFontTextView(btnNo);
+
 		
 		MAHAdsController.init(parent, MAHAdsController.urlRootOnServer);
 		
@@ -231,6 +250,22 @@ public class MAHAdsDlgExit extends DialogFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		getDialog().setCanceledOnTouchOutside(false);
+        getDialog().setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN
+                        && keyCode == KeyEvent.KEYCODE_BACK) {
+
+                    dismiss();
+                    if(exitListiner != null){
+                        exitListiner.onNo();
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 

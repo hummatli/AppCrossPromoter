@@ -9,6 +9,7 @@ import java.util.List;
 import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.DBRequester;
 import com.mobapphome.mahads.tools.DBRequesterListener;
+import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.SqlMethods;
 import com.mobapphome.mahads.tools.Updater;
 import com.mobapphome.mahads.tools.UpdaterListener;
@@ -27,6 +28,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.MainThread;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -166,8 +168,16 @@ class AlertDialogClassPrograms extends Dialog implements
 		animation.setInterpolator(new LinearInterpolator());
 	    animation.setRepeatCount(Animation.INFINITE);
 	    ImageView iv = (ImageView) findViewById(R.id.ivLoadingMahAds);
+	    if(MAHAdsController.isLightTheme()){
+		    iv.setImageResource(R.drawable.ic_loading_mah);	    	
+	    }else{
+		    iv.setImageResource(R.drawable.ic_loading_mah_white);	    		    	
+	    }
 	    iv.startAnimation(animation);
 
+	    MAHAdsController.setFontTextView((TextView)findViewById(R.id.tvTitle));
+	    MAHAdsController.setFontTextView(tvErrorResultF1);
+	    MAHAdsController.setFontTextView((TextView)findViewById(R.id.btnErrorRefreshMAHAds));
 	}
 
 	@Override

@@ -20,6 +20,7 @@
         android:paddingTop="4dp" >
 
         <TextView
+            android:id="@+id/tvTitle"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginBottom="5dp"
@@ -85,7 +86,7 @@
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
                 android:text="Result"
-                android:textColor="#FF0000"
+                android:textColor="@color/mah_ads_colorAccent"
                 android:textSize="18sp" />
 
             <LinearLayout
@@ -102,14 +103,14 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="2dp"
-                    android:background="@color/mah_dlg_btn_dark_selector"
+                    android:background="@color/mah_dlg_btn_other_selector"
                     android:gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:text="@string/mah_ads_refresh_btn"
-                    android:textColor="@color/mah_dlg_btn_dark_text_selector"
+                    android:textColor="@color/mah_ads_all_and_btn_text_color"
                     android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>

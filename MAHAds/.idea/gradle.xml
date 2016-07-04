@@ -8,15 +8,15 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/MAHAdsSample" />
             <option value="$PROJECT_DIR$/mah-ads" />
+            <option value="$PROJECT_DIR$/mah-ads-sample" />
           </set>
         </option>
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/MAHAdsSample" />
             <option value="$PROJECT_DIR$/mah-ads" />
+            <option value="$PROJECT_DIR$/mah-ads-sample" />
           </set>
         </option>
       </GradleProjectSettings>
