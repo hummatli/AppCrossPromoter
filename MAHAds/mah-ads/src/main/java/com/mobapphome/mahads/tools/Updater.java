@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 
@@ -13,22 +14,13 @@ import com.mobapphome.mahads.types.Program;
 public class Updater {
 	UpdaterListener updaterListiner;
 	public boolean loading = false;
-	
 
 	public void setUpdaterListiner(UpdaterListener updaterListiner) {
 		this.updaterListiner = updaterListiner;
 	}
 
 	private int getVersionFromBase(Activity act) {
-		int ret = -1;
-		String versionStr = SqlMethods
-				.readValue(act, Constants.MAH_ADS_VERSION);
-		if (versionStr != null) {
-			try {
-				ret = Integer.parseInt(versionStr);
-			} catch (NumberFormatException e) {
-			}
-		}
+		int ret = MAHAdsController.getSharedPref().getInt(Constants.MAH_ADS_VERSION, -1);
 		return ret;
 	}
 
@@ -74,11 +66,7 @@ public class Updater {
 
 							}
 
-							SqlMethods.deleteValue(act,
-									Constants.MAH_ADS_VERSION);
-							SqlMethods.insertValue(act,
-									Constants.MAH_ADS_VERSION,
-									String.valueOf(currVersion));
+							MAHAdsController.getSharedPref().edit().putInt(Constants.MAH_ADS_VERSION, currVersion).apply();
 
 						}
 						if (updaterListiner != null) {

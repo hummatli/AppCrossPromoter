@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +17,7 @@ import com.mobapphome.mahads.types.Program;
 public class MAHAdsController {
 	public static final String MAH_ADS_INTERNAL_CALLED = "internal_called";
 	public static String urlRootOnServer;
+	private static SharedPreferences sharedPref;
 	private static boolean internalCalled = false;
 	private static boolean lightTheme = true;
 	private static String fontName = null;
@@ -28,7 +31,9 @@ public class MAHAdsController {
 		if(urlRootOnServer == null){
 			throw new NullPointerException("urlRootOnServer not set call init(final Activity act, String urlRootOnServer) constructor");
 		}
-		
+
+		sharedPref = act.getPreferences(Context.MODE_PRIVATE);
+
 		Updater updater = new Updater();
 		updater.setUpdaterListiner(new UpdaterListener() {
 
@@ -56,7 +61,11 @@ public class MAHAdsController {
 		});
 		updater.updateProgramList(act);
 	}
-	
+
+	protected static SharedPreferences getSharedPref() {
+		return sharedPref;
+	}
+
 	public static void setFontTextView(TextView tv) {
 		if(fontName == null){
 			return;
