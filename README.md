@@ -51,22 +51,23 @@ root->
   
 #Installation manual
 
-1)Add MAHAds lib to project
+1)To import library to you project add following lines to project's `build.gradle` file. Current stable version is `0.9.7`
 
-2)MAHAds use three lib 
-	I) appcompat-v7
-	II)android-smart-image-view-1.0.0.jar
-	III)jsoup-1.7.3.jar
+```
+	dependencies {
+    		compile 'com.mobapphome.library:mah-ads:0.9.7'
+	}
+```
 
-3)Add following to your project somewere start or splash. In place of "url_str" below write your service files root.
+3)Add following to your project's starting point. For example: MainActivity's `onCreate()` method or in splash activity. Check url to point your services root path.
 Code: 
 ```java
-	MAHAdsController.init(this, url_str);
+	MAHAdsController.init(this, "http://highsoft.az/mahads/");
 	MAHAdsController.setInternalCalled(getIntent().getBooleanExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, false));
 ```
 
 
-4)When you dont want open exit dialog on exit you call activity as below adn send argument
+4)When you dont want to open exit dialog when you quit app, you have to start activity with argument `MAHAdsController.MAH_ADS_INTERNAL_CALLED` set to `true`
 ```java
 	Intent app = pack.getLaunchIntentForPackage(pckgName);
 	app.putExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, true);
@@ -78,7 +79,7 @@ Code:
 ```
 sets this value on initialization and checks on exit as below
 
-5)Put following code to your start activity. (Because open exit dialog on exit)
+5)Put following code to your start activity to open exit dialog on quit
 Code:	
 ```java
 	public void onBackPressed() {
@@ -104,7 +105,7 @@ Code:
 	}
 ```
 
-6) Change color values for MAHAds for your project. And customize  the values
+6) To customize `MAHAds` dialog UI and overide colors set these values on your main projects `color.xml` file
 ```xml
 	<color name="mah_ads_title_bar_color">#FF0a23e1</color>						
 	<color name="mah_ads_btn_open_install_text_color">#FF0a23e1</color>						
@@ -119,7 +120,7 @@ Code:
 	<color name="mah_ads_light_color">#FFFFFFFF</color>			
 ```
 
-7) Add this to string.xml in main project8
+7) To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values
 
 ```xml
 	<string name="mah_ads_close">Close</string>
