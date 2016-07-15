@@ -51,7 +51,7 @@ root->
   
 #Installation manual
 
-`1)` To import library to you project add following lines to project's `build.gradle` file. The last stable version is `0.9.7`
+<b>`1)`</b> To import library to you project add following lines to project's `build.gradle` file. The last stable version is `0.9.7`
 
 ```
 	dependencies {
@@ -59,7 +59,7 @@ root->
 	}
 ```
 
-2)Add following to your project's starting point. For example: MainActivity's `onCreate()` method or in splash activity. Check url to point your services root path.
+<b>`2)`</b> Add following to your project's starting point. For example: MainActivity's `onCreate()` method or in splash activity. Check url to point your services root path.
 Code: 
 ```java
 	MAHAdsController.init(this, "http://highsoft.az/mahads/");
@@ -67,7 +67,7 @@ Code:
 ```
 
 
-3)When you dont want to open exit dialog when you quit app, you have to start activity with argument `MAHAdsController.MAH_ADS_INTERNAL_CALLED` set to `true`
+<b>`3)`</b> When you dont want to open exit dialog when you quit app, you have to start activity with argument `MAHAdsController.MAH_ADS_INTERNAL_CALLED` set to `true`
 ```java
 	Intent app = pack.getLaunchIntentForPackage(pckgName);
 	app.putExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, true);
@@ -79,7 +79,7 @@ Code:
 ```
 sets this value on initialization and checks on exit as below
 
-4)Put following code to your start activity to open exit dialog on quit
+<b>`4)`</b> Put following code to your start activity to open exit dialog on quit
 Code:	
 ```java
 	public void onBackPressed() {
@@ -105,7 +105,7 @@ Code:
 	}
 ```
 
-5) To customize `MAHAds` dialog UI and overide colors set these values on your main projects `color.xml` file
+<b>`5)`</b> To customize `MAHAds` dialog UI and overide colors set these values on your main projects `color.xml` file
 ```xml
     <color name="mah_ads_window_background_color">#FFFFFFFF</color>
     <color name="mah_ads_title_bar_color">#FF3F51B5</color>
@@ -123,7 +123,7 @@ Code:
     <color name="mah_ads_no_img_color">#333F51B5</color>			
 ```
 
-6) To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values
+<b>`6)`</b> To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values
 
 ```xml
     <string name="mah_ads_close">Close</string>
@@ -145,14 +145,14 @@ Code:
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Detailed</string>
 ```
     	
-7) As modul takes information from web servcie you need add `INTERNET` permission to main project.
+<b>`7)`</b> As modul takes information from web servcie you need add `INTERNET` permission to main project.
 ```xml
 	<uses-permission android:name="android.permission.INTERNET" />
 ```
 
-8)To set menu on activity add `item` to `menu.xml` and implement `onOptionsItemSelected(MenuItem item)` method
+<b>`8)`</b> To set menu on activity add `item` to `menu.xml` and implement `onOptionsItemSelected(MenuItem item)` method
 
-   a) add to menu.xml
+   * add to menu.xml
 ```xml
 	<item
         android:id="@+id/action_mahads"
@@ -162,7 +162,7 @@ Code:
         app:showAsAction="ifRoom"/> 
 ```
 	
-   b)overide `onOptionsItemSelected(MenuItem item)`
+   * overide `onOptionsItemSelected(MenuItem item)`
 ```java
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
