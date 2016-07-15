@@ -59,7 +59,7 @@ root->
 	}
 ```
 
-3)Add following to your project's starting point. For example: MainActivity's `onCreate()` method or in splash activity. Check url to point your services root path.
+2)Add following to your project's starting point. For example: MainActivity's `onCreate()` method or in splash activity. Check url to point your services root path.
 Code: 
 ```java
 	MAHAdsController.init(this, "http://highsoft.az/mahads/");
@@ -67,7 +67,7 @@ Code:
 ```
 
 
-4)When you dont want to open exit dialog when you quit app, you have to start activity with argument `MAHAdsController.MAH_ADS_INTERNAL_CALLED` set to `true`
+3)When you dont want to open exit dialog when you quit app, you have to start activity with argument `MAHAdsController.MAH_ADS_INTERNAL_CALLED` set to `true`
 ```java
 	Intent app = pack.getLaunchIntentForPackage(pckgName);
 	app.putExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, true);
@@ -79,7 +79,7 @@ Code:
 ```
 sets this value on initialization and checks on exit as below
 
-5)Put following code to your start activity to open exit dialog on quit
+4)Put following code to your start activity to open exit dialog on quit
 Code:	
 ```java
 	public void onBackPressed() {
@@ -105,7 +105,7 @@ Code:
 	}
 ```
 
-6) To customize `MAHAds` dialog UI and overide colors set these values on your main projects `color.xml` file
+5) To customize `MAHAds` dialog UI and overide colors set these values on your main projects `color.xml` file
 ```xml
     <color name="mah_ads_window_background_color">#FFFFFFFF</color>
     <color name="mah_ads_title_bar_color">#FF3F51B5</color>
@@ -123,7 +123,7 @@ Code:
     <color name="mah_ads_no_img_color">#333F51B5</color>			
 ```
 
-7) To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values
+6) To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values
 
 ```xml
     <string name="mah_ads_close">Close</string>
@@ -145,12 +145,12 @@ Code:
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Detailed</string>
 ```
     	
-8) As modul takes information from web servcie you need add `INTERNET` permission to main project.
+7) As modul takes information from web servcie you need add `INTERNET` permission to main project.
 ```xml
 	<uses-permission android:name="android.permission.INTERNET" />
 ```
 
-9)To set menu on activity add `item` to `menu.xml` and implement `onOptionsItemSelected(MenuItem item)` method
+8)To set menu on activity add `item` to `menu.xml` and implement `onOptionsItemSelected(MenuItem item)` method
 
    a) add to menu.xml
 ```xml
@@ -179,6 +179,12 @@ Code:
 
 #End
 Thats all. If you have any probelm with setting library please let me know. Write to settarxan@gmail.com. I will help.
+
+#Contribution
+* Fork it
+* Star it
+* Add your own stuff
+* Use it
 
 #Developed By
 Sattar Hummatli - settarxan@gmail.com
