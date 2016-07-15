@@ -1,22 +1,23 @@
 # MAHAds - <a href="https://play.google.com/store/apps/developer?id=MobAppHome">MobAppHome</a>  advertisment library 
 
 Library for advertisement own apps through other apps.
-By the help of this lib you can provide your apps to users of your other apps.
+By the help of this lib you can provide your apps list to users through your own other apps and let to install them.
 
 #Images
 <img src="https://github.com/settarxan/MAHAds/blob/master/imgs/exit_dlg.png" width="200px"/>
 <img src="https://github.com/settarxan/MAHAds/blob/master/imgs/programs_dlg.png" width="200px"/>
 
 #Service structure
-You need small service provide your application list. Structure of the service as below
+To provide your apps list you have to implement service provider. Structure of the service is as below. Your root folder has to contain `imgs` folder and two files `program_version.php`, `program_list.php`.
 
+``` 
 root->
-    imgs
-    program_version.php
-    program_list.php
-
-  I)imgs  
-  II) program_version.php returns json as below 
+    imgs			- "contains logos for your porgram on the list"
+    program_version.php 	- "show the ads service version."
+    program_list.php 		- "contains program list"
+```
+ 
+ `program_version.php ` service has to return json as below. 
 
 ```json
 	{
@@ -24,7 +25,7 @@ root->
 	}
 ```
 
-  II) program_list.php returns json as below. There is two  application in this sample:
+ `program_list.php` service has to return json as below. There is two  application in this sample:
   
 ```json
 	{
