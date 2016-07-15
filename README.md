@@ -107,49 +107,52 @@ Code:
 
 6) To customize `MAHAds` dialog UI and overide colors set these values on your main projects `color.xml` file
 ```xml
-	<color name="mah_ads_title_bar_color">#FF0a23e1</color>						
-	<color name="mah_ads_btn_open_install_text_color">#FF0a23e1</color>						
-	<color name="mah_ads_text_color">#FF0a23e1</color>						
-	<color name="mah_ads_no_img_color">#330a23e1</color>						
-	<color name="mah_ads_question_txt_color">#FF0a23e1</color>	
-	<color name="mah_ads_new_txt_background_color">#FFFFFFFF</color>						
-	<color name="mah_ads_window_background_color">#FFFFFFFF</color>						
-								
-	<color name="mah_ads_dark_color">#FF0a23e1</color>						
-	<color name="mah_ads_middle_color">#660a23e1</color>						
-	<color name="mah_ads_light_color">#FFFFFFFF</color>			
+    <color name="mah_ads_window_background_color">#FFFFFFFF</color>
+    <color name="mah_ads_title_bar_color">#FF3F51B5</color>
+    <color name="mah_ads_colorAccent">#FFFF4081</color>
+
+    <color name="mah_ads_all_and_btn_text_color">#FF3F51B5</color>
+    <color name="mah_ads_question_txt_color">#FF3F51B5</color>
+    <color name="mah_ads_yes_no_txt_color">#FF3F51B5</color>
+
+    <color name="mah_ads_btn_other_border_color">#FF303F9F</color>
+    <color name="mah_ads_btn_background_color_pressed">#333F51B5</color>
+
+    <color name="mah_ads_text_view_new_background_color">#FFFF0000</color>
+    <color name="mah_ads_text_view_new_text_color">#FFFFFFFF</color>
+    <color name="mah_ads_no_img_color">#333F51B5</color>			
 ```
 
 7) To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values
 
 ```xml
-	<string name="mah_ads_close">Close</string>
-	<string name="mah_ads_dlg_title">Recommended applications</string>
-	<string name="mah_ads_text_google_play">Open in GooglePlay</string>
-	<string name="mah_ads_info_version">Version</string>
-	<string name="mah_ads_internet_update_error">Error, please check internet connection or link</string>
-	<string name="mah_ads_open_program">Open</string>
-	<string name="mah_ads_install_program">Install</string>
-	<string name="mah_ads_refresh_btn">Retry</string>
-	<string name="mah_ads_free_aps">Recommended applications</string>
-	<string name="mah_ads_new_text">New</string>
-	
-	<string name="mah_ads_dlg_exit_question">Do you want exit?</string>
-	<string name="mah_ads_dlg_exit_positive_btn_txt">Exit</string>
-	<string name="mah_ads_dlg_exit_negativ_btn_txt">Stay</string>
-	
-	<string name="mah_ads_dlg_exit_btn_more_txt_1">Applications</string>
-	<string name="mah_ads_dlg_exit_btn_more_txt_2">Detailed</string>
+    <string name="mah_ads_close">Close</string>
+    <string name="mah_ads_dlg_title">Recommended applications</string>
+    <string name="mah_ads_text_google_play">Open in GooglePlay</string>
+    <string name="mah_ads_info_version">Version</string>
+    <string name="mah_ads_internet_update_error">Error, please check internet connection or link</string>
+    <string name="mah_ads_open_program">Open</string>
+    <string name="mah_ads_install_program">Install</string>
+    <string name="mah_ads_refresh_btn">Retry</string>
+    <string name="mah_ads_free_aps">Recommended applications</string>
+    <string name="mah_ads_new_text">New</string>
+
+    <string name="mah_ads_dlg_exit_question">Do you want exit?</string>
+    <string name="mah_ads_dlg_exit_positive_btn_txt">EXIT</string>
+    <string name="mah_ads_dlg_exit_negativ_btn_txt">STAY</string>
+
+    <string name="mah_ads_dlg_exit_btn_more_txt_1">Applications</string>
+    <string name="mah_ads_dlg_exit_btn_more_txt_2">Detailed</string>
 ```
     	
-8) Add following permission to main project
+8) As modul takes information from web servcie you need add `INTERNET` permission to main project.
 ```xml
 	<uses-permission android:name="android.permission.INTERNET" />
 ```
 
-9)To show on menu on activity do following
+9)To set menu on activity add `item` to `menu.xml` and implement `onOptionsItemSelected(MenuItem item)` method
 
-    a) add to menu.xml
+   a) add to menu.xml
 ```xml
 	<item
         android:id="@+id/action_mahads"
@@ -159,7 +162,7 @@ Code:
         app:showAsAction="ifRoom"/> 
 ```
 	
-     b)on menu click methd write
+   b)overide `onOptionsItemSelected(MenuItem item)`
 ```java
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -173,13 +176,16 @@ Code:
 		return super.onOptionsItemSelected(item);
 	}
 ```
-	
+
+#End
+Thats all. If you have any probelm with setting library please let me know. Write to settarxan@gmail.com. I will help.
+
 #Developed By
-Settar Hummetli - settarxan@gmail.com
+Sattar Hummatli - settarxan@gmail.com
 
 
 #License
-Copyright 2015  - <a href="https://www.linkedin.com/pub/settar-hummetli/41/a75/937">Settar Hummetli</a>   
+Copyright 2015  - <a href="https://www.linkedin.com/in/hummatli">Sattar Hummatli</a>   
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
