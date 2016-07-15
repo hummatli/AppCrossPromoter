@@ -51,7 +51,7 @@ root->
   
 #Installation manual
 
-1)To import library to you project add following lines to project's `build.gradle` file. Current stable version is `0.9.7`
+`1)` To import library to you project add following lines to project's `build.gradle` file. The last stable version is `0.9.7`
 
 ```
 	dependencies {
