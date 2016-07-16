@@ -4,7 +4,7 @@ ext {
     bintrayRepo = 'maven'
     bintrayName = 'mah-ads'
 
-    publishedGroupId = 'com.mobapphome.mahads'
+    publishedGroupId = 'com.mobapphome.library'
     libraryName = 'MAHAds'
     artifact = 'mah-ads'
 
@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/hummatli/MAHAds'
     gitUrl = 'https://github.com/hummatli/MAHAds.git'
 
-    libraryVersion = '0.9.5'
+    libraryVersion = '0.9.7'
 
     developerId = 'hummatli'
     developerName = 'Sattar Hummatli'
@@ -44,7 +44,7 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile files('libs/android-smart-image-view-1.0.0.jar')
-    compile files('libs/jsoup-1.7.3.jar')
+    compile 'org.jsoup:jsoup:1.9.2'
 }
 
 //apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
