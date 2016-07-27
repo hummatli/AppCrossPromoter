@@ -182,9 +182,12 @@ Thats all. If you have any probelm with setting library please let me know. Writ
 
 #Contribution
 * Fork it
+* Create your feature branch (git checkout -b my-new-feature)
+* Commit your changes (git commit -am 'Added some feature')
+* Push to the branch (git push origin my-new-feature)
+* Create new Pull Request
 * Star it
-* Add your own stuff
-* Use it
+
 
 #Developed By
 Sattar Hummatli - settarxan@gmail.com
