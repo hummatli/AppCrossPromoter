@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>MAHAds by hummatli</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">MAHAds</h1>
+      <h2 class="project-tagline">Library for advertisement own apps through other apps </h2>
+      <a href="https://github.com/hummatli/MAHAds" class="btn">View on GitHub</a>
+      <a href="https://github.com/hummatli/MAHAds/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/hummatli/MAHAds/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="mahads---mobapphome--advertisment-library" class="anchor" href="#mahads---mobapphome--advertisment-library" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MAHAds - <a href="https://play.google.com/store/apps/developer?id=MobAppHome">MobAppHome</a>  advertisment library</h1>
+
+<p>Library for advertisement own apps through other apps.
+By the help of this lib you can provide your apps list to users through your own other apps and let to install them. Library has build on IDE <code>Android Studio</code> and binaries have added to <code>jcenter()</code>  <code>maven</code> repository.</p>
+
+<h1>
+<a id="images" class="anchor" href="#images" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Images</h1>
+
+<p><img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/exit_dlg.png" width="200px">
+<img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/programs_dlg.png" width="200px"></p>
+
+<h1>
+<a id="service-structure" class="anchor" href="#service-structure" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Service structure</h1>
+
+<p>To provide your apps list you have to implement service provider. Structure of the service is as below. Your root folder has to contain <code>imgs</code> folder and two files <code>program_version.php</code>, <code>program_list.php</code>.</p>
+
+<pre><code>root-&gt;
+    imgs            - "contains logos for your porgram on the list"
+    program_version.php     - "show the ads service version."
+    program_list.php        - "contains program list"
+</code></pre>
+
+<p><code>program_version.php</code> service has to return json as below. </p>
+
+<div class="highlight highlight-source-json"><pre>    {
+     <span class="pl-s"><span class="pl-pds">"</span>version<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>13<span class="pl-pds">"</span></span>
+    }</pre></div>
+
+<p><code>program_list.php</code> service has to return json as below. There is two  application in this sample:</p>
+
+<div class="highlight highlight-source-json"><pre>    {
+    <span class="pl-s"><span class="pl-pds">"</span>programs<span class="pl-pds">"</span></span>:[ 
+        {
+          <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>Avto Nişanlar<span class="pl-pds">"</span></span>, 
+          <span class="pl-s"><span class="pl-pds">"</span>desc<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>Bütün yol nişanları<span class="pl-pds">"</span></span>, 
+          <span class="pl-s"><span class="pl-pds">"</span>uri<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>com.mobapphome.avtonishanlar<span class="pl-pds">"</span></span>,  
+          <span class="pl-s"><span class="pl-pds">"</span>img<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>imgs/avto_nishanlar2.png<span class="pl-pds">"</span></span>, 
+          <span class="pl-s"><span class="pl-pds">"</span>release_date<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>10/10/2014<span class="pl-pds">"</span></span>
+         },
+         {
+           <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>Məzənnə<span class="pl-pds">"</span></span>, 
+           <span class="pl-s"><span class="pl-pds">"</span>desc<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>Valyuta çeviricisi və məzənnələr<span class="pl-pds">"</span></span>, 
+           <span class="pl-s"><span class="pl-pds">"</span>uri<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>com.mobapphome.currency<span class="pl-pds">"</span></span>,  
+           <span class="pl-s"><span class="pl-pds">"</span>img<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>imgs/mezenne2.png<span class="pl-pds">"</span></span>, 
+           <span class="pl-s"><span class="pl-pds">"</span>release_date<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>05/12/2014<span class="pl-pds">"</span></span>
+         }
+    ]
+    }</pre></div>
+
+<h1>
+<a id="installation-manual" class="anchor" href="#installation-manual" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation manual</h1>
+
+<p><b><code>1)</code></b> To import library to you project add following lines to project's <code>build.gradle</code> file. The last stable version is <code>0.9.7</code></p>
+
+<pre><code>    dependencies {
+            compile 'com.mobapphome.library:mah-ads:0.9.7'
+    }
+</code></pre>
+
+<p><b><code>2)</code></b> Add following to your project's starting point. For example: MainActivity's <code>onCreate()</code> method or in splash activity. Check url to point your services root path.
+Code: </p>
+
+<div class="highlight highlight-source-java"><pre>    <span class="pl-smi">MAHAdsController</span><span class="pl-k">.</span>init(<span class="pl-v">this</span>, <span class="pl-s"><span class="pl-pds">"</span>http://highsoft.az/mahads/<span class="pl-pds">"</span></span>);
+    <span class="pl-smi">MAHAdsController</span><span class="pl-k">.</span>setInternalCalled(getIntent()<span class="pl-k">.</span>getBooleanExtra(<span class="pl-smi">MAHAdsController</span><span class="pl-c1"><span class="pl-k">.</span>MAH_ADS_INTERNAL_CALLED</span>, <span class="pl-c1">false</span>));</pre></div>
+
+<p><b><code>3)</code></b> When you dont want to open exit dialog when you quit app, you have to start activity with argument <code>MAHAdsController.MAH_ADS_INTERNAL_CALLED</code> set to <code>true</code></p>
+
+<div class="highlight highlight-source-java"><pre>    <span class="pl-smi">Intent</span> app <span class="pl-k">=</span> pack<span class="pl-k">.</span>getLaunchIntentForPackage(pckgName);
+    app<span class="pl-k">.</span>putExtra(<span class="pl-smi">MAHAdsController</span><span class="pl-c1"><span class="pl-k">.</span>MAH_ADS_INTERNAL_CALLED</span>, <span class="pl-c1">true</span>);
+    getContext()<span class="pl-k">.</span>startActivity(app);                        </pre></div>
+
+<div class="highlight highlight-source-java"><pre>    <span class="pl-smi">MAHAdsController</span><span class="pl-k">.</span>setInternalCalled(getIntent()<span class="pl-k">.</span>getBooleanExtra(<span class="pl-smi">MAHAdsController</span><span class="pl-c1"><span class="pl-k">.</span>MAH_ADS_INTERNAL_CALLED</span>, <span class="pl-c1">false</span>));</pre></div>
+
+<p>sets this value on initialization and checks on exit as below</p>
+
+<p><b><code>4)</code></b> Put following code to your start activity to open exit dialog on quit
+Code:   </p>
+
+<div class="highlight highlight-source-java"><pre>    <span class="pl-k">public</span> <span class="pl-k">void</span> onBackPressed() {
+        <span class="pl-k">if</span>(<span class="pl-smi">MAHAdsController</span><span class="pl-k">.</span>isInternalCalled()){
+            <span class="pl-v">super</span><span class="pl-k">.</span>onBackPressed();
+        }<span class="pl-k">else</span>{
+            <span class="pl-k">final</span> <span class="pl-smi">FragmentTransaction</span> ft <span class="pl-k">=</span> getSupportFragmentManager()<span class="pl-k">.</span>beginTransaction(); <span class="pl-c">//get the fragment</span>
+            <span class="pl-k">final</span> <span class="pl-smi">MAHAdsDlgExit</span> frag <span class="pl-k">=</span> <span class="pl-smi">MAHAdsDlgExit</span><span class="pl-k">.</span>newInstance(<span class="pl-v">this</span>, <span class="pl-k">new</span> <span class="pl-smi">ExitListiner</span>() {
+
+                <span class="pl-k">@Override</span>
+                <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onYes</span>() {
+                    finish();   
+                }
+
+                <span class="pl-k">@Override</span>
+                <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onNo</span>() {
+                    <span class="pl-c">// TODO Auto-generated method stub</span>
+                }
+            });
+            frag<span class="pl-k">.</span>show(ft, <span class="pl-s"><span class="pl-pds">"</span>AdsDialogExit<span class="pl-pds">"</span></span>);     
+        }   
+        <span class="pl-c">//super.onBackPressed();</span>
+    }</pre></div>
+
+<p><b><code>5)</code></b> To customize <code>MAHAds</code> dialog UI and overide colors set these values on your main projects <code>color.xml</code> file</p>
+
+<div class="highlight highlight-text-xml"><pre>    &lt;<span class="pl-ent">color</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_window_background_color<span class="pl-pds">"</span></span>&gt;#FFFFFFFF&lt;/<span class="pl-ent">color</span>&gt;
+    &lt;<span class="pl-ent">color</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_title_bar_color<span class="pl-pds">"</span></span>&gt;#FF3F51B5&lt;/<span class="pl-ent">color</span>&gt;
+    &lt;<span class="pl-ent">color</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_colorAccent<span class="pl-pds">"</span></span>&gt;#FFFF4081&lt;/<span class="pl-ent">color</span>&gt;
+
+    &lt;<span class="pl-ent">color</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_all_and_btn_text_color<span class="pl-pds">"</span></span>&gt;#FF3F51B5&lt;/<span class="pl-ent">color</span>&gt;
+    &lt;<span class="pl-ent">color</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_question_txt_color<span class="pl-pds">"</span></span>&gt;#FF3F51B5&lt;/<span class="pl-ent">color</span>&gt;
+    &lt;<span class="pl-ent">color</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_yes_no_txt_color<span class="pl-pds">"</span></span>&gt;#FF3F51B5&lt;/<span class="pl-ent">color</span>&gt;
+
+    &lt;<span class="pl-ent">color</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_btn_other_border_color<span class="pl-pds">"</span></span>&gt;#FF303F9F&lt;/<span class="pl-ent">color</span>&gt;
+    &lt;<span class="pl-ent">color</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_btn_background_color_pressed<span class="pl-pds">"</span></span>&gt;#333F51B5&lt;/<span class="pl-ent">color</span>&gt;
+
+    &lt;<span class="pl-ent">color</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_text_view_new_background_color<span class="pl-pds">"</span></span>&gt;#FFFF0000&lt;/<span class="pl-ent">color</span>&gt;
+    &lt;<span class="pl-ent">color</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_text_view_new_text_color<span class="pl-pds">"</span></span>&gt;#FFFFFFFF&lt;/<span class="pl-ent">color</span>&gt;
+    &lt;<span class="pl-ent">color</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_no_img_color<span class="pl-pds">"</span></span>&gt;#333F51B5&lt;/<span class="pl-ent">color</span>&gt;            </pre></div>
+
+<p><b><code>6)</code></b> To customize <code>MAHAds</code> UI texts and overide them add these lines to main projects <code>string.xml</code> and set them values</p>
+
+<div class="highlight highlight-text-xml"><pre>    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_close<span class="pl-pds">"</span></span>&gt;Close&lt;/<span class="pl-ent">string</span>&gt;
+    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_dlg_title<span class="pl-pds">"</span></span>&gt;Recommended applications&lt;/<span class="pl-ent">string</span>&gt;
+    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_text_google_play<span class="pl-pds">"</span></span>&gt;Open in GooglePlay&lt;/<span class="pl-ent">string</span>&gt;
+    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_info_version<span class="pl-pds">"</span></span>&gt;Version&lt;/<span class="pl-ent">string</span>&gt;
+    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_internet_update_error<span class="pl-pds">"</span></span>&gt;Error, please check internet connection or link&lt;/<span class="pl-ent">string</span>&gt;
+    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_open_program<span class="pl-pds">"</span></span>&gt;Open&lt;/<span class="pl-ent">string</span>&gt;
+    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_install_program<span class="pl-pds">"</span></span>&gt;Install&lt;/<span class="pl-ent">string</span>&gt;
+    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_refresh_btn<span class="pl-pds">"</span></span>&gt;Retry&lt;/<span class="pl-ent">string</span>&gt;
+    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_free_aps<span class="pl-pds">"</span></span>&gt;Recommended applications&lt;/<span class="pl-ent">string</span>&gt;
+    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_new_text<span class="pl-pds">"</span></span>&gt;New&lt;/<span class="pl-ent">string</span>&gt;
+
+    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_dlg_exit_question<span class="pl-pds">"</span></span>&gt;Do you want exit?&lt;/<span class="pl-ent">string</span>&gt;
+    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_dlg_exit_positive_btn_txt<span class="pl-pds">"</span></span>&gt;EXIT&lt;/<span class="pl-ent">string</span>&gt;
+    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_dlg_exit_negativ_btn_txt<span class="pl-pds">"</span></span>&gt;STAY&lt;/<span class="pl-ent">string</span>&gt;
+
+    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_dlg_exit_btn_more_txt_1<span class="pl-pds">"</span></span>&gt;Applications&lt;/<span class="pl-ent">string</span>&gt;
+    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_dlg_exit_btn_more_txt_2<span class="pl-pds">"</span></span>&gt;Detailed&lt;/<span class="pl-ent">string</span>&gt;</pre></div>
+
+<p><b><code>7)</code></b> As modul takes information from web servcie you need add <code>INTERNET</code> permission to main project.</p>
+
+<div class="highlight highlight-text-xml"><pre>    &lt;<span class="pl-ent">uses-permission</span> <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>android.permission.INTERNET<span class="pl-pds">"</span></span> /&gt;</pre></div>
+
+<p><b><code>8)</code></b> To set menu on activity add <code>item</code> to <code>menu.xml</code> and implement <code>onOptionsItemSelected(MenuItem item)</code> method</p>
+
+<ul>
+<li>add to menu.xml</li>
+</ul>
+
+<div class="highlight highlight-text-xml"><pre>    &lt;<span class="pl-ent">item</span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>@+id/action_mahads<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">orderInCategory</span>=<span class="pl-s"><span class="pl-pds">"</span>100<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">title</span>=<span class="pl-s"><span class="pl-pds">"</span>@string/mah_ads_free_aps<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">icon</span>=<span class="pl-s"><span class="pl-pds">"</span>@drawable/ic_action_more<span class="pl-pds">"</span></span>
+        <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">showAsAction</span>=<span class="pl-s"><span class="pl-pds">"</span>ifRoom<span class="pl-pds">"</span></span>/&gt; </pre></div>
+
+<ul>
+<li>overide <code>onOptionsItemSelected(MenuItem item)</code>
+</li>
+</ul>
+
+<div class="highlight highlight-source-java"><pre>    @<span class="pl-smi">Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">boolean</span> onOptionsItemSelected(<span class="pl-smi">MenuItem</span> item) {
+        <span class="pl-k">int</span> id <span class="pl-k">=</span> item<span class="pl-k">.</span>getItemId();
+        <span class="pl-k">if</span>(id <span class="pl-k">==</span> <span class="pl-smi">R</span><span class="pl-k">.</span>id<span class="pl-k">.</span>action_mahads){
+            <span class="pl-k">final</span> <span class="pl-smi">FragmentTransaction</span> ft <span class="pl-k">=</span> getSupportFragmentManager()<span class="pl-k">.</span>beginTransaction(); 
+            <span class="pl-k">final</span> <span class="pl-smi">MAHAdsDlgPrograms</span> frag <span class="pl-k">=</span> <span class="pl-smi">MAHAdsDlgPrograms</span><span class="pl-k">.</span>newInstance(<span class="pl-v">this</span>);
+            frag<span class="pl-k">.</span>show(ft, <span class="pl-s"><span class="pl-pds">"</span>AdsDialogFragment<span class="pl-pds">"</span></span>);
+            <span class="pl-k">return</span> <span class="pl-c1">true</span>;            
+        }
+        <span class="pl-k">return</span> <span class="pl-v">super</span><span class="pl-k">.</span>onOptionsItemSelected(item);
+    }</pre></div>
+
+<h1>
+<a id="end" class="anchor" href="#end" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>End</h1>
+
+<p>Thats all. If you have any probelm with setting library please let me know. Write to <a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a>. I will help.</p>
+
+<h1>
+<a id="contribution" class="anchor" href="#contribution" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contribution</h1>
+
+<ul>
+<li>Fork it</li>
+<li>Create your feature branch (git checkout -b my-new-feature)</li>
+<li>Commit your changes (git commit -am 'Added some feature')</li>
+<li>Push to the branch (git push origin my-new-feature)</li>
+<li>Create new Pull Request</li>
+<li>Star it</li>
+</ul>
+
+<h1>
+<a id="developed-by" class="anchor" href="#developed-by" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Developed By</h1>
+
+<p>Sattar Hummatli - <a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></p>
+
+<h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h1>
+
+<p>Copyright 2015  - <a href="https://www.linkedin.com/in/hummatli">Sattar Hummatli</a>   </p>
+
+<p>Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/hummatli/MAHAds">MAHAds</a> is maintained by <a href="https://github.com/hummatli">hummatli</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
