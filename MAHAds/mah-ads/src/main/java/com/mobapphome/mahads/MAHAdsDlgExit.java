@@ -4,7 +4,6 @@ package com.mobapphome.mahads;
  * Created by settar on 7/12/16.
  */
 
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -28,6 +27,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import com.loopj.android.image.SmartImageView;
 import com.mobapphome.mahads.tools.MAHAdsController;
+import com.mobapphome.mahads.tools.MAHAdsExitListener;
 import com.mobapphome.mahads.tools.Utils;
 import com.mobapphome.mahads.tools.gui.AngledLinearLayout;
 import com.mobapphome.mahads.types.Program;
@@ -37,6 +37,7 @@ import java.util.List;
 public class MAHAdsDlgExit extends DialogFragment implements
         View.OnClickListener {
     Program prog1, prog2;
+    MAHAdsExitListener exitCallback;
 
     public MAHAdsDlgExit() {
         // Empty constructor required for DialogFragment
@@ -58,6 +59,15 @@ public class MAHAdsDlgExit extends DialogFragment implements
                              Bundle savedInstanceState) {
         Log.i("Test", "MAH Ads Dld exit Created ");
 
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            exitCallback = (MAHAdsExitListener) getActivity();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity().toString()
+                    + " must implement MAHAdsExitListener");
+        }
+
         View view = inflater.inflate(R.layout.mah_ads_dialog_exit, container);
 
         getDialog().getWindow().getAttributes().windowAnimations = R.style.MAHAdsDialogAnimation;
@@ -76,7 +86,6 @@ public class MAHAdsDlgExit extends DialogFragment implements
                 return false;
             }
         });
-
 
         Button btnYes = ((Button) view.findViewById(R.id.mah_ads_dlg_exit_btn_yes));
         btnYes.setOnClickListener(this);
@@ -173,10 +182,12 @@ public class MAHAdsDlgExit extends DialogFragment implements
     }
 
     public void onYes(){
+        exitCallback.onYes();
         getActivity().finish();
     };
 
     public void onNo(){
+        exitCallback.onNo();
         dismiss();
     };
 

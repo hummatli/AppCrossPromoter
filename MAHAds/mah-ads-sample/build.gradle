@@ -11,10 +11,21 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    signingConfigs {
+        release {
+            storeFile file("../../key/keystore_for_test.jks")
+            storePassword "123456"
+            keyAlias "mahads"
+            keyPassword "123456"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), '../proguard-rules-mah-ads.pro'
+            signingConfig signingConfigs.release
         }
     }
 }

@@ -5,8 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.mobapphome.mahads.tools.MAHAdsController;
+import com.mobapphome.mahads.tools.MAHAdsExitListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MAHAdsExitListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,5 +47,15 @@ public class MainActivity extends AppCompatActivity {
         // For MAHAds exit
         MAHAdsController.callExitDialog(this);
         //METHOD 2
+    }
+
+    @Override
+    public void onYes() {
+
+    }
+
+    @Override
+    public void onNo() {
+
     }
 }
