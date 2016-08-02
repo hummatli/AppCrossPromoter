@@ -105,7 +105,7 @@ Code:   </p>
         <span class="pl-smi">MAHAdsController</span><span class="pl-k">.</span>callExitDialog(activity);
     }</pre></div>
 
-<p><b>Note</b> To implement <code>MAHAdsDlgExit</code> Dialog's <code>onYes()</code>, <code>onNo()</code>, <code>onExitWithoutExitDlg()</code> your main activity has to implement <code>MAHAdsExitListener</code>. Otherwise it will through <code>ClassCastExeption</code>. <code>"Your activity must implement MAHAdsExitListener"</code> </p>
+<p><b>Note:</b> To implement <code>MAHAdsDlgExit</code> Dialog's <code>onYes()</code>, <code>onNo()</code>, <code>onExitWithoutExitDlg()</code> your main activity has to implement <code>MAHAdsExitListener</code>. Otherwise it will through <code>ClassCastExeption</code>. <code>"Your activity must implement MAHAdsExitListener"</code> </p>
 
 <div class="highlight highlight-source-java"><pre>    <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MainActivity</span> <span class="pl-k">extends</span> <span class="pl-e">AppCompatActivity</span> <span class="pl-k">implements</span> <span class="pl-e">MAHAdsExitListener</span>{
        <span class="pl-k">@Override</span>
