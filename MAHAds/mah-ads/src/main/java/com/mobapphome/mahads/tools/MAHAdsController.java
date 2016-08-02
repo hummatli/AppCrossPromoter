@@ -71,12 +71,23 @@ public class MAHAdsController {
 		updater.updateProgramList(activity);
 	}
 
+
 	/**
 	 * Calls ExitDialog to open. If current dialog has opened through MAHAds dialogs
 	 * then application will quit not opening ExitDialog
 	 * @param activity Activity which method has called
-     */
+	 */
 	public static void callExitDialog(FragmentActivity activity) {
+		callExitDialog(activity, true);
+	}
+
+	/**
+	 * Calls ExitDialog to open. If current dialog has opened through MAHAds dialogs
+	 * then application will quit not opening ExitDialog
+	 * @param activity Activity which method has called
+	 * @param withPopupInfoMenu If true adds popup menu to info button
+     */
+	public static void callExitDialog(FragmentActivity activity, boolean withPopupInfoMenu) {
 		//When is internal call is true then exit dialog will not open.
 		//It will be true only program opens through MAHAds components
 		if(isInternalCalled()){
@@ -91,7 +102,7 @@ public class MAHAdsController {
 			}
 		}else{
 			final FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction(); //get the fragment
-			final MAHAdsDlgExit frag = MAHAdsDlgExit.newInstance();
+			final MAHAdsDlgExit frag = MAHAdsDlgExit.newInstance(withPopupInfoMenu);
 			frag.show(ft, "AdsDialogExit");
 		}
 	}
@@ -101,8 +112,17 @@ public class MAHAdsController {
 	 * @param activity Activity which method has called
      */
 	public static void callProgramsDialog(FragmentActivity activity) {
+		callProgramsDialog(activity, true);
+	}
+
+	/**
+	 * Calls ProgramsDialog to open
+	 * @param activity Activity which method has called
+	 * @param withPopupInfoMenu If true adds popup menu to info button
+	 */
+	public static void callProgramsDialog(FragmentActivity activity, boolean withPopupInfoMenu) {
 		final FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction(); //get the fragment
-		final MAHAdsDlgPrograms frag = MAHAdsDlgPrograms.newInstance();
+		final MAHAdsDlgPrograms frag = MAHAdsDlgPrograms.newInstance(withPopupInfoMenu);
 		frag.show(ft, "AdsDialogPrograms");
 	}
 

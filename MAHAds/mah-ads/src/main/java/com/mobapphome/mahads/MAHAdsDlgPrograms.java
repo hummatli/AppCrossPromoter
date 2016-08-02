@@ -28,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.DBRequester;
 import com.mobapphome.mahads.tools.DBRequesterListener;
 import com.mobapphome.mahads.tools.MAHAdsController;
@@ -47,13 +48,17 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
     ListView lstProgram;
     List<Object> items;
     Updater updater;
+    boolean withPopupInfoMenu = true;
 
     public MAHAdsDlgPrograms() {
         // Empty constructor required for DialogFragment
     }
 
-    public static MAHAdsDlgPrograms newInstance() {
+    public static MAHAdsDlgPrograms newInstance(boolean withPopupInfoMenu) {
         MAHAdsDlgPrograms dialog = new MAHAdsDlgPrograms();
+        Bundle args = new Bundle();
+        args.putBoolean("withPopupInfoMenu", withPopupInfoMenu);
+        dialog.setArguments(args);
         return dialog;
     }
 
@@ -67,6 +72,9 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.i("Test", "MAH Ads Programs Dlg Created ");
+
+        Bundle args = getArguments();
+        withPopupInfoMenu = args.getBoolean("withPopupInfoMenu", true);
 
         View view = inflater.inflate(R.layout.mah_ads_dialog_programs, container);
 
@@ -198,26 +206,37 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
         dismiss();
     }
 
+    private void showMAHlib(){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.MAH_ADS_GITHUB_LINK));
+        getContext().startActivity(browserIntent);
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.mah_ads_dlg_programs_btnCancel) {
             onClose();
         }  else if (v.getId() == R.id.mah_ads_dlg_programs_btnInfo) {
-            PopupMenu popup = new PopupMenu(getContext(), v);
-            // Inflating the Popup using xml file
-            popup.getMenuInflater().inflate(R.menu.mah_ads_info_popup_menu, popup.getMenu());
-            // registering popup with OnMenuItemClickListener
-            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                public boolean onMenuItemClick(MenuItem item) {
-                    if (item.getItemId() == R.id.mah_ads_info_popup_item) {
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/hummatli/MAHAds"));
-                        getContext().startActivity(browserIntent);
-                    }
-                    return true;
-                }
-            });
 
-            popup.show();// showing popup menu
+            if(withPopupInfoMenu){
+                PopupMenu popup = new PopupMenu(getContext(), v);
+                // Inflating the Popup using xml file
+                popup.getMenuInflater().inflate(R.menu.mah_ads_info_popup_menu, popup.getMenu());
+                // registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.mah_ads_info_popup_item) {
+                            showMAHlib();
+                        }
+                        return true;
+                    }
+                });
+
+                popup.show();// showing popup menu
+            }else{
+                showMAHlib();
+            }
+
+
 
         }else if (v.getId() == R.id.btnErrorRefreshMAHAds) {
             if (updater != null) {

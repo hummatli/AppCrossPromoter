@@ -48,7 +48,9 @@
                 android:paddingTop="0dp"
                 android:text="@string/mah_ads_dlg_title"
                 android:textColor="@android:color/white"
-                android:textSize="15sp" />
+                android:textSize="19sp"
+                android:ellipsize="end"
+                android:maxLines="1"/>
 
 
             <ImageButton

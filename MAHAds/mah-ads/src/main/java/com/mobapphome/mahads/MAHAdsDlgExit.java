@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.loopj.android.image.SmartImageView;
+import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.MAHAdsExitListener;
 import com.mobapphome.mahads.tools.Utils;
@@ -38,13 +39,17 @@ public class MAHAdsDlgExit extends DialogFragment implements
         View.OnClickListener {
     Program prog1, prog2;
     MAHAdsExitListener exitCallback;
+    boolean withPopupInfoMenu = true;
 
     public MAHAdsDlgExit() {
         // Empty constructor required for DialogFragment
     }
 
-    public static MAHAdsDlgExit newInstance() {
+    public static MAHAdsDlgExit newInstance(boolean withPopupInfoMenu) {
         MAHAdsDlgExit dialog = new MAHAdsDlgExit();
+        Bundle args = new Bundle();
+        args.putBoolean("withPopupInfoMenu", withPopupInfoMenu);
+        dialog.setArguments(args);
         return dialog;
     }
 
@@ -59,6 +64,10 @@ public class MAHAdsDlgExit extends DialogFragment implements
                              Bundle savedInstanceState) {
         Log.i("Test", "MAH Ads Dld exit Created ");
 
+        Bundle args = getArguments();
+        withPopupInfoMenu = args.getBoolean("withPopupInfoMenu", true);
+
+        Log.i("test", "With popInfoMenu" + withPopupInfoMenu);
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
@@ -191,35 +200,41 @@ public class MAHAdsDlgExit extends DialogFragment implements
         dismiss();
     };
 
+    private void showMAHlib(){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.MAH_ADS_GITHUB_LINK));
+        getContext().startActivity(browserIntent);
+    }
+
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.mah_ads_dlg_exit_btnCancel){
             dismiss();
         } else if (v.getId() == R.id.mah_ads_dlg_exit_btnInfo) {
-            PopupMenu popup = new PopupMenu(getContext(), v);
-            // Inflating the Popup using xml file
-            popup.getMenuInflater().inflate(R.menu.mah_ads_info_popup_menu, popup.getMenu());
-            // registering popup with OnMenuItemClickListener
-            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                public boolean onMenuItemClick(MenuItem item) {
-                    if (item.getItemId() == R.id.mah_ads_info_popup_item) {
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/hummatli/MAHAds"));
-                        getContext().startActivity(browserIntent);
+
+            if(withPopupInfoMenu){
+                PopupMenu popup = new PopupMenu(getContext(), v);
+                // Inflating the Popup using xml file
+                popup.getMenuInflater().inflate(R.menu.mah_ads_info_popup_menu, popup.getMenu());
+                // registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.mah_ads_info_popup_item) {
+                            showMAHlib();
+                        }
+                        return true;
                     }
-                    return true;
-                }
-            });
+                });
 
-            popup.show();// showing popup menu
-
+                popup.show();// showing popup menu
+            }else{
+                showMAHlib();
+            }
         }else if(v.getId() == R.id.mah_ads_dlg_exit_btn_yes){
           onYes();
         }else if(v.getId() == R.id.mah_ads_dlg_exit_btn_no){
            onNo();
         }else if(v.getId() == R.id.mah_ads_dlg_exit_tv_as_btn_more){
-            final FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction(); //get the fragment
-            final MAHAdsDlgPrograms frag = MAHAdsDlgPrograms.newInstance();
-            frag.show(ft, "AdsDialogFragment");
+            MAHAdsController.callProgramsDialog(getActivity(), withPopupInfoMenu);
         }else if(v.getId() == R.id.lytProg1MAHAdsExtDlg && prog1 != null){
             final String pckgName = prog1.getUri().trim();
 
