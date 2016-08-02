@@ -22,7 +22,7 @@
       <h1>
 <a id="mahads---mobapphome--advertisment-library" class="anchor" href="#mahads---mobapphome--advertisment-library" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MAHAds - <a href="https://play.google.com/store/apps/developer?id=MobAppHome">MobAppHome</a>  advertisment library</h1>
 
-<p>Library for advertisement own apps through other apps.
+<p>Library for advertisement own apps through your other apps.
 By the help of this lib you can provide your apps list to users through your own other apps and let to install them. Library has build on IDE <code>Android Studio</code> and binaries have added to <code>jcenter()</code>  <code>maven</code> repository.</p>
 
 <h1>
@@ -70,55 +70,58 @@ By the help of this lib you can provide your apps list to users through your own
     }</pre></div>
 
 <h1>
+<a id="library-structure" class="anchor" href="#library-structure" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Library structure</h1>
+
+<p>Library has <code>MAHAdsController.init()</code> method. It initialize modul, downloads program list from service and cashes them.</p>
+
+<p>Library contains from to Dialog component</p>
+
+<ul>
+<li>
+<code>MAHAdsDlgExit</code>- This dialog calls when app quits and offers user quit or stay in app. By the way it offers random two application from your list</li>
+<li>
+<code>MAHAdsDlgPrograms</code> - This dialog list your application from service and let you open nd install them</li>
+</ul>
+
+<h1>
 <a id="installation-manual" class="anchor" href="#installation-manual" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation manual</h1>
 
-<p><b><code>1)</code></b> To import library to you project add following lines to project's <code>build.gradle</code> file. The last stable version is <code>0.9.7</code></p>
+<p><b><code>1)</code></b> To import library to you project add following lines to project's <code>build.gradle</code> file. The last stable version is <code>1.0.6</code></p>
 
 <pre><code>    dependencies {
-            compile 'com.mobapphome.library:mah-ads:0.9.7'
+            compile 'com.mobapphome.library:mah-ads:1.0.6'
     }
 </code></pre>
 
-<p><b><code>2)</code></b> Add following to your project's starting point. For example: MainActivity's <code>onCreate()</code> method or in splash activity. Check url to point your services root path.
+<p><b><code>2)</code></b> Call  <code>MAHAdsController.init()</code> in your project's starting point. For example: MainActivity's <code>onCreate()</code> method or in splash activity. Check url to point your services root path.
 Code: </p>
 
-<div class="highlight highlight-source-java"><pre>    <span class="pl-smi">MAHAdsController</span><span class="pl-k">.</span>init(<span class="pl-v">this</span>, <span class="pl-s"><span class="pl-pds">"</span>http://highsoft.az/mahads/<span class="pl-pds">"</span></span>);
-    <span class="pl-smi">MAHAdsController</span><span class="pl-k">.</span>setInternalCalled(getIntent()<span class="pl-k">.</span>getBooleanExtra(<span class="pl-smi">MAHAdsController</span><span class="pl-c1"><span class="pl-k">.</span>MAH_ADS_INTERNAL_CALLED</span>, <span class="pl-c1">false</span>));</pre></div>
+<div class="highlight highlight-source-java"><pre>    <span class="pl-smi">MAHAdsController</span><span class="pl-k">.</span>init(activity, <span class="pl-s"><span class="pl-pds">"</span>http://highsoft.az/mahads/<span class="pl-pds">"</span></span>);</pre></div>
 
-<p><b><code>3)</code></b> When you dont want to open exit dialog when you quit app, you have to start activity with argument <code>MAHAdsController.MAH_ADS_INTERNAL_CALLED</code> set to <code>true</code></p>
-
-<div class="highlight highlight-source-java"><pre>    <span class="pl-smi">Intent</span> app <span class="pl-k">=</span> pack<span class="pl-k">.</span>getLaunchIntentForPackage(pckgName);
-    app<span class="pl-k">.</span>putExtra(<span class="pl-smi">MAHAdsController</span><span class="pl-c1"><span class="pl-k">.</span>MAH_ADS_INTERNAL_CALLED</span>, <span class="pl-c1">true</span>);
-    getContext()<span class="pl-k">.</span>startActivity(app);                        </pre></div>
-
-<div class="highlight highlight-source-java"><pre>    <span class="pl-smi">MAHAdsController</span><span class="pl-k">.</span>setInternalCalled(getIntent()<span class="pl-k">.</span>getBooleanExtra(<span class="pl-smi">MAHAdsController</span><span class="pl-c1"><span class="pl-k">.</span>MAH_ADS_INTERNAL_CALLED</span>, <span class="pl-c1">false</span>));</pre></div>
-
-<p>sets this value on initialization and checks on exit as below</p>
-
-<p><b><code>4)</code></b> Put following code to your start activity to open exit dialog on quit
+<p><b><code>3)</code></b> Call <code>MAHAdsController.callExitDialog()</code> when your app quits. It opens <code>MAHAdsDlgExit</code> dilog. For example:
 Code:   </p>
 
 <div class="highlight highlight-source-java"><pre>    <span class="pl-k">public</span> <span class="pl-k">void</span> onBackPressed() {
-        <span class="pl-k">if</span>(<span class="pl-smi">MAHAdsController</span><span class="pl-k">.</span>isInternalCalled()){
-            <span class="pl-v">super</span><span class="pl-k">.</span>onBackPressed();
-        }<span class="pl-k">else</span>{
-            <span class="pl-k">final</span> <span class="pl-smi">FragmentTransaction</span> ft <span class="pl-k">=</span> getSupportFragmentManager()<span class="pl-k">.</span>beginTransaction(); <span class="pl-c">//get the fragment</span>
-            <span class="pl-k">final</span> <span class="pl-smi">MAHAdsDlgExit</span> frag <span class="pl-k">=</span> <span class="pl-smi">MAHAdsDlgExit</span><span class="pl-k">.</span>newInstance(<span class="pl-v">this</span>, <span class="pl-k">new</span> <span class="pl-smi">ExitListiner</span>() {
-
-                <span class="pl-k">@Override</span>
-                <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onYes</span>() {
-                    finish();   
-                }
-
-                <span class="pl-k">@Override</span>
-                <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onNo</span>() {
-                    <span class="pl-c">// TODO Auto-generated method stub</span>
-                }
-            });
-            frag<span class="pl-k">.</span>show(ft, <span class="pl-s"><span class="pl-pds">"</span>AdsDialogExit<span class="pl-pds">"</span></span>);     
-        }   
-        <span class="pl-c">//super.onBackPressed();</span>
+        <span class="pl-smi">MAHAdsController</span><span class="pl-k">.</span>callExitDialog(activity);
     }</pre></div>
+
+<p><b>Note</b> To implement <code>MAHAdsDlgExit</code> Dialog's <code>onYes()</code>, <code>onNo()</code>, <code>onExitWithoutExitDlg()</code> your main activity has to implement <code>MAHAdsExitListener</code>. Otherwise it will through <code>ClassCastExeption</code>. <code>"Your activity must implement MAHAdsExitListener"</code> </p>
+
+<div class="highlight highlight-source-java"><pre>    <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MainActivity</span> <span class="pl-k">extends</span> <span class="pl-e">AppCompatActivity</span> <span class="pl-k">implements</span> <span class="pl-e">MAHAdsExitListener</span>{
+       <span class="pl-k">@Override</span>
+           <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onYes</span>() {}
+
+           <span class="pl-k">@Override</span>
+           <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onNo</span>() {}
+
+           <span class="pl-k">@Override</span>
+           <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onExitWithoutExitDlg</span>() {}
+    }</pre></div>
+
+<p><b><code>4)</code></b> To open <code>MAHAdsDlgPrograms</code> call <code>MAHAdsController.callProgramsDialog()</code> In library sample it has added to menu. Check it
+Code:   </p>
+
+<div class="highlight highlight-source-java"><pre>    <span class="pl-smi">MAHAdsController</span><span class="pl-k">.</span>callExitDialog(activity);</pre></div>
 
 <p><b><code>5)</code></b> To customize <code>MAHAds</code> dialog UI and overide colors set these values on your main projects <code>color.xml</code> file</p>
 
@@ -157,39 +160,22 @@ Code:   </p>
     &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_dlg_exit_btn_more_txt_1<span class="pl-pds">"</span></span>&gt;Applications&lt;/<span class="pl-ent">string</span>&gt;
     &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_dlg_exit_btn_more_txt_2<span class="pl-pds">"</span></span>&gt;Detailed&lt;/<span class="pl-ent">string</span>&gt;</pre></div>
 
+<p><b>Note:</b> You can even customize dialogs in your application. Copy <code>layout/mah_ads_dialog_programs.xml</code>,  <code>layout/mah_ads_dialog_exit.xml</code>files and put in your layot dir and customize  them as you want. But keep view ids as they are. They will overide older ones from library. </p>
+
 <p><b><code>7)</code></b> As modul takes information from web servcie you need add <code>INTERNET</code> permission to main project.</p>
 
 <div class="highlight highlight-text-xml"><pre>    &lt;<span class="pl-ent">uses-permission</span> <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>android.permission.INTERNET<span class="pl-pds">"</span></span> /&gt;</pre></div>
 
-<p><b><code>8)</code></b> To set menu on activity add <code>item</code> to <code>menu.xml</code> and implement <code>onOptionsItemSelected(MenuItem item)</code> method</p>
+<h1>
+<a id="proguard-configuration" class="anchor" href="#proguard-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Proguard configuration</h1>
 
-<ul>
-<li>add to menu.xml</li>
-</ul>
+<p>MAHAds uses <a href="https://github.com/jhy/jsoup">Jsoup</a> lib. There for if you want to create your project with proguard you need to add following configuration to your proguard file.</p>
 
-<div class="highlight highlight-text-xml"><pre>    &lt;<span class="pl-ent">item</span>
-        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>@+id/action_mahads<span class="pl-pds">"</span></span>
-        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">orderInCategory</span>=<span class="pl-s"><span class="pl-pds">"</span>100<span class="pl-pds">"</span></span>
-        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">title</span>=<span class="pl-s"><span class="pl-pds">"</span>@string/mah_ads_free_aps<span class="pl-pds">"</span></span>
-        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">icon</span>=<span class="pl-s"><span class="pl-pds">"</span>@drawable/ic_action_more<span class="pl-pds">"</span></span>
-        <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">showAsAction</span>=<span class="pl-s"><span class="pl-pds">"</span>ifRoom<span class="pl-pds">"</span></span>/&gt; </pre></div>
-
-<ul>
-<li>overide <code>onOptionsItemSelected(MenuItem item)</code>
-</li>
-</ul>
-
-<div class="highlight highlight-source-java"><pre>    @<span class="pl-smi">Override</span>
-    <span class="pl-k">public</span> <span class="pl-k">boolean</span> onOptionsItemSelected(<span class="pl-smi">MenuItem</span> item) {
-        <span class="pl-k">int</span> id <span class="pl-k">=</span> item<span class="pl-k">.</span>getItemId();
-        <span class="pl-k">if</span>(id <span class="pl-k">==</span> <span class="pl-smi">R</span><span class="pl-k">.</span>id<span class="pl-k">.</span>action_mahads){
-            <span class="pl-k">final</span> <span class="pl-smi">FragmentTransaction</span> ft <span class="pl-k">=</span> getSupportFragmentManager()<span class="pl-k">.</span>beginTransaction(); 
-            <span class="pl-k">final</span> <span class="pl-smi">MAHAdsDlgPrograms</span> frag <span class="pl-k">=</span> <span class="pl-smi">MAHAdsDlgPrograms</span><span class="pl-k">.</span>newInstance(<span class="pl-v">this</span>);
-            frag<span class="pl-k">.</span>show(ft, <span class="pl-s"><span class="pl-pds">"</span>AdsDialogFragment<span class="pl-pds">"</span></span>);
-            <span class="pl-k">return</span> <span class="pl-c1">true</span>;            
-        }
-        <span class="pl-k">return</span> <span class="pl-v">super</span><span class="pl-k">.</span>onOptionsItemSelected(item);
-    }</pre></div>
+<div class="highlight highlight-source-groovy-gradle"><pre>##<span class="pl-k">--------------</span><span class="pl-k">-</span><span class="pl-k">Begin</span>: proguard configuration <span class="pl-k">for</span> <span class="pl-k">Jsoup</span><span class="pl-k">--------------------------------</span>
+<span class="pl-k">-</span>keep <span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">org</span>.jsoup.** {
+<span class="pl-k">public</span> <span class="pl-k">*</span>;
+}
+##<span class="pl-k">--------------</span><span class="pl-k">-</span><span class="pl-k">End</span>: proguard configuration <span class="pl-k">for</span> <span class="pl-k">Jsoup</span><span class="pl-k">--------------------------------</span></pre></div>
 
 <h1>
 <a id="end" class="anchor" href="#end" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>End</h1>
