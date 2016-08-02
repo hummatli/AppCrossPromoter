@@ -130,6 +130,16 @@ Code:
 	<uses-permission android:name="android.permission.INTERNET" />
 ```
 
+#Proguard configuration
+MAHAds uses <a href="https://github.com/jhy/jsoup">Jsoup</a> lib. There for if you want to create your project with proguard you need to add following configuration to your proguard file.
+
+```gradle
+##---------------Begin: proguard configuration for Jsoup--------------------------------
+-keep public class org.jsoup.** {
+public *;
+}
+##---------------End: proguard configuration for Jsoup--------------------------------
+```
 
 #End
 Thats all. If you have any probelm with setting library please let me know. Write to settarxan@gmail.com. I will help.
