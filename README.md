@@ -123,8 +123,7 @@ Code:
     <string name="mah_ads_dlg_exit_btn_more_txt_1">Applications</string>
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Detailed</string>
 ```
-Note: You can even customize dialogs in your application. Simplely get and customize  them as you want. But dont keep view ids as they are. https://github.com/hummatli/MAHAds/blob/master/MAHAds/mah-ads/src/main/res/layout/mah_ads_dialog_programs.xml
-https://github.com/hummatli/MAHAds/blob/master/MAHAds/mah-ads/src/main/res/layout/mah_ads_dialog_exit.xml
+<b>Note:</b> You can even customize dialogs in your application. Copy `layout/mah_ads_dialog_programs.xml`,  `layout/mah_ads_dialog_exit.xml`files and put in your layot dir and customize  them as you want. But keep view ids as they are. They will overide older ones from library. 
  
 <b>`7)`</b> As modul takes information from web servcie you need add `INTERNET` permission to main project.
 ```xml
