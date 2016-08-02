@@ -1,6 +1,6 @@
 # MAHAds - <a href="https://play.google.com/store/apps/developer?id=MobAppHome">MobAppHome</a>  advertisment library 
 
-Library for advertisement own apps through other apps.
+Library for advertisement own apps through your other apps.
 By the help of this lib you can provide your apps list to users through your own other apps and let to install them. Library has build on IDE `Android Studio` and binaries have added to `jcenter()`  `maven` repository.
 
 #Images
@@ -47,62 +47,41 @@ root->
 	]
 	}
 ```
+#Library structure
+Library has `MAHAdsController.init()` method. It initialize modul, downloads program list from service and cashes them.
 
+Library contains from to Dialog component
+* `MAHAdsDlgExit`- This dialog calls when app quits and offers user quit or stay in app. By the way it offers random two application from your list
+* `MAHAdsDlgPrograms` - This dialog list your application from service and let you open nd install them
   
 #Installation manual
 
-<b>`1)`</b> To import library to you project add following lines to project's `build.gradle` file. The last stable version is `0.9.7`
+<b>`1)`</b> To import library to you project add following lines to project's `build.gradle` file. The last stable version is `1.0.6`
 
 ```
 	dependencies {
-    		compile 'com.mobapphome.library:mah-ads:0.9.7'
+    		compile 'com.mobapphome.library:mah-ads:1.0.6'
 	}
 ```
 
-<b>`2)`</b> Add following to your project's starting point. For example: MainActivity's `onCreate()` method or in splash activity. Check url to point your services root path.
+<b>`2)`</b> Call  `MAHAdsController.init()` in your project's starting point. For example: MainActivity's `onCreate()` method or in splash activity. Check url to point your services root path.
 Code: 
 ```java
-	MAHAdsController.init(this, "http://highsoft.az/mahads/");
-	MAHAdsController.setInternalCalled(getIntent().getBooleanExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, false));
+	MAHAdsController.init(activity, "http://highsoft.az/mahads/");
 ```
 
-
-<b>`3)`</b> When you dont want to open exit dialog when you quit app, you have to start activity with argument `MAHAdsController.MAH_ADS_INTERNAL_CALLED` set to `true`
-```java
-	Intent app = pack.getLaunchIntentForPackage(pckgName);
-	app.putExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, true);
-	getContext().startActivity(app);						
-```
-
-```java
-	MAHAdsController.setInternalCalled(getIntent().getBooleanExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, false));
-```
-sets this value on initialization and checks on exit as below
-
-<b>`4)`</b> Put following code to your start activity to open exit dialog on quit
+<b>`3)`</b> Call `MAHAdsController.callExitDialog()` when your app quits. It opens `MAHAdsDlgExit` dilog. For example:
 Code:	
 ```java
 	public void onBackPressed() {
-		if(MAHAdsController.isInternalCalled()){
-			super.onBackPressed();
-		}else{
-			final FragmentTransaction ft = getSupportFragmentManager().beginTransaction(); //get the fragment
-			final MAHAdsDlgExit frag = MAHAdsDlgExit.newInstance(this, new ExitListiner() {
-			
-				@Override
-				public void onYes() {
-					finish();	
-				}
-			
-				@Override
-				public void onNo() {
-					// TODO Auto-generated method stub
-				}
-			});
-			frag.show(ft, "AdsDialogExit");		
-		}	
-		//super.onBackPressed();
+		MAHAdsController.callExitDialog(activity);
 	}
+```
+
+<b>`4)`</b> To open `MAHAdsDlgPrograms` call `MAHAdsController.callProgramsDialog()` In library sample it has added to menu. Check it
+Code:	
+```java
+	MAHAdsController.callExitDialog(activity);
 ```
 
 <b>`5)`</b> To customize `MAHAds` dialog UI and overide colors set these values on your main projects `color.xml` file
@@ -144,38 +123,14 @@ Code:
     <string name="mah_ads_dlg_exit_btn_more_txt_1">Applications</string>
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Detailed</string>
 ```
-    	
+Note: You can even customize dialogs in your application. Simplely get and customize  them as you want. But dont keep view ids as they are. https://github.com/hummatli/MAHAds/blob/master/MAHAds/mah-ads/src/main/res/layout/mah_ads_dialog_programs.xml
+https://github.com/hummatli/MAHAds/blob/master/MAHAds/mah-ads/src/main/res/layout/mah_ads_dialog_exit.xml
+ 
 <b>`7)`</b> As modul takes information from web servcie you need add `INTERNET` permission to main project.
 ```xml
 	<uses-permission android:name="android.permission.INTERNET" />
 ```
 
-<b>`8)`</b> To set menu on activity add `item` to `menu.xml` and implement `onOptionsItemSelected(MenuItem item)` method
-
-   * add to menu.xml
-```xml
-	<item
-        android:id="@+id/action_mahads"
-        android:orderInCategory="100"
-        android:title="@string/mah_ads_free_aps"
-        android:icon="@drawable/ic_action_more"
-        app:showAsAction="ifRoom"/> 
-```
-	
-   * overide `onOptionsItemSelected(MenuItem item)`
-```java
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		if(id == R.id.action_mahads){
-			final FragmentTransaction ft = getSupportFragmentManager().beginTransaction(); 
-			final MAHAdsDlgPrograms frag = MAHAdsDlgPrograms.newInstance(this);
-			frag.show(ft, "AdsDialogFragment");
-			return true;			
-		}
-		return super.onOptionsItemSelected(item);
-	}
-```
 
 #End
 Thats all. If you have any probelm with setting library please let me know. Write to settarxan@gmail.com. I will help.
