@@ -6,4 +6,5 @@ package com.mobapphome.mahads.tools;
 public interface MAHAdsExitListener {
     public void onYes();
     public void onNo();
+    public void onExitWithoutExitDlg();
 }

@@ -10,12 +10,10 @@ import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.mobapphome.mahads.MAHAdsDlgExit;
 import com.mobapphome.mahads.MAHAdsDlgPrograms;
-import com.mobapphome.mahads.ProgramItmAdptPrograms;
 import com.mobapphome.mahads.types.Program;
 
 public class MAHAdsController {
@@ -82,7 +80,15 @@ public class MAHAdsController {
 		//When is internal call is true then exit dialog will not open.
 		//It will be true only program opens through MAHAds components
 		if(isInternalCalled()){
-			activity.onBackPressed();
+			// This makes sure that the container activity has implemented
+			// the callback interface. If not, it throws an exception
+			try {
+				MAHAdsExitListener exitCallback = (MAHAdsExitListener) activity;
+				exitCallback.onExitWithoutExitDlg();
+			} catch (ClassCastException e) {
+				throw new ClassCastException(activity.toString()
+						+ " must implement MAHAdsExitListener");
+			}
 		}else{
 			final FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction(); //get the fragment
 			final MAHAdsDlgExit frag = MAHAdsDlgExit.newInstance();

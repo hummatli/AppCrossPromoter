@@ -58,4 +58,10 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
     public void onNo() {
 
     }
+
+    @Override
+    public void onExitWithoutExitDlg() {
+        //Don't call here onBackPresses(). It will go to loop
+        finish();
+    }
 }
