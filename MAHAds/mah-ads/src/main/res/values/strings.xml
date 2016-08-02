@@ -20,6 +20,8 @@
     
     <string name="mah_ads_dlg_exit_btn_more_txt_1">Applications</string>
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Detailed</string>
+
+    <string name="mah_ads_info_popup_text">MAHAds library</string>
     
     
 </resources>

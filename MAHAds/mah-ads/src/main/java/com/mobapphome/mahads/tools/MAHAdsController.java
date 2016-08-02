@@ -7,10 +7,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.mobapphome.mahads.MAHAdsDlgExit;
+import com.mobapphome.mahads.MAHAdsDlgPrograms;
 import com.mobapphome.mahads.ProgramItmAdptPrograms;
 import com.mobapphome.mahads.types.Program;
 
@@ -25,14 +29,21 @@ public class MAHAdsController {
 
 	private static List<Program> programsSelected = new LinkedList<>();
 
-
-	public static void init(final Activity act, String urlRootOnServer) throws NullPointerException{
+	/**
+	 * Initializes MAHAds library
+	 * @param activity Activity which init calls
+	 * @param urlRootOnServer Root of services which programs have listed
+	 * @throws NullPointerException Throughs exception when urlRootOnServer is null and on other cases
+     */
+	public static void init(final Activity activity, String urlRootOnServer) throws NullPointerException{
 		MAHAdsController.urlRootOnServer = urlRootOnServer;
 		if(urlRootOnServer == null){
 			throw new NullPointerException("urlRootOnServer not set call init(final Activity act, String urlRootOnServer) constructor");
 		}
 
-		sharedPref = act.getPreferences(Context.MODE_PRIVATE);
+		sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+
+		setInternalCalled(activity.getIntent().getBooleanExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, false));
 
 		Updater updater = new Updater();
 		updater.setUpdaterListiner(new UpdaterListener() {
@@ -45,7 +56,7 @@ public class MAHAdsController {
 					public void onReadPrograms(final List<Program> programs) {
 						//Do nothing
 					}
-				}).readPrograms(act);
+				}).readPrograms(activity);
 			}
 
 			@Override
@@ -56,10 +67,37 @@ public class MAHAdsController {
 					public void onReadPrograms(final List<Program> programs) {
 						//Do nothing
 					}
-				}).readPrograms(act);
+				}).readPrograms(activity);
 			}
 		});
-		updater.updateProgramList(act);
+		updater.updateProgramList(activity);
+	}
+
+	/**
+	 * Calls ExitDialog to open. If current dialog has opened through MAHAds dialogs
+	 * then application will quit not opening ExitDialog
+	 * @param activity Activity which method has called
+     */
+	public static void callExitDialog(FragmentActivity activity) {
+		//When is internal call is true then exit dialog will not open.
+		//It will be true only program opens through MAHAds components
+		if(isInternalCalled()){
+			activity.onBackPressed();
+		}else{
+			final FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction(); //get the fragment
+			final MAHAdsDlgExit frag = MAHAdsDlgExit.newInstance();
+			frag.show(ft, "AdsDialogExit");
+		}
+	}
+
+	/**
+	 * Calls ProgramsDialog to open
+	 * @param activity Activity which method has called
+     */
+	public static void callProgramsDialog(FragmentActivity activity) {
+		final FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction(); //get the fragment
+		final MAHAdsDlgPrograms frag = MAHAdsDlgPrograms.newInstance();
+		frag.show(ft, "AdsDialogPrograms");
 	}
 
 	protected static SharedPreferences getSharedPref() {
@@ -106,11 +144,11 @@ public class MAHAdsController {
 		}
 	}
 
-	public static boolean isInternalCalled() {
+	private static boolean isInternalCalled() {
 		return internalCalled;
 	}
 
-	public static void setInternalCalled(boolean internalCalled) {
+	private static void setInternalCalled(boolean internalCalled) {
 		MAHAdsController.internalCalled = internalCalled;
 	}
 	

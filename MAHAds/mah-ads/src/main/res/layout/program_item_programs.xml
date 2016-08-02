@@ -3,7 +3,7 @@
     android:id="@+id/LinearLayout2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/mah_btn_install_open_background_selector"
+    android:background="@drawable/mah_btn_install_open_background_selector"
     android:gravity="left"
     android:orientation="horizontal"
     android:paddingBottom="5dp"
@@ -44,7 +44,7 @@
                     android:id="@+id/tvNewText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/mah_dlg_text_view_new_shape"
+                    android:background="@drawable/mah_dlg_text_view_new_shape"
                     android:paddingBottom="0dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
@@ -105,7 +105,7 @@
                     android:id="@+id/btnOverflowMAHAds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/mah_btn_install_open_background_selector"
+                    android:background="@drawable/mah_btn_install_open_background_selector"
                     android:src="@drawable/ic_more_vert_grey600_24dp" />
             </LinearLayout>
         </LinearLayout>

@@ -1,14 +1,9 @@
 package com.mobapphome.mahads.sample;
 
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.mobapphome.mahads.MAHAdsDlgExit;
-import com.mobapphome.mahads.MAHAdsDlgPrograms;
-import com.mobapphome.mahads.tools.ExitListiner;
 import com.mobapphome.mahads.tools.MAHAdsController;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // For MAHAds init
         MAHAdsController.init(this,"http://ubuntu1mah.cloudapp.net/mah_ads_dir/");
-        MAHAdsController.setInternalCalled(getIntent().getBooleanExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, false));
         // METHOD 1
     }
 
@@ -39,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }else if(id == R.id.action_mahads){
-            final FragmentTransaction ft = getSupportFragmentManager().beginTransaction(); //get the fragment
-            final MAHAdsDlgPrograms frag = MAHAdsDlgPrograms.newInstance(this);
-            frag.show(ft, "AdsDialogFragment");
+            // For MAHAds programs dialog
+            MAHAdsController.callProgramsDialog(this);
+            //METHOD 3
             return true;
         }
 
@@ -49,24 +43,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        if(MAHAdsController.isInternalCalled()){
-            super.onBackPressed();
-        }else{
-            final FragmentTransaction ft = getSupportFragmentManager().beginTransaction(); //get the fragment
-            final MAHAdsDlgExit frag = MAHAdsDlgExit.newInstance(this, new ExitListiner() {
-
-                @Override
-                public void onYes() {
-                    finish();
-                }
-
-                @Override
-                public void onNo() {
-                    // TODO Auto-generated method stub
-                }
-            });
-            frag.show(ft, "AdsDialogExit");
-        }
-        //super.onBackPressed();
+        // For MAHAds exit
+        MAHAdsController.callExitDialog(this);
+        //METHOD 2
     }
 }
