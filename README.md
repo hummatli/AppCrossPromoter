@@ -77,7 +77,7 @@ Code:
 		MAHAdsController.callExitDialog(activity);
 	}
 ```
-<b>Note</b> To implement MAHAdsDlgExit Dialog's onYes, OnNo, onExitWithoutExitDlg your main activity has to implement MAHAdsExitListener. Otherwise it will through ClassCastExeption. " Your activity must implement MAHAdsExitListener" 
+<b>Note</b> To implement `MAHAdsDlgExit` Dialog's `onYes()`, `onNo()`, `onExitWithoutExitDlg()` your main activity has to implement `MAHAdsExitListener`. Otherwise it will through `ClassCastExeption`. `"Your activity must implement MAHAdsExitListener"` 
 ```java
 	public class MainActivity extends AppCompatActivity implements MAHAdsExitListener{
 	   @Override
