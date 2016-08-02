@@ -77,6 +77,19 @@ Code:
 		MAHAdsController.callExitDialog(activity);
 	}
 ```
+<b>Note</b> To implement MAHAdsDlgExit Dialog's onYes, OnNo, onExitWithoutExitDlg your main activity has to implement MAHAdsExitListener. Otherwise it will through ClassCastExeption. " Your activity must implement MAHAdsExitListener" 
+```java
+	public class MainActivity extends AppCompatActivity implements MAHAdsExitListener{
+	   @Override
+    	   public void onYes() {}
+
+    	   @Override
+           public void onNo() {}
+
+           @Override
+           public void onExitWithoutExitDlg() {}
+	}
+```
 
 <b>`4)`</b> To open `MAHAdsDlgPrograms` call `MAHAdsController.callProgramsDialog()` In library sample it has added to menu. Check it
 Code:	
