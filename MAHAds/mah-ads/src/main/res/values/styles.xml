@@ -1,7 +1,7 @@
 <resources>
 	<style name="MAHAdsDialogAnimation">
-		<item name="android:windowEnterAnimation">@anim/a1_fade_in_scale</item>
-		<item name="android:windowExitAnimation">@anim/a1_fade_out_scale</item>
+		<item name="android:windowEnterAnimation">@anim/mah_a1_fade_in_scale</item>
+		<item name="android:windowExitAnimation">@anim/mah_a1_fade_out_scale</item>
 	</style>
 
 	<style name="AppTheme" parent="Theme.AppCompat.Light">
