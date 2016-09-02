@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.mobapphome.mahads.tools.LocaleUpdater;
 import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.MAHAdsExitListener;
 
@@ -12,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LocaleUpdater.setLocale(this,"tr");
         setContentView(R.layout.activity_main);
         // For MAHAds init
         MAHAdsController.init(this,"http://ubuntu1mah.cloudapp.net/mah_ads_dir/");

@@ -3,7 +3,6 @@
 
     <string name="app_name">MAHAds</string>
 
-    <!-- For English local default-->
     <string name="mah_ads_close">Close</string>
     <string name="mah_ads_dlg_title">Recommended</string>
     <string name="mah_ads_text_google_play">Open in GooglePlay</string>

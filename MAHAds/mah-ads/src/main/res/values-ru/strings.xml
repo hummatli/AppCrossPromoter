@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="mah_ads_close">Закрыть</string>
+    <string name="mah_ads_dlg_title">Предлагаемые программы</string>
+    <string name="mah_ads_text_google_play">Oткрыть в Google Play</string>
+    <string name="mah_ads_info_version">Версия</string>
+    <string name="mah_ads_internet_update_error">Произошла ошибка. Проверьте соединение с интернетом</string>
+    <string name="mah_ads_open_program">Открыть</string>
+    <string name="mah_ads_install_program">Загрузить</string>
+    <string name="mah_ads_refresh_btn">Заново</string>
+    <string name="mah_ads_free_aps">Предлагаемые программы</string>
+    <string name="mah_ads_new_text">Новый</string>
+
+    <string name="mah_ads_dlg_exit_question">Подтвердите выход</string>
+    <string name="mah_ads_dlg_exit_positive_btn_txt">ВЫХОД</string>
+    <string name="mah_ads_dlg_exit_negativ_btn_txt">ОСТАВАТЬСЯ</string>
+
+    <string name="mah_ads_dlg_exit_btn_more_txt_1">Программы</string>
+    <string name="mah_ads_dlg_exit_btn_more_txt_2">Подробный</string>
+
+    <string name="mah_ads_info_popup_text">MAHAds библиотека</string>
+
+</resources>
