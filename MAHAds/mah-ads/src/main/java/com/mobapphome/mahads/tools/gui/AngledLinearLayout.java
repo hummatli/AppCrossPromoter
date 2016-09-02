@@ -1,11 +1,10 @@
 package com.mobapphome.mahads.tools.gui;
 
-import android.content.Context;  
-import android.graphics.Canvas;  
-import android.util.AttributeSet;  
+import android.content.Context;
+import android.graphics.Canvas;
+import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.widget.LinearLayout;
-import android.widget.TextView;  
   
 public class AngledLinearLayout extends LinearLayout  
 {  

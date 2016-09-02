@@ -1,8 +1,5 @@
 package com.mobapphome.mahads.tools;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,6 +12,9 @@ import android.widget.TextView;
 import com.mobapphome.mahads.MAHAdsDlgExit;
 import com.mobapphome.mahads.MAHAdsDlgPrograms;
 import com.mobapphome.mahads.types.Program;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class MAHAdsController {
 	public static final String MAH_ADS_INTERNAL_CALLED = "internal_called";

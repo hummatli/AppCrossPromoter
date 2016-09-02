@@ -1,15 +1,13 @@
 package com.mobapphome.mahads.tools;
 
-import java.io.IOException;
-import java.util.List;
-
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.util.Log;
-import android.view.View;
 
 import com.mobapphome.mahads.R;
 import com.mobapphome.mahads.types.Program;
+
+import java.io.IOException;
+import java.util.List;
 
 public class Updater {
 	UpdaterListener updaterListiner;

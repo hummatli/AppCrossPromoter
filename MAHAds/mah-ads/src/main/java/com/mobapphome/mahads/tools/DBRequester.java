@@ -1,19 +1,13 @@
 package com.mobapphome.mahads.tools;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Currency;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
-
 import android.content.Context;
-import android.net.ParseException;
 import android.util.Log;
 
 import com.mobapphome.mahads.types.Program;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 
 public class DBRequester {
 	

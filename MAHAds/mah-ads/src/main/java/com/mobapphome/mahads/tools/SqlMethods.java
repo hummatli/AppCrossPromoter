@@ -1,19 +1,18 @@
 package com.mobapphome.mahads.tools;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import com.mobapphome.mahads.types.Program;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-
-import com.mobapphome.mahads.types.Program;
-
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.net.ParseException;
-import android.util.Log;
 
 public class SqlMethods {
 	static DateFormat DATE_FORMATTER = new SimpleDateFormat("dd/MM/yyyy");

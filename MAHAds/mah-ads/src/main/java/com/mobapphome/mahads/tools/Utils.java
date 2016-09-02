@@ -1,8 +1,5 @@
 package com.mobapphome.mahads.tools;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;

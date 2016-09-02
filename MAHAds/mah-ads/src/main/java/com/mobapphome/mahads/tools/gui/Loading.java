@@ -1,15 +1,14 @@
 package com.mobapphome.mahads.tools.gui;
 
-import com.mobapphome.mahads.R;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.sax.StartElementListener;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+
+import com.mobapphome.mahads.R;
 
 public class Loading extends ProgressDialog {
   private Animation animation;

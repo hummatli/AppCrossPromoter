@@ -1,15 +1,18 @@
 package com.mobapphome.mahads.tools;
 
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+import android.util.Log;
+
+import com.mobapphome.mahads.types.Program;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import com.mobapphome.mahads.types.Program;
-import android.util.Log;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class HttpTools {
 
