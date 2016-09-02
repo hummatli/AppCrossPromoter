@@ -6,5 +6,11 @@
         \nLibrary for advertisement own apps through other apps.
         By the help of this lib you can provide your apps to users of your other apps.
         </string>
+    <string name="txt_lang">Language: </string>
+    <string name="txt_btn_open_programs_dlg">Test open Programs Dlg</string>
+    <string name="txt_btn_open_exit_dlg">Test open Exit Dlg</string>
+
+
+
 
 </resources>
