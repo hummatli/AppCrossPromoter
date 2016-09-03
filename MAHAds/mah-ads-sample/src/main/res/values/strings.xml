@@ -6,13 +6,22 @@
         \nLibrary for advertisement own apps through other apps.
         By the help of this lib you can provide your apps to users of your other apps.
         </string>
+
     <string name="txt_lang">Language: </string>
     <string name="txt_btn_open_programs_dlg">Test open Programs Dlg</string>
     <string name="txt_btn_open_exit_dlg">Test open Exit Dlg</string>
+    <string name="txt_links">Links:</string>
+    <string name="txt_note">Note:</string>
 
-    <string name="txt_language_change_tip">To see localized  dialogs please open dialog after changing language</string>
+    <string name="txt_language_change_tip">Open dialog to see localized dialog</string>
 
-
-
-
+    <string name="mahads_lib_github_url">* <i><a href="https://github.com/hummatli/MAHAds">GitHub URL for library</a></i></string>
+    <string name="mahads_lib_jcenter_url">* <i><a href="https://bintray.com/hummatli/maven/mah-ads#statistics">jCenter() download statitsics for library</a></i></string>
+    <string name="mahads_lib_contubute">* We need help to add new language localization support for libarary.
+        If you have any hope to help us we were very happy and you can check following
+        <i><a href="https://github.com/hummatli/MAHAds/issues">GitHub Issues URL</a></i> contribute.
+        If you have any question please ask to me on <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>
+    </string>
 </resources>
+
+

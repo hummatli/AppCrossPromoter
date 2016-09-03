@@ -1,14 +1,15 @@
 package com.mobapphome.mahads.sample;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.MAHAdsExitListener;
@@ -21,6 +22,10 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
         setContentView(R.layout.activity_main);
         findViewById(R.id.mahBtnProgramsDlgTest).setOnClickListener(this);
         findViewById(R.id.mahBtnExitDlgTest).setOnClickListener(this);
+
+        ((TextView)findViewById(R.id.tvMAHAdsLibGithubUrl)).setMovementMethod(LinkMovementMethod.getInstance());
+        ((TextView)findViewById(R.id.tvMAHAdsLibJCenterURL)).setMovementMethod(LinkMovementMethod.getInstance());
+        ((TextView)findViewById(R.id.tvMAHAdsLibContrubute)).setMovementMethod(LinkMovementMethod.getInstance());
 
         Spinner langSpinner = (Spinner) findViewById(R.id.langSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.langs_array, android.R.layout.simple_spinner_item);
