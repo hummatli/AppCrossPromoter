@@ -2,7 +2,7 @@
 <resources>
 
     <string name="mah_ads_close">Закрыть</string>
-    <string name="mah_ads_dlg_title">Предлагаемые программы</string>
+    <string name="mah_ads_dlg_title">Предлагаемые</string>
     <string name="mah_ads_text_google_play">Oткрыть в Google Play</string>
     <string name="mah_ads_info_version">Версия</string>
     <string name="mah_ads_internet_update_error">Произошла ошибка. Проверьте соединение с интернетом</string>

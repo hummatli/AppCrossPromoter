@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="mah_ads_close">Bağla</string>
-    <string name="mah_ads_dlg_title">Tövsiyə edilən proqramlar</string>
+    <string name="mah_ads_dlg_title">Tövsiyə edilənlər</string>
     <string name="mah_ads_text_google_play">GooglePlay-də aç</string>
     <string name="mah_ads_info_version">Versiya</string>
     <string name="mah_ads_internet_update_error">Xəta baş verdi. İnternet əlaqəsini yoxlayın</string>

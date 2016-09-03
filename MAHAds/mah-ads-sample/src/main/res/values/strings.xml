@@ -10,6 +10,8 @@
     <string name="txt_btn_open_programs_dlg">Test open Programs Dlg</string>
     <string name="txt_btn_open_exit_dlg">Test open Exit Dlg</string>
 
+    <string name="txt_language_change_tip">To see localized  dialogs please open dialog after changing language</string>
+
 
 
 

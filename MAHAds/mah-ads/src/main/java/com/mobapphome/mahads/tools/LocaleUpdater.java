@@ -18,43 +18,7 @@ import java.util.Locale;
  * Created by gunhansancar on 07/10/15.
  */
 public class LocaleUpdater {
-
-    private static final String SELECTED_LANGUAGE = "MAHAds.Locale.Helper.Selected.Language";
-
-    public static void onCreate(Context context) {
-        String lang = getPersistedData(context, Locale.getDefault().getLanguage());
-        setLocale(context, lang);
-    }
-
-    public static void onCreate(Context context, String defaultLanguage) {
-        String lang = getPersistedData(context, defaultLanguage);
-        setLocale(context, lang);
-    }
-
-    public static String getLanguage(Context context) {
-        return getPersistedData(context, Locale.getDefault().getLanguage());
-    }
-
-    public static void setLocale(Context context, String language) {
-        Log.i("test", "Language = " + language);
-        persist(context, language);
-        updateResources(context, language);
-    }
-
-    private static String getPersistedData(Context context, String defaultLanguage) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return preferences.getString(SELECTED_LANGUAGE, defaultLanguage);
-    }
-
-    private static void persist(Context context, String language) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = preferences.edit();
-
-        editor.putString(SELECTED_LANGUAGE, language);
-        editor.apply();
-    }
-
-    private static void updateResources(Context context, String language) {
+    private static void updateLocale(Context context, String language) {
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
 

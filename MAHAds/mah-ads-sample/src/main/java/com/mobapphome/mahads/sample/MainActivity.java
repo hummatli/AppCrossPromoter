@@ -19,8 +19,6 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         findViewById(R.id.mahBtnProgramsDlgTest).setOnClickListener(this);
         findViewById(R.id.mahBtnExitDlgTest).setOnClickListener(this);
 
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         langSpinner.setAdapter(adapter);
 
-
+        //Setting local.
         LocaleHelper.onCreate(this, "en");
         String currentLang = LocaleHelper.getLanguage(this);
         if (currentLang.equals("en")) {
@@ -42,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
             currentLang = "turkey";
         }
 
+        //Setting spinner to right language
         String[] langsArray = getResources().getStringArray(R.array.langs_array);
         for (int i = 0; i < langsArray.length; i++) {
             if (langsArray[i].toLowerCase().startsWith(currentLang)) {
@@ -52,10 +51,9 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
         langSpinner.setOnItemSelectedListener(this);
 
         // For MAHAds init
+        // METHOD 1
         MAHAdsController.init(this, "http://ubuntu1mah.cloudapp.net/mah_ads_dir/");
         // METHOD 1
-
-
     }
 
     @Override
@@ -75,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
             return true;
         } else if (id == R.id.action_mahads) {
             // For MAHAds programs dialog
+            //METHOD 3
             MAHAdsController.callProgramsDialog(this);
             //METHOD 3
             return true;
@@ -83,41 +82,46 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
         return super.onOptionsItemSelected(item);
     }
 
-    public void onBackPressed() {
-        // For MAHAds exit
-        MAHAdsController.callExitDialog(this);
-        //METHOD 2
+
+    //Click method for buttons
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.mahBtnProgramsDlgTest) {
+            // For MAHAds programs dialog
+            //METHOD 3
+            MAHAdsController.callProgramsDialog(this);
+            //METHOD 3
+        } else if (view.getId() == R.id.mahBtnExitDlgTest) {
+            // For MAHAds exit
+            //METHOD 2
+            MAHAdsController.callExitDialog(this);
+            //METHOD 2
+        }
     }
 
+
+    //Yes call back from Exit dialog for yes button
     @Override
     public void onYes() {
 
     }
 
+    //Yes call back from Exit dialog for no button
     @Override
     public void onNo() {
 
     }
 
+    //Yes call back from Exit dialog for onExitWithoutExitDlg
     @Override
     public void onExitWithoutExitDlg() {
         //Don't call here onBackPresses(). It will go to loop
         finish();
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.mahBtnProgramsDlgTest) {
-            // For MAHAds programs dialog
-            MAHAdsController.callProgramsDialog(this);
-            //METHOD 3
-        } else if (view.getId() == R.id.mahBtnExitDlgTest) {
-            // For MAHAds exit
-            MAHAdsController.callExitDialog(this);
-            //METHOD 2
-        }
-    }
 
+
+    //Selection event for language spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         String item = parent.getItemAtPosition(pos).toString();
@@ -140,17 +144,10 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
 
     }
 
-    private void updateViews() {
-        // if you want you just call activity to restart itself to redraw all the widgets with the correct locale
-        // however, it will cause a bad look and feel for your users
-        //
-        // this.recreate();
-
-        //or you can just update the visible text on your current layout
-        Resources resources = getResources();
-
-//        mTitleTextView.setText(resources.getString(R.string.title_text));
-//        mDescTextView.setText(resources.getString(R.string.desc_text));
-//        mAboutTextView.setText(resources.getString(R.string.about_text));
+    public void onBackPressed() {
+        // For MAHAds exit
+        //METHOD 2
+        MAHAdsController.callExitDialog(this);
+        //METHOD 2
     }
 }

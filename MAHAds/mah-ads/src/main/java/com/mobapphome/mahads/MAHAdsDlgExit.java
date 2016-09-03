@@ -4,6 +4,7 @@ package com.mobapphome.mahads;
  * Created by settar on 7/12/16.
  */
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -57,6 +58,7 @@ public class MAHAdsDlgExit extends DialogFragment implements
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NORMAL, R.style.MAHAdsDlgExit);
+        Log.i("test", "Exit dialog greated");
     }
 
     @Override
@@ -190,15 +192,30 @@ public class MAHAdsDlgExit extends DialogFragment implements
         return view;
     }
 
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        Log.i("test", "Exit dialog onDetach");
+//        //Last called function on dismiss.
+//         //We can call        getActivity().finish(); here if needed
+//    }
+
+
     public void onYes(){
+        dismiss();
         exitCallback.onYes();
         getActivity().finish();
-    };
+        //The problem when appears on application close is for the transition animation time difference.
+        //Time for home screen animation and other animation is differenet
+        //Some times it shows reappearing dialog on application close
+        //There for i call dismiss() and later call for finish()
+    }
+
 
     public void onNo(){
         exitCallback.onNo();
         dismiss();
-    };
+    }
 
     private void showMAHlib(){
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.MAH_ADS_GITHUB_LINK));
@@ -230,9 +247,9 @@ public class MAHAdsDlgExit extends DialogFragment implements
                 showMAHlib();
             }
         }else if(v.getId() == R.id.mah_ads_dlg_exit_btn_yes){
-          onYes();
+            onYes();
         }else if(v.getId() == R.id.mah_ads_dlg_exit_btn_no){
-           onNo();
+            onNo();
         }else if(v.getId() == R.id.mah_ads_dlg_exit_tv_as_btn_more){
             MAHAdsController.callProgramsDialog(getActivity(), withPopupInfoMenu);
         }else if(v.getId() == R.id.lytProg1MAHAdsExtDlg && prog1 != null){
