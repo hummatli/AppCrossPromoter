@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MAHAdsSample</string>
+    <string name="app_name">MAHAds - Sample</string>
     <string name="action_settings">Settings</string>
     <string name="content_txt">
         This is the sample for using MAHAds lib.
