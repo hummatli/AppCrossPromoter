@@ -1,7 +1,13 @@
 # MAHAds - <a href="https://play.google.com/store/apps/developer?id=MobAppHome">MobAppHome</a>  advertisment library 
 
 Library for advertisement own apps through your other apps.
-By the help of this lib you can provide your apps list to users through your own other apps and let to install them. Library has build on IDE `Android Studio` and binaries have added to `jcenter()`  `maven` repository.
+By the help of this lib you can provide your apps list to users through your own other apps and let to install them. 
+Library has build on IDE `Android Studio` and binaries have added to `jcenter()`  `maven` repository.
+<br>You can check  <a href="https://bintray.com/hummatli/maven/mah-ads#statistics">jCenter() download statistics</a> on this link - https://bintray.com/hummatli/maven/mah-ads#statistics
+
+#PlayStore
+<a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample">MAHAds - Sample</a> app has published on Google PlayStore. You can easly test module functionality with downloading it.
+<br><a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample"><img src="https://github.com/hummatli/MAHAds/blob/master/imgs/google-play-badge.png" width="200px"/></a> 
 
 #Images
 <img src="https://github.com/settarxan/MAHAds/blob/master/imgs/exit_dlg.png" width="200px"/>
@@ -60,7 +66,7 @@ Library contains from to Dialog component
 
 ```
 	dependencies {
-    		compile 'com.mobapphome.library:mah-ads:1.0.6'
+    		compile 'com.mobapphome.library:mah-ads:1.10.1'
 	}
 ```
 
@@ -115,7 +121,7 @@ Code:
     <color name="mah_ads_no_img_color">#333F51B5</color>			
 ```
 
-<b>`7)`</b> Localization. Module now supports 4 languages (English, Azerbaijan, Russia, Turkey).  To set localization to app use your own method or if it is static and don't change in program session you can just simply add 		`LocaleUpdater.updateLocale(this, "your_lang");` in the start of your app. For examlpe  `LocaleUpdater.updateLocale(this, "ru");`
+<b>`7)`</b>` Localization:`  Module now supports 4 languages ` (English, Azerbaijan, Russia, Turkey)` .  To set localization to app use your own method or if it is static and don't change in program session you can just simply add 		`LocaleUpdater.updateLocale(this, "your_lang");` in the start of your app. For examlpe  `LocaleUpdater.updateLocale(this, "ru");`
 
 <b>`8)`</b> To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values
 
@@ -169,6 +175,7 @@ Thats all. If you have any probelm with setting library please let me know. Writ
 
 #Contribution for localization
 We need help to add new language localization support for libarary. If you have any hope to help us we were very happy and you can check following <i><a href="https://github.com/hummatli/MAHAds/issues">GitHub Issues URL</a></i> to contribute.
+To contribute get <a href="https://github.com/hummatli/MAHAds/blob/master/MAHAds/mah-ads/src/main/res/values/strings.xml">res/values/string.xml</a> file and translate to newer language. Place it on res/values-"spacific_lang"/string.xml
 If you have any question please ask to me on <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>
 
 
