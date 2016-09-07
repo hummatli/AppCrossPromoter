@@ -7,7 +7,7 @@ Library has build on IDE `Android Studio` and binaries have added to `jcenter()`
 
 #PlayStore
 <a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample">MAHAds - Sample</a> app has published on Google PlayStore. You can easly test module functionality with downloading it.
-<br><a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample"><img src="https://github.com/hummatli/MAHAds/blob/master/imgs/google-play-badge.png" width="200px"/><img src="https://github.com/hummatli/MAHAds/blob/master/imgs/img_create/mah_ads_logo.png" width="70px"/></a> 
+<br><a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample"><img src="https://github.com/hummatli/MAHAds/blob/master/imgs/google-play-badge.png" width="200px"/></a> 
 
 #Images
 <img src="https://github.com/settarxan/MAHAds/blob/master/imgs/exit_dlg.png" width="200px"/>
