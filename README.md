@@ -3,9 +3,7 @@
 Library for advertisement own apps through your other apps.
 By the help of this lib you can provide your apps list to users through your own other apps and let to install them. 
 Library has build on IDE `Android Studio` and binaries have added to `jcenter()`  `maven` repository.
-
-#Links
-jCenter() download statistics - https://bintray.com/hummatli/maven/mah-ads#statistics
+<br>You can check  <a href="https://bintray.com/hummatli/maven/mah-ads#statistics">jCenter() download statistics</a> on this link - https://bintray.com/hummatli/maven/mah-ads#statistics
 
 #PlayStore
 <a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample">MAHAndroidUpdater - Sample</a> app has published on Google PlayStore. You can easly test module functionality with downloading it.
