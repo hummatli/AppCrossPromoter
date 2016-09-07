@@ -115,7 +115,9 @@ Code:
     <color name="mah_ads_no_img_color">#333F51B5</color>			
 ```
 
-<b>`6)`</b> To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values
+<b>`7)`</b> Localization. Module now supports 4 languages (English, Azerbaijan, Russia, Turkey).  To set localization to app use your own method or if it is static and don't change in program session you can just simply add 		`LocaleUpdater.updateLocale(this, "your_lang");` in the start of your app. For examlpe  `LocaleUpdater.updateLocale(this, "ru");`
+
+<b>`8)`</b> To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values
 
 ```xml
     <string name="mah_ads_close">Close</string>
@@ -138,7 +140,7 @@ Code:
 ```
 <b>Note:</b> You can even customize dialogs in your application. Copy `layout/mah_ads_dialog_programs.xml`,  `layout/mah_ads_dialog_exit.xml`files and put in your layot dir and customize  them as you want. But keep view ids as they are. They will overide older ones from library. 
  
-<b>`7)`</b> As modul takes information from web servcie you need add `INTERNET` permission to main project.
+<b>`8)`</b> As modul takes information from web servcie you need add `INTERNET` permission to main project.
 ```xml
 	<uses-permission android:name="android.permission.INTERNET" />
 ```
