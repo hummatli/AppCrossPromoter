@@ -4,7 +4,7 @@ Library for advertisement own apps through your other apps.
 By the help of this lib you can provide your apps list to users through your own other apps and let to install them. Library has build on IDE `Android Studio` and binaries have added to `jcenter()`  `maven` repository.
 
 #PlayStore
-MAHAndroidUpdater - Sample app has published on Google PlayStore. You can easly tes module with downloading it. 
+<a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample">MAHAndroidUpdater - Sample</a> app has published on Google PlayStore. You can easly test module functionality with downloading it. 
  <a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample"><img src="https://github.com/hummatli/MAHAds/blob/master/imgs/google-play-badge.png" width="200px"/></a> 
 
 #Images
