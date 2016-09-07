@@ -12,8 +12,8 @@
     <string name="mah_ads_new_text">Yeni</string>
 
     <string name="mah_ads_dlg_exit_question">Çıxışı təsdiqləyin</string>
-    <string name="mah_ads_dlg_exit_positive_btn_txt">ÇIX</string>
-    <string name="mah_ads_dlg_exit_negativ_btn_txt">QAL</string>
+    <string name="mah_ads_dlg_exit_positive_btn_txt">Çıx</string>
+    <string name="mah_ads_dlg_exit_negativ_btn_txt">Qal</string>
 
     <string name="mah_ads_dlg_exit_btn_more_txt_1">Proqramlar</string>
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Ətraflı</string>

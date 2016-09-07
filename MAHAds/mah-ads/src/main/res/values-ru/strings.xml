@@ -13,8 +13,8 @@
     <string name="mah_ads_new_text">Новый</string>
 
     <string name="mah_ads_dlg_exit_question">Подтвердите выход</string>
-    <string name="mah_ads_dlg_exit_positive_btn_txt">ВЫХОД</string>
-    <string name="mah_ads_dlg_exit_negativ_btn_txt">ОСТАВАТЬСЯ</string>
+    <string name="mah_ads_dlg_exit_positive_btn_txt">Выход</string>
+    <string name="mah_ads_dlg_exit_negativ_btn_txt">Оставаться</string>
 
     <string name="mah_ads_dlg_exit_btn_more_txt_1">Программы</string>
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Подробный</string>
