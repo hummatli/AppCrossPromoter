@@ -175,6 +175,7 @@ Thats all. If you have any probelm with setting library please let me know. Writ
 
 #Contribution for localization
 We need help to add new language localization support for libarary. If you have any hope to help us we were very happy and you can check following <i><a href="https://github.com/hummatli/MAHAds/issues">GitHub Issues URL</a></i> to contribute.
+To contribute get <a href="https://github.com/hummatli/MAHAds/blob/master/MAHAds/mah-ads/src/main/res/values/strings.xml">res/values/string.xml</a> translate to new language. Place it on res/values-"spacific_lang"/string.xml
 If you have any question please ask to me on <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>
 
 
