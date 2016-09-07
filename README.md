@@ -6,7 +6,7 @@ Library has build on IDE `Android Studio` and binaries have added to `jcenter()`
 <br>You can check  <a href="https://bintray.com/hummatli/maven/mah-ads#statistics">jCenter() download statistics</a> on this link - https://bintray.com/hummatli/maven/mah-ads#statistics
 
 #PlayStore
-<a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample">MAHAndroidUpdater - Sample</a> app has published on Google PlayStore. You can easly test module functionality with downloading it.
+<a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample">MAHAds - Sample</a> app has published on Google PlayStore. You can easly test module functionality with downloading it.
 <br><a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample"><img src="https://github.com/hummatli/MAHAds/blob/master/imgs/google-play-badge.png" width="200px"/></a> 
 
 #Images
