@@ -139,6 +139,25 @@
                 android:layout_weight="1"></ListView>
         </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:paddingTop="2dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp">
 
+            <Button
+                android:id="@+id/mah_ads_dlg_programs_btn_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+                android:text="@string/mah_ads_close"
+                android:textColor="@color/mah_ads_yes_no_txt_color"
+                android:textSize="17sp" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

@@ -101,6 +101,7 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
         lytErrorF1 = (LinearLayout) view.findViewById(R.id.lytErrorMAHAds);
         tvErrorResultF1 = (TextView) view.findViewById(R.id.tvErrorResultMAHAds);
         view.findViewById(R.id.mah_ads_dlg_programs_btnCancel).setOnClickListener(this);
+        view.findViewById(R.id.mah_ads_dlg_programs_btn_close).setOnClickListener(this);
         view.findViewById(R.id.mah_ads_dlg_programs_btnInfo).setOnClickListener(this);
         lstProgram = (ListView) view.findViewById(R.id.lstMahAds);
         ((TextView) view.findViewById(R.id.btnErrorRefreshMAHAds)).setOnClickListener(this);
@@ -213,7 +214,8 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.mah_ads_dlg_programs_btnCancel) {
+        if (v.getId() == R.id.mah_ads_dlg_programs_btnCancel
+                || v.getId() == R.id.mah_ads_dlg_programs_btn_close) {
             onClose();
         }  else if (v.getId() == R.id.mah_ads_dlg_programs_btnInfo) {
 
