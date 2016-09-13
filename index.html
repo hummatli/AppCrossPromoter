@@ -23,7 +23,15 @@
 <a id="mahads---mobapphome--advertisment-library" class="anchor" href="#mahads---mobapphome--advertisment-library" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MAHAds - <a href="https://play.google.com/store/apps/developer?id=MobAppHome">MobAppHome</a>  advertisment library</h1>
 
 <p>Library for advertisement own apps through your other apps.
-By the help of this lib you can provide your apps list to users through your own other apps and let to install them. Library has build on IDE <code>Android Studio</code> and binaries have added to <code>jcenter()</code>  <code>maven</code> repository.</p>
+By the help of this lib you can provide your apps list to users through your own other apps and let to install them. 
+Library has build on IDE <code>Android Studio</code> and binaries have added to <code>jcenter()</code>  <code>maven</code> repository.
+<br>You can check  <a href="https://bintray.com/hummatli/maven/mah-ads#statistics">jCenter() download statistics</a> on this link - <a href="https://bintray.com/hummatli/maven/mah-ads#statistics">https://bintray.com/hummatli/maven/mah-ads#statistics</a></p>
+
+<h1>
+<a id="playstore" class="anchor" href="#playstore" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PlayStore</h1>
+
+<p><a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample">MAHAds - Sample</a> app has published on Google PlayStore. You can easly test module functionality with downloading it.
+<br><a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample"><img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/google-play-badge.png" width="200px"></a> </p>
 
 <h1>
 <a id="images" class="anchor" href="#images" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Images</h1>
@@ -89,7 +97,7 @@ By the help of this lib you can provide your apps list to users through your own
 <p><b><code>1)</code></b> To import library to you project add following lines to project's <code>build.gradle</code> file. The last stable version is <code>1.0.6</code></p>
 
 <pre><code>    dependencies {
-            compile 'com.mobapphome.library:mah-ads:1.0.6'
+            compile 'com.mobapphome.library:mah-ads:1.10.1'
     }
 </code></pre>
 
@@ -140,7 +148,9 @@ Code:   </p>
     &lt;<span class="pl-ent">color</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_text_view_new_text_color<span class="pl-pds">"</span></span>&gt;#FFFFFFFF&lt;/<span class="pl-ent">color</span>&gt;
     &lt;<span class="pl-ent">color</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_no_img_color<span class="pl-pds">"</span></span>&gt;#333F51B5&lt;/<span class="pl-ent">color</span>&gt;            </pre></div>
 
-<p><b><code>6)</code></b> To customize <code>MAHAds</code> UI texts and overide them add these lines to main projects <code>string.xml</code> and set them values</p>
+<p><b><code>7)</code></b><code>Localization:</code>  Module now supports 4 languages <code>(English, Azerbaijan, Russia, Turkey)</code> .  To set localization to app use your own method or if it is static and don't change in program session you can just simply add      <code>LocaleUpdater.updateLocale(this, "your_lang");</code> in the start of your app. For examlpe  <code>LocaleUpdater.updateLocale(this, "ru");</code></p>
+
+<p><b><code>8)</code></b> To customize <code>MAHAds</code> UI texts and overide them add these lines to main projects <code>string.xml</code> and set them values</p>
 
 <div class="highlight highlight-text-xml"><pre>    &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_close<span class="pl-pds">"</span></span>&gt;Close&lt;/<span class="pl-ent">string</span>&gt;
     &lt;<span class="pl-ent">string</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>mah_ads_dlg_title<span class="pl-pds">"</span></span>&gt;Recommended applications&lt;/<span class="pl-ent">string</span>&gt;
@@ -162,7 +172,7 @@ Code:   </p>
 
 <p><b>Note:</b> You can even customize dialogs in your application. Copy <code>layout/mah_ads_dialog_programs.xml</code>,  <code>layout/mah_ads_dialog_exit.xml</code>files and put in your layot dir and customize  them as you want. But keep view ids as they are. They will overide older ones from library. </p>
 
-<p><b><code>7)</code></b> As modul takes information from web servcie you need add <code>INTERNET</code> permission to main project.</p>
+<p><b><code>8)</code></b> As modul takes information from web servcie you need add <code>INTERNET</code> permission to main project.</p>
 
 <div class="highlight highlight-text-xml"><pre>    &lt;<span class="pl-ent">uses-permission</span> <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>android.permission.INTERNET<span class="pl-pds">"</span></span> /&gt;</pre></div>
 
@@ -193,6 +203,13 @@ Code:   </p>
 <li>Create new Pull Request</li>
 <li>Star it</li>
 </ul>
+
+<h1>
+<a id="contribution-for-localization" class="anchor" href="#contribution-for-localization" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contribution for localization</h1>
+
+<p>We need help to add new language localization support for libarary. If you have any hope to help us we were very happy and you can check following <i><a href="https://github.com/hummatli/MAHAds/issues">GitHub Issues URL</a></i> to contribute.
+To contribute get <a href="https://github.com/hummatli/MAHAds/blob/master/MAHAds/mah-ads/src/main/res/values/strings.xml">res/values/string.xml</a> file and translate to newer language. Place it on res/values-"spacific_lang"/string.xml
+If you have any question please ask to me on <i><a href="mailto:settarxan@gmail.com"></a><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i></p>
 
 <h1>
 <a id="developed-by" class="anchor" href="#developed-by" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Developed By</h1>
