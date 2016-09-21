@@ -161,6 +161,10 @@ MAHAds uses <a href="https://github.com/jhy/jsoup">Jsoup</a> lib. There for if y
 public *;
 }
 ##---------------End: proguard configuration for Jsoup--------------------------------
+
+##---------------Begin: proguard configuration for Square/Picasso--------------------------------
+-dontwarn com.squareup.okhttp.**
+##---------------End: proguard configuration for Square/Picasso--------------------------------
 ```
 
 #End
