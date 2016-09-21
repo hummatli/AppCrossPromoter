@@ -22,17 +22,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.loopj.android.image.SmartImageView;
 import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.MAHAdsExitListener;
 import com.mobapphome.mahads.tools.Utils;
 import com.mobapphome.mahads.tools.gui.AngledLinearLayout;
 import com.mobapphome.mahads.types.Program;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -132,9 +133,11 @@ public class MAHAdsDlgExit extends DialogFragment implements
             lytProg2MAHAdsExtDlg.setVisibility(View.GONE);
             prog1 = programsSelected.get(0);
             ((TextView)view.findViewById(R.id.tvProg1NameMAHAdsExtDlg)).setText(prog1.getName());
-            if (prog1.getImg() != null && !prog1.getImg().trim().isEmpty()) {
-                ((SmartImageView)view.findViewById(R.id.ivProg1ImgMAHAds)).setImageUrl(MAHAdsController.urlRootOnServer + prog1.getImg());
-            }
+            Picasso.with(view.getContext())
+                    .load(MAHAdsController.urlRootOnServer + prog1.getImg())
+                    .placeholder(R.drawable.img_place_holder_normal)
+                    .error(R.drawable.img_not_found)
+                    .into((ImageView) view.findViewById(R.id.ivProg1ImgMAHAds));
             AngledLinearLayout prog1LytNewText = (AngledLinearLayout)view.findViewById(R.id.lytProg1NewText);
             if(prog1.isNewPrgram()){
                 prog1LytNewText.setVisibility(View.VISIBLE);
@@ -149,9 +152,12 @@ public class MAHAdsDlgExit extends DialogFragment implements
 
             prog1 = programsSelected.get(0);
             ((TextView)view.findViewById(R.id.tvProg1NameMAHAdsExtDlg)).setText(prog1.getName());
-            if (prog1.getImg() != null && !prog1.getImg().trim().isEmpty()) {
-                ((SmartImageView)view.findViewById(R.id.ivProg1ImgMAHAds)).setImageUrl(MAHAdsController.urlRootOnServer + prog1.getImg());
-            }
+            Picasso.with(view.getContext())
+                    .load(MAHAdsController.urlRootOnServer + prog1.getImg())
+                    .placeholder(R.drawable.img_place_holder_normal)
+                    .error(R.drawable.img_not_found)
+                    .into((ImageView) view.findViewById(R.id.ivProg1ImgMAHAds));
+
             AngledLinearLayout prog1LytNewText = (AngledLinearLayout)view.findViewById(R.id.lytProg1NewText);
             if(prog1.isNewPrgram()){
                 prog1LytNewText.setVisibility(View.VISIBLE);
@@ -161,9 +167,12 @@ public class MAHAdsDlgExit extends DialogFragment implements
 
             prog2 = programsSelected.get(1);
             ((TextView)view.findViewById(R.id.tvProg2NameMAHAdsExtDlg)).setText(prog2.getName());
-            if (prog2.getImg() != null && !prog2.getImg().trim().isEmpty()) {
-                ((SmartImageView)view.findViewById(R.id.ivProg2ImgMAHAds)).setImageUrl(MAHAdsController.urlRootOnServer + prog2.getImg());
-            }
+            Picasso.with(view.getContext())
+                    .load(MAHAdsController.urlRootOnServer + prog2.getImg())
+                    .placeholder(R.drawable.img_place_holder_normal)
+                    .error(R.drawable.img_not_found)
+                    .into((ImageView) view.findViewById(R.id.ivProg2ImgMAHAds));
+
             AngledLinearLayout prog2LytNewText = (AngledLinearLayout)view.findViewById(R.id.lytProg2NewText);
             if(prog2.isNewPrgram()){
                 prog2LytNewText.setVisibility(View.VISIBLE);

@@ -105,7 +105,7 @@
                         android:layout_width="80dp"
                         android:layout_height="70dp" >
 
-                        <com.loopj.android.image.SmartImageView
+                        <ImageView
                             android:id="@+id/ivProg1ImgMAHAds"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -174,7 +174,7 @@
                         android:layout_width="80dp"
                         android:layout_height="70dp" >
 
-                        <com.loopj.android.image.SmartImageView
+                        <ImageView
                             android:id="@+id/ivProg2ImgMAHAds"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

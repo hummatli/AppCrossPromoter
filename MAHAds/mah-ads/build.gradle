@@ -43,7 +43,6 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
-    compile files('libs/android-smart-image-view-1.0.0.jar')
     compile 'org.jsoup:jsoup:1.9.2'
     compile 'com.squareup.picasso:picasso:2.5.2'
 }

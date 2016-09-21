@@ -106,13 +106,11 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
 			nameTV.setText(currProgram.getName());
 			descTV.setText(currProgram.getDesc());
 
-			//if (currProgram.getImg() != null && !currProgram.getImg().trim().isEmpty()) {
-				Picasso.with(vi.getContext())
-						.load(MAHAdsController.urlRootOnServer + currProgram.getImg())
-						.placeholder(R.drawable.img_place_holder_normal)
-						.error(R.drawable.img_not_found)
-						.into(ivImg);
-			//}
+			Picasso.with(vi.getContext())
+					.load(MAHAdsController.urlRootOnServer + currProgram.getImg())
+					.placeholder(R.drawable.img_place_holder_normal)
+					.error(R.drawable.img_not_found)
+					.into(ivImg);
 
 			AngledLinearLayout lytProgramNewText = (AngledLinearLayout)vi.findViewById(R.id.lytProgramNewTextMAHAds);
 			if(currProgram.isNewPrgram()){
