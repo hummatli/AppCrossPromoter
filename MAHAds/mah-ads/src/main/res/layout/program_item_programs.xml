@@ -22,7 +22,7 @@
             android:layout_width="80dp"
             android:layout_height="70dp" >
 
-            <com.loopj.android.image.SmartImageView
+            <ImageView
                 android:id="@+id/ivProgramImgMAHAds"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

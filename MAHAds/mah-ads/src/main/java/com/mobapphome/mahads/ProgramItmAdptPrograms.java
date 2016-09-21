@@ -15,11 +15,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.loopj.android.image.SmartImageView;
 import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.Utils;
 import com.mobapphome.mahads.tools.gui.AngledLinearLayout;
 import com.mobapphome.mahads.types.Program;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -94,7 +94,7 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
 					.findViewById(R.id.tvProgramNameMAHAds);
 			TextView descTV = (TextView) vi
 					.findViewById(R.id.tvProgramDescMAHAds);
-			SmartImageView ivImg = (SmartImageView) vi.findViewById(R.id.ivProgramImgMAHAds);
+			ImageView ivImg = (ImageView) vi.findViewById(R.id.ivProgramImgMAHAds);
 			TextView tvOpenGooglePLay = (TextView) vi.findViewById(R.id.tvOpenInstallMAHAds);
 			
 			if(Utils.checkPackageIfExists(vi.getContext(), pckgName)){
@@ -106,9 +106,13 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
 			nameTV.setText(currProgram.getName());
 			descTV.setText(currProgram.getDesc());
 
-			if (currProgram.getImg() != null && !currProgram.getImg().trim().isEmpty()) {
-				ivImg.setImageUrl(MAHAdsController.urlRootOnServer + currProgram.getImg());
-			}
+			//if (currProgram.getImg() != null && !currProgram.getImg().trim().isEmpty()) {
+				Picasso.with(vi.getContext())
+						.load(MAHAdsController.urlRootOnServer + currProgram.getImg())
+						.placeholder(R.drawable.img_place_holder_normal)
+						.error(R.drawable.img_not_found)
+						.into(ivImg);
+			//}
 
 			AngledLinearLayout lytProgramNewText = (AngledLinearLayout)vi.findViewById(R.id.lytProgramNewTextMAHAds);
 			if(currProgram.isNewPrgram()){
