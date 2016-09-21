@@ -111,27 +111,35 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
 
             @Override
             public void onSuccsess() {
-                getActivity().runOnUiThread(new Runnable() {
+                try {
+                    getActivity().runOnUiThread(new Runnable() {
 
-                    @Override
-                    public void run() {
-                        Log.i("Test", "------Success");
-                        loadSpinnerData(true);
-                    }
-                });
+                        @Override
+                        public void run() {
+                            Log.i("Test", "------Success");
+                            loadSpinnerData(true);
+                        }
+                    });
+                } catch (NullPointerException e) {
+                    Log.i("test", e.getMessage());
+                }
             }
 
             @Override
             public void onError(final String errorStr) {
-                getActivity().runOnUiThread(new Runnable() {
+                try {
+                    getActivity().runOnUiThread(new Runnable() {
 
-                    @Override
-                    public void run() {
-                        Log.i("Test", "--------onError");
-                        tvErrorResultF1.setText(errorStr);
-                        loadSpinnerData(false);
-                    }
-                });
+                        @Override
+                        public void run() {
+                            Log.i("Test", "--------onError");
+                            tvErrorResultF1.setText(errorStr);
+                            loadSpinnerData(false);
+                        }
+                    });
+                } catch (NullPointerException e) {
+                    Log.i("test", e.getMessage());
+                }
             }
         });
         lytLoadingF1.setVisibility(View.VISIBLE);
@@ -170,35 +178,50 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
                 for (Program c : programs) {
                     items.add(c);
                 }
-                final ProgramItmAdptPrograms adapter = new ProgramItmAdptPrograms(getContext(), items);
+                ProgramItmAdptPrograms adapterInit = null;
+                try {
+                    adapterInit = new ProgramItmAdptPrograms(getContext(), items);
+                }catch (NullPointerException e){
+                    Log.i("test", e.getMessage());
+                    return;
+                }
+
                 try{
                     Thread.sleep(100);
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }
-                getActivity().runOnUiThread(new Runnable() {
 
-                    @Override
-                    public void run() {
-                        Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-                        lstProgram.setAdapter(adapter);
-                        if(readFromWebSuccess){
-                            lytLoadingF1.setVisibility(View.GONE);
-                            lytErrorF1.setVisibility(View.GONE);
-                            lstProgram.setVisibility(View.VISIBLE);
-                        }else{
-                            if(programs.size() > 0){
+                final ProgramItmAdptPrograms adapter = adapterInit;
+
+                try {
+                    getActivity().runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+                            lstProgram.setAdapter(adapter);
+                            if (readFromWebSuccess) {
                                 lytLoadingF1.setVisibility(View.GONE);
                                 lytErrorF1.setVisibility(View.GONE);
                                 lstProgram.setVisibility(View.VISIBLE);
-                            }else{
-                                lytLoadingF1.setVisibility(View.GONE);
-                                lytErrorF1.setVisibility(View.VISIBLE);
-                                lstProgram.setVisibility(View.GONE);
+                            } else {
+                                if (programs.size() > 0) {
+                                    lytLoadingF1.setVisibility(View.GONE);
+                                    lytErrorF1.setVisibility(View.GONE);
+                                    lstProgram.setVisibility(View.VISIBLE);
+                                } else {
+                                    lytLoadingF1.setVisibility(View.GONE);
+                                    lytErrorF1.setVisibility(View.VISIBLE);
+                                    lstProgram.setVisibility(View.GONE);
+                                }
                             }
                         }
-                    }
-                });
+                    });
+                } catch (NullPointerException e){
+                    Log.i("test", e.getMessage());
+                    return;
+                }
             }
         }).readPrograms(getContext());
     }
