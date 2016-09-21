@@ -67,7 +67,7 @@ Library contains from to Dialog component
 
 ```
 	dependencies {
-    		compile 'com.mobapphome.library:mah-ads:1.10.1'
+    		compile 'com.mobapphome.library:mah-ads:1.10.3'
 	}
 ```
 
@@ -189,6 +189,7 @@ Sattar Hummatli - settarxan@gmail.com
 
 
 #License
+```
 Copyright 2015  - <a href="https://www.linkedin.com/in/hummatli">Sattar Hummatli</a>   
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -202,3 +203,4 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+```
