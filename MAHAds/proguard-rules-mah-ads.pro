@@ -6,3 +6,7 @@
 public *;
 }
 ##---------------End: proguard configuration for Jsoup--------------------------------
+
+##---------------Begin: proguard configuration for SquareUp.Picasso--------------------------------
+-dontwarn com.squareup.okhttp.**
+##---------------End: proguard configuration for SquareUp.Picasso--------------------------------

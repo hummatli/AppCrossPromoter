@@ -7,7 +7,7 @@
     <string name="mah_ads_dlg_title">Suggestion</string>
     <string name="mah_ads_text_google_play">Ouvert en GooglePlay</string>
     <string name="mah_ads_info_version">Version</string>
-    <string name="mah_ads_internet_update_error">Erreur, s'il vous plaît check Internet connexion</string>
+    <string name="mah_ads_internet_update_error">Erreur, s\'il vous plaît check Internet connexion</string>
     <string name="mah_ads_open_program">Ouvrir</string>
     <string name="mah_ads_install_program">Installer</string>
     <string name="mah_ads_refresh_btn">Reprise</string>
