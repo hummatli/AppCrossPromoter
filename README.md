@@ -187,6 +187,9 @@ If you have any question please ask to me on <i><a href="mailto:settarxan@gmail.
 #Developed By
 Sattar Hummatli - settarxan@gmail.com
 
+#Other libraries by [Sattar Hummatli](https://hummatli.github.io)
+* [![MAHAndroidUpdater](https://img.shields.io/badge/GitHUB-MAHAndroidUpdater-green.svg)](https://github.com/hummatli/MAHAndroidUpdater) - Android update checker library. Library for notifing update information to installed android apps on android device.  
+* [![MAHEncryptorLib](https://img.shields.io/badge/GitHUB-MAHEncryptorLib-green.svg)](https://github.com/hummatli/MAHEncryptorLib) - Library for encryption and decryption strings on Android apps and PC Java applications.
 
 #License
 ```
