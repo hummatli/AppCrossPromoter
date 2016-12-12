@@ -55,9 +55,9 @@ public class SqlMethods {
         Log.i("Test", "ReadAllCurrency");
         List<Program> retItems = new LinkedList<>();
 		SqlLite myDbHelper =  new SqlLite(context);
-        SQLiteDatabase db = myDbHelper.getReadableDatabase();  
+        /*#465*/ SQLiteDatabase db = myDbHelper.getReadableDatabase();
         
-        Cursor cursor = db.rawQuery("SELECT id, name, desc, uri, img, release_date FROM programs", null);
+        /*#257*/Cursor cursor = db.rawQuery("SELECT id, name, desc, uri, img, release_date FROM programs", null);
         if (cursor != null ) {
             if  (cursor.moveToFirst()) {
                 do {

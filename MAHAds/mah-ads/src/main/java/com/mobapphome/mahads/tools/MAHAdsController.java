@@ -123,7 +123,7 @@ public class MAHAdsController {
 	public static void callProgramsDialog(FragmentActivity activity, boolean withPopupInfoMenu) {
 		final FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction(); //get the fragment
 		final MAHAdsDlgPrograms frag = MAHAdsDlgPrograms.newInstance(withPopupInfoMenu);
-		frag.show(ft, "AdsDialogPrograms");
+		/*#197*/ frag.show(ft, "AdsDialogPrograms");
 	}
 
 	protected static SharedPreferences getSharedPref() {

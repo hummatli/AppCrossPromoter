@@ -121,7 +121,7 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
                         }
                     });
                 } catch (NullPointerException e) {
-                    Log.i("test", e.getMessage());
+                    /*#289*/ Log.i("test", e.getMessage());
                 }
             }
 
@@ -138,7 +138,7 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
                         }
                     });
                 } catch (NullPointerException e) {
-                    Log.i("test", e.getMessage());
+                    /*#296*/ Log.i("test", e.getMessage());
                 }
             }
         });
@@ -182,7 +182,7 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
                 try {
                     adapterInit = new ProgramItmAdptPrograms(getContext(), items);
                 }catch (NullPointerException e){
-                    Log.i("test", e.getMessage());
+                    /*#290*/ Log.i("test", e.getMessage());
                     return;
                 }
 
@@ -219,7 +219,7 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
                         }
                     });
                 } catch (NullPointerException e){
-                    Log.i("test", e.getMessage());
+                   /*#294*/ Log.i("test", e.getMessage());
                     return;
                 }
             }

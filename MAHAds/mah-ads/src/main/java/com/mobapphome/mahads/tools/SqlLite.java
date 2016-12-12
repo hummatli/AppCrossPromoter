@@ -122,7 +122,7 @@ import java.nio.channels.FileChannel;
 	            
 	        } catch (Exception e) {
 	            e.printStackTrace();
-	        	Toast.makeText(currentContext.getApplicationContext(),e.toString(), Toast.LENGTH_LONG).show(); 	
+	        	/*#410*/ Toast.makeText(currentContext.getApplicationContext(),e.toString(), Toast.LENGTH_LONG).show();
 
 	        }
 	    }    

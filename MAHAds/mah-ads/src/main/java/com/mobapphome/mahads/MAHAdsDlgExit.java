@@ -211,7 +211,7 @@ public class MAHAdsDlgExit extends DialogFragment implements
 
 
     public void onYes(){
-        dismiss();
+        /*#330 */ dismiss();
         exitCallback.onYes();
         getActivity().finish();
         //The problem when appears on application close is for the transition animation time difference.
@@ -223,7 +223,7 @@ public class MAHAdsDlgExit extends DialogFragment implements
 
     public void onNo(){
         exitCallback.onNo();
-        dismiss();
+       /*#305*/ dismiss();
     }
 
     private void showMAHlib(){
@@ -288,7 +288,7 @@ public class MAHAdsDlgExit extends DialogFragment implements
                 if(!pckgName.isEmpty()){
                     Intent marketIntent = new Intent(Intent.ACTION_VIEW);
                     marketIntent.setData(Uri.parse("market://details?id="+pckgName));
-                    getActivity().startActivity(marketIntent);
+                   /*#364*/ getActivity().startActivity(marketIntent);
                 }
             }
         }
