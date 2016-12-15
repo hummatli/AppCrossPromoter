@@ -102,6 +102,7 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
             nameTV.setText(currProgram.getName());
             descTV.setText(currProgram.getDesc());
 
+            Log.i("Test",MAHAdsController.urlRootOnServer + currProgram.getImg() );
             Picasso.with(vi.getContext())
                     .load(MAHAdsController.urlRootOnServer + currProgram.getImg())
                     .placeholder(R.drawable.img_place_holder_normal)

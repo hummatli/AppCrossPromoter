@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
 
         // For MAHAds init
         // METHOD 1
-        MAHAdsController.init(this, "http://ubuntu1mah.cloudapp.net/mah_ads_dir/");
+        MAHAdsController.init(this, "https://project-943403214286171762.firebaseapp.com/mah_ads_dir/mah_ads_millionaire_general/");
         // METHOD 1
     }
 

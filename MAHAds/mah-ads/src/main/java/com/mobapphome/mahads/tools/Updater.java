@@ -41,7 +41,7 @@ public class Updater {
 
 						int currVersion = HttpTools
 								.requestProgramsVersion(MAHAdsController.urlRootOnServer
-										+ "program_version.php");
+										+ "program_version.json");
 
 						Log.i("Test", "Version from base  " + myVersion
 								+ " Version from web = " + currVersion);
@@ -53,7 +53,7 @@ public class Updater {
 						}
 						List<Program> programs = HttpTools
 								.requestPrograms(MAHAdsController.urlRootOnServer
-										+ "program_list.php");
+										+ "program_list.json");
 
 						Log.i("Test",
 								"Programs count out side= " + programs.size());
