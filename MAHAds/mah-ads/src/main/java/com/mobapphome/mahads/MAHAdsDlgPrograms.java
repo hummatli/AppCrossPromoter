@@ -29,11 +29,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mobapphome.mahads.tools.Constants;
-import com.mobapphome.mahads.tools.DBRequester;
-import com.mobapphome.mahads.tools.DBRequesterListener;
 import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.Updater;
-import com.mobapphome.mahads.tools.UpdaterListener;
 import com.mobapphome.mahads.types.Program;
 
 import java.util.LinkedList;
@@ -96,7 +93,6 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
         });
 
 
-
         lytLoadingF1 = (LinearLayout) view.findViewById(R.id.lytLoadingMahAds);
         lytErrorF1 = (LinearLayout) view.findViewById(R.id.lytErrorMAHAds);
         tvErrorResultF1 = (TextView) view.findViewById(R.id.tvErrorResultMAHAds);
@@ -107,41 +103,6 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
         ((TextView) view.findViewById(R.id.btnErrorRefreshMAHAds)).setOnClickListener(this);
 
         updater = new Updater();
-        updater.setUpdaterListiner(new UpdaterListener() {
-
-            @Override
-            public void onSuccsess() {
-                try {
-                    getActivity().runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            Log.i("Test", "------Success");
-                            loadSpinnerData(true);
-                        }
-                    });
-                } catch (NullPointerException e) {
-                    /*#289*/ Log.i("test", e.getMessage());
-                }
-            }
-
-            @Override
-            public void onError(final String errorStr) {
-                try {
-                    getActivity().runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            Log.i("Test", "--------onError");
-                            tvErrorResultF1.setText(errorStr);
-                            loadSpinnerData(false);
-                        }
-                    });
-                } catch (NullPointerException e) {
-                    /*#296*/ Log.i("test", e.getMessage());
-                }
-            }
-        });
         lytLoadingF1.setVisibility(View.VISIBLE);
         lytErrorF1.setVisibility(View.GONE);
         lstProgram.setVisibility(View.GONE);
@@ -155,82 +116,57 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
         animation.setInterpolator(new LinearInterpolator());
         animation.setRepeatCount(Animation.INFINITE);
         ImageView iv = (ImageView) view.findViewById(R.id.ivLoadingMahAds);
-        if(MAHAdsController.isLightTheme()){
+        if (MAHAdsController.isLightTheme()) {
             iv.setImageResource(R.drawable.ic_loading_mah);
-        }else{
+        } else {
             iv.setImageResource(R.drawable.ic_loading_mah_white);
         }
         iv.startAnimation(animation);
 
-        MAHAdsController.setFontTextView((TextView)view.findViewById(R.id.tvTitle));
+        MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvTitle));
         MAHAdsController.setFontTextView(tvErrorResultF1);
-        MAHAdsController.setFontTextView((TextView)view.findViewById(R.id.btnErrorRefreshMAHAds));
+        MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.btnErrorRefreshMAHAds));
         return view;
     }
 
-    public void loadSpinnerData(final boolean readFromWebSuccess) {
+    public void setViewAfterLoad(List<Program> programs, boolean success) {
+        if (success) {
+            Log.i("Test", "------Success");
+        } else {
+            Log.i("Test", "--------onError");
+            tvErrorResultF1.setText(getResources().getString(
+                    R.string.mah_ads_internet_update_error));
+        }
+        items = new LinkedList<>();
+        for (Program c : programs) {
+            items.add(c);
+        }
+        ProgramItmAdptPrograms adapterInit = new ProgramItmAdptPrograms(getContext(), items);
 
-        new DBRequester(new DBRequesterListener() {
-
-            @Override
-            public void onReadPrograms(final List<Program> programs) {
-                items = new LinkedList<>();
-                for (Program c : programs) {
-                    items.add(c);
-                }
-                ProgramItmAdptPrograms adapterInit = null;
-                try {
-                    adapterInit = new ProgramItmAdptPrograms(getContext(), items);
-                }catch (NullPointerException e){
-                    /*#290*/ Log.i("test", e.getMessage());
-                    return;
-                }
-
-                try{
-                    Thread.sleep(100);
-                }catch(InterruptedException e){
-                    e.printStackTrace();
-                }
-
-                final ProgramItmAdptPrograms adapter = adapterInit;
-
-                try {
-                    getActivity().runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-                            lstProgram.setAdapter(adapter);
-                            if (readFromWebSuccess) {
-                                lytLoadingF1.setVisibility(View.GONE);
-                                lytErrorF1.setVisibility(View.GONE);
-                                lstProgram.setVisibility(View.VISIBLE);
-                            } else {
-                                if (programs.size() > 0) {
-                                    lytLoadingF1.setVisibility(View.GONE);
-                                    lytErrorF1.setVisibility(View.GONE);
-                                    lstProgram.setVisibility(View.VISIBLE);
-                                } else {
-                                    lytLoadingF1.setVisibility(View.GONE);
-                                    lytErrorF1.setVisibility(View.VISIBLE);
-                                    lstProgram.setVisibility(View.GONE);
-                                }
-                            }
-                        }
-                    });
-                } catch (NullPointerException e){
-                   /*#294*/ Log.i("test", e.getMessage());
-                    return;
-                }
+        lstProgram.setAdapter(adapterInit);
+        if (success) {
+            lytLoadingF1.setVisibility(View.GONE);
+            lytErrorF1.setVisibility(View.GONE);
+            lstProgram.setVisibility(View.VISIBLE);
+        } else {
+            if (programs.size() > 0) {
+                lytLoadingF1.setVisibility(View.GONE);
+                lytErrorF1.setVisibility(View.GONE);
+                lstProgram.setVisibility(View.VISIBLE);
+            } else {
+                lytLoadingF1.setVisibility(View.GONE);
+                lytErrorF1.setVisibility(View.VISIBLE);
+                lstProgram.setVisibility(View.GONE);
             }
-        }).readPrograms(getContext());
+        }
     }
+
 
     public void onClose() {
         dismiss();
     }
 
-    private void showMAHlib(){
+    private void showMAHlib() {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.MAH_ADS_GITHUB_LINK));
         getContext().startActivity(browserIntent);
     }
@@ -240,9 +176,9 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
         if (v.getId() == R.id.mah_ads_dlg_programs_btnCancel
                 || v.getId() == R.id.mah_ads_dlg_programs_btn_close) {
             onClose();
-        }  else if (v.getId() == R.id.mah_ads_dlg_programs_btnInfo) {
+        } else if (v.getId() == R.id.mah_ads_dlg_programs_btnInfo) {
 
-            if(withPopupInfoMenu){
+            if (withPopupInfoMenu) {
                 PopupMenu popup = new PopupMenu(getContext(), v);
                 // Inflating the Popup using xml file
                 popup.getMenuInflater().inflate(R.menu.mah_ads_info_popup_menu, popup.getMenu());
@@ -257,13 +193,12 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
                 });
 
                 popup.show();// showing popup menu
-            }else{
+            } else {
                 showMAHlib();
             }
 
 
-
-        }else if (v.getId() == R.id.btnErrorRefreshMAHAds) {
+        } else if (v.getId() == R.id.btnErrorRefreshMAHAds) {
             if (updater != null) {
                 lytLoadingF1.setVisibility(View.VISIBLE);
                 lytErrorF1.setVisibility(View.GONE);

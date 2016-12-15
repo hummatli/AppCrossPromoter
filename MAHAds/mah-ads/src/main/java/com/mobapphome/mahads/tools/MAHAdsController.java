@@ -23,6 +23,9 @@ public class MAHAdsController {
 	private static boolean internalCalled = false;
 	private static boolean lightTheme = true;
 	private static String fontName = null;
+	static String PROGRAM_LIST_CACHE = "program_list_cache";
+	static String TAG_MAH_ADS_DLG_PROGRAMS = "tag_mah_ads_dlg_programs";
+	static String TAG_MAH_ADS_DLG_EXIT = "tag_mah_ads_dlg_exit";
 
 
 	private static List<Program> programsSelected = new LinkedList<>();
@@ -33,7 +36,7 @@ public class MAHAdsController {
 	 * @param urlRootOnServer Root of services which programs have listed
 	 * @throws NullPointerException Throughs exception when urlRootOnServer is null and on other cases
      */
-	public static void init(final Activity activity, String urlRootOnServer) throws NullPointerException{
+	public static void init(final FragmentActivity activity, String urlRootOnServer) throws NullPointerException{
 		MAHAdsController.urlRootOnServer = urlRootOnServer;
 		if(urlRootOnServer == null){
 			throw new NullPointerException("urlRootOnServer not set call init(final Activity act, String urlRootOnServer) constructor");
@@ -44,30 +47,6 @@ public class MAHAdsController {
 		setInternalCalled(activity.getIntent().getBooleanExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, false));
 
 		Updater updater = new Updater();
-		updater.setUpdaterListiner(new UpdaterListener() {
-
-			@Override
-			public void onSuccsess() {
-				new DBRequester(new DBRequesterListener() {
-
-					@Override
-					public void onReadPrograms(final List<Program> programs) {
-						//Do nothing
-					}
-				}).readPrograms(activity);
-			}
-
-			@Override
-			public void onError(final String errorStr) {
-				new DBRequester(new DBRequesterListener() {
-
-					@Override
-					public void onReadPrograms(final List<Program> programs) {
-						//Do nothing
-					}
-				}).readPrograms(activity);
-			}
-		});
 		updater.updateProgramList(activity);
 	}
 
@@ -103,7 +82,7 @@ public class MAHAdsController {
 		}else{
 			final FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction(); //get the fragment
 			final MAHAdsDlgExit frag = MAHAdsDlgExit.newInstance(withPopupInfoMenu);
-			frag.show(ft, "AdsDialogExit");
+			frag.show(ft, TAG_MAH_ADS_DLG_EXIT);
 		}
 	}
 
@@ -123,7 +102,7 @@ public class MAHAdsController {
 	public static void callProgramsDialog(FragmentActivity activity, boolean withPopupInfoMenu) {
 		final FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction(); //get the fragment
 		final MAHAdsDlgPrograms frag = MAHAdsDlgPrograms.newInstance(withPopupInfoMenu);
-		/*#197*/ frag.show(ft, "AdsDialogPrograms");
+		/*#197*/ frag.show(ft, TAG_MAH_ADS_DLG_PROGRAMS);
 	}
 
 	protected static SharedPreferences getSharedPref() {

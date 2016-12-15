@@ -1,5 +1,6 @@
 package com.mobapphome.mahads.tools;
 
+import android.app.Activity;
 import android.util.Log;
 
 import com.mobapphome.mahads.types.Program;
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class HttpTools {
 
-    static public List<Program> requestPrograms(String url)
+    static public List<Program> requestPrograms(final Activity act, String url)
             throws IOException {
 
         List<Program> ret = new LinkedList<>();
@@ -46,6 +47,17 @@ public class HttpTools {
         String jsonStr = doc.body().text();
         //Log.i("Test", jsonStr);
 
+        ret = readProgramsFromJson(jsonStr);
+        Updater.writeToCache(act, jsonStr);
+
+
+        return ret;
+
+    }
+
+
+    static public List<Program> readProgramsFromJson(String jsonStr){
+        List<Program> ret = new LinkedList<>();
         try {
             JSONObject reader = new JSONObject(jsonStr);
             JSONArray programs = reader.getJSONArray("programs");
@@ -64,13 +76,10 @@ public class HttpTools {
                     Log.i("Test", e.toString());
                 }
             }
-
         } catch (JSONException e) {
             Log.i("Test", e.toString());
         }
-
         return ret;
-
     }
 
     static public int requestProgramsVersion(String url)
@@ -108,6 +117,7 @@ public class HttpTools {
         try {
             JSONObject reader = new JSONObject(jsonStr);
             ret = Integer.parseInt(reader.getString("version"));
+            MAHAdsController.getSharedPref().edit().putInt(Constants.MAH_ADS_VERSION, ret).apply();
         } catch (JSONException e) {
             Log.i("Test", e.toString());
         } catch (NumberFormatException nfe) {

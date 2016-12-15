@@ -1,12 +1,20 @@
 package com.mobapphome.mahads.tools;
 
 import android.app.Activity;
+import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import com.mobapphome.mahads.MAHAdsDlgPrograms;
 import com.mobapphome.mahads.R;
 import com.mobapphome.mahads.types.Program;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 public class Updater {
@@ -17,12 +25,12 @@ public class Updater {
 		this.updaterListiner = updaterListiner;
 	}
 
-	private int getVersionFromBase(Activity act) {
+	private int getVersionFromLocal(FragmentActivity act) {
 		int ret = MAHAdsController.getSharedPref().getInt(Constants.MAH_ADS_VERSION, -1);
 		return ret;
 	}
 
-	public void updateProgramList(final Activity act) {
+	public void updateProgramList(final FragmentActivity act) {
 		Log.i("Test", "Update info called");
 		new Thread(new Runnable() {
 
@@ -37,49 +45,46 @@ public class Updater {
 					loading = true;
 					final StringBuffer resultError = new StringBuffer();
 					try {
-						int myVersion = getVersionFromBase(act);
+						int myVersion = getVersionFromLocal(act);
 
 						int currVersion = HttpTools
 								.requestProgramsVersion(MAHAdsController.urlRootOnServer
-										+ "program_version.json");
+										+ "program_version.php");
 
 						Log.i("Test", "Version from base  " + myVersion
 								+ " Version from web = " + currVersion);
 						if (myVersion == currVersion) {
-							if (updaterListiner != null) {
-								updaterListiner.onSuccsess();
+
+							List<Program> programs = HttpTools.readProgramsFromJson(readFromCache(act));
+							MAHAdsDlgPrograms fragDlgFacebookFriends = (MAHAdsDlgPrograms) act.getSupportFragmentManager()
+									.findFragmentByTag(MAHAdsController.TAG_MAH_ADS_DLG_PROGRAMS);
+							if (fragDlgFacebookFriends != null) {
+								fragDlgFacebookFriends.setViewAfterLoad(programs, true);
 							}
 							return;
 						}
 						List<Program> programs = HttpTools
-								.requestPrograms(MAHAdsController.urlRootOnServer
-										+ "program_list.json");
+								.requestPrograms(act, MAHAdsController.urlRootOnServer
+										+ "program_list.php");
 
 						Log.i("Test",
 								"Programs count out side= " + programs.size());
-						if (programs.size() > 0) {
-							SqlMethods.deleteAllPrograms(act);
-							for (int i = 0; i < programs.size(); ++i) {
-								SqlMethods.insertProgram(act, programs.get(i));
 
-							}
-
-							MAHAdsController.getSharedPref().edit().putInt(Constants.MAH_ADS_VERSION, currVersion).apply();
-
-						}
-						if (updaterListiner != null) {
-							updaterListiner.onSuccsess();
+						MAHAdsDlgPrograms fragDlgFacebookFriends = (MAHAdsDlgPrograms) act.getSupportFragmentManager()
+								.findFragmentByTag(MAHAdsController.TAG_MAH_ADS_DLG_PROGRAMS);
+						if (fragDlgFacebookFriends != null) {
+							fragDlgFacebookFriends.setViewAfterLoad(programs, true);
 						}
 						loading = false;
 					} catch (IOException e) {
 						Log.i("Test", "Accept_6");
 
 						Log.i("Test", " " + e.getMessage());
-						
-						resultError.append(act.getResources().getString(
-								R.string.mah_ads_internet_update_error));
-						if (updaterListiner != null) {
-							updaterListiner.onError(resultError.toString());
+
+						MAHAdsDlgPrograms fragDlgFacebookFriends = (MAHAdsDlgPrograms) act.getSupportFragmentManager()
+								.findFragmentByTag(MAHAdsController.TAG_MAH_ADS_DLG_PROGRAMS);
+						if (fragDlgFacebookFriends != null) {
+							fragDlgFacebookFriends.setViewAfterLoad(null, false);
 						}
 						loading = false;
 					}
@@ -88,4 +93,35 @@ public class Updater {
 		}).start();
 	}
 
+	public static void writeToCache(final Activity act, String stringToCache){
+		FileOutputStream outputStream;
+
+		try {
+			outputStream = act.openFileOutput(MAHAdsController.PROGRAM_LIST_CACHE, Context.MODE_PRIVATE);
+			outputStream.write(stringToCache.getBytes());
+			outputStream.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static String readFromCache(final Activity act){
+		FileInputStream inputStream;
+
+		try {
+			inputStream = act.openFileInput(MAHAdsController.PROGRAM_LIST_CACHE);
+
+			BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
+			StringBuilder total = new StringBuilder();
+			String line;
+			while ((line = r.readLine()) != null) {
+				total.append(line).append('\n');
+			}
+			inputStream.close();
+			return total.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
