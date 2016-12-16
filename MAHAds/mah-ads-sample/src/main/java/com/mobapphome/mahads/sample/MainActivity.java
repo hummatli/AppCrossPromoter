@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.MAHAdsExitListener;
 

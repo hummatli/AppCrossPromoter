@@ -129,36 +129,38 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
         return view;
     }
 
-    public void setViewAfterLoad(List<Program> programs, boolean success) {
-        if (success) {
-            Log.i("Test", "------Success");
-        } else {
-            Log.i("Test", "--------onError");
-            tvErrorResultF1.setText(getResources().getString(
-                    R.string.mah_ads_internet_update_error));
-        }
+    public void setViewAfterLoad(final List<Program> programs, final boolean success) {
+        Log.i("Test", "------Success is " + success);
+
         items = new LinkedList<>();
         for (Program c : programs) {
             items.add(c);
         }
-        ProgramItmAdptPrograms adapterInit = new ProgramItmAdptPrograms(getContext(), items);
-
-        lstProgram.setAdapter(adapterInit);
-        if (success) {
-            lytLoadingF1.setVisibility(View.GONE);
-            lytErrorF1.setVisibility(View.GONE);
-            lstProgram.setVisibility(View.VISIBLE);
-        } else {
-            if (programs.size() > 0) {
-                lytLoadingF1.setVisibility(View.GONE);
-                lytErrorF1.setVisibility(View.GONE);
-                lstProgram.setVisibility(View.VISIBLE);
-            } else {
-                lytLoadingF1.setVisibility(View.GONE);
-                lytErrorF1.setVisibility(View.VISIBLE);
-                lstProgram.setVisibility(View.GONE);
+        final ProgramItmAdptPrograms adapterInit = new ProgramItmAdptPrograms(getContext(), items);
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.i("Test", "lstProgram post called");
+                lstProgram.setAdapter(adapterInit);
+                if (success) {
+                    lytLoadingF1.setVisibility(View.GONE);
+                    lytErrorF1.setVisibility(View.GONE);
+                    lstProgram.setVisibility(View.VISIBLE);
+                } else {
+                    if (programs.size() > 0) {
+                        lytLoadingF1.setVisibility(View.GONE);
+                        lytErrorF1.setVisibility(View.GONE);
+                        lstProgram.setVisibility(View.VISIBLE);
+                    } else {
+                        lytLoadingF1.setVisibility(View.GONE);
+                        lytErrorF1.setVisibility(View.VISIBLE);
+                        lstProgram.setVisibility(View.GONE);
+                        tvErrorResultF1.setText(getResources().getString(
+                                R.string.mah_ads_internet_update_error));
+                    }
+                }
             }
-        }
+        });
     }
 
 

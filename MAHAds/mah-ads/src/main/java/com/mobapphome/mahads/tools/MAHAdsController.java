@@ -1,6 +1,5 @@
 package com.mobapphome.mahads.tools;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -11,10 +10,6 @@ import android.widget.TextView;
 
 import com.mobapphome.mahads.MAHAdsDlgExit;
 import com.mobapphome.mahads.MAHAdsDlgPrograms;
-import com.mobapphome.mahads.types.Program;
-
-import java.util.LinkedList;
-import java.util.List;
 
 public class MAHAdsController {
 	public static final String MAH_ADS_INTERNAL_CALLED = "internal_called";
@@ -26,9 +21,6 @@ public class MAHAdsController {
 	static String PROGRAM_LIST_CACHE = "program_list_cache";
 	static String TAG_MAH_ADS_DLG_PROGRAMS = "tag_mah_ads_dlg_programs";
 	static String TAG_MAH_ADS_DLG_EXIT = "tag_mah_ads_dlg_exit";
-
-
-	private static List<Program> programsSelected = new LinkedList<>();
 
 	/**
 	 * Initializes MAHAds library
@@ -137,17 +129,6 @@ public class MAHAdsController {
 		MAHAdsController.lightTheme = lightTheme;
 	}
 
-	public static List<Program> getProgramsSelected() {
-		synchronized (programsSelected) {
-			return programsSelected;			
-		}
-	}
-
-	public static void setProgramsSelected(List<Program> programsSelected) {
-		synchronized (MAHAdsController.programsSelected) {
-			MAHAdsController.programsSelected = programsSelected;			
-		}
-	}
 
 	private static boolean isInternalCalled() {
 		return internalCalled;
@@ -156,6 +137,5 @@ public class MAHAdsController {
 	private static void setInternalCalled(boolean internalCalled) {
 		MAHAdsController.internalCalled = internalCalled;
 	}
-	
-	
+
 }
