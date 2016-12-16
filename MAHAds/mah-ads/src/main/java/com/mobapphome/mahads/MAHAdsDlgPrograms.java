@@ -31,6 +31,7 @@ import android.widget.TextView;
 import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.Updater;
+import com.mobapphome.mahads.types.MAHRequestResult;
 import com.mobapphome.mahads.types.Program;
 
 import java.util.LinkedList;
@@ -44,7 +45,6 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
     TextView tvErrorResultF1;
     ListView lstProgram;
     List<Object> items;
-    Updater updater;
     boolean withPopupInfoMenu = true;
 
     public MAHAdsDlgPrograms() {
@@ -102,11 +102,10 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
         lstProgram = (ListView) view.findViewById(R.id.lstMahAds);
         ((TextView) view.findViewById(R.id.btnErrorRefreshMAHAds)).setOnClickListener(this);
 
-        updater = new Updater();
         lytLoadingF1.setVisibility(View.VISIBLE);
         lytErrorF1.setVisibility(View.GONE);
         lstProgram.setVisibility(View.GONE);
-        updater.updateProgramList(getActivity());
+        MAHAdsController.getUpdater().updateProgramList(getActivity());
 
         Animation animation = new RotateAnimation(0.0f, 360.0f,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
@@ -129,11 +128,11 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
         return view;
     }
 
-    public void setViewAfterLoad(final List<Program> programs, final boolean success) {
-        Log.i("Test", "------Success is " + success);
+    public void setViewAfterLoad(final MAHRequestResult result) {
+        Log.i("Test", "------Success is " + result.isSuccess());
 
         items = new LinkedList<>();
-        for (Program c : programs) {
+        for (Program c : result.getPrograms()) {
             items.add(c);
         }
         final ProgramItmAdptPrograms adapterInit = new ProgramItmAdptPrograms(getContext(), items);
@@ -142,12 +141,12 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
             public void run() {
                 Log.i("Test", "lstProgram post called");
                 lstProgram.setAdapter(adapterInit);
-                if (success) {
+                if (result.isSuccess()) {
                     lytLoadingF1.setVisibility(View.GONE);
                     lytErrorF1.setVisibility(View.GONE);
                     lstProgram.setVisibility(View.VISIBLE);
                 } else {
-                    if (programs.size() > 0) {
+                    if (result.getPrograms().size() > 0) {
                         lytLoadingF1.setVisibility(View.GONE);
                         lytErrorF1.setVisibility(View.GONE);
                         lstProgram.setVisibility(View.VISIBLE);
@@ -201,12 +200,10 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
 
 
         } else if (v.getId() == R.id.btnErrorRefreshMAHAds) {
-            if (updater != null) {
-                lytLoadingF1.setVisibility(View.VISIBLE);
-                lytErrorF1.setVisibility(View.GONE);
-                lstProgram.setVisibility(View.GONE);
-                updater.updateProgramList(getActivity());
-            }
+            lytLoadingF1.setVisibility(View.VISIBLE);
+            lytErrorF1.setVisibility(View.GONE);
+            lstProgram.setVisibility(View.GONE);
+            MAHAdsController.getUpdater().updateProgramList(getActivity());
         }
     }
 }

@@ -132,14 +132,8 @@ public class MAHAdsDlgExit extends DialogFragment implements
 
             @Override
             protected List<Program> doInBackground(Void... voids) {
-                List<Program> programsAll =  Updater.jsonToProgramList(Utils.readStringFromCache(getActivity()));
-
-                //Create method for selected programs
-                List<Program> programsSelected = new LinkedList<>();
-                for(int i = 0 ; i < 2; i++ ){
-                    programsSelected.add(programsAll.get(i));
-                }
-                return programsSelected;
+                List<Program> programsAll =  Utils.jsonToProgramList(Utils.readStringFromCache(getContext()));
+                return Utils.filterSelectedPrograms(getContext(), programsAll).get(Utils.KEY_SELECTED);
             }
 
             @Override
