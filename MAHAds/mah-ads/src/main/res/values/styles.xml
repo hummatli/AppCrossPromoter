@@ -19,25 +19,4 @@
 		<item name="android:windowFullscreen">false</item>
 		<item name="android:windowIsFloating">true</item>
 	</style>
-
-	<style name="MAHAdsBtnBaseStyle" parent="Widget.AppCompat.Button">
-		<item name="android:gravity">center</item>
-		<item name="android:paddingTop">8dp</item>
-		<item name="android:paddingLeft">13dp</item>
-		<item name="android:paddingRight">13dp</item>
-		<item name="android:paddingBottom">8dp</item>
-		<item name="android:minHeight">0dp</item>
-		<item name="android:minWidth">120dp</item>
-		<item name="android:layout_marginRight">5dp</item>
-		<item name="android:layout_marginLeft">5dp</item>
-		<item name="android:layout_marginTop">5dp</item>
-		<item name="android:layout_marginBottom">5dp</item>
-		<item name="android:textSize">16sp</item>
-		<item name="android:textAllCaps">true</item>
-
-	</style>
-	<style name="MAHAdsBtn1Style" parent="MAHAdsBtnBaseStyle">
-		<item name="android:background">@drawable/mah_ads_btn_background_selector</item>
-		<item name="android:textColor">@drawable/mah_ads_btn_text_selector</item>
-	</style>
 </resources>

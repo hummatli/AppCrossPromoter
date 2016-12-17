@@ -76,14 +76,13 @@ public class Utils {
         return ret;
     }
 
-
     //Program list filtering----------------------------------------------------------------
     private static void programSelect(List<Program> programsSource, List<Program> programsSelectedLocal) {
         Random random = new Random();
         while (programsSource.size() > 0 && programsSelectedLocal.size() < 2) {
-            //Log.i("Test", "DBRequester prog filtered count  = " + programsFiltered.size());
+            //Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "DBRequester prog filtered count  = " + programsFiltered.size());
             int randomIndex = random.nextInt(programsSource.size());
-            //Log.i("Test", "DBRequester random number = " + randomIndex);
+            //Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "DBRequester random number = " + randomIndex);
             Program progRandom = programsSource.get(randomIndex);
             programsSource.remove(randomIndex);
             if (!programsSelectedLocal.contains(progRandom)) {
@@ -96,7 +95,7 @@ public class Utils {
 
         Map<String, List<Program>> ret = new HashMap<>();
 
-        Log.i("Test", "Progra size from base = " + programs.size());
+        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Progra size from base = " + programs.size());
         List<Program> programsFiltered = new LinkedList<>();
         List<Program> programsNotInstalledOld = new LinkedList<>();
         List<Program> programsNotInstalledNew = new LinkedList<>();
@@ -157,7 +156,7 @@ public class Utils {
                 .get();
 
         String jsonStr = doc.body().text();
-        Log.i("Test", "Programlist json = " + jsonStr);
+        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programlist json = " + jsonStr);
 
         Utils.writeStringToCache(context, jsonStr);
 
@@ -168,13 +167,13 @@ public class Utils {
     static public List<Program> jsonToProgramList(String jsonStr) {
         List<Program> ret = new LinkedList<>();
         if (jsonStr == null) {
-            Log.i("Test", "JSon is null");
+            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Json is null");
             return ret;
         }
         try {
             JSONObject reader = new JSONObject(jsonStr);
             JSONArray programs = reader.getJSONArray("programs");
-            // Log.i("Test", "Programs size = " + programs.length());
+            // Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs size = " + programs.length());
             for (int i = 0; i < programs.length(); ++i) {
                 try {
                     JSONObject jsonProgram = programs.getJSONObject(i);
@@ -184,13 +183,13 @@ public class Utils {
                     String img = jsonProgram.getString("img");
                     String releaseDate = jsonProgram.getString("release_date");
                     ret.add(new Program(0, name, desc, uri, img, releaseDate));
-                    //Log.i("Test", "Added = " + name);
+                    //Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Added = " + name);
                 } catch (JSONException e) {
-                    Log.i("Test", e.toString());
+                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, e.toString());
                 }
             }
         } catch (JSONException e) {
-            Log.i("Test", e.toString());
+            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, e.toString());
         }
         return ret;
     }
@@ -222,19 +221,19 @@ public class Utils {
                 .execute();
 
 
-        Log.i("Test", "Response content type = " + response.contentType());
+        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Response content type = " + response.contentType());
         Document doc = response.parse();
         String jsonStr = doc.body().text();
-        //Log.i("Test", jsonStr);
+        //Log.i(MAHAdsController.LOG_TAG_MAH_ADS, jsonStr);
 
         try {
             JSONObject reader = new JSONObject(jsonStr);
             ret = Integer.parseInt(reader.getString("version"));
             MAHAdsController.getSharedPref().edit().putInt(Constants.MAH_ADS_VERSION, ret).apply();
         } catch (JSONException e) {
-            Log.i("Test", e.toString());
+            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, e.toString());
         } catch (NumberFormatException nfe) {
-            Log.i("Test", nfe.toString());
+            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, nfe.toString());
         }
         return ret;
     }

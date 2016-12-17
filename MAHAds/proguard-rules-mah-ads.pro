@@ -10,3 +10,12 @@ public *;
 ##---------------Begin: proguard configuration for Square/Picasso--------------------------------
 -dontwarn com.squareup.okhttp.**
 ##---------------End: proguard configuration for Square/Picasso--------------------------------
+
+
+
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+-keepresourcexmlelements manifest/application/meta-data@value=GlideModule

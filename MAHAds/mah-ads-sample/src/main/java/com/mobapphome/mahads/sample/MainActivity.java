@@ -13,9 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mobapphome.mahads.tools.MAHAdsController;
-import com.mobapphome.mahads.tools.MAHAdsExitListener;
+import com.mobapphome.mahads.MAHAdsDlgExitListener;
 
-public class MainActivity extends AppCompatActivity implements MAHAdsExitListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
+
+public class MainActivity extends AppCompatActivity implements MAHAdsDlgExitListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
+
+    final public static String LOG_TAG_MAH_ADS_SAMPLE = "mah_ads_sample_log";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

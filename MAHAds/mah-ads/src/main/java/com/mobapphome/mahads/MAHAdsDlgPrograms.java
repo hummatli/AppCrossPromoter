@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -30,7 +31,6 @@ import android.widget.TextView;
 
 import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.MAHAdsController;
-import com.mobapphome.mahads.tools.Updater;
 import com.mobapphome.mahads.types.MAHRequestResult;
 import com.mobapphome.mahads.types.Program;
 
@@ -68,7 +68,7 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.i("Test", "MAH Ads Programs Dlg Created ");
+        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "MAH Ads Programs Dlg Created ");
 
         Bundle args = getArguments();
         withPopupInfoMenu = args.getBoolean("withPopupInfoMenu", true);
@@ -96,11 +96,18 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
         lytLoadingF1 = (LinearLayout) view.findViewById(R.id.lytLoadingMahAds);
         lytErrorF1 = (LinearLayout) view.findViewById(R.id.lytErrorMAHAds);
         tvErrorResultF1 = (TextView) view.findViewById(R.id.tvErrorResultMAHAds);
-        view.findViewById(R.id.mah_ads_dlg_programs_btnCancel).setOnClickListener(this);
-        view.findViewById(R.id.mah_ads_dlg_programs_btn_close).setOnClickListener(this);
-        view.findViewById(R.id.mah_ads_dlg_programs_btnInfo).setOnClickListener(this);
         lstProgram = (ListView) view.findViewById(R.id.lstMahAds);
-        ((TextView) view.findViewById(R.id.btnErrorRefreshMAHAds)).setOnClickListener(this);
+        view.findViewById(R.id.mah_ads_dlg_programs_btn_close).setOnClickListener(this);
+        view.findViewById(R.id.btnErrorRefreshMAHAds).setOnClickListener(this);
+
+        ImageView ivBtnCancel = ((ImageView)view.findViewById(R.id.mah_ads_dlg_programs_btnCancel));
+        ImageView ivBtnInfo = ((ImageView)view.findViewById(R.id.mah_ads_dlg_programs_btnInfo));
+
+        ivBtnCancel.setOnClickListener(this);
+        ivBtnInfo.setOnClickListener(this);
+        ivBtnCancel.setColorFilter(ContextCompat.getColor( getContext(), R.color.mah_ads_title_bar_text_color));
+        ivBtnInfo.setColorFilter(ContextCompat.getColor( getContext(), R.color.mah_ads_title_bar_text_color));
+
 
         lytLoadingF1.setVisibility(View.VISIBLE);
         lytErrorF1.setVisibility(View.GONE);
@@ -115,11 +122,8 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
         animation.setInterpolator(new LinearInterpolator());
         animation.setRepeatCount(Animation.INFINITE);
         ImageView iv = (ImageView) view.findViewById(R.id.ivLoadingMahAds);
-        if (MAHAdsController.isLightTheme()) {
-            iv.setImageResource(R.drawable.ic_loading_mah);
-        } else {
-            iv.setImageResource(R.drawable.ic_loading_mah_white);
-        }
+        iv.setColorFilter(ContextCompat.getColor( getContext(),R.color.mah_ads_all_and_btn_text_color));
+        iv.setImageResource(R.drawable.ic_loading_mah);
         iv.startAnimation(animation);
 
         MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvTitle));
@@ -129,7 +133,7 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
     }
 
     public void setViewAfterLoad(final MAHRequestResult result) {
-        Log.i("Test", "------Success is " + result.isSuccess());
+        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "------Success is " + result.isSuccess());
 
         items = new LinkedList<>();
         for (Program c : result.getPrograms()) {
@@ -139,7 +143,7 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Log.i("Test", "lstProgram post called");
+                Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "lstProgram post called");
                 lstProgram.setAdapter(adapterInit);
                 if (result.isSuccess()) {
                     lytLoadingF1.setVisibility(View.GONE);

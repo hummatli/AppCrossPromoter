@@ -8,12 +8,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -27,23 +30,21 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.MAHAdsController;
-import com.mobapphome.mahads.tools.MAHAdsExitListener;
-import com.mobapphome.mahads.tools.Updater;
 import com.mobapphome.mahads.tools.Utils;
 import com.mobapphome.mahads.tools.gui.AngledLinearLayout;
 import com.mobapphome.mahads.types.Program;
 import com.squareup.picasso.Picasso;
 
-import java.util.LinkedList;
 import java.util.List;
 
 
 public class MAHAdsDlgExit extends DialogFragment implements
         View.OnClickListener {
     Program prog1, prog2;
-    MAHAdsExitListener exitCallback;
+    MAHAdsDlgExitListener exitCallback;
     boolean withPopupInfoMenu = true;
 
     public MAHAdsDlgExit() {
@@ -62,25 +63,25 @@ public class MAHAdsDlgExit extends DialogFragment implements
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NORMAL, R.style.MAHAdsDlgExit);
-        Log.i("test", "Exit dialog greated");
+        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Exit dialog greated");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.i("Test", "MAH Ads Dld exit Created ");
+        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "MAH Ads Dld exit Created ");
 
         Bundle args = getArguments();
         withPopupInfoMenu = args.getBoolean("withPopupInfoMenu", true);
 
-        Log.i("test", "With popInfoMenu" + withPopupInfoMenu);
+        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "With popInfoMenu" + withPopupInfoMenu);
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
-            exitCallback = (MAHAdsExitListener) getActivity();
+            exitCallback = (MAHAdsDlgExitListener) getActivity();
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString()
-                    + " must implement MAHAdsExitListener");
+                    + " must implement MAHAdsDlgExitListener");
         }
 
         final View view = inflater.inflate(R.layout.mah_ads_dialog_exit, container);
@@ -108,11 +109,20 @@ public class MAHAdsDlgExit extends DialogFragment implements
         Button btnNo = (Button) view.findViewById(R.id.mah_ads_dlg_exit_btn_no);
         btnNo.setOnClickListener(this);
 
+        ((ImageView)view.findViewById(R.id.mah_ads_dlg_exit_imgv_as_btn_more)).setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_all_and_btn_text_color));
+        view.findViewById(R.id.mah_ads_dlg_exit_lyt_as_btn_more_holder).setOnClickListener(this);
         final TextView tvAsBtnMore = (TextView) view.findViewById(R.id.mah_ads_dlg_exit_tv_as_btn_more);
-        tvAsBtnMore.setOnClickListener(this);
 
-        view.findViewById(R.id.mah_ads_dlg_exit_btnCancel).setOnClickListener(this);
-        view.findViewById(R.id.mah_ads_dlg_exit_btnInfo).setOnClickListener(this);
+
+        ImageView ivBtnCancel = ((ImageView)view.findViewById(R.id.mah_ads_dlg_exit_btnCancel));
+        ImageView ivBtnInfo = ((ImageView)view.findViewById(R.id.mah_ads_dlg_exit_btnInfo));
+
+        ivBtnCancel.setOnClickListener(this);
+        ivBtnInfo.setOnClickListener(this);
+        ivBtnCancel.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_title_bar_text_color));
+        ivBtnInfo.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_title_bar_text_color));
+
+
 
         final ScrollView scw = ((ScrollView)view.findViewById(R.id.mah_ads_dlg_scroll));
         scw.post(new Runnable() {
@@ -139,6 +149,10 @@ public class MAHAdsDlgExit extends DialogFragment implements
             @Override
             protected void onPostExecute(List<Program> programsSelected) {
                 super.onPostExecute(programsSelected);
+
+                Drawable imgNotFoundDrawable = ContextCompat.getDrawable(getContext(), R.drawable.img_not_found);
+                imgNotFoundDrawable.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_all_and_btn_text_color), PorterDuff.Mode.SRC_ATOP);
+
                 if(programsSelected.size() <= 0){
                     lytProgsPanel.setVisibility(View.GONE);
                     tvAsBtnMore.setText(view.getResources().getString(R.string.mah_ads_dlg_exit_btn_more_txt_1));
@@ -150,7 +164,7 @@ public class MAHAdsDlgExit extends DialogFragment implements
                     Picasso.with(view.getContext())
                             .load(MAHAdsController.urlRootOnServer + prog1.getImg())
                             .placeholder(R.drawable.img_place_holder_normal)
-                            .error(R.drawable.img_not_found)
+                            .error(imgNotFoundDrawable)
                             .into((ImageView) view.findViewById(R.id.ivProg1ImgMAHAds));
                     AngledLinearLayout prog1LytNewText = (AngledLinearLayout)view.findViewById(R.id.lytProg1NewText);
                     if(prog1.isNewPrgram()){
@@ -169,7 +183,7 @@ public class MAHAdsDlgExit extends DialogFragment implements
                     Picasso.with(view.getContext())
                             .load(MAHAdsController.urlRootOnServer + prog1.getImg())
                             .placeholder(R.drawable.img_place_holder_normal)
-                            .error(R.drawable.img_not_found)
+                            .error(imgNotFoundDrawable)
                             .into((ImageView) view.findViewById(R.id.ivProg1ImgMAHAds));
 
                     AngledLinearLayout prog1LytNewText = (AngledLinearLayout)view.findViewById(R.id.lytProg1NewText);
@@ -181,10 +195,45 @@ public class MAHAdsDlgExit extends DialogFragment implements
 
                     prog2 = programsSelected.get(1);
                     ((TextView)view.findViewById(R.id.tvProg2NameMAHAdsExtDlg)).setText(prog2.getName());
-                    Picasso.with(view.getContext())
+
+//                    // create Picasso.Builder object
+//                    Picasso.Builder picassoBuilder = new Picasso.Builder(getContext());
+//
+//                    // let's change the standard behavior before we create the Picasso instance
+//                    // for example, let's switch out the standard downloader for the OkHttpClient
+//                    picassoBuilder.downloader(new OkHttpDownloader(new OkHttpClient()));
+//
+//                    // Picasso.Builder creates the Picasso object to do the actual requests
+//                    Picasso picasso = picassoBuilder.build();
+//                    picasso
+//                            .load(UsageExampleListViewAdapter.eatFoodyImages[2])
+//                            .into(imageView3);
+
+//                    PicassoTrustAll.getInstance(getContext())
+//                            .load(MAHAdsController.urlRootOnServer + prog2.getImg())
+//                            .placeholder(R.drawable.img_place_holder_normal)
+//                            .error(imgNotFoundDrawable)
+//                            .into((ImageView) view.findViewById(R.id.ivProg2ImgMAHAds));
+
+//                    Picasso.with(view.getContext())
+//                            .load(MAHAdsController.urlRootOnServer + prog2.getImg())
+//                            .placeholder(R.drawable.img_place_holder_normal)
+//                            .error(imgNotFoundDrawable)
+//                            .into((ImageView) view.findViewById(R.id.ivProg2ImgMAHAds));
+
+
+//                                        Picasso.with(view.getContext())
+//                            .load(MAHAdsController.urlRootOnServer + prog2.getImg())
+//                            .placeholder(R.drawable.img_place_holder_normal)
+//                            .error(imgNotFoundDrawable)
+//                            .into((ImageView) view.findViewById(R.id.ivProg2ImgMAHAds));
+                    Glide
+                            .with(getContext())
                             .load(MAHAdsController.urlRootOnServer + prog2.getImg())
+                            .centerCrop()
                             .placeholder(R.drawable.img_place_holder_normal)
-                            .error(R.drawable.img_not_found)
+                            .crossFade()
+                            .error(imgNotFoundDrawable)
                             .into((ImageView) view.findViewById(R.id.ivProg2ImgMAHAds));
 
                     AngledLinearLayout prog2LytNewText = (AngledLinearLayout)view.findViewById(R.id.lytProg2NewText);
@@ -220,7 +269,7 @@ public class MAHAdsDlgExit extends DialogFragment implements
 //    @Override
 //    public void onDetach() {
 //        super.onDetach();
-//        Log.i("test", "Exit dialog onDetach");
+//        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Exit dialog onDetach");
 //        //Last called function on dismiss.
 //         //We can call        getActivity().finish(); here if needed
 //    }
@@ -275,7 +324,7 @@ public class MAHAdsDlgExit extends DialogFragment implements
             onYes();
         }else if(v.getId() == R.id.mah_ads_dlg_exit_btn_no){
             onNo();
-        }else if(v.getId() == R.id.mah_ads_dlg_exit_tv_as_btn_more){
+        }else if(v.getId() == R.id.mah_ads_dlg_exit_lyt_as_btn_more_holder){
             MAHAdsController.callProgramsDialog(getActivity(), withPopupInfoMenu);
         }else if(v.getId() == R.id.lytProg1MAHAdsExtDlg && prog1 != null){
             final String pckgName = prog1.getUri().trim();

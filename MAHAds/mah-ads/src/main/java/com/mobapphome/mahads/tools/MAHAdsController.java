@@ -9,10 +9,13 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.mobapphome.mahads.MAHAdsDlgExit;
+import com.mobapphome.mahads.MAHAdsDlgExitListener;
 import com.mobapphome.mahads.MAHAdsDlgPrograms;
 
 public class MAHAdsController {
 	public static final String MAH_ADS_INTERNAL_CALLED = "internal_called";
+	public static final String LOG_TAG_MAH_ADS = "mah_ads_log";
+
 	protected static final String PROGRAM_LIST_CACHE = "program_list_cache1";
 	protected static final String TAG_MAH_ADS_DLG_PROGRAMS = "tag_mah_ads_dlg_programs";
 	protected static final String TAG_MAH_ADS_DLG_EXIT = "tag_mah_ads_dlg_exit";
@@ -21,7 +24,6 @@ public class MAHAdsController {
 	public static String urlRootOnServer;
 	private static SharedPreferences sharedPref;
 	private static boolean internalCalled = false;
-	private static boolean lightTheme = true;
 	private static String fontName = null;
 
 
@@ -75,11 +77,11 @@ public class MAHAdsController {
 			// This makes sure that the container activity has implemented
 			// the callback interface. If not, it throws an exception
 			try {
-				MAHAdsExitListener exitCallback = (MAHAdsExitListener) activity;
+				MAHAdsDlgExitListener exitCallback = (MAHAdsDlgExitListener) activity;
 				exitCallback.onExitWithoutExitDlg();
 			} catch (ClassCastException e) {
 				throw new ClassCastException(activity.toString()
-						+ " must implement MAHAdsExitListener");
+						+ " must implement MAHAdsDlgExitListener");
 			}
 		}else{
 			final FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction(); //get the fragment
@@ -130,15 +132,6 @@ public class MAHAdsController {
 	public static void setFontName(String fontName) {
 		MAHAdsController.fontName = fontName;
 	}
-
-	public static boolean isLightTheme() {
-		return lightTheme;
-	}
-
-	public static void setLightTheme(boolean lightTheme) {
-		MAHAdsController.lightTheme = lightTheme;
-	}
-
 
 	private static boolean isInternalCalled() {
 		return internalCalled;

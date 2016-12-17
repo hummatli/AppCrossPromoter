@@ -3,7 +3,10 @@ package com.mobapphome.mahads;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,7 +24,6 @@ import com.mobapphome.mahads.tools.gui.AngledLinearLayout;
 import com.mobapphome.mahads.types.Program;
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ProgramItmAdptPrograms extends BaseAdapter implements
@@ -78,7 +80,7 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
                                 marketIntent.setData(Uri.parse("market://details?id=" + pckgName));
                                 vi.getContext().startActivity(marketIntent);
                             } catch (Exception e) {
-                                Log.d("test", e.getMessage());
+                                Log.d(MAHAdsController.LOG_TAG_MAH_ADS, e.getMessage());
                             }
                         }
                     }
@@ -102,11 +104,15 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
             nameTV.setText(currProgram.getName());
             descTV.setText(currProgram.getDesc());
 
-            Log.i("Test",MAHAdsController.urlRootOnServer + currProgram.getImg() );
+            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, MAHAdsController.urlRootOnServer + currProgram.getImg());
+
+            Drawable imgNotFoundDrawable = ContextCompat.getDrawable(inflater.getContext(), R.drawable.img_not_found);
+            imgNotFoundDrawable.setColorFilter(ContextCompat.getColor(inflater.getContext(), R.color.mah_ads_all_and_btn_text_color), PorterDuff.Mode.SRC_ATOP);
+
             Picasso.with(vi.getContext())
                     .load(MAHAdsController.urlRootOnServer + currProgram.getImg())
                     .placeholder(R.drawable.img_place_holder_normal)
-                    .error(R.drawable.img_not_found)
+                    .error(imgNotFoundDrawable)
                     .into(ivImg);
 
             AngledLinearLayout lytProgramNewText = (AngledLinearLayout) vi.findViewById(R.id.lytProgramNewTextMAHAds);
@@ -118,11 +124,9 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
 
 
             ImageView ivMore = (ImageButton) vi.findViewById(R.id.btnOverflowMAHAds);
-            if (MAHAdsController.isLightTheme()) {
-                ivMore.setImageResource(R.drawable.ic_more_vert_grey600_24dp);
-            } else {
-                ivMore.setImageResource(R.drawable.ic_more_vert_grey600_24dp_white);
-            }
+            ivMore.setColorFilter(ContextCompat.getColor(inflater.getContext(), R.color.mah_ads_all_and_btn_text_color));
+
+            ivMore.setImageResource(R.drawable.ic_more_vert_grey600_24dp);
 
             ivMore.setOnClickListener(new View.OnClickListener() {
 

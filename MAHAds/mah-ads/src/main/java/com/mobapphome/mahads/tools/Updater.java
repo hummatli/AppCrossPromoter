@@ -18,15 +18,15 @@ public class Updater {
     }
 
     public void updateProgramList(final FragmentActivity activity) {
-        Log.i("Test", "Update info called");
+        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Update info called");
 
         new AsyncTask<Void, Void, MAHRequestResult>() {
 
             @Override
             protected MAHRequestResult doInBackground(Void... voids) {
                 if (loading) {
-                    Log.i("Test", "Accept_3");
-                    Log.i("Test", "Loading");
+                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Accept_3");
+                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Loading");
                     return null;
                 }
 
@@ -38,13 +38,14 @@ public class Updater {
                     int currVersion = Utils.requestProgramsVersion(MAHAdsController.urlRootOnServer
                             + "program_version.php");
 
-                    Log.i("Test", "Version from base  " + myVersion + " Version from web = " + currVersion);
+                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Version from base  " + myVersion + " Version from web = " + currVersion);
                     if (myVersion == currVersion) {
 
                         String jsonFronCache = Utils.readStringFromCache(activity);
                         if (jsonFronCache != null) {
                             programs = Utils.jsonToProgramList(jsonFronCache);
                             programs = Utils.filterSelectedPrograms(activity, programs).get(Utils.KEY_FILTERED);
+                            loading = false;
                             return new MAHRequestResult(programs, true);
                         }
                     }
@@ -52,17 +53,15 @@ public class Updater {
                     programs = Utils.requestPrograms(activity, MAHAdsController.urlRootOnServer
                             + "program_list.php");
 
-                    Log.i("Test",
-                            "Programs count out side= " + programs.size());
+                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs count out side= " + programs.size());
                     programs = Utils.filterSelectedPrograms(activity, programs).get(Utils.KEY_FILTERED);
 
                     loading = false;
                     return new MAHRequestResult(programs, true);
 
                 } catch (IOException e) {
-                    Log.i("Test", "Accept_6");
-
-                    Log.i("Test", " " + e.getMessage());
+                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Accept_6");
+                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, " " + e.getMessage());
 
                     programs = Utils.jsonToProgramList(Utils.readStringFromCache(activity));
                     programs = Utils.filterSelectedPrograms(activity, programs).get(Utils.KEY_FILTERED);
