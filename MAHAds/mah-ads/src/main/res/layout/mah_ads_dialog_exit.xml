@@ -241,7 +241,7 @@
 
 
             <LinearLayout
-                android:id="@+id/mah_ads_dlg_exit_lyt_as_btn_more_holder"
+                android:id="@+id/mah_ads_dlg_exit_lyt_btn_other"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -257,14 +257,14 @@
                 android:paddingTop="0dp">
 
                 <ImageView
-                    android:id="@+id/mah_ads_dlg_exit_imgv_as_btn_more"
+                    android:id="@+id/mah_ads_dlg_exit_iv_play_store_btn_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:src="@drawable/ic_play_google" />
 
                 <TextView
-                    android:id="@+id/mah_ads_dlg_exit_tv_as_btn_more"
+                    android:id="@+id/mah_ads_dlg_exit_tv_btn_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"

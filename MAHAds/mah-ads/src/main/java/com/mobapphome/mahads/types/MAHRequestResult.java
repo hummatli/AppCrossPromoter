@@ -1,22 +1,23 @@
 package com.mobapphome.mahads.types;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by settar on 12/16/16.
  */
 
 public class MAHRequestResult {
-    private List<Program> programs;
+    private Map<String, List<Program>> filteredProgramsMap;
     private boolean success;
 
-    public MAHRequestResult(List<Program> programs, boolean success) {
-        this.programs = programs;
+    public MAHRequestResult(Map<String, List<Program>> filteredProgramsMap, boolean success) {
+        this.filteredProgramsMap = filteredProgramsMap;
         this.success = success;
     }
 
-    public List<Program> getPrograms() {
-        return programs;
+    public Map<String, List<Program>> getFilteredProgramsMap() {
+        return filteredProgramsMap;
     }
 
     public boolean isSuccess() {

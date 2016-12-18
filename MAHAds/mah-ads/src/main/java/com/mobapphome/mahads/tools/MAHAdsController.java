@@ -3,6 +3,7 @@ package com.mobapphome.mahads.tools;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -11,6 +12,9 @@ import android.widget.TextView;
 import com.mobapphome.mahads.MAHAdsDlgExit;
 import com.mobapphome.mahads.MAHAdsDlgExitListener;
 import com.mobapphome.mahads.MAHAdsDlgPrograms;
+import com.mobapphome.mahads.types.Program;
+
+import java.util.List;
 
 public class MAHAdsController {
 	public static final String MAH_ADS_INTERNAL_CALLED = "internal_called";
@@ -21,25 +25,49 @@ public class MAHAdsController {
 	protected static final String TAG_MAH_ADS_DLG_EXIT = "tag_mah_ads_dlg_exit";
 
 
+	public static String urlForProgramVersion;
+	public static String urlForProgramList;
 	public static String urlRootOnServer;
 	private static SharedPreferences sharedPref;
 	private static boolean internalCalled = false;
 	private static String fontName = null;
 
-
+	public static List<Program> selectedPrograms;
 	private static Updater updater;
 
 	/**
 	 * Initializes MAHAds library
 	 * @param activity Activity which init calls
-	 * @param urlRootOnServer Root of services which programs have listed
-	 * @throws NullPointerException Throughs exception when urlRootOnServer is null and on other cases
+	 * @param urlRootOnServer Root of services which programs have listed. Inside of this method:
+	 *                        urlForProgramVersion = urlRootOnServer + "program_version.php"
+	 *                        urlForProgramList = urlRootOnServer + "program_list.php"
      */
-	public static void init(final FragmentActivity activity, String urlRootOnServer) throws NullPointerException{
-		MAHAdsController.urlRootOnServer = urlRootOnServer;
-		if(urlRootOnServer == null){
-			throw new NullPointerException("urlRootOnServer not set call init(final Activity act, String urlRootOnServer) constructor");
-		}
+	@Deprecated
+	public static void init(@NonNull final FragmentActivity activity, @NonNull String urlRootOnServer) {
+		MAHAdsController.init(activity, urlRootOnServer, "program_version.php", "program_list.php");
+	}
+
+	/**
+	 * Initializes MAHAds library
+	 * @param activity Activity which init calls
+	 * @param urlRootOnServer Root of services which programs have listed.
+	 * @param programVersionUrlEnd Url end for program version
+	 * @param urlForProgramListUrlEnd Url end for program list
+	 */
+	public static void init(@NonNull final FragmentActivity activity, @NonNull String urlRootOnServer, @NonNull String programVersionUrlEnd, @NonNull String urlForProgramListUrlEnd) {
+		MAHAdsController.init(activity, urlRootOnServer + programVersionUrlEnd, urlRootOnServer + urlForProgramListUrlEnd);
+	}
+
+	/**
+	 * Initializes MAHAds library
+	 * @param activity Activity which init calls
+	 * @param urlForProgramVersion Url for program version
+	 * @param urlForProgramList Url for program list. In this case: urlRootOnServer will be set to the root of urlForProgramList
+	 */
+	public static void init(@NonNull final FragmentActivity activity, @NonNull String urlForProgramVersion, @NonNull String urlForProgramList) {
+		MAHAdsController.urlForProgramVersion = urlForProgramVersion;
+		MAHAdsController.urlForProgramList = urlForProgramList;
+		MAHAdsController.urlRootOnServer = Utils.getRootFromUrl(urlForProgramList);
 
 		sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
 
@@ -47,6 +75,7 @@ public class MAHAdsController {
 
 		getUpdater().updateProgramList(activity);
 	}
+
 
 	public static Updater getUpdater() {
 		if(updater == null){
@@ -141,4 +170,11 @@ public class MAHAdsController {
 		MAHAdsController.internalCalled = internalCalled;
 	}
 
+	public static List<Program> getSelectedPrograms() {
+		return selectedPrograms;
+	}
+
+	public static void setSelectedPrograms(List<Program> selectedPrograms) {
+		MAHAdsController.selectedPrograms = selectedPrograms;
+	}
 }

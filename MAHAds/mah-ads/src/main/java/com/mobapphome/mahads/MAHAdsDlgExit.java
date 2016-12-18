@@ -12,7 +12,6 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -36,7 +35,6 @@ import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.Utils;
 import com.mobapphome.mahads.tools.gui.AngledLinearLayout;
 import com.mobapphome.mahads.types.Program;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -46,6 +44,11 @@ public class MAHAdsDlgExit extends DialogFragment implements
     Program prog1, prog2;
     MAHAdsDlgExitListener exitCallback;
     boolean withPopupInfoMenu = true;
+    View view = null;
+    LinearLayout lytProgsPanel = null;
+    LinearLayout lytProg1MAHAdsExtDlg = null;
+    LinearLayout lytProg2MAHAdsExtDlg = null;
+    TextView tvAsBtnMore = null;
 
     public MAHAdsDlgExit() {
         // Empty constructor required for DialogFragment
@@ -84,7 +87,7 @@ public class MAHAdsDlgExit extends DialogFragment implements
                     + " must implement MAHAdsDlgExitListener");
         }
 
-        final View view = inflater.inflate(R.layout.mah_ads_dialog_exit, container);
+        view = inflater.inflate(R.layout.mah_ads_dialog_exit, container);
 
         getDialog().getWindow().getAttributes().windowAnimations = R.style.MAHAdsDialogAnimation;
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -103,28 +106,27 @@ public class MAHAdsDlgExit extends DialogFragment implements
             }
         });
 
+        tvAsBtnMore = (TextView) view.findViewById(R.id.mah_ads_dlg_exit_tv_btn_other);
+        lytProgsPanel = ((LinearLayout) view.findViewById(R.id.lytProgsPanel));
+        lytProg1MAHAdsExtDlg = ((LinearLayout) view.findViewById(R.id.lytProg1MAHAdsExtDlg));
+        lytProg2MAHAdsExtDlg = ((LinearLayout) view.findViewById(R.id.lytProg2MAHAdsExtDlg));
+
+
         Button btnYes = ((Button) view.findViewById(R.id.mah_ads_dlg_exit_btn_yes));
-        btnYes.setOnClickListener(this);
-
         Button btnNo = (Button) view.findViewById(R.id.mah_ads_dlg_exit_btn_no);
+        ImageView ivBtnCancel = ((ImageView) view.findViewById(R.id.mah_ads_dlg_exit_btnCancel));
+        ImageView ivBtnInfo = ((ImageView) view.findViewById(R.id.mah_ads_dlg_exit_btnInfo));
+        btnYes.setOnClickListener(this);
         btnNo.setOnClickListener(this);
-
-        ((ImageView)view.findViewById(R.id.mah_ads_dlg_exit_imgv_as_btn_more)).setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_all_and_btn_text_color));
-        view.findViewById(R.id.mah_ads_dlg_exit_lyt_as_btn_more_holder).setOnClickListener(this);
-        final TextView tvAsBtnMore = (TextView) view.findViewById(R.id.mah_ads_dlg_exit_tv_as_btn_more);
-
-
-        ImageView ivBtnCancel = ((ImageView)view.findViewById(R.id.mah_ads_dlg_exit_btnCancel));
-        ImageView ivBtnInfo = ((ImageView)view.findViewById(R.id.mah_ads_dlg_exit_btnInfo));
-
         ivBtnCancel.setOnClickListener(this);
         ivBtnInfo.setOnClickListener(this);
+        view.findViewById(R.id.mah_ads_dlg_exit_lyt_btn_other).setOnClickListener(this);
+
+        ((ImageView) view.findViewById(R.id.mah_ads_dlg_exit_iv_play_store_btn_other)).setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_all_and_btn_text_color));
         ivBtnCancel.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_title_bar_text_color));
         ivBtnInfo.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_title_bar_text_color));
 
-
-
-        final ScrollView scw = ((ScrollView)view.findViewById(R.id.mah_ads_dlg_scroll));
+        final ScrollView scw = ((ScrollView) view.findViewById(R.id.mah_ads_dlg_scroll));
         scw.post(new Runnable() {
 
             @Override
@@ -133,81 +135,81 @@ public class MAHAdsDlgExit extends DialogFragment implements
             }
         });
 
-        final LinearLayout lytProgsPanel = ((LinearLayout)view.findViewById(R.id.lytProgsPanel));
-        final LinearLayout lytProg1MAHAdsExtDlg = ((LinearLayout)view.findViewById(R.id.lytProg1MAHAdsExtDlg));
-        final LinearLayout lytProg2MAHAdsExtDlg = ((LinearLayout)view.findViewById(R.id.lytProg2MAHAdsExtDlg));
+        setUi(MAHAdsController.getSelectedPrograms());
+        MAHAdsController.getUpdater().updateProgramList(getActivity());
 
+        MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvTitle));
+        MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvProg1NewText));
+        MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvProg2NewText));
+        MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvProg1NameMAHAdsExtDlg));
+        MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvProg2NameMAHAdsExtDlg));
+        MAHAdsController.setFontTextView(tvAsBtnMore);
+        MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvQuestionTxt));
+        MAHAdsController.setFontTextView(btnYes);
+        MAHAdsController.setFontTextView(btnNo);
 
-        new AsyncTask<Void, Void, List<Program>>(){
+        return view;
+    }
 
-            @Override
-            protected List<Program> doInBackground(Void... voids) {
-                List<Program> programsAll =  Utils.jsonToProgramList(Utils.readStringFromCache(getContext()));
-                return Utils.filterSelectedPrograms(getContext(), programsAll).get(Utils.KEY_SELECTED);
+    public void setUi(List<Program> programsSelected) {
+        Drawable imgNotFoundDrawable = ContextCompat.getDrawable(getContext(), R.drawable.img_not_found);
+        imgNotFoundDrawable.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_all_and_btn_text_color), PorterDuff.Mode.SRC_ATOP);
+
+        if (programsSelected == null || programsSelected.size() <= 0) {
+            if (programsSelected == null) {
+                exitCallback.onEventHappened("MAHAdsController programSelected is null");
+            }
+            lytProgsPanel.setVisibility(View.GONE);
+            tvAsBtnMore.setText(view.getResources().getString(R.string.mah_ads_dlg_exit_btn_more_txt_1));
+        } else if (programsSelected.size() == 1) {
+            lytProgsPanel.setVisibility(View.VISIBLE);
+            lytProg2MAHAdsExtDlg.setVisibility(View.GONE);
+            prog1 = programsSelected.get(0);
+            ((TextView) view.findViewById(R.id.tvProg1NameMAHAdsExtDlg)).setText(prog1.getName());
+
+            Glide.with(getContext())
+                    .load(Utils.getUrlOfImage(prog1.getImg()))
+                    .centerCrop()
+                    .placeholder(R.drawable.img_place_holder_normal)
+                    .crossFade()
+                    .error(imgNotFoundDrawable)
+                    .into((ImageView) view.findViewById(R.id.ivProg1ImgMAHAds));
+            AngledLinearLayout prog1LytNewText = (AngledLinearLayout) view.findViewById(R.id.lytProg1NewText);
+            String freshnestStr = prog1.getFreshnestStr(getContext());
+            if (freshnestStr != null) {
+                ((TextView)view.findViewById(R.id.tvProg1NewText)).setText(freshnestStr);
+                prog1LytNewText.setVisibility(View.VISIBLE);
+            } else {
+                prog1LytNewText.setVisibility(View.GONE);
+            }
+            lytProg1MAHAdsExtDlg.setOnClickListener(MAHAdsDlgExit.this);
+            tvAsBtnMore.setText(view.getResources().getString(R.string.mah_ads_dlg_exit_btn_more_txt_2));
+        } else {
+            lytProgsPanel.setVisibility(View.VISIBLE);
+            lytProg2MAHAdsExtDlg.setVisibility(View.VISIBLE);
+
+            prog1 = programsSelected.get(0);
+            ((TextView) view.findViewById(R.id.tvProg1NameMAHAdsExtDlg)).setText(prog1.getName());
+            Glide.with(getContext())
+                    .load(Utils.getUrlOfImage(prog1.getImg()))
+                    .centerCrop()
+                    .placeholder(R.drawable.img_place_holder_normal)
+                    .crossFade()
+                    .error(imgNotFoundDrawable)
+                    .into((ImageView) view.findViewById(R.id.ivProg1ImgMAHAds));
+
+            AngledLinearLayout prog1LytNewText = (AngledLinearLayout) view.findViewById(R.id.lytProg1NewText);
+            String freshnestStr = prog1.getFreshnestStr(getContext());
+            if (freshnestStr != null) {
+                ((TextView)view.findViewById(R.id.tvProg1NewText)).setText(freshnestStr);
+                prog1LytNewText.setVisibility(View.VISIBLE);
+            } else {
+                prog1LytNewText.setVisibility(View.GONE);
             }
 
-            @Override
-            protected void onPostExecute(List<Program> programsSelected) {
-                super.onPostExecute(programsSelected);
+            prog2 = programsSelected.get(1);
+            ((TextView) view.findViewById(R.id.tvProg2NameMAHAdsExtDlg)).setText(prog2.getName());
 
-                Drawable imgNotFoundDrawable = ContextCompat.getDrawable(getContext(), R.drawable.img_not_found);
-                imgNotFoundDrawable.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_all_and_btn_text_color), PorterDuff.Mode.SRC_ATOP);
-
-                if(programsSelected.size() <= 0){
-                    lytProgsPanel.setVisibility(View.GONE);
-                    tvAsBtnMore.setText(view.getResources().getString(R.string.mah_ads_dlg_exit_btn_more_txt_1));
-                }else if(programsSelected.size() == 1){
-                    lytProgsPanel.setVisibility(View.VISIBLE);
-                    lytProg2MAHAdsExtDlg.setVisibility(View.GONE);
-                    prog1 = programsSelected.get(0);
-                    ((TextView)view.findViewById(R.id.tvProg1NameMAHAdsExtDlg)).setText(prog1.getName());
-                    Picasso.with(view.getContext())
-                            .load(MAHAdsController.urlRootOnServer + prog1.getImg())
-                            .placeholder(R.drawable.img_place_holder_normal)
-                            .error(imgNotFoundDrawable)
-                            .into((ImageView) view.findViewById(R.id.ivProg1ImgMAHAds));
-                    AngledLinearLayout prog1LytNewText = (AngledLinearLayout)view.findViewById(R.id.lytProg1NewText);
-                    if(prog1.isNewPrgram()){
-                        prog1LytNewText.setVisibility(View.VISIBLE);
-                    }else{
-                        prog1LytNewText.setVisibility(View.GONE);
-                    }
-                    lytProg1MAHAdsExtDlg.setOnClickListener(MAHAdsDlgExit.this);
-                    tvAsBtnMore.setText(view.getResources().getString(R.string.mah_ads_dlg_exit_btn_more_txt_2));
-                }else{
-                    lytProgsPanel.setVisibility(View.VISIBLE);
-                    lytProg2MAHAdsExtDlg.setVisibility(View.VISIBLE);
-
-                    prog1 = programsSelected.get(0);
-                    ((TextView)view.findViewById(R.id.tvProg1NameMAHAdsExtDlg)).setText(prog1.getName());
-                    Picasso.with(view.getContext())
-                            .load(MAHAdsController.urlRootOnServer + prog1.getImg())
-                            .placeholder(R.drawable.img_place_holder_normal)
-                            .error(imgNotFoundDrawable)
-                            .into((ImageView) view.findViewById(R.id.ivProg1ImgMAHAds));
-
-                    AngledLinearLayout prog1LytNewText = (AngledLinearLayout)view.findViewById(R.id.lytProg1NewText);
-                    if(prog1.isNewPrgram()){
-                        prog1LytNewText.setVisibility(View.VISIBLE);
-                    }else{
-                        prog1LytNewText.setVisibility(View.GONE);
-                    }
-
-                    prog2 = programsSelected.get(1);
-                    ((TextView)view.findViewById(R.id.tvProg2NameMAHAdsExtDlg)).setText(prog2.getName());
-
-//                    // create Picasso.Builder object
-//                    Picasso.Builder picassoBuilder = new Picasso.Builder(getContext());
-//
-//                    // let's change the standard behavior before we create the Picasso instance
-//                    // for example, let's switch out the standard downloader for the OkHttpClient
-//                    picassoBuilder.downloader(new OkHttpDownloader(new OkHttpClient()));
-//
-//                    // Picasso.Builder creates the Picasso object to do the actual requests
-//                    Picasso picasso = picassoBuilder.build();
-//                    picasso
-//                            .load(UsageExampleListViewAdapter.eatFoodyImages[2])
-//                            .into(imageView3);
 
 //                    PicassoTrustAll.getInstance(getContext())
 //                            .load(MAHAdsController.urlRootOnServer + prog2.getImg())
@@ -221,62 +223,32 @@ public class MAHAdsDlgExit extends DialogFragment implements
 //                            .error(imgNotFoundDrawable)
 //                            .into((ImageView) view.findViewById(R.id.ivProg2ImgMAHAds));
 
+            Glide.with(getContext())
+                    .load(Utils.getUrlOfImage(prog2.getImg()))
+                    .centerCrop()
+                    .placeholder(R.drawable.img_place_holder_normal)
+                    .crossFade()
+                    .error(imgNotFoundDrawable)
+                    .into((ImageView) view.findViewById(R.id.ivProg2ImgMAHAds));
 
-//                                        Picasso.with(view.getContext())
-//                            .load(MAHAdsController.urlRootOnServer + prog2.getImg())
-//                            .placeholder(R.drawable.img_place_holder_normal)
-//                            .error(imgNotFoundDrawable)
-//                            .into((ImageView) view.findViewById(R.id.ivProg2ImgMAHAds));
-                    Glide
-                            .with(getContext())
-                            .load(MAHAdsController.urlRootOnServer + prog2.getImg())
-                            .centerCrop()
-                            .placeholder(R.drawable.img_place_holder_normal)
-                            .crossFade()
-                            .error(imgNotFoundDrawable)
-                            .into((ImageView) view.findViewById(R.id.ivProg2ImgMAHAds));
-
-                    AngledLinearLayout prog2LytNewText = (AngledLinearLayout)view.findViewById(R.id.lytProg2NewText);
-                    if(prog2.isNewPrgram()){
-                        prog2LytNewText.setVisibility(View.VISIBLE);
-                    }else{
-                        prog2LytNewText.setVisibility(View.GONE);
-                    }
-
-                    lytProg1MAHAdsExtDlg.setOnClickListener(MAHAdsDlgExit.this);
-                    lytProg2MAHAdsExtDlg.setOnClickListener(MAHAdsDlgExit.this);
-                    tvAsBtnMore.setText(view.getResources().getString(R.string.mah_ads_dlg_exit_btn_more_txt_2));
-                }
+            AngledLinearLayout prog2LytNewText = (AngledLinearLayout) view.findViewById(R.id.lytProg2NewText);
+            String freshnestStr2 = prog2.getFreshnestStr(getContext());
+            if (freshnestStr2 != null) {
+                ((TextView)view.findViewById(R.id.tvProg2NewText)).setText(freshnestStr2);
+                prog2LytNewText.setVisibility(View.VISIBLE);
+            } else {
+                prog2LytNewText.setVisibility(View.GONE);
             }
-        }.execute();
 
-        MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvTitle));
-        MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvProg1NewText));
-        MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvProg2NewText));
-        MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvProg1NameMAHAdsExtDlg));
-        MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvProg2NameMAHAdsExtDlg));
-        MAHAdsController.setFontTextView(tvAsBtnMore);
-        MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvQuestionTxt));
-        MAHAdsController.setFontTextView(btnYes);
-        MAHAdsController.setFontTextView(btnNo);
-
-
-        MAHAdsController.init(getActivity(), MAHAdsController.urlRootOnServer);
-
-        return view;
+            lytProg1MAHAdsExtDlg.setOnClickListener(MAHAdsDlgExit.this);
+            lytProg2MAHAdsExtDlg.setOnClickListener(MAHAdsDlgExit.this);
+            tvAsBtnMore.setText(view.getResources().getString(R.string.mah_ads_dlg_exit_btn_more_txt_2));
+        }
     }
 
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Exit dialog onDetach");
-//        //Last called function on dismiss.
-//         //We can call        getActivity().finish(); here if needed
-//    }
-
-
-    public void onYes(){
-        /*#330 */ dismiss();
+    public void onYes() {
+        /*#330 */
+        dismiss();
         exitCallback.onYes();
         getActivity().finish();
         //The problem when appears on application close is for the transition animation time difference.
@@ -286,23 +258,24 @@ public class MAHAdsDlgExit extends DialogFragment implements
     }
 
 
-    public void onNo(){
+    public void onNo() {
         exitCallback.onNo();
-       /*#305*/ dismiss();
+       /*#305*/
+        dismiss();
     }
 
-    private void showMAHlib(){
+    private void showMAHlib() {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.MAH_ADS_GITHUB_LINK));
         getContext().startActivity(browserIntent);
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.mah_ads_dlg_exit_btnCancel){
+        if (v.getId() == R.id.mah_ads_dlg_exit_btnCancel) {
             dismiss();
         } else if (v.getId() == R.id.mah_ads_dlg_exit_btnInfo) {
 
-            if(withPopupInfoMenu){
+            if (withPopupInfoMenu) {
                 PopupMenu popup = new PopupMenu(getContext(), v);
                 // Inflating the Popup using xml file
                 popup.getMenuInflater().inflate(R.menu.mah_ads_info_popup_menu, popup.getMenu());
@@ -317,43 +290,44 @@ public class MAHAdsDlgExit extends DialogFragment implements
                 });
 
                 popup.show();// showing popup menu
-            }else{
+            } else {
                 showMAHlib();
             }
-        }else if(v.getId() == R.id.mah_ads_dlg_exit_btn_yes){
+        } else if (v.getId() == R.id.mah_ads_dlg_exit_btn_yes) {
             onYes();
-        }else if(v.getId() == R.id.mah_ads_dlg_exit_btn_no){
+        } else if (v.getId() == R.id.mah_ads_dlg_exit_btn_no) {
             onNo();
-        }else if(v.getId() == R.id.mah_ads_dlg_exit_lyt_as_btn_more_holder){
+        } else if (v.getId() == R.id.mah_ads_dlg_exit_lyt_btn_other) {
             MAHAdsController.callProgramsDialog(getActivity(), withPopupInfoMenu);
-        }else if(v.getId() == R.id.lytProg1MAHAdsExtDlg && prog1 != null){
+        } else if (v.getId() == R.id.lytProg1MAHAdsExtDlg && prog1 != null) {
             final String pckgName = prog1.getUri().trim();
 
-            if(Utils.checkPackageIfExists(getActivity(), pckgName)){
+            if (Utils.checkPackageIfExists(getActivity(), pckgName)) {
                 PackageManager pack = getActivity().getPackageManager();
                 Intent app = pack.getLaunchIntentForPackage(pckgName);
                 app.putExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, true);
                 getActivity().startActivity(app);
-            }else {
-                if(!pckgName.isEmpty()){
+            } else {
+                if (!pckgName.isEmpty()) {
                     Intent marketIntent = new Intent(Intent.ACTION_VIEW);
-                    marketIntent.setData(Uri.parse("market://details?id="+pckgName));
+                    marketIntent.setData(Uri.parse("market://details?id=" + pckgName));
                     getActivity().startActivity(marketIntent);
                 }
             }
-        }else if(v.getId() == R.id.lytProg2MAHAdsExtDlg && prog2 != null){
+        } else if (v.getId() == R.id.lytProg2MAHAdsExtDlg && prog2 != null) {
             final String pckgName = prog2.getUri().trim();
 
-            if(Utils.checkPackageIfExists(getActivity(), pckgName)){
+            if (Utils.checkPackageIfExists(getActivity(), pckgName)) {
                 PackageManager pack = getActivity().getPackageManager();
                 Intent app = pack.getLaunchIntentForPackage(pckgName);
                 app.putExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, true);
                 getActivity().startActivity(app);
-            }else {
-                if(!pckgName.isEmpty()){
+            } else {
+                if (!pckgName.isEmpty()) {
                     Intent marketIntent = new Intent(Intent.ACTION_VIEW);
-                    marketIntent.setData(Uri.parse("market://details?id="+pckgName));
-                   /*#364*/ getActivity().startActivity(marketIntent);
+                    marketIntent.setData(Uri.parse("market://details?id=" + pckgName));
+                   /*#364*/
+                    getActivity().startActivity(marketIntent);
                 }
             }
         }

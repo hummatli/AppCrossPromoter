@@ -31,6 +31,7 @@ import android.widget.TextView;
 
 import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.MAHAdsController;
+import com.mobapphome.mahads.tools.Utils;
 import com.mobapphome.mahads.types.MAHRequestResult;
 import com.mobapphome.mahads.types.Program;
 
@@ -135,8 +136,9 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
     public void setViewAfterLoad(final MAHRequestResult result) {
         Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "------Success is " + result.isSuccess());
 
+        final List<Program> programsExceptMyself = result.getFilteredProgramsMap().get(Utils.KEY_FILTERED);
         items = new LinkedList<>();
-        for (Program c : result.getPrograms()) {
+        for (Program c : programsExceptMyself) {
             items.add(c);
         }
         final ProgramItmAdptPrograms adapterInit = new ProgramItmAdptPrograms(getContext(), items);
@@ -150,7 +152,7 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
                     lytErrorF1.setVisibility(View.GONE);
                     lstProgram.setVisibility(View.VISIBLE);
                 } else {
-                    if (result.getPrograms().size() > 0) {
+                    if (programsExceptMyself.size() > 0) {
                         lytLoadingF1.setVisibility(View.GONE);
                         lytErrorF1.setVisibility(View.GONE);
                         lstProgram.setVisibility(View.VISIBLE);

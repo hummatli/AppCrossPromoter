@@ -7,4 +7,5 @@ public interface MAHAdsDlgExitListener {
     public void onYes();
     public void onNo();
     public void onExitWithoutExitDlg();
+    public void onEventHappened(String eventStr);
 }

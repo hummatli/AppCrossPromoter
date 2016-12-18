@@ -17,13 +17,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
 import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.Utils;
 import com.mobapphome.mahads.tools.gui.AngledLinearLayout;
 import com.mobapphome.mahads.types.Program;
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 public class ProgramItmAdptPrograms extends BaseAdapter implements
@@ -104,24 +102,28 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
             nameTV.setText(currProgram.getName());
             descTV.setText(currProgram.getDesc());
 
-            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, MAHAdsController.urlRootOnServer + currProgram.getImg());
+            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, Utils.getUrlOfImage(currProgram.getImg()));
 
             Drawable imgNotFoundDrawable = ContextCompat.getDrawable(inflater.getContext(), R.drawable.img_not_found);
             imgNotFoundDrawable.setColorFilter(ContextCompat.getColor(inflater.getContext(), R.color.mah_ads_all_and_btn_text_color), PorterDuff.Mode.SRC_ATOP);
 
-            Picasso.with(vi.getContext())
-                    .load(MAHAdsController.urlRootOnServer + currProgram.getImg())
+            Glide.with(vi.getContext())
+                    .load(Utils.getUrlOfImage(currProgram.getImg()))
+                    .centerCrop()
                     .placeholder(R.drawable.img_place_holder_normal)
+                    .crossFade()
                     .error(imgNotFoundDrawable)
                     .into(ivImg);
 
             AngledLinearLayout lytProgramNewText = (AngledLinearLayout) vi.findViewById(R.id.lytProgramNewTextMAHAds);
-            if (currProgram.isNewPrgram()) {
+
+            String freshnestStr2 = currProgram.getFreshnestStr(inflater.getContext());
+            if (freshnestStr2 != null) {
+                ((TextView)vi.findViewById(R.id.tvNewText)).setText(freshnestStr2);
                 lytProgramNewText.setVisibility(View.VISIBLE);
             } else {
                 lytProgramNewText.setVisibility(View.GONE);
             }
-
 
             ImageView ivMore = (ImageButton) vi.findViewById(R.id.btnOverflowMAHAds);
             ivMore.setColorFilter(ContextCompat.getColor(inflater.getContext(), R.color.mah_ads_all_and_btn_text_color));

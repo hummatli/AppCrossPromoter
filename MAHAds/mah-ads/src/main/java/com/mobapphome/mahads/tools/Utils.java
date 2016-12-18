@@ -76,6 +76,22 @@ public class Utils {
         return ret;
     }
 
+
+    public static String getUrlOfImage(String initialUrlForImage){
+        if(initialUrlForImage.startsWith("http://") ||
+                initialUrlForImage.startsWith("https://")){
+            return initialUrlForImage;
+        }else{
+            return MAHAdsController.urlRootOnServer + initialUrlForImage;
+        }
+    }
+
+
+    public static String getRootFromUrl(String urlStr){
+        String rootStr = urlStr.substring(0, urlStr.lastIndexOf('/') + 1);
+        return rootStr;
+    }
+
     //Program list filtering----------------------------------------------------------------
     private static void programSelect(List<Program> programsSource, List<Program> programsSelectedLocal) {
         Random random = new Random();
@@ -98,15 +114,17 @@ public class Utils {
         Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Progra size from base = " + programs.size());
         List<Program> programsFiltered = new LinkedList<>();
         List<Program> programsNotInstalledOld = new LinkedList<>();
-        List<Program> programsNotInstalledNew = new LinkedList<>();
+        List<Program> programsNotInstalledFresh = new LinkedList<>();
         List<Program> programsInstalled = new LinkedList<>();
 
         for (Program c : programs) {
             if (!c.getUri().trim().equals(context.getPackageName().trim())) {
                 programsFiltered.add(c);
                 if (!Utils.checkPackageIfExists(context, c.getUri().trim())) {
-                    if (c.isNewPrgram()) {
-                        programsNotInstalledNew.add(c);
+                    Program.Freshnest freshnest = c.getFreshnest();
+                    if (freshnest.equals(Program.Freshnest.NEW)
+                            || freshnest.equals(Program.Freshnest.UPDATED)) {
+                        programsNotInstalledFresh.add(c);
                     } else {
                         programsNotInstalledOld.add(c);
                     }
@@ -118,7 +136,7 @@ public class Utils {
 
         //For generating selected programs start
         List<Program> programsSelectedLocal = new LinkedList<>();
-        programSelect(programsNotInstalledNew, programsSelectedLocal);
+        programSelect(programsNotInstalledFresh, programsSelectedLocal);
         programSelect(programsNotInstalledOld, programsSelectedLocal);
         programSelect(programsInstalled, programsSelectedLocal);
 
@@ -182,7 +200,8 @@ public class Utils {
                     String uri = jsonProgram.getString("uri");
                     String img = jsonProgram.getString("img");
                     String releaseDate = jsonProgram.getString("release_date");
-                    ret.add(new Program(0, name, desc, uri, img, releaseDate));
+                    String updateDate = jsonProgram.getString("update_date");
+                    ret.add(new Program(0, name, desc, uri, img, releaseDate, updateDate));
                     //Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Added = " + name);
                 } catch (JSONException e) {
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, e.toString());

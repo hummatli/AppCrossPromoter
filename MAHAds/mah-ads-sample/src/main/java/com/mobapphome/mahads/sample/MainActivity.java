@@ -3,6 +3,7 @@ package com.mobapphome.mahads.sample;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -61,7 +62,8 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExitList
 
         // For MAHAds init
         // METHOD 1
-        MAHAdsController.init(this, "https://project-943403214286171762.firebaseapp.com/mah_ads_dir/mah_ads_github_apps/");
+        MAHAdsController.init(this,"https://project-943403214286171762.firebaseapp.com/mah_ads_dir/mah_ads_github_apps/",
+                "program_version.json", "program_list.json");
         // METHOD 1
     }
 
@@ -128,7 +130,10 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExitList
         finish();
     }
 
-
+    @Override
+    public void onEventHappened(String eventStr) {
+        Log.i(LOG_TAG_MAH_ADS_SAMPLE, eventStr);
+    }
 
     //Selection event for language spinner
     @Override
