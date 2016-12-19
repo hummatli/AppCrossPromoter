@@ -22,5 +22,6 @@
     <string name="mah_ads_dlg_exit_btn_more_txt_2">détaillé</string>
 
     <string name="mah_ads_info_popup_text">MAHAds bibliothèque</string>
+    <string name="mah_ads_updated_text">Updated</string>
 
 </resources>

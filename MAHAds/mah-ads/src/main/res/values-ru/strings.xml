@@ -20,5 +20,6 @@
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Подробный</string>
 
     <string name="mah_ads_info_popup_text">MAHAds библиотека</string>
+    <string name="mah_ads_updated_text">Oбновлен</string>
 
 </resources>

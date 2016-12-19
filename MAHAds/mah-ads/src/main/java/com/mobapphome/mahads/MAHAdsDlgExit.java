@@ -23,6 +23,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,7 +35,6 @@ import com.bumptech.glide.Glide;
 import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.Utils;
-import com.mobapphome.mahads.tools.gui.AngledLinearLayout;
 import com.mobapphome.mahads.types.Program;
 
 import java.util.List;
@@ -46,9 +47,13 @@ public class MAHAdsDlgExit extends DialogFragment implements
     boolean withPopupInfoMenu = true;
     View view = null;
     LinearLayout lytProgsPanel = null;
-    LinearLayout lytProg1MAHAdsExtDlg = null;
-    LinearLayout lytProg2MAHAdsExtDlg = null;
+    ViewGroup lytProg1MAHAdsExtDlg = null;
+    ViewGroup lytProg2MAHAdsExtDlg = null;
     TextView tvAsBtnMore = null;
+
+    TextView tvFresnestProg1 = null;
+    TextView tvFresnestProg2 = null;
+
 
     public MAHAdsDlgExit() {
         // Empty constructor required for DialogFragment
@@ -108,8 +113,8 @@ public class MAHAdsDlgExit extends DialogFragment implements
 
         tvAsBtnMore = (TextView) view.findViewById(R.id.mah_ads_dlg_exit_tv_btn_other);
         lytProgsPanel = ((LinearLayout) view.findViewById(R.id.lytProgsPanel));
-        lytProg1MAHAdsExtDlg = ((LinearLayout) view.findViewById(R.id.lytProg1MAHAdsExtDlg));
-        lytProg2MAHAdsExtDlg = ((LinearLayout) view.findViewById(R.id.lytProg2MAHAdsExtDlg));
+        lytProg1MAHAdsExtDlg = ((ViewGroup) view.findViewById(R.id.lytProg1MAHAdsExtDlg));
+        lytProg2MAHAdsExtDlg = ((ViewGroup) view.findViewById(R.id.lytProg2MAHAdsExtDlg));
 
 
         Button btnYes = ((Button) view.findViewById(R.id.mah_ads_dlg_exit_btn_yes));
@@ -121,6 +126,12 @@ public class MAHAdsDlgExit extends DialogFragment implements
         ivBtnCancel.setOnClickListener(this);
         ivBtnInfo.setOnClickListener(this);
         view.findViewById(R.id.mah_ads_dlg_exit_lyt_btn_other).setOnClickListener(this);
+
+
+        tvFresnestProg1 = ((TextView)view.findViewById(R.id.tvProg1NewText));
+        tvFresnestProg2 = ((TextView)view.findViewById(R.id.tvProg2NewText));
+        tvFresnestProg1.setVisibility(View.GONE);
+        tvFresnestProg2.setVisibility(View.GONE);
 
         ((ImageView) view.findViewById(R.id.mah_ads_dlg_exit_iv_play_store_btn_other)).setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_all_and_btn_text_color));
         ivBtnCancel.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_title_bar_text_color));
@@ -136,6 +147,7 @@ public class MAHAdsDlgExit extends DialogFragment implements
         });
 
         setUi(MAHAdsController.getSelectedPrograms());
+
         MAHAdsController.getUpdater().updateProgramList(getActivity());
 
         MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvTitle));
@@ -174,13 +186,15 @@ public class MAHAdsDlgExit extends DialogFragment implements
                     .crossFade()
                     .error(imgNotFoundDrawable)
                     .into((ImageView) view.findViewById(R.id.ivProg1ImgMAHAds));
-            AngledLinearLayout prog1LytNewText = (AngledLinearLayout) view.findViewById(R.id.lytProg1NewText);
             String freshnestStr = prog1.getFreshnestStr(getContext());
             if (freshnestStr != null) {
-                ((TextView)view.findViewById(R.id.tvProg1NewText)).setText(freshnestStr);
-                prog1LytNewText.setVisibility(View.VISIBLE);
+                tvFresnestProg1.setText(freshnestStr);
+                RotateAnimation animRotate = (RotateAnimation) AnimationUtils.loadAnimation(getContext(), R.anim.tv_rotate);
+                animRotate.setFillAfter(true); //For the textview to remain at the same place after the rotation
+                tvFresnestProg1.setAnimation(animRotate);
+                tvFresnestProg1.setVisibility(View.VISIBLE);
             } else {
-                prog1LytNewText.setVisibility(View.GONE);
+                tvFresnestProg1.setVisibility(View.GONE);
             }
             lytProg1MAHAdsExtDlg.setOnClickListener(MAHAdsDlgExit.this);
             tvAsBtnMore.setText(view.getResources().getString(R.string.mah_ads_dlg_exit_btn_more_txt_2));
@@ -198,24 +212,20 @@ public class MAHAdsDlgExit extends DialogFragment implements
                     .error(imgNotFoundDrawable)
                     .into((ImageView) view.findViewById(R.id.ivProg1ImgMAHAds));
 
-            AngledLinearLayout prog1LytNewText = (AngledLinearLayout) view.findViewById(R.id.lytProg1NewText);
+
             String freshnestStr = prog1.getFreshnestStr(getContext());
             if (freshnestStr != null) {
-                ((TextView)view.findViewById(R.id.tvProg1NewText)).setText(freshnestStr);
-                prog1LytNewText.setVisibility(View.VISIBLE);
+                tvFresnestProg1.setText(freshnestStr);
+                RotateAnimation animRotate = (RotateAnimation) AnimationUtils.loadAnimation(getContext(), R.anim.tv_rotate);
+                animRotate.setFillAfter(true); //For the textview to remain at the same place after the rotation
+                tvFresnestProg1.setAnimation(animRotate);
+                tvFresnestProg1.setVisibility(View.VISIBLE);
             } else {
-                prog1LytNewText.setVisibility(View.GONE);
+                tvFresnestProg1.setVisibility(View.GONE);
             }
 
             prog2 = programsSelected.get(1);
             ((TextView) view.findViewById(R.id.tvProg2NameMAHAdsExtDlg)).setText(prog2.getName());
-
-
-//                    PicassoTrustAll.getInstance(getContext())
-//                            .load(MAHAdsController.urlRootOnServer + prog2.getImg())
-//                            .placeholder(R.drawable.img_place_holder_normal)
-//                            .error(imgNotFoundDrawable)
-//                            .into((ImageView) view.findViewById(R.id.ivProg2ImgMAHAds));
 
 //                    Picasso.with(view.getContext())
 //                            .load(MAHAdsController.urlRootOnServer + prog2.getImg())
@@ -231,13 +241,15 @@ public class MAHAdsDlgExit extends DialogFragment implements
                     .error(imgNotFoundDrawable)
                     .into((ImageView) view.findViewById(R.id.ivProg2ImgMAHAds));
 
-            AngledLinearLayout prog2LytNewText = (AngledLinearLayout) view.findViewById(R.id.lytProg2NewText);
             String freshnestStr2 = prog2.getFreshnestStr(getContext());
             if (freshnestStr2 != null) {
-                ((TextView)view.findViewById(R.id.tvProg2NewText)).setText(freshnestStr2);
-                prog2LytNewText.setVisibility(View.VISIBLE);
+                tvFresnestProg2.setText(freshnestStr2);
+                RotateAnimation animRotate = (RotateAnimation) AnimationUtils.loadAnimation(getContext(), R.anim.tv_rotate);
+                animRotate.setFillAfter(true); //For the textview to remain at the same place after the rotation
+                tvFresnestProg2.setAnimation(animRotate);
+                tvFresnestProg2.setVisibility(View.VISIBLE);
             } else {
-                prog2LytNewText.setVisibility(View.GONE);
+                tvFresnestProg2.setVisibility(View.GONE);
             }
 
             lytProg1MAHAdsExtDlg.setOnClickListener(MAHAdsDlgExit.this);

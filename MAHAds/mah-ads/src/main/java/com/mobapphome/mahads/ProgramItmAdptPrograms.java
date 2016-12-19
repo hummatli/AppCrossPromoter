@@ -13,15 +13,18 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.Utils;
-import com.mobapphome.mahads.tools.gui.AngledLinearLayout;
 import com.mobapphome.mahads.types.Program;
+
 import java.util.List;
 
 public class ProgramItmAdptPrograms extends BaseAdapter implements
@@ -115,14 +118,17 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
                     .error(imgNotFoundDrawable)
                     .into(ivImg);
 
-            AngledLinearLayout lytProgramNewText = (AngledLinearLayout) vi.findViewById(R.id.lytProgramNewTextMAHAds);
+            TextView tvProgramNewText = ((TextView)vi.findViewById(R.id.tvNewText));
+            String freshnestStr = currProgram.getFreshnestStr(inflater.getContext());
 
-            String freshnestStr2 = currProgram.getFreshnestStr(inflater.getContext());
-            if (freshnestStr2 != null) {
-                ((TextView)vi.findViewById(R.id.tvNewText)).setText(freshnestStr2);
-                lytProgramNewText.setVisibility(View.VISIBLE);
+            if (freshnestStr != null) {
+                tvProgramNewText.setText(freshnestStr);
+                RotateAnimation animRotate = (RotateAnimation) AnimationUtils.loadAnimation(inflater.getContext(), R.anim.tv_rotate);
+                animRotate.setFillAfter(true); //For the textview to remain at the same place after the rotation
+                tvProgramNewText.setAnimation(animRotate);
+                tvProgramNewText.setVisibility(View.VISIBLE);
             } else {
-                lytProgramNewText.setVisibility(View.GONE);
+                tvProgramNewText.setVisibility(View.GONE);
             }
 
             ImageView ivMore = (ImageButton) vi.findViewById(R.id.btnOverflowMAHAds);

@@ -19,5 +19,6 @@
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Detaylı</string>
 
     <string name="mah_ads_info_popup_text">MAHAds kütüphane</string>
+    <string name="mah_ads_updated_text">Güncellendi</string>
 
 </resources>
