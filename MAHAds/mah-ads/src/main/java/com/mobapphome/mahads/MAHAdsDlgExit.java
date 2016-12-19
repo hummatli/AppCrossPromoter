@@ -46,7 +46,7 @@ public class MAHAdsDlgExit extends DialogFragment implements
     MAHAdsDlgExitListener exitCallback;
     boolean withPopupInfoMenu = true;
     View view = null;
-    LinearLayout lytProgsPanel = null;
+    ViewGroup lytProgsPanel = null;
     ViewGroup lytProg1MAHAdsExtDlg = null;
     ViewGroup lytProg2MAHAdsExtDlg = null;
     TextView tvAsBtnMore = null;
@@ -112,7 +112,7 @@ public class MAHAdsDlgExit extends DialogFragment implements
         });
 
         tvAsBtnMore = (TextView) view.findViewById(R.id.mah_ads_dlg_exit_tv_btn_other);
-        lytProgsPanel = ((LinearLayout) view.findViewById(R.id.lytProgsPanel));
+        lytProgsPanel = ((ViewGroup) view.findViewById(R.id.lytProgsPanel));
         lytProg1MAHAdsExtDlg = ((ViewGroup) view.findViewById(R.id.lytProg1MAHAdsExtDlg));
         lytProg2MAHAdsExtDlg = ((ViewGroup) view.findViewById(R.id.lytProg2MAHAdsExtDlg));
 
@@ -161,6 +161,10 @@ public class MAHAdsDlgExit extends DialogFragment implements
         MAHAdsController.setFontTextView(btnNo);
 
         return view;
+    }
+
+    public ViewGroup getLytProgsPanel() {
+        return lytProgsPanel;
     }
 
     public void setUi(List<Program> programsSelected) {

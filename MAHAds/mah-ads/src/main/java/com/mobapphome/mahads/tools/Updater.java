@@ -3,6 +3,7 @@ package com.mobapphome.mahads.tools;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.mobapphome.mahads.MAHAdsDlgExit;
 import com.mobapphome.mahads.MAHAdsDlgPrograms;
@@ -87,7 +88,8 @@ public class Updater {
 
                     MAHAdsDlgExit fragDlgExit = (MAHAdsDlgExit) activity.getSupportFragmentManager()
                             .findFragmentByTag(MAHAdsController.TAG_MAH_ADS_DLG_EXIT);
-                    if (fragDlgExit != null) {
+                    if (fragDlgExit != null &&
+                            fragDlgExit.getLytProgsPanel().getVisibility() != View.VISIBLE) {
                         fragDlgExit.setUi(mahRequestResult.getFilteredProgramsMap().get(Utils.KEY_SELECTED));
                     }
                 }

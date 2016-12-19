@@ -102,14 +102,14 @@
                 <LinearLayout
                     android:id="@+id/lytProg1MAHAdsExtDlg"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/mah_dlg_btn_yes_no_background_selector">
 
                         <LinearLayout
@@ -166,14 +166,14 @@
                 <LinearLayout
                     android:id="@+id/lytProg2MAHAdsExtDlg"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/mah_dlg_btn_yes_no_background_selector"
                         android:gravity="center_horizontal|top">
 

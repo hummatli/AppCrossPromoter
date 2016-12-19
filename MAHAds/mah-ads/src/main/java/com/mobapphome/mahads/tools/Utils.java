@@ -199,8 +199,8 @@ public class Utils {
                     String desc = jsonProgram.getString("desc");
                     String uri = jsonProgram.getString("uri");
                     String img = jsonProgram.getString("img");
-                    String releaseDate = jsonProgram.getString("release_date");
-                    String updateDate = jsonProgram.getString("update_date");
+                    String releaseDate = jsonProgram.optString("release_date");
+                    String updateDate = jsonProgram.optString("update_date");
                     ret.add(new Program(0, name, desc, uri, img, releaseDate, updateDate));
                     //Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Added = " + name);
                 } catch (JSONException e) {

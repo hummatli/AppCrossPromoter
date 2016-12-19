@@ -13,7 +13,7 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/ivProgramImgMAHAds"
             android:layout_width="70dp"
@@ -36,13 +36,13 @@
             android:text="@string/mah_ads_new_text"
             android:textColor="@color/mah_ads_text_view_new_text_color"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical" >
 

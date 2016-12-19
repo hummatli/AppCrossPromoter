@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
 import android.widget.BaseAdapter;
@@ -88,11 +89,21 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
                 }
             });
 
+            final TextView tvProgramNewText = ((TextView)vi.findViewById(R.id.tvNewText));
+            tvProgramNewText.setVisibility(View.GONE);
+            String freshnestStr = currProgram.getFreshnestStr(inflater.getContext());
+            if (freshnestStr != null) {
+                tvProgramNewText.setText(freshnestStr);
+                RotateAnimation animRotate = (RotateAnimation) AnimationUtils.loadAnimation(inflater.getContext(), R.anim.tv_rotate);
+                animRotate.setFillAfter(true); //For the textview to remain at the same place after the rotation
+                tvProgramNewText.startAnimation(animRotate);
+                tvProgramNewText.setVisibility(View.VISIBLE);
+            } else {
+                tvProgramNewText.setVisibility(View.GONE);
+            }
 
-            TextView nameTV = (TextView) vi
-                    .findViewById(R.id.tvProgramNameMAHAds);
-            TextView descTV = (TextView) vi
-                    .findViewById(R.id.tvProgramDescMAHAds);
+            TextView nameTV = (TextView) vi.findViewById(R.id.tvProgramNameMAHAds);
+            TextView descTV = (TextView) vi.findViewById(R.id.tvProgramDescMAHAds);
             ImageView ivImg = (ImageView) vi.findViewById(R.id.ivProgramImgMAHAds);
             TextView tvOpenGooglePLay = (TextView) vi.findViewById(R.id.tvOpenInstallMAHAds);
 
@@ -118,18 +129,8 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
                     .error(imgNotFoundDrawable)
                     .into(ivImg);
 
-            TextView tvProgramNewText = ((TextView)vi.findViewById(R.id.tvNewText));
-            String freshnestStr = currProgram.getFreshnestStr(inflater.getContext());
 
-            if (freshnestStr != null) {
-                tvProgramNewText.setText(freshnestStr);
-                RotateAnimation animRotate = (RotateAnimation) AnimationUtils.loadAnimation(inflater.getContext(), R.anim.tv_rotate);
-                animRotate.setFillAfter(true); //For the textview to remain at the same place after the rotation
-                tvProgramNewText.setAnimation(animRotate);
-                tvProgramNewText.setVisibility(View.VISIBLE);
-            } else {
-                tvProgramNewText.setVisibility(View.GONE);
-            }
+
 
             ImageView ivMore = (ImageButton) vi.findViewById(R.id.btnOverflowMAHAds);
             ivMore.setColorFilter(ContextCompat.getColor(inflater.getContext(), R.color.mah_ads_all_and_btn_text_color));
