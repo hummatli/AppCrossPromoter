@@ -20,7 +20,7 @@ public class MAHAdsController {
 	public static final String MAH_ADS_INTERNAL_CALLED = "internal_called";
 	public static final String LOG_TAG_MAH_ADS = "mah_ads_log";
 
-	protected static final String PROGRAM_LIST_CACHE = "program_list_cache1";
+	protected static final String PROGRAM_LIST_CACHE = "program_list_cache2";
 	protected static final String TAG_MAH_ADS_DLG_PROGRAMS = "tag_mah_ads_dlg_programs";
 	protected static final String TAG_MAH_ADS_DLG_EXIT = "tag_mah_ads_dlg_exit";
 
@@ -76,7 +76,10 @@ public class MAHAdsController {
 		getUpdater().updateProgramList(activity);
 	}
 
-
+	/**
+	 * Gets static updater object created in init method or creates new one if is null
+	 * @return updater object
+     */
 	public static Updater getUpdater() {
 		if(updater == null){
 			updater = Updater.newInstance();

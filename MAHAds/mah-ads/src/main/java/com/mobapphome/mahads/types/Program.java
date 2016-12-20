@@ -69,6 +69,24 @@ public class Program implements Serializable {
         return retStr;
     }
 
+    public int getFreshnestStrTextSizeInSP(Context context) {
+        int sizeInSP = 10;
+        switch (getFreshnest()) {
+            case NEW:
+                sizeInSP = 12;
+                break;
+
+            case UPDATED:
+                sizeInSP = 10;
+                break;
+
+            case OLD:
+            default:
+                break;
+        }
+        return sizeInSP;
+    }
+
     private boolean checkForFreshnest(String dateStr) { //Not later than 1 month
         boolean isFresh = false;
 

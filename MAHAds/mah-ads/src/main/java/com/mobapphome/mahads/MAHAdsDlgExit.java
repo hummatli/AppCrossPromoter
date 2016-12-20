@@ -18,6 +18,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -128,8 +129,8 @@ public class MAHAdsDlgExit extends DialogFragment implements
         view.findViewById(R.id.mah_ads_dlg_exit_lyt_btn_other).setOnClickListener(this);
 
 
-        tvFresnestProg1 = ((TextView)view.findViewById(R.id.tvProg1NewText));
-        tvFresnestProg2 = ((TextView)view.findViewById(R.id.tvProg2NewText));
+        tvFresnestProg1 = ((TextView) view.findViewById(R.id.tvProg1NewText));
+        tvFresnestProg2 = ((TextView) view.findViewById(R.id.tvProg2NewText));
         tvFresnestProg1.setVisibility(View.GONE);
         tvFresnestProg2.setVisibility(View.GONE);
 
@@ -192,6 +193,7 @@ public class MAHAdsDlgExit extends DialogFragment implements
                     .into((ImageView) view.findViewById(R.id.ivProg1ImgMAHAds));
             String freshnestStr = prog1.getFreshnestStr(getContext());
             if (freshnestStr != null) {
+                tvFresnestProg1.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog1.getFreshnestStrTextSizeInSP(getContext()));
                 tvFresnestProg1.setText(freshnestStr);
                 RotateAnimation animRotate = (RotateAnimation) AnimationUtils.loadAnimation(getContext(), R.anim.tv_rotate);
                 animRotate.setFillAfter(true); //For the textview to remain at the same place after the rotation
@@ -219,6 +221,7 @@ public class MAHAdsDlgExit extends DialogFragment implements
 
             String freshnestStr = prog1.getFreshnestStr(getContext());
             if (freshnestStr != null) {
+                tvFresnestProg1.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog1.getFreshnestStrTextSizeInSP(getContext()));
                 tvFresnestProg1.setText(freshnestStr);
                 RotateAnimation animRotate = (RotateAnimation) AnimationUtils.loadAnimation(getContext(), R.anim.tv_rotate);
                 animRotate.setFillAfter(true); //For the textview to remain at the same place after the rotation
@@ -247,6 +250,7 @@ public class MAHAdsDlgExit extends DialogFragment implements
 
             String freshnestStr2 = prog2.getFreshnestStr(getContext());
             if (freshnestStr2 != null) {
+                tvFresnestProg2.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog2.getFreshnestStrTextSizeInSP(getContext()));
                 tvFresnestProg2.setText(freshnestStr2);
                 RotateAnimation animRotate = (RotateAnimation) AnimationUtils.loadAnimation(getContext(), R.anim.tv_rotate);
                 animRotate.setFillAfter(true); //For the textview to remain at the same place after the rotation

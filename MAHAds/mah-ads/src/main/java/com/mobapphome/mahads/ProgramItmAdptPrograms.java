@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -93,6 +94,7 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
             tvProgramNewText.setVisibility(View.GONE);
             String freshnestStr = currProgram.getFreshnestStr(inflater.getContext());
             if (freshnestStr != null) {
+                tvProgramNewText.setTextSize(TypedValue.COMPLEX_UNIT_SP, currProgram.getFreshnestStrTextSizeInSP(inflater.getContext()));
                 tvProgramNewText.setText(freshnestStr);
                 RotateAnimation animRotate = (RotateAnimation) AnimationUtils.loadAnimation(inflater.getContext(), R.anim.tv_rotate);
                 animRotate.setFillAfter(true); //For the textview to remain at the same place after the rotation

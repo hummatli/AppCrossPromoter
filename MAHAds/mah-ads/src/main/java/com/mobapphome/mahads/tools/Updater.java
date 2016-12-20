@@ -36,7 +36,7 @@ public class Updater {
                 MAHRequestResult requestResult = null;
                 try {
                     int myVersion = Utils.getVersionFromLocal();
-                    int currVersion = Utils.requestProgramsVersion(MAHAdsController.urlForProgramVersion);
+                    int currVersion = HttpUtils.requestProgramsVersion(MAHAdsController.urlForProgramVersion);
 
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Version from base  " + myVersion + " Version from web = " + currVersion);
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "program list url = " + MAHAdsController.urlForProgramList);
@@ -44,28 +44,28 @@ public class Updater {
                     //Ceck version to see are there any new verion in the web
                     if (myVersion == currVersion) {
                         //Read from cache if the verion has not changed
-                        requestResult = Utils.jsonToProgramList(Utils.readStringFromCache(activity));
-                        if (requestResult.getResultState() == MAHRequestResult.ResultState.ERR_JSON_IS_NULL_OR_EMPTY
+                        requestResult = HttpUtils.jsonToProgramList(Utils.readStringFromCache(activity));
+                        if (requestResult.getProgramsTotal().size() == 0
+                                || requestResult.getResultState() == MAHRequestResult.ResultState.ERR_JSON_IS_NULL_OR_EMPTY
                                 || requestResult.getResultState() == MAHRequestResult.ResultState.ERR_JSON_HAS_TOTAL_ERROR) {
                             //Read again from the web if upper errors has apears
-                            requestResult = Utils.requestPrograms(activity, MAHAdsController.urlForProgramList);
-                            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from web reattemt");
+                            requestResult = HttpUtils.requestPrograms(activity, MAHAdsController.urlForProgramList);
+                            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from web, In reattemt case");
                         }
-                        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from local");
+                        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from local, In version equal case");
                     } else {
                         //Read from the web if upper errors has apears
-                        requestResult = Utils.requestPrograms(activity, MAHAdsController.urlForProgramList);
-                        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from web");
+                        requestResult = HttpUtils.requestPrograms(activity, MAHAdsController.urlForProgramList);
+                        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from web, In version different case");
                     }
-                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs count out side again atemt = " + requestResult.getProgramsTotal().size());
+                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs count = " + requestResult.getProgramsTotal().size());
                 } catch (IOException e) {
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Accept_6");
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, " " + e.getMessage());
 
                     //Read from the cache if exception throwns. Fro example network error
-                    requestResult = Utils.jsonToProgramList(Utils.readStringFromCache(activity));
-                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from local error");
-
+                    requestResult = HttpUtils.jsonToProgramList(Utils.readStringFromCache(activity));
+                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from local, In exception case");
                 }
 
                 Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Request Result state" + requestResult.getResultState());

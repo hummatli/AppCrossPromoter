@@ -157,7 +157,10 @@
                             android:text="@string/mah_ads_new_text"
                             android:textColor="@color/mah_ads_text_view_new_text_color"
                             android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:lines="1"
+                            android:maxLength="15"
+                            android:ellipsize="end"/>
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -222,7 +225,10 @@
                             android:text="@string/mah_ads_new_text"
                             android:textColor="@color/mah_ads_text_view_new_text_color"
                             android:textSize="12sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:lines="1"
+                            android:maxLength="15"
+                            android:ellipsize="end"/>
 
                     </RelativeLayout>
                 </LinearLayout>
