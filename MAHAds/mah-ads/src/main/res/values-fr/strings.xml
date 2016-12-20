@@ -23,5 +23,6 @@
 
     <string name="mah_ads_info_popup_text">MAHAds bibliothèque</string>
     <string name="mah_ads_updated_text">Updated</string>
+    <string name="mah_ads_play_service_not_found">Installer Google Play Services pour installer l\'application</string>
 
 </resources>

@@ -21,5 +21,6 @@
 
     <string name="mah_ads_info_popup_text">MAHAds библиотека</string>
     <string name="mah_ads_updated_text">Oбновлен</string>
+    <string name="mah_ads_play_service_not_found">Установите сервисы Google Play чтобы установить приложение</string>
 
 </resources>

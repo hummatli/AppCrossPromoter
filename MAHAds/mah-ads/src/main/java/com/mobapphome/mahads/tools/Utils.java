@@ -1,10 +1,16 @@
 package com.mobapphome.mahads.tools;
 
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.mobapphome.mahads.R;
 import com.mobapphome.mahads.types.MAHRequestResult;
 import com.mobapphome.mahads.types.Program;
 
@@ -89,6 +95,17 @@ public class Utils {
     public static String getRootFromUrl(String urlStr) {
         String rootStr = urlStr.substring(0, urlStr.lastIndexOf('/') + 1);
         return rootStr;
+    }
+
+    static public void showMarket(Context context, String pckgName){
+        Intent marketIntent = new Intent(Intent.ACTION_VIEW);
+        marketIntent.setData(Uri.parse("market://details?id=" + pckgName));
+        try {
+            context.startActivity(marketIntent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(context, context.getString(R.string.mah_ads_play_service_not_found), Toast.LENGTH_LONG).show();
+            Log.e(MAHAdsController.LOG_TAG_MAH_ADS, context.getString(R.string.mah_ads_play_service_not_found) + e.getMessage());
+        }
     }
 
     //Program list filtering----------------------------------------------------------------

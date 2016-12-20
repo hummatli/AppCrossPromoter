@@ -4,13 +4,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.mobapphome.mahads.MAHAdsDlgExit;
-import com.mobapphome.mahads.MAHAdsDlgExitListener;
 import com.mobapphome.mahads.MAHAdsDlgPrograms;
 import com.mobapphome.mahads.types.Program;
 
@@ -109,16 +111,14 @@ public class MAHAdsController {
 			// This makes sure that the container activity has implemented
 			// the callback interface. If not, it throws an exception
 			try {
-				MAHAdsDlgExitListener exitCallback = (MAHAdsDlgExitListener) activity;
+				MAHAdsDlgExit.MAHAdsDlgExitListener exitCallback = (MAHAdsDlgExit.MAHAdsDlgExitListener) activity;
 				exitCallback.onExitWithoutExitDlg();
 			} catch (ClassCastException e) {
 				throw new ClassCastException(activity.toString()
 						+ " must implement MAHAdsDlgExitListener");
 			}
 		}else{
-			final FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction(); //get the fragment
-			final MAHAdsDlgExit frag = MAHAdsDlgExit.newInstance(withPopupInfoMenu);
-			frag.show(ft, TAG_MAH_ADS_DLG_EXIT);
+			showDlg(activity, MAHAdsDlgExit.newInstance(withPopupInfoMenu), TAG_MAH_ADS_DLG_EXIT);
 		}
 	}
 
@@ -136,9 +136,23 @@ public class MAHAdsController {
 	 * @param withPopupInfoMenu If true adds popup menu to info button
 	 */
 	public static void callProgramsDialog(FragmentActivity activity, boolean withPopupInfoMenu) {
-		final FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction(); //get the fragment
-		final MAHAdsDlgPrograms frag = MAHAdsDlgPrograms.newInstance(withPopupInfoMenu);
-		/*#197*/ frag.show(ft, TAG_MAH_ADS_DLG_PROGRAMS);
+		showDlg(activity, MAHAdsDlgPrograms.newInstance(withPopupInfoMenu), TAG_MAH_ADS_DLG_PROGRAMS);
+	}
+
+	static private void showDlg(FragmentActivity activity, Fragment frag, String fragTag) {
+
+		if (!activity.isFinishing()) {
+			FragmentManager fragmentManager = activity.getSupportFragmentManager();
+			Fragment fr = fragmentManager.findFragmentByTag(fragTag);
+			if (fr != null && !fr.isHidden()) {
+				Log.i("test", "showDlgForMilyoncu  dissmesd");
+                ((DialogFragment) fr).dismissAllowingStateLoss();
+			}
+
+			FragmentTransaction transaction = fragmentManager.beginTransaction();
+			transaction.add(frag, fragTag);
+			transaction.commitAllowingStateLoss();
+		}
 	}
 
 	protected static SharedPreferences getSharedPref() {

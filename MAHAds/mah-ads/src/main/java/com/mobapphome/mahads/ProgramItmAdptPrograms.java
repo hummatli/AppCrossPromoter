@@ -78,13 +78,7 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
                         vi.getContext().startActivity(app);
                     } else {
                         if (!pckgName.isEmpty()) {
-                            try {
-                                Intent marketIntent = new Intent(Intent.ACTION_VIEW);
-                                marketIntent.setData(Uri.parse("market://details?id=" + pckgName));
-                                vi.getContext().startActivity(marketIntent);
-                            } catch (Exception e) {
-                                Log.d(MAHAdsController.LOG_TAG_MAH_ADS, e.getMessage());
-                            }
+                            Utils.showMarket(inflater.getContext(), pckgName);
                         }
                     }
                 }
@@ -151,9 +145,7 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
                         public boolean onMenuItemClick(MenuItem item) {
                             if (item.getItemId() == R.id.popupMenuOpenOnGoogleP) {
                                 if (!pckgName.isEmpty()) {
-                                    Intent marketIntent = new Intent(Intent.ACTION_VIEW);
-                                    marketIntent.setData(Uri.parse("market://details?id=" + pckgName));
-                                    vi.getContext().startActivity(marketIntent);
+                                    Utils.showMarket(inflater.getContext(), pckgName);
                                 }
                             }
                             return true;

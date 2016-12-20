@@ -20,5 +20,6 @@
 
     <string name="mah_ads_info_popup_text">MAHAds kitabxanası</string>
     <string name="mah_ads_updated_text">Yeniləndi</string>
+    <string name="mah_ads_play_service_not_found">Proqramı yükləmək üçün Google Play Service-i yükəyin</string>
 
 </resources>
