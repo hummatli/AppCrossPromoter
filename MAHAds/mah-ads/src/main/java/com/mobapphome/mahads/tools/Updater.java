@@ -8,10 +8,8 @@ import android.view.View;
 import com.mobapphome.mahads.MAHAdsDlgExit;
 import com.mobapphome.mahads.MAHAdsDlgPrograms;
 import com.mobapphome.mahads.types.MAHRequestResult;
-import com.mobapphome.mahads.types.Program;
+
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 public class Updater {
     public boolean loading = false;
@@ -35,45 +33,47 @@ public class Updater {
                 }
 
                 loading = true;
-                List<Program> programs = null;
+                MAHRequestResult requestResult = null;
                 try {
                     int myVersion = Utils.getVersionFromLocal();
-
                     int currVersion = Utils.requestProgramsVersion(MAHAdsController.urlForProgramVersion);
 
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Version from base  " + myVersion + " Version from web = " + currVersion);
-                    if (myVersion == currVersion) {
-
-                        String jsonFronCache = Utils.readStringFromCache(activity);
-                        if (jsonFronCache != null) {
-                            programs = Utils.jsonToProgramList(jsonFronCache);
-                            Map<String, List<Program>> filtered = Utils.filterSelectedPrograms(activity, programs);
-                            MAHAdsController.setSelectedPrograms(filtered.get(Utils.KEY_SELECTED));
-                            loading = false;
-                            return new MAHRequestResult(filtered, true);
-                        }
-                    }
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "program list url = " + MAHAdsController.urlForProgramList);
 
-                    programs = Utils.requestPrograms(activity, MAHAdsController.urlForProgramList);
-
-                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs count out side= " + programs.size());
-                    Map<String, List<Program>> filtered = Utils.filterSelectedPrograms(activity, programs);
-                    MAHAdsController.setSelectedPrograms(filtered.get(Utils.KEY_SELECTED));
-                    loading = false;
-                    return new MAHRequestResult(filtered, true);
-
+                    //Ceck version to see are there any new verion in the web
+                    if (myVersion == currVersion) {
+                        //Read from cache if the verion has not changed
+                        requestResult = Utils.jsonToProgramList(Utils.readStringFromCache(activity));
+                        if (requestResult.getResultState() == MAHRequestResult.ResultState.ERR_JSON_IS_NULL_OR_EMPTY
+                                || requestResult.getResultState() == MAHRequestResult.ResultState.ERR_JSON_HAS_TOTAL_ERROR) {
+                            //Read again from the web if upper errors has apears
+                            requestResult = Utils.requestPrograms(activity, MAHAdsController.urlForProgramList);
+                            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from web reattemt");
+                        }
+                        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from local");
+                    } else {
+                        //Read from the web if upper errors has apears
+                        requestResult = Utils.requestPrograms(activity, MAHAdsController.urlForProgramList);
+                        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from web");
+                    }
+                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs count out side again atemt = " + requestResult.getProgramsTotal().size());
                 } catch (IOException e) {
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Accept_6");
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, " " + e.getMessage());
 
-                    programs = Utils.jsonToProgramList(Utils.readStringFromCache(activity));
+                    //Read from the cache if exception throwns. Fro example network error
+                    requestResult = Utils.jsonToProgramList(Utils.readStringFromCache(activity));
+                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from local error");
 
-                    Map<String, List<Program>> filtered = Utils.filterSelectedPrograms(activity, programs);
-                    MAHAdsController.setSelectedPrograms(filtered.get(Utils.KEY_SELECTED));
-                    loading = false;
-                    return new MAHRequestResult(filtered, false);
                 }
+
+                Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Request Result state" + requestResult.getResultState());
+                Utils.filterMAHRequestResult(activity, requestResult);
+                MAHAdsController.setSelectedPrograms(requestResult.getProgramsSelected());
+
+                loading = false;
+                return requestResult;
             }
 
             @Override
@@ -90,7 +90,7 @@ public class Updater {
                             .findFragmentByTag(MAHAdsController.TAG_MAH_ADS_DLG_EXIT);
                     if (fragDlgExit != null &&
                             fragDlgExit.getLytProgsPanel().getVisibility() != View.VISIBLE) {
-                        fragDlgExit.setUi(mahRequestResult.getFilteredProgramsMap().get(Utils.KEY_SELECTED));
+                        fragDlgExit.setUi(mahRequestResult.getProgramsSelected());
                     }
                 }
             }

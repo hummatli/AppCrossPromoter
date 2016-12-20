@@ -5,6 +5,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
+import com.mobapphome.mahads.types.MAHRequestResult;
 import com.mobapphome.mahads.types.Program;
 
 import org.json.JSONArray;
@@ -19,15 +20,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public class Utils {
-    public final static String KEY_FILTERED = "key_filtered";
-    public final static String KEY_SELECTED = "key_selected";
 
     //General --------------------------------------------------------------------
     public static boolean checkPackageIfExists(Context context, String pckgName) {
@@ -77,17 +74,17 @@ public class Utils {
     }
 
 
-    public static String getUrlOfImage(String initialUrlForImage){
-        if(initialUrlForImage.startsWith("http://") ||
-                initialUrlForImage.startsWith("https://")){
+    public static String getUrlOfImage(String initialUrlForImage) {
+        if (initialUrlForImage.startsWith("http://") ||
+                initialUrlForImage.startsWith("https://")) {
             return initialUrlForImage;
-        }else{
+        } else {
             return MAHAdsController.urlRootOnServer + initialUrlForImage;
         }
     }
 
 
-    public static String getRootFromUrl(String urlStr){
+    public static String getRootFromUrl(String urlStr) {
         String rootStr = urlStr.substring(0, urlStr.lastIndexOf('/') + 1);
         return rootStr;
     }
@@ -107,50 +104,54 @@ public class Utils {
         }
     }
 
-    public static Map<String, List<Program>> filterSelectedPrograms(final Context context, List<Program> programs) {
+    public static MAHRequestResult filterMAHRequestResult(final Context context, MAHRequestResult requestResult) {
 
-        Map<String, List<Program>> ret = new HashMap<>();
+        List<Program> programsTotal = requestResult.getProgramsTotal();
+        if (programsTotal != null) {
+            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Progra size from base = " + programsTotal.size());
+            List<Program> programsFiltered = new LinkedList<>();
+            List<Program> programsNotInstalledOld = new LinkedList<>();
+            List<Program> programsNotInstalledFresh = new LinkedList<>();
+            List<Program> programsInstalled = new LinkedList<>();
 
-        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Progra size from base = " + programs.size());
-        List<Program> programsFiltered = new LinkedList<>();
-        List<Program> programsNotInstalledOld = new LinkedList<>();
-        List<Program> programsNotInstalledFresh = new LinkedList<>();
-        List<Program> programsInstalled = new LinkedList<>();
-
-        for (Program c : programs) {
-            if (!c.getUri().trim().equals(context.getPackageName().trim())) {
-                programsFiltered.add(c);
-                if (!Utils.checkPackageIfExists(context, c.getUri().trim())) {
-                    Program.Freshnest freshnest = c.getFreshnest();
-                    if (freshnest.equals(Program.Freshnest.NEW)
-                            || freshnest.equals(Program.Freshnest.UPDATED)) {
-                        programsNotInstalledFresh.add(c);
+            for (Program c : programsTotal) {
+                if (!c.getUri().trim().equals(context.getPackageName().trim())) {
+                    programsFiltered.add(c);
+                    if (!Utils.checkPackageIfExists(context, c.getUri().trim())) {
+                        Program.Freshnest freshnest = c.getFreshnest();
+                        if (freshnest.equals(Program.Freshnest.NEW)
+                                || freshnest.equals(Program.Freshnest.UPDATED)) {
+                            programsNotInstalledFresh.add(c);
+                        } else {
+                            programsNotInstalledOld.add(c);
+                        }
                     } else {
-                        programsNotInstalledOld.add(c);
+                        programsInstalled.add(c);
                     }
-                } else {
-                    programsInstalled.add(c);
                 }
             }
+
+            //For generating selected programs start
+            List<Program> programsSelectedLocal = new LinkedList<>();
+            programSelect(programsNotInstalledFresh, programsSelectedLocal);
+            programSelect(programsNotInstalledOld, programsSelectedLocal);
+            programSelect(programsInstalled, programsSelectedLocal);
+
+
+            requestResult.setProgramsFiltered(programsFiltered);
+            requestResult.setProgramsSelected(programsSelectedLocal);
+
+            return requestResult;
+        }else{
+            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs total is null");
+            return requestResult;
         }
-
-        //For generating selected programs start
-        List<Program> programsSelectedLocal = new LinkedList<>();
-        programSelect(programsNotInstalledFresh, programsSelectedLocal);
-        programSelect(programsNotInstalledOld, programsSelectedLocal);
-        programSelect(programsInstalled, programsSelectedLocal);
-
-
-        ret.put(KEY_FILTERED, programsFiltered);
-        ret.put(KEY_SELECTED, programsSelectedLocal);
-
-        return ret;
     }
 
 
     //Http tools -----------------------------------------------
 
-    static public List<Program> requestPrograms(final Context context, String url)
+    static public MAHRequestResult requestPrograms(final Context context, String url)
             throws IOException {
         Document doc = Jsoup
                 .connect(url.trim())
@@ -182,13 +183,17 @@ public class Utils {
     }
 
 
-    static public List<Program> jsonToProgramList(String jsonStr) {
+    static public MAHRequestResult jsonToProgramList(String jsonStr) {
+
         List<Program> ret = new LinkedList<>();
-        if (jsonStr == null) {
-            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Json is null");
-            return ret;
+        if (jsonStr == null
+                || jsonStr.isEmpty()) {
+            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Json is null or empty");
+            return new MAHRequestResult(ret, MAHRequestResult.ResultState.ERR_JSON_IS_NULL_OR_EMPTY);
         }
+
         try {
+            MAHRequestResult.ResultState stateForRead = MAHRequestResult.ResultState.SUCCESS;
             JSONObject reader = new JSONObject(jsonStr);
             JSONArray programs = reader.getJSONArray("programs");
             // Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs size = " + programs.length());
@@ -204,13 +209,15 @@ public class Utils {
                     ret.add(new Program(0, name, desc, uri, img, releaseDate, updateDate));
                     //Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Added = " + name);
                 } catch (JSONException e) {
-                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, e.toString());
+                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Program item in json has a syntax problem " + e.toString());
+                    stateForRead = MAHRequestResult.ResultState.ERR_SOME_ITEMS_HAS_JSON_SYNTAX_ERROR;
                 }
             }
+            return new MAHRequestResult(ret, stateForRead);
         } catch (JSONException e) {
             Log.i(MAHAdsController.LOG_TAG_MAH_ADS, e.toString());
+            return new MAHRequestResult(ret, MAHRequestResult.ResultState.ERR_JSON_HAS_TOTAL_ERROR);
         }
-        return ret;
     }
 
     static public int requestProgramsVersion(String url)

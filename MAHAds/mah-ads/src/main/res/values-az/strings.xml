@@ -4,7 +4,7 @@
     <string name="mah_ads_dlg_title">Tövsiyə edilənlər</string>
     <string name="mah_ads_text_google_play">GooglePlay-də aç</string>
     <string name="mah_ads_info_version">Versiya</string>
-    <string name="mah_ads_internet_update_error">Xəta baş verdi. İnternet əlaqəsini yoxlayın</string>
+    <string name="mah_ads_internet_update_error">Xəta baş verdi. İnternet əlaqəsini yoxlayın və yenidən cəhd edin.</string>
     <string name="mah_ads_open_program">Aç</string>
     <string name="mah_ads_install_program">Yüklə</string>
     <string name="mah_ads_refresh_btn">Yenidən</string>

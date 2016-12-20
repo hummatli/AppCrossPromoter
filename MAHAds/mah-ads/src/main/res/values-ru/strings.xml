@@ -5,7 +5,7 @@
     <string name="mah_ads_dlg_title">Предлагаемые</string>
     <string name="mah_ads_text_google_play">Oткрыть в Google Play</string>
     <string name="mah_ads_info_version">Версия</string>
-    <string name="mah_ads_internet_update_error">Произошла ошибка. Проверьте соединение с интернетом</string>
+    <string name="mah_ads_internet_update_error">Произошла ошибка. Проверьте соединение с интернетом и попробуйте еще раз</string>
     <string name="mah_ads_open_program">Открыть</string>
     <string name="mah_ads_install_program">Загрузить</string>
     <string name="mah_ads_refresh_btn">Заново</string>

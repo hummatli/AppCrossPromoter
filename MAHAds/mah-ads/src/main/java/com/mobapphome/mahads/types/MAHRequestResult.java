@@ -1,26 +1,45 @@
 package com.mobapphome.mahads.types;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by settar on 12/16/16.
  */
 
 public class MAHRequestResult {
-    private Map<String, List<Program>> filteredProgramsMap;
-    private boolean success;
+    private List<Program> programsTotal;
+    private List<Program> programsFiltered;
+    private List<Program> programsSelected;
+    private ResultState resultState;
 
-    public MAHRequestResult(Map<String, List<Program>> filteredProgramsMap, boolean success) {
-        this.filteredProgramsMap = filteredProgramsMap;
-        this.success = success;
+    public enum ResultState {SUCCESS, ERR_JSON_IS_NULL_OR_EMPTY, ERR_JSON_HAS_TOTAL_ERROR, ERR_SOME_ITEMS_HAS_JSON_SYNTAX_ERROR}
+
+    public MAHRequestResult(List<Program> programsTotal, ResultState resultState) {
+        this.programsTotal = programsTotal;
+        this.resultState = resultState;
     }
 
-    public Map<String, List<Program>> getFilteredProgramsMap() {
-        return filteredProgramsMap;
+    public List<Program> getProgramsTotal() {
+        return programsTotal;
     }
 
-    public boolean isSuccess() {
-        return success;
+    public ResultState getResultState() {
+        return resultState;
+    }
+
+    public List<Program> getProgramsSelected() {
+        return programsSelected;
+    }
+
+    public void setProgramsSelected(List<Program> programsSelected) {
+        this.programsSelected = programsSelected;
+    }
+
+    public List<Program> getProgramsFiltered() {
+        return programsFiltered;
+    }
+
+    public void setProgramsFiltered(List<Program> programsFiltered) {
+        this.programsFiltered = programsFiltered;
     }
 }

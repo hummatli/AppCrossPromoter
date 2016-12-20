@@ -101,13 +101,13 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
         view.findViewById(R.id.mah_ads_dlg_programs_btn_close).setOnClickListener(this);
         view.findViewById(R.id.btnErrorRefreshMAHAds).setOnClickListener(this);
 
-        ImageView ivBtnCancel = ((ImageView)view.findViewById(R.id.mah_ads_dlg_programs_btnCancel));
-        ImageView ivBtnInfo = ((ImageView)view.findViewById(R.id.mah_ads_dlg_programs_btnInfo));
+        ImageView ivBtnCancel = ((ImageView) view.findViewById(R.id.mah_ads_dlg_programs_btnCancel));
+        ImageView ivBtnInfo = ((ImageView) view.findViewById(R.id.mah_ads_dlg_programs_btnInfo));
 
         ivBtnCancel.setOnClickListener(this);
         ivBtnInfo.setOnClickListener(this);
-        ivBtnCancel.setColorFilter(ContextCompat.getColor( getContext(), R.color.mah_ads_title_bar_text_color));
-        ivBtnInfo.setColorFilter(ContextCompat.getColor( getContext(), R.color.mah_ads_title_bar_text_color));
+        ivBtnCancel.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_title_bar_text_color));
+        ivBtnInfo.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_title_bar_text_color));
 
 
         lytLoadingF1.setVisibility(View.VISIBLE);
@@ -123,7 +123,7 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
         animation.setInterpolator(new LinearInterpolator());
         animation.setRepeatCount(Animation.INFINITE);
         ImageView iv = (ImageView) view.findViewById(R.id.ivLoadingMahAds);
-        iv.setColorFilter(ContextCompat.getColor( getContext(),R.color.mah_ads_all_and_btn_text_color));
+        iv.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_all_and_btn_text_color));
         iv.setImageResource(R.drawable.ic_loading_mah);
         iv.startAnimation(animation);
 
@@ -134,38 +134,38 @@ public class MAHAdsDlgPrograms extends DialogFragment implements
     }
 
     public void setViewAfterLoad(final MAHRequestResult result) {
-        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "------Success is " + result.isSuccess());
+        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "------Result State is " + result.getResultState());
 
-        final List<Program> programsExceptMyself = result.getFilteredProgramsMap().get(Utils.KEY_FILTERED);
-        items = new LinkedList<>();
-        for (Program c : programsExceptMyself) {
-            items.add(c);
-        }
-        final ProgramItmAdptPrograms adapterInit = new ProgramItmAdptPrograms(getContext(), items);
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "lstProgram post called");
-                lstProgram.setAdapter(adapterInit);
-                if (result.isSuccess()) {
+        if (result.getResultState() == MAHRequestResult.ResultState.SUCCESS
+                || result.getResultState() == MAHRequestResult.ResultState.ERR_SOME_ITEMS_HAS_JSON_SYNTAX_ERROR) {
+            final List<Program> programsExceptMyself = result.getProgramsFiltered();
+            items = new LinkedList<>();
+            for (Program c : programsExceptMyself) {
+                items.add(c);
+            }
+            final ProgramItmAdptPrograms adapterInit = new ProgramItmAdptPrograms(getContext(), items);
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "lstProgram post called");
+                    lstProgram.setAdapter(adapterInit);
                     lytLoadingF1.setVisibility(View.GONE);
                     lytErrorF1.setVisibility(View.GONE);
                     lstProgram.setVisibility(View.VISIBLE);
-                } else {
-                    if (programsExceptMyself.size() > 0) {
-                        lytLoadingF1.setVisibility(View.GONE);
-                        lytErrorF1.setVisibility(View.GONE);
-                        lstProgram.setVisibility(View.VISIBLE);
-                    } else {
-                        lytLoadingF1.setVisibility(View.GONE);
-                        lytErrorF1.setVisibility(View.VISIBLE);
-                        lstProgram.setVisibility(View.GONE);
-                        tvErrorResultF1.setText(getResources().getString(
-                                R.string.mah_ads_internet_update_error));
-                    }
                 }
-            }
-        });
+            });
+        } else {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    lytLoadingF1.setVisibility(View.GONE);
+                    lytErrorF1.setVisibility(View.VISIBLE);
+                    lstProgram.setVisibility(View.GONE);
+                    tvErrorResultF1.setText(getResources().getString(
+                            R.string.mah_ads_internet_update_error));
+                }
+            });
+        }
     }
 
 
