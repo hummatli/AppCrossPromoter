@@ -3,6 +3,7 @@
     <string-array name="langs_array">
         <item>Azerbaijan</item>
         <item>English</item>
+        <item>France</item>
         <item>Russian</item>
         <item>Turkey</item>
     </string-array>

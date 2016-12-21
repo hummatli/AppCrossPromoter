@@ -77,8 +77,8 @@
                     android:layout_marginRight="10dp"
                     android:gravity="center_vertical"
                     android:text="-xcxcxcxcxcxcxcxcxc"
-                    android:textColor="@color/mah_ads_all_and_btn_text_color"
-                    android:textSize="15sp" />
+                    android:textColor="@color/mah_ads_program_item_desc_text_color"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout

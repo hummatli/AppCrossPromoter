@@ -58,7 +58,6 @@ public class Updater {
                         requestResult = HttpUtils.requestPrograms(activity, MAHAdsController.urlForProgramList);
                         Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from web, In version different case");
                     }
-                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs count = " + requestResult.getProgramsTotal().size());
                 } catch (IOException e) {
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Accept_6");
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, " " + e.getMessage());
@@ -67,6 +66,7 @@ public class Updater {
                     requestResult = HttpUtils.jsonToProgramList(Utils.readStringFromCache(activity));
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from local, In exception case");
                 }
+                Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs count = " + requestResult.getProgramsTotal().size());
 
                 Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Request Result state" + requestResult.getResultState());
                 Utils.filterMAHRequestResult(activity, requestResult);

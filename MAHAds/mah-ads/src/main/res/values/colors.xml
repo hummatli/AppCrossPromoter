@@ -6,6 +6,7 @@
 	<color name="mah_ads_colorAccent">#FFFF4081</color>
 
 	<color name="mah_ads_all_and_btn_text_color">#FF3F51B5</color>
+	<color name="mah_ads_program_item_desc_text_color">#4a76e6</color> <!--new-->
 	<color name="mah_ads_question_txt_color">#FF3F51B5</color>
 	<color name="mah_ads_yes_no_txt_color">#FFFF4081</color>
 

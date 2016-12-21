@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
             currentLang = "english";
         } else if (currentLang.equals("az")) {
             currentLang = "azerbaijan";
+        } else if (currentLang.equals("fr")) {
+            currentLang = "france";
         } else if (currentLang.equals("ru")) {
             currentLang = "russia";
         } else if (currentLang.equals("tr")) {
@@ -146,6 +148,8 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
             LocaleHelper.setLocale(this, "en");
         } else if (item.toLowerCase().startsWith("azerbaijan")) {
             LocaleHelper.setLocale(this, "az");
+        } else if (item.toLowerCase().startsWith("france")) {
+            LocaleHelper.setLocale(this, "fr");
         } else if (item.toLowerCase().startsWith("russia")) {
             LocaleHelper.setLocale(this, "ru");
         } else if (item.toLowerCase().startsWith("turkey")) {
