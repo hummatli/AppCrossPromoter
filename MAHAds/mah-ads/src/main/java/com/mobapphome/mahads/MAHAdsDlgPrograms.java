@@ -198,7 +198,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
 
 
     public void onClose() {
-        dismiss();
+        dismissAllowingStateLoss();
     }
 
     private void showMAHlib() {

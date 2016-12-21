@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
 
         // For MAHAds init
         // METHOD 1
-        MAHAdsController.init(this,"https://project-943403214286171762.firebaseapp.com/mah_ads_dir/mah_ads_github_apps/",
-                "program_version.json", "program_list.json");
+        MAHAdsController.init(this,"https://project-943403214286171762.firebaseapp.com/mah_ads_dir/",
+                "github_apps_prg_version.json", "github_apps_prg_list.json");
         // METHOD 1
     }
 

@@ -185,7 +185,7 @@ public class MAHAdsController {
 			FragmentManager fragmentManager = activity.getSupportFragmentManager();
 			Fragment fr = fragmentManager.findFragmentByTag(fragTag);
 			if (fr != null && !fr.isHidden()) {
-				Log.i("test", "showDlgForMilyoncu  dissmesd");
+				Log.i(LOG_TAG_MAH_ADS, "showDlg  dismissed");
                 ((DialogFragment) fr).dismissAllowingStateLoss();
 			}
 

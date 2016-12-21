@@ -355,7 +355,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
     public void onClick(View v) {
         try {
             if (v.getId() == R.id.mah_ads_dlg_exit_btnCancel) {
-                dismiss();
+                dismissAllowingStateLoss();
             } else if (v.getId() == R.id.mah_ads_dlg_exit_btnInfo) {
 
                 if (btnInfoWithMenu) {
