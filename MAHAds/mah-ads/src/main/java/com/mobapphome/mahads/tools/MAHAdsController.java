@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.mobapphome.mahads.MAHAdsDlgExit;
 import com.mobapphome.mahads.MAHAdsDlgPrograms;
+import com.mobapphome.mahads.R;
 import com.mobapphome.mahads.types.Program;
 
 import java.util.List;
@@ -95,16 +96,34 @@ public class MAHAdsController {
 	 * @param activity Activity which method has called
 	 */
 	public static void callExitDialog(FragmentActivity activity) {
-		callExitDialog(activity, true);
+		callExitDialog(activity, true, true);
 	}
 
 	/**
 	 * Calls ExitDialog to open. If current dialog has opened through MAHAds dialogs
 	 * then application will quit not opening ExitDialog
 	 * @param activity Activity which method has called
-	 * @param withPopupInfoMenu If true adds popup menu to info button
+	 * @param btnInfoVisibility If true shows info button
+	 * @param btnInfoWithMenu If true adds popup menu to info button
+	 */
+	public static void callExitDialog(FragmentActivity activity, boolean btnInfoVisibility, boolean btnInfoWithMenu) {
+		callExitDialog(activity, btnInfoVisibility, btnInfoWithMenu, activity.getString(R.string.mah_ads_info_popup_text), Constants.MAH_ADS_GITHUB_LINK);
+	}
+
+	/**
+	 * Calls ExitDialog to open. If current dialog has opened through MAHAds dialogs
+	 * then application will quit not opening ExitDialog
+	 * @param activity Activity which method has called
+	 * @param btnInfoVisibility If true shows info button
+	 * @param btnInfoWithMenu If true adds popup menu to info button
+	 * @param btnInfoMenuItemTitle Title of menu item for info button
+	 * @param btnInfoActionURL Url to open when clicking to info button or info menu item
      */
-	public static void callExitDialog(FragmentActivity activity, boolean withPopupInfoMenu) {
+	public static void callExitDialog(FragmentActivity activity,
+									  boolean btnInfoVisibility,
+									  boolean btnInfoWithMenu,
+									  String btnInfoMenuItemTitle,
+									  @NonNull String btnInfoActionURL) {
 		//When is internal call is true then exit dialog will not open.
 		//It will be true only program opens through MAHAds components
 		if(isInternalCalled()){
@@ -118,7 +137,9 @@ public class MAHAdsController {
 						+ " must implement MAHAdsDlgExitListener");
 			}
 		}else{
-			showDlg(activity, MAHAdsDlgExit.newInstance(withPopupInfoMenu), TAG_MAH_ADS_DLG_EXIT);
+			showDlg(activity,
+					MAHAdsDlgExit.newInstance(btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
+					TAG_MAH_ADS_DLG_EXIT);
 		}
 	}
 
@@ -127,16 +148,35 @@ public class MAHAdsController {
 	 * @param activity Activity which method has called
      */
 	public static void callProgramsDialog(FragmentActivity activity) {
-		callProgramsDialog(activity, true);
+		callProgramsDialog(activity, true, true);
 	}
 
 	/**
 	 * Calls ProgramsDialog to open
 	 * @param activity Activity which method has called
-	 * @param withPopupInfoMenu If true adds popup menu to info button
+	 * @param btnInfoVisibility If true shows info button
+	 * @param btnInfoWithMenu If true adds popup menu to info button
 	 */
-	public static void callProgramsDialog(FragmentActivity activity, boolean withPopupInfoMenu) {
-		showDlg(activity, MAHAdsDlgPrograms.newInstance(withPopupInfoMenu), TAG_MAH_ADS_DLG_PROGRAMS);
+	public static void callProgramsDialog(FragmentActivity activity, boolean btnInfoVisibility, boolean btnInfoWithMenu) {
+		callProgramsDialog(activity, btnInfoVisibility, btnInfoWithMenu, activity.getString(R.string.mah_ads_info_popup_text), Constants.MAH_ADS_GITHUB_LINK);
+	}
+
+	/**
+	 * Calls ProgramsDialog to open
+	 * @param activity Activity which method has called
+	 * @param btnInfoVisibility If true shows info button
+	 * @param btnInfoWithMenu If true adds popup menu to info button
+	 * @param btnInfoMenuItemTitle Title of menu item for info button
+	 * @param btnInfoActionURL Url to open when clicking to info button or info menu item
+	 */
+	public static void callProgramsDialog(FragmentActivity activity,
+										  boolean btnInfoVisibility,
+										  boolean btnInfoWithMenu,
+										  String btnInfoMenuItemTitle,
+										  @NonNull String btnInfoActionURL) {
+		showDlg(activity,
+				MAHAdsDlgPrograms.newInstance(btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
+				TAG_MAH_ADS_DLG_PROGRAMS);
 	}
 
 	static private void showDlg(FragmentActivity activity, Fragment frag, String fragTag) {

@@ -4,6 +4,7 @@ package com.mobapphome.mahads;
  * Created by settar on 7/12/16.
  */
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,6 +22,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,15 +32,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.mobapphome.mahads.mahfragments.MAHDialogFragment;
 import com.mobapphome.mahads.mahfragments.MAHFragmentExeption;
-import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.Utils;
 import com.mobapphome.mahads.types.Program;
-
 import java.util.List;
 
 
@@ -46,7 +46,6 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
         View.OnClickListener {
     Program prog1, prog2;
     MAHAdsDlgExitListener exitCallback;
-    boolean withPopupInfoMenu = true;
     View view = null;
     ViewGroup lytProgsPanel = null;
     ViewGroup lytProg1MAHAdsExtDlg = null;
@@ -55,6 +54,12 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
 
     TextView tvFresnestProg1 = null;
     TextView tvFresnestProg2 = null;
+
+    boolean btnInfoVisibility;
+    boolean btnInfoWithMenu;
+    String btnInfoMenuItemTitle;
+    String btnInfoActionURL;
+
 
     public interface MAHAdsDlgExitListener {
         public void onYes();
@@ -70,10 +75,16 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
         // Empty constructor required for DialogFragment
     }
 
-    public static MAHAdsDlgExit newInstance(boolean withPopupInfoMenu) {
+    public static MAHAdsDlgExit newInstance(boolean btnInfoVisibility,
+                                            boolean btnInfoWithMenu,
+                                            String btnInfoMenuItemTitle,
+                                            String btnInfoActionURL) {
         MAHAdsDlgExit dialog = new MAHAdsDlgExit();
         Bundle args = new Bundle();
-        args.putBoolean("withPopupInfoMenu", withPopupInfoMenu);
+        args.putBoolean("btnInfoVisibility", btnInfoVisibility);
+        args.putBoolean("btnInfoWithMenu", btnInfoWithMenu);
+        args.putString("btnInfoMenuItemTitle", btnInfoMenuItemTitle);
+        args.putString("btnInfoActionURL", btnInfoActionURL);
         dialog.setArguments(args);
         return dialog;
     }
@@ -92,9 +103,12 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "MAH Ads Dld exit Created ");
 
             Bundle args = getArguments();
-            withPopupInfoMenu = args.getBoolean("withPopupInfoMenu", true);
+            btnInfoVisibility = args.getBoolean("btnInfoVisibility");
+            btnInfoWithMenu = args.getBoolean("btnInfoWithMenu");
+            btnInfoMenuItemTitle = args.getString("btnInfoMenuItemTitle");
+            btnInfoActionURL = args.getString("btnInfoActionURL");
 
-            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "With popInfoMenu" + withPopupInfoMenu);
+            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "With popInfoMenu" + btnInfoWithMenu);
             // This makes sure that the container activity has implemented
             // the callback interface. If not, it throws an exception
             try {
@@ -138,6 +152,12 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             ivBtnCancel.setOnClickListener(this);
             ivBtnInfo.setOnClickListener(this);
             view.findViewById(R.id.mah_ads_dlg_exit_lyt_btn_other).setOnClickListener(this);
+
+            if(btnInfoVisibility){
+                ivBtnInfo.setVisibility(View.VISIBLE);
+            }else{
+                ivBtnInfo.setVisibility(View.INVISIBLE);
+            }
 
 
             tvFresnestProg1 = ((TextView) view.findViewById(R.id.tvProg1NewText));
@@ -303,8 +323,14 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
     }
 
     private void showMAHlib() {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.MAH_ADS_GITHUB_LINK));
-        getContext().startActivity(browserIntent);
+        try {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(btnInfoActionURL));
+            getContext().startActivity(browserIntent);
+        }catch (ActivityNotFoundException nfe){
+            String str = "You haven't set correct url to btnInfoActionURL, your url = " + btnInfoActionURL;
+            Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
+            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, str, nfe);
+        }
     }
 
     public void openAppOrMarketAcitivity(String pckgName) {
@@ -332,14 +358,15 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
                 dismiss();
             } else if (v.getId() == R.id.mah_ads_dlg_exit_btnInfo) {
 
-                if (withPopupInfoMenu) {
+                if (btnInfoWithMenu) {
+                    final int itemIdForInfo = 1;
                     PopupMenu popup = new PopupMenu(getContext(), v);
-                    // Inflating the Popup using xml file
-                    popup.getMenuInflater().inflate(R.menu.mah_ads_info_popup_menu, popup.getMenu());
+                    popup.getMenu().add(Menu.NONE, itemIdForInfo, 1, btnInfoMenuItemTitle);
+
                     // registering popup with OnMenuItemClickListener
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         public boolean onMenuItemClick(MenuItem item) {
-                            if (item.getItemId() == R.id.mah_ads_info_popup_item) {
+                            if (item.getItemId() == itemIdForInfo) {
                                 showMAHlib();
                             }
                             return true;
@@ -355,7 +382,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             } else if (v.getId() == R.id.mah_ads_dlg_exit_btn_no) {
                 onNo();
             } else if (v.getId() == R.id.mah_ads_dlg_exit_lyt_btn_other) {
-                MAHAdsController.callProgramsDialog(getActivityMAH(), withPopupInfoMenu);
+                MAHAdsController.callProgramsDialog(getActivityMAH(), btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL);
             } else if (v.getId() == R.id.lytProg1MAHAdsExtDlg && prog1 != null) {
                 openAppOrMarketAcitivity(prog1.getUri().trim());
             } else if (v.getId() == R.id.lytProg2MAHAdsExtDlg && prog2 != null) {

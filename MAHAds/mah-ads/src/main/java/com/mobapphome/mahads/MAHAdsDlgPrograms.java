@@ -5,6 +5,7 @@ package com.mobapphome.mahads;
  */
 
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,6 +19,7 @@ import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mobapphome.mahads.mahfragments.MAHDialogFragment;
 import com.mobapphome.mahads.mahfragments.MAHFragmentExeption;
@@ -47,16 +50,26 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
     TextView tvErrorResultF1;
     ListView lstProgram;
     List<Object> items;
-    boolean withPopupInfoMenu = true;
+
+    boolean btnInfoVisibility;
+    boolean btnInfoWithMenu;
+    String btnInfoMenuItemTitle;
+    String btnInfoActionURL;
 
     public MAHAdsDlgPrograms() {
         // Empty constructor required for DialogFragment
     }
 
-    public static MAHAdsDlgPrograms newInstance(boolean withPopupInfoMenu) {
+    public static MAHAdsDlgPrograms newInstance(boolean btnInfoVisibility,
+                                                boolean btnInfoWithMenu,
+                                                String btnInfoMenuItemTitle,
+                                                String btnInfoActionURL) {
         MAHAdsDlgPrograms dialog = new MAHAdsDlgPrograms();
         Bundle args = new Bundle();
-        args.putBoolean("withPopupInfoMenu", withPopupInfoMenu);
+        args.putBoolean("btnInfoVisibility", btnInfoVisibility);
+        args.putBoolean("btnInfoWithMenu", btnInfoWithMenu);
+        args.putString("btnInfoMenuItemTitle", btnInfoMenuItemTitle);
+        args.putString("btnInfoActionURL", btnInfoActionURL);
         dialog.setArguments(args);
         return dialog;
     }
@@ -74,7 +87,10 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
             Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "MAH Ads Programs Dlg Created ");
 
             Bundle args = getArguments();
-            withPopupInfoMenu = args.getBoolean("withPopupInfoMenu", true);
+            btnInfoVisibility = args.getBoolean("btnInfoVisibility");
+            btnInfoWithMenu = args.getBoolean("btnInfoWithMenu");
+            btnInfoMenuItemTitle = args.getString("btnInfoMenuItemTitle");
+            btnInfoActionURL = args.getString("btnInfoActionURL");
 
             View view = inflater.inflate(R.layout.mah_ads_dialog_programs, container);
 
@@ -111,6 +127,11 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
             ivBtnCancel.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_title_bar_text_color));
             ivBtnInfo.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_title_bar_text_color));
 
+            if(btnInfoVisibility){
+                ivBtnInfo.setVisibility(View.VISIBLE);
+            }else{
+                ivBtnInfo.setVisibility(View.INVISIBLE);
+            }
 
             lytLoadingF1.setVisibility(View.VISIBLE);
             lytErrorF1.setVisibility(View.GONE);
@@ -181,8 +202,14 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
     }
 
     private void showMAHlib() {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.MAH_ADS_GITHUB_LINK));
-        getContext().startActivity(browserIntent);
+        try {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(btnInfoActionURL));
+            getContext().startActivity(browserIntent);
+        }catch (ActivityNotFoundException nfe){
+            String str = "You haven't set correct url to btnInfoActionURL, your url = " + btnInfoActionURL;
+            Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
+            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, str, nfe);
+        }
     }
 
     @Override
@@ -193,14 +220,15 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
                 onClose();
             } else if (v.getId() == R.id.mah_ads_dlg_programs_btnInfo) {
 
-                if (withPopupInfoMenu) {
+                if (btnInfoWithMenu) {
+                    final int itemIdForInfo = 1;
                     PopupMenu popup = new PopupMenu(getContext(), v);
-                    // Inflating the Popup using xml file
-                    popup.getMenuInflater().inflate(R.menu.mah_ads_info_popup_menu, popup.getMenu());
+                    popup.getMenu().add(Menu.NONE, itemIdForInfo, 1, btnInfoMenuItemTitle);
+
                     // registering popup with OnMenuItemClickListener
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         public boolean onMenuItemClick(MenuItem item) {
-                            if (item.getItemId() == R.id.mah_ads_info_popup_item) {
+                            if (item.getItemId() == itemIdForInfo) {
                                 showMAHlib();
                             }
                             return true;
@@ -211,8 +239,6 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
                 } else {
                     showMAHlib();
                 }
-
-
             } else if (v.getId() == R.id.btnErrorRefreshMAHAds) {
                 lytLoadingF1.setVisibility(View.VISIBLE);
                 lytErrorF1.setVisibility(View.GONE);
