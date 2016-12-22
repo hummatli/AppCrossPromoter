@@ -115,7 +115,7 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
             Log.i(MAHAdsController.LOG_TAG_MAH_ADS, Utils.getUrlOfImage(currProgram.getImg()));
 
             Drawable imgNotFoundDrawable = ContextCompat.getDrawable(inflater.getContext(), R.drawable.img_not_found);
-            imgNotFoundDrawable.setColorFilter(ContextCompat.getColor(inflater.getContext(), R.color.mah_ads_all_and_btn_text_color), PorterDuff.Mode.SRC_ATOP);
+            imgNotFoundDrawable.setColorFilter(ContextCompat.getColor(inflater.getContext(), R.color.mah_ads_no_image_color), PorterDuff.Mode.SRC_IN);
 
             Glide.with(vi.getContext())
                     .load(Utils.getUrlOfImage(currProgram.getImg()))

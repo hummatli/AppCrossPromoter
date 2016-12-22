@@ -13,7 +13,8 @@ public *;
   **[] $VALUES;
   public *;
 }
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+#Following is needed for Glide on DexGuard only. Uncomment it when DexGuard
+#-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 ##---------------End: proguard configuration for Bumptech/Glide--------------------------------
 
 

@@ -205,7 +205,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
 
     public void setUi(List<Program> programsSelected) {
         Drawable imgNotFoundDrawable = ContextCompat.getDrawable(getContext(), R.drawable.img_not_found);
-        imgNotFoundDrawable.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_all_and_btn_text_color), PorterDuff.Mode.SRC_ATOP);
+        imgNotFoundDrawable.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_no_image_color), PorterDuff.Mode.SRC_IN);
 
         if (programsSelected == null || programsSelected.size() <= 0) {
             if (programsSelected == null) {
