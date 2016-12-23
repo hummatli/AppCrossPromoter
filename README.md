@@ -62,6 +62,7 @@ root->
 		  "uri":"com.mobapphome.avtonishanlar",  
 		  "img":"imgs/avto_nishanlar2.png", 
 		  "release_date":"10/10/2014"
+		  "update_date":"10/10/2014"
 		 },
 		 {
 		   "name":"Məzənnə", 
@@ -69,10 +70,14 @@ root->
 		   "uri":"com.mobapphome.currency",  
 		   "img":"https://highsoft.az/mezenne2.png", 
 		   "release_date":"05/12/2014"
+		   "update_date":"05/12/2014"
 		 }
 	]
 	}
 ```
+
+`release_date` and `update_date` can be missed. Data will read.
+
 You can provide `http://` and `https://` services. Library works both of them.  
 You can check you json validity with this [jsonlint.com](http://jsonlint.com/)
 
