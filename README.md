@@ -147,22 +147,26 @@ Code:
 
 ```xml
     <string name="mah_ads_close">Close</string>
-    <string name="mah_ads_dlg_title">Recommended applications</string>
+    <string name="mah_ads_dlg_title">Recommended</string>
     <string name="mah_ads_text_google_play">Open in GooglePlay</string>
     <string name="mah_ads_info_version">Version</string>
-    <string name="mah_ads_internet_update_error">Error, please check internet connection or link</string>
+    <string name="mah_ads_internet_update_error">Error, please check internet connection and try again.</string>
     <string name="mah_ads_open_program">Open</string>
     <string name="mah_ads_install_program">Install</string>
     <string name="mah_ads_refresh_btn">Retry</string>
     <string name="mah_ads_free_aps">Recommended applications</string>
     <string name="mah_ads_new_text">New</string>
+    <string name="mah_ads_updated_text">Updated</string>
 
     <string name="mah_ads_dlg_exit_question">Do you want exit?</string>
-    <string name="mah_ads_dlg_exit_positive_btn_txt">EXIT</string>
-    <string name="mah_ads_dlg_exit_negativ_btn_txt">STAY</string>
-
+    <string name="mah_ads_dlg_exit_positive_btn_txt">Exit</string>
+    <string name="mah_ads_dlg_exit_negativ_btn_txt">Stay</string>
+    
     <string name="mah_ads_dlg_exit_btn_more_txt_1">Applications</string>
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Detailed</string>
+
+    <string name="mah_ads_info_popup_text">MAHAds library</string>
+    <string name="mah_ads_play_service_not_found">Install Google Play Services to install application</string><!--new-->
 ```
 <b>Note:</b> You can even customize dialogs in your application. Copy `layout/mah_ads_dialog_programs.xml`,  `layout/mah_ads_dialog_exit.xml`files and put in your layot dir and customize  them as you want. But keep view ids as they are. They will overide older ones from library. 
  
