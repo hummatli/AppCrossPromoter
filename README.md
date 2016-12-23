@@ -2,10 +2,25 @@
 [ ![Download](https://api.bintray.com/packages/hummatli/maven/mah-ads/images/download.svg) ](https://bintray.com/hummatli/maven/mah-ads/_latestVersion) [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15) [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000)](http://www.apache.org/licenses/LICENSE-2.0) 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MAHAds-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4509)
 
+## Contents
+* [Description](https://github.com/hummatli/MAHAndroidUpdater#description)
+* [Service structure](https://github.com/hummatli/MAHAndroidUpdater#service-structure)
+* [Library structure](https://github.com/hummatli/MAHAndroidUpdater#library-structure)
+* [Installation manual](https://github.com/hummatli/MAHAndroidUpdater#installation-manual)
+* [Help - Issues](https://github.com/hummatli/MAHAndroidUpdater#help---issues)
+* [Releases - Upgrade documentation](https://github.com/hummatli/MAHAndroidUpdater#releases---upgrade-documentation)
+* [To contribute](https://github.com/hummatli/MAHAndroidUpdater#to-contribute)
+* [Contributors](https://github.com/hummatli/MAHAndroidUpdater#contributors)
+* [Localization](https://github.com/hummatli/MAHAndroidUpdater#localization)
+* [Applications using MAHAds](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads)
+* [Other libraries by developer](https://github.com/hummatli/MAHAndroidUpdater#other-libraries-by-developer)
+
 Library for advertisement own apps through your other apps.
 By the help of this lib you can provide your apps list to users through your own other apps and let to install them. 
 Library has build on IDE `Android Studio` and binaries have added to `jcenter()`  `maven` repository.
 <br>You can check  <a href="https://bintray.com/hummatli/maven/mah-ads#statistics">jCenter() download statistics</a> on this link - https://bintray.com/hummatli/maven/mah-ads#statistics
+
+There is a list of [application using MAHAds](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads). It would be nice if see your app link there too. If you use this library and want to see your app in the start of the [list](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads) please [inform me](mailto:settarxan@gmail.com) or send a pull request.
 
 #PlayStore
 <a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample">MAHAds - Sample</a> app has published on Google PlayStore. You can easly test module functionality with downloading it.
@@ -183,6 +198,17 @@ Thats all. If you have any probelm with setting library please let me know. Writ
 We need help to add new language localization support for libarary. If you have any hope to help us we were very happy and you can check following <i><a href="https://github.com/hummatli/MAHAds/issues">GitHub Issues URL</a></i> to contribute.
 To contribute get <a href="https://github.com/hummatli/MAHAds/blob/master/MAHAds/mah-ads/src/main/res/values/strings.xml">res/values/string.xml</a> file and translate to newer language. Place it on res/values-"spacific_lang"/string.xml
 If you have any question please ask to me on <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>
+
+## Applications using MAHAds
+Please [ping](mailto:settarxan@gmail.com) me or send a pull request if you would like to see your app in the start of the list.
+
+Icon | Application | Icon | Application
+------------ | ------------- | ------------- | -------------
+[Your app] |[ping](mailto:settarxan@gmail.com) me or send a pull request | <img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/millionaire_en.png" width="48" height="48" /> | [Millionaire - in English](https://play.google.com/store/apps/details?id=com.mobapphome.millionaire.en)
+<img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/millionaire_ru.png" width="48" height="48" /> | [Миллионер - на Pусском](https://play.google.com/store/apps/details?id=com.mobapphome.millionaire.ru) | <img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/millionaire_tr.png" width="48" height="48" /> | [Milyoner - Türkçe](https://play.google.com/store/apps/details?id=com.mobapphome.millionaire.tr)
+<img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/millionaire_az.png" width="48" height="48" /> | [Milyonçu](https://play.google.com/store/apps/details?id=com.mobapphome.milyoncu) | <img src="https://lh3.ggpht.com/kfuLs-Ic0xR3SOFdjJ3FVeI0es2oXTCEt1T2y8tEVeYm7otSuSSBDlrpz4wXtIygf4k=w300-rw" width="48" height="48" /> | [Məzənnə](https://play.google.com/store/apps/details?id=com.mobapphome.currency)
+<img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/mah_ads_sample_icon.png" width="48" height="48" /> | [MAHAds - Sample](https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample) | <img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/mah_android_updater_sample_icon.png" width="48" height="48" /> | [MAHAndroidUpdater - Sample](https://play.google.com/store/apps/details?id=com.mobapphome.mahandroidupdater.sample)
+<img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/mah_encryptor_lib_sample_icon.png" width="48" height="48" /> | [MAHEncryptorLib - Sample](https://play.google.com/store/apps/details?id=com.mobapphome.mahencryptorlib) | <img src="https://lh5.ggpht.com/P_TyFmB5BzYDGWl3yliDHkQr_ttrYzHS3yQk3mBS3QuJJ5TJZ1pMj8lx-wmUmAHiUw=w300-rw" width="48" height="48" /> | [Ləzzət](https://play.google.com/store/apps/details?id=com.mobapphome.lezzet)
 
 
 #Developed By
