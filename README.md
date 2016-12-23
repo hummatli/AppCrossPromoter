@@ -32,16 +32,18 @@ There is a list of [application using MAHAds](https://github.com/hummatli/MAHAnd
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/programs_dlg.png" width="200px"/>
 
 ## Service structure
-To provide your apps list you have to implement service provider. Structure of the service is as below. Your root folder has to contain `imgs` folder and two files `program_version.php`, `program_list.php`.
+To provide your apps list you have to implement service provider. Structure of the service is as below. Your root folder has to contain `imgs` folder and two files `program_version.json`, `program_list.json`.
+
+Now you can set `canonical` - imgs/avto_nishanlar2.png and `noncanonical` - https://highsoft.az/avto_nishanlar2.png link to image for example. 
 
 ``` 
 root->
     imgs			- "contains logos for your porgram on the list"
-    program_version.php 	- "show the ads service version."
-    program_list.php 		- "contains program list"
+    program_version.json 	- "show the ads service version."
+    program_list.json 		- "contains program list"
 ```
  
- `program_version.php ` service has to return json as below. 
+ `program_version.json ` service has to return json as below. 
 
 ```json
 	{
@@ -49,7 +51,7 @@ root->
 	}
 ```
 
- `program_list.php` service has to return json as below. There is two  application in this sample:
+ `program_list.json` service has to return json as below. There is two  application in this sample:
   
 ```json
 	{
@@ -65,12 +67,13 @@ root->
 		   "name":"Məzənnə", 
 		   "desc":"Valyuta çeviricisi və məzənnələr", 
 		   "uri":"com.mobapphome.currency",  
-		   "img":"imgs/mezenne2.png", 
+		   "img":"https://highsoft.az/mezenne2.png", 
 		   "release_date":"05/12/2014"
 		 }
 	]
 	}
 ```
+You can provide `http://` and `https://` services. Library works both of them.  
 You can check you json validity with this [jsonlint.com](http://jsonlint.com/)
 
 ## Library structure
