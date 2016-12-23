@@ -71,6 +71,7 @@ root->
 	]
 	}
 ```
+You can check you json validity with this [jsonlint.com](http://jsonlint.com/)
 
 ## Library structure
 Library has `MAHAdsController.init()` method. It initialize modul, downloads program list from service and cashes them.
