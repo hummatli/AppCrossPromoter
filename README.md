@@ -3,17 +3,17 @@
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MAHAds-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4509)
 
 ## Contents
-* [Description](https://github.com/hummatli/MAHAndroidUpdater#description)
-* [Service structure](https://github.com/hummatli/MAHAndroidUpdater#service-structure)
-* [Library structure](https://github.com/hummatli/MAHAndroidUpdater#library-structure)
-* [Installation manual](https://github.com/hummatli/MAHAndroidUpdater#installation-manual)
-* [Help - Issues](https://github.com/hummatli/MAHAndroidUpdater#help---issues)
-* [Releases - Upgrade documentation](https://github.com/hummatli/MAHAndroidUpdater#releases---upgrade-documentation)
-* [To contribute](https://github.com/hummatli/MAHAndroidUpdater#to-contribute)
-* [Contributors](https://github.com/hummatli/MAHAndroidUpdater#contributors)
-* [Localization](https://github.com/hummatli/MAHAndroidUpdater#localization)
-* [Applications using MAHAds](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads)
-* [Other libraries by developer](https://github.com/hummatli/MAHAndroidUpdater#other-libraries-by-developer)
+* [Description](https://github.com/hummatli/MAHAds#description)
+* [Service structure](https://github.com/hummatli/MAHAds#service-structure)
+* [Library structure](https://github.com/hummatli/MAHAds#library-structure)
+* [Installation manual](https://github.com/hummatli/MAHAds#installation-manual)
+* [Help - Issues](https://github.com/hummatli/MAHAds#help---issues)
+* [Releases - Upgrade documentation](https://github.com/hummatli/MAHAds#releases---upgrade-documentation)
+* [To contribute](https://github.com/hummatli/MAHAds#to-contribute)
+* [Contributors](https://github.com/hummatli/MAHAdsr#contributors)
+* [Localization](https://github.com/hummatli/MAHAds#localization)
+* [Applications using MAHAds](https://github.com/hummatli/MAHAds#applications-using-mahads)
+* [Other libraries by developer](https://github.com/hummatli/MAHAds#other-libraries-by-developer)
 
 ## Description
 Library for advertisement own apps through your other apps.
