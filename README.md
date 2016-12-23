@@ -229,6 +229,9 @@ I am open to here offers and opinions from you
 * Star it
 
 ## Contributors
+* Developer:
+[Sattar Hummatli](https://github.com/hummatli) - [LinkedIn](https://www.linkedin.com/in/hummatli), settarxan@gmail.com, [Other libs](https://github.com/hummatli/MAHAds#other-libraries-by-developer)
+* Translator `French` language: [Fariz Aghayev](https://github.com/farizaghayev)
 
 ## Localization
 Library now supports following languages 
