@@ -61,16 +61,16 @@ root->
 		  "desc":"Bütün yol nişanları", 
 		  "uri":"com.mobapphome.avtonishanlar",  
 		  "img":"imgs/avto_nishanlar2.png", 
-		  "release_date":"10/10/2014",
-		  "update_date":"10/10/2014"
+		  "release_date":"22/12/2016",
+		  "update_date":"22/12/2016"
 		 },
 		 {
 		   "name":"Məzənnə", 
 		   "desc":"Valyuta çeviricisi və məzənnələr", 
 		   "uri":"com.mobapphome.currency",  
 		   "img":"https://highsoft.az/mezenne2.png", 
-		   "release_date":"05/12/2014",
-		   "update_date":"05/12/2014"
+		   "release_date":"22/12/2016",
+		   "update_date":"22/12/2016"
 		 }
 	]
 	}
