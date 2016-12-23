@@ -76,8 +76,8 @@ root->
 	}
 ```
 
-`release_date` and `update_date` can be missed. Data will read.
-
+`release_date` and `update_date` can be missed. Data will read.  
+Library has testes with up to 1000 program items in program list. It works normally.  
 You can provide `http://` and `https://` services. Library works both of them.  
 You can check you json validity with this [jsonlint.com](http://jsonlint.com/)
 
