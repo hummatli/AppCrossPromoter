@@ -15,6 +15,7 @@
 * [Applications using MAHAds](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads)
 * [Other libraries by developer](https://github.com/hummatli/MAHAndroidUpdater#other-libraries-by-developer)
 
+## Description
 Library for advertisement own apps through your other apps.
 By the help of this lib you can provide your apps list to users through your own other apps and let to install them. 
 Library has build on IDE `Android Studio` and binaries have added to `jcenter()`  `maven` repository.
@@ -22,15 +23,15 @@ Library has build on IDE `Android Studio` and binaries have added to `jcenter()`
 
 There is a list of [application using MAHAds](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads). It would be nice if see your app link there too. If you use this library and want to see your app in the start of the [list](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads) please [inform me](mailto:settarxan@gmail.com) or send a pull request.
 
-#PlayStore
+## Sample App in PlayStore
 <a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample">MAHAds - Sample</a> app has published on Google PlayStore. You can easly test module functionality with downloading it.
 <br><a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample"><img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/google-play-badge.png" width="200px"/></a> 
 
-#Images
+## Screenshots
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/exit_dlg.png" width="200px"/>
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/programs_dlg.png" width="200px"/>
 
-#Service structure
+## Service structure
 To provide your apps list you have to implement service provider. Structure of the service is as below. Your root folder has to contain `imgs` folder and two files `program_version.php`, `program_list.php`.
 
 ``` 
@@ -70,15 +71,16 @@ root->
 	]
 	}
 ```
-#Library structure
+
+## Library structure
 Library has `MAHAdsController.init()` method. It initialize modul, downloads program list from service and cashes them.
 
 Library contains from to Dialog component
 * `MAHAdsDlgExit`- This dialog calls when app quits and offers user quit or stay in app. By the way it offers random two application from your list
 * `MAHAdsDlgPrograms` - This dialog list your application from service and let you open nd install them
   
-#Installation manual
-
+  
+## Installation manual
 <b>`1)`</b> To import library to you project add following lines to project's `build.gradle` file. The last stable version is `1.0.6`
 
 ```
@@ -178,7 +180,7 @@ Code:
 	<uses-permission android:name="android.permission.INTERNET" />
 ```
 
-#Proguard configuration
+## Proguard configuration
 MAHAds uses <a href="https://github.com/jhy/jsoup">Jsoup</a> lib. There for if you want to create your project with proguard you need to add following configuration to your proguard file.
 
 ```gradle
@@ -193,10 +195,14 @@ public *;
 ##---------------End: proguard configuration for Square/Picasso--------------------------------
 ```
 
-#End
-Thats all. If you have any probelm with setting library please let me know. Write to settarxan@gmail.com. I will help.
+## Help - Issues
+If you have any probelm with setting library please let me know. Write to settarxan@gmail.com. I will help.
 
-#Contribution
+## Releases - Upgrade documentation
+
+## To contribute
+I am open to here offers and opinions from you  
+
 * Fork it
 * Create your feature branch (git checkout -b my-new-feature)
 * Commit your changes (git commit -am 'Added some feature')
@@ -204,7 +210,11 @@ Thats all. If you have any probelm with setting library please let me know. Writ
 * Create new Pull Request
 * Star it
 
-#Contribution for localization
+## Contributors
+
+## Localization
+
+** To contribute for localization **
 We need help to add new language localization support for libarary. If you have any hope to help us we were very happy and you can check following <i><a href="https://github.com/hummatli/MAHAds/issues">GitHub Issues URL</a></i> to contribute.
 To contribute get <a href="https://github.com/hummatli/MAHAds/blob/master/MAHAds/mah-ads/src/main/res/values/strings.xml">res/values/string.xml</a> file and translate to newer language. Place it on res/values-"spacific_lang"/string.xml
 If you have any question please ask to me on <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>
@@ -221,15 +231,11 @@ Icon | Application | Icon | Application
 <img src="https://lh6.ggpht.com/9g7gUdqyzc51oPIGX7pGf1_gs70WDizny9JfUExteTw_v0BFRLzx69xSmwhg3t7XQiE=w300-rw" width="48" height="48" /> | [Avto Nişanlar](https://play.google.com/store/apps/details?id=com.mobapphome.avtonishanlar) | <img src="https://lh5.ggpht.com/P_TyFmB5BzYDGWl3yliDHkQr_ttrYzHS3yQk3mBS3QuJJ5TJZ1pMj8lx-wmUmAHiUw=w300-rw" width="48" height="48" /> | [Ləzzət](https://play.google.com/store/apps/details?id=com.mobapphome.lezzet)
 
 
-#Developed By
-[Sattar Hummatli](https://www.linkedin.com/in/hummatli) - settarxan@gmail.com
-
-#Other libraries by developer
+## Other libraries by developer
 * [![MAHAndroidUpdater](https://img.shields.io/badge/GitHUB-MAHAndroidUpdater-green.svg)](https://github.com/hummatli/MAHAndroidUpdater) - Android update checker library. Library for notifing update information to installed android apps on android device.  
 * [![MAHEncryptorLib](https://img.shields.io/badge/GitHUB-MAHEncryptorLib-green.svg)](https://github.com/hummatli/MAHEncryptorLib) - Library for encryption and decryption strings on Android apps and PC Java applications.
 
-#License
-```
+## License
 Copyright 2015  - [Sattar Hummatli](https://www.linkedin.com/in/hummatli)   
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -243,4 +249,3 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-```
