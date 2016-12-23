@@ -185,15 +185,24 @@ Code:
 MAHAds uses <a href="https://github.com/jhy/jsoup">Jsoup</a> lib. There for if you want to create your project with proguard you need to add following configuration to your proguard file.
 
 ```gradle
+##-----------------To show exceptions right --------------------------------------
+-keep public class * extends java.lang.Exception
+
 ##---------------Begin: proguard configuration for Jsoup--------------------------------
 -keep public class org.jsoup.** {
 public *;
 }
 ##---------------End: proguard configuration for Jsoup--------------------------------
 
-##---------------Begin: proguard configuration for Square/Picasso--------------------------------
--dontwarn com.squareup.okhttp.**
-##---------------End: proguard configuration for Square/Picasso--------------------------------
+##---------------Begin: proguard configuration for Bumptech/Glide--------------------------------
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+#Following is needed for Glide on DexGuard only. Uncomment it when DexGuard
+#-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+##---------------End: proguard configuration for Bumptech/Glide--------------------------------
 ```
 
 ## Help - Issues
