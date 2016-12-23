@@ -122,20 +122,23 @@ Code:
 
 <b>`5)`</b> To customize `MAHAds` dialog UI and overide colors set these values on your main projects `color.xml` file
 ```xml
-    <color name="mah_ads_window_background_color">#FFFFFFFF</color>
-    <color name="mah_ads_title_bar_color">#FF3F51B5</color>
-    <color name="mah_ads_colorAccent">#FFFF4081</color>
+	<color name="mah_ads_window_background_color">#FFFFFFFF</color>
+	<color name="mah_ads_title_bar_color">#FF3F51B5</color>
+	<!--new--> <color name="mah_ads_title_bar_text_color">#ffffff</color> 
+	<color name="mah_ads_colorAccent">#FFFF4081</color>
 
-    <color name="mah_ads_all_and_btn_text_color">#FF3F51B5</color>
-    <color name="mah_ads_question_txt_color">#FF3F51B5</color>
-    <color name="mah_ads_yes_no_txt_color">#FF3F51B5</color>
+	<color name="mah_ads_all_and_btn_text_color">#FF3F51B5</color>
+	<!--new--> <color name="mah_ads_no_image_color">#3F51B5</color>
+	<!--new--> <color name="mah_ads_program_item_desc_text_color">#4a76e6</color> 
+	<color name="mah_ads_question_txt_color">#FF3F51B5</color>
+	<color name="mah_ads_yes_no_txt_color">#FFFF4081</color>
 
-    <color name="mah_ads_btn_other_border_color">#FF303F9F</color>
-    <color name="mah_ads_btn_background_color_pressed">#333F51B5</color>
+	<color name="mah_ads_btn_other_border_color">#848ed2</color>
+	<color name="mah_ads_btn_background_color_pressed">#333F51B5</color>
 
-    <color name="mah_ads_text_view_new_background_color">#FFFF0000</color>
-    <color name="mah_ads_text_view_new_text_color">#FFFFFFFF</color>
-    <color name="mah_ads_no_img_color">#333F51B5</color>			
+	<color name="mah_ads_text_view_new_background_color">#FF0000</color>
+	<color name="mah_ads_text_view_new_text_color">#FFFFFFFF</color>
+	<color name="mah_ads_no_img_color">#333F51B5</color>			
 ```
 
 <b>`7)`</b>` Localization:`  Module now supports 4 languages ` (English, Azerbaijan, Russia, Turkey)` .  To set localization to app use your own method or if it is static and don't change in program session you can just simply add 		`LocaleUpdater.updateLocale(this, "your_lang");` in the start of your app. For examlpe  `LocaleUpdater.updateLocale(this, "ru");`
