@@ -87,20 +87,20 @@ Library contains from to Dialog component
 	}
 ```
 
-<b>`2)`</b> Call  `MAHAdsController.init()` in your project's starting point. For example: MainActivity's `onCreate()` method or in splash activity. Check url to point your services root path.
+<b>`2)`</b> Call  `MAHAdsController.init()` in your project's starting point. For example: MainActivity's `onCreate()` method or in splash activity. Check url to point your services root path.  `MAHAdsController.init()` method has two variation with different arguments.
 Code: 
 ```java
-	MAHAdsController.init(activity, "http://highsoft.az/mahads/");
+	MAHAdsController.init(this,"http://highsoft.az/mahads/", "github_apps_prg_version.json", "github_apps_prg_list.json")
 ```
 
-<b>`3)`</b> Call `MAHAdsController.callExitDialog()` when your app quits. It opens `MAHAdsDlgExit` dilog. For example:
+<b>`3)`</b> Call `MAHAdsController.callExitDialog()` when your app quits. It opens `MAHAdsDlgExit` dilog. `MAHAdsController.callExitDialog()` method has three variation with different arguments.  By the help oh this arguments you can customize `Info button` on the upper right corner of dilog.
 Code:	
 ```java
 	public void onBackPressed() {
 		MAHAdsController.callExitDialog(activity);
 	}
 ```
-<b>Note:</b> To implement `MAHAdsDlgExit` Dialog's `onYes()`, `onNo()`, `onExitWithoutExitDlg()` your main activity has to implement `MAHAdsExitListener`. Otherwise it will through `ClassCastExeption`. `"Your activity must implement MAHAdsExitListener"` 
+<b>Note:</b> To implement `MAHAdsDlgExit` Dialog's `onYes()`, `onNo()`, `onExitWithoutExitDlg()` , `onEventHappened(String eventStr)` your main activity has to implement `MAHAdsExitListener`. Otherwise it will through `ClassCastExeption`. `"Your activity must implement MAHAdsExitListener"` 
 ```java
 	public class MainActivity extends AppCompatActivity implements MAHAdsExitListener{
 	   @Override
@@ -117,10 +117,10 @@ Code:
 	}
 ```
 
-<b>`4)`</b> To open `MAHAdsDlgPrograms` call `MAHAdsController.callProgramsDialog()` In library sample it has added to menu. Check it
+<b>`4)`</b> To open `MAHAdsDlgPrograms` call `MAHAdsController.callProgramsDialog()`. In library sample it has added to menu. `MAHAdsController.callProgramsDialog()` method has three variation with different arguments.  By the help oh this arguments you can customize `Info button` on the upper right corner of dilog. 
 Code:	
 ```java
-	MAHAdsController.callExitDialog(activity);
+	MAHAdsController.callProgramsDialog(activity);
 ```
 
 <b>`5)`</b> To customize `MAHAds` dialog UI and overide colors set these values on your main projects `color.xml` file
