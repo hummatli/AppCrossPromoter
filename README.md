@@ -111,9 +111,9 @@ Code:
 
            @Override
            public void onExitWithoutExitDlg() {}
-	   
-	   @Override
-	   public void onEventHappened(String eventStr) {}
+
+           @Override
+           public void onEventHappened(String eventStr) {}
 	}
 ```
 
