@@ -90,11 +90,11 @@ Library contains from to Dialog component
   
   
 ## Installation manual
-**1)** To import library to you project add following lines to project's `build.gradle` file. The last stable version is `1.0.6`
+**1)** To import library to you project add following lines to project's `build.gradle` file. The last stable version is `2.0.2`
 
 ```
 	dependencies {
-    		compile 'com.mobapphome.library:mah-ads:1.10.3'
+    		compile 'com.mobapphome.library:mah-ads:2.0.2'
 	}
 ```
 
