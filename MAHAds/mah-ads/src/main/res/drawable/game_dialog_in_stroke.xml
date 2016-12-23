@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="1dp"/>
+    <gradient
+        android:centerColor="@color/mah_ads_all_and_btn_text_color"
+        android:endColor="@android:color/transparent"
+        android:startColor="@android:color/transparent"
+        android:type="linear" />
+</shape>

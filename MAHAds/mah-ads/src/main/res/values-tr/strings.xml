@@ -4,7 +4,7 @@
     <string name="mah_ads_dlg_title">Tavsiye edilenler</string>
     <string name="mah_ads_text_google_play">Google Play\'de aç</string>
     <string name="mah_ads_info_version">Versiyon</string>
-    <string name="mah_ads_internet_update_error">Hata oluştu. İnternet bağlantınızı kontrol edin</string>
+    <string name="mah_ads_internet_update_error">Hata oluştu. İnternet bağlantınızı kontrol edin ve tekrar deneyin.</string>
     <string name="mah_ads_open_program">Aç</string>
     <string name="mah_ads_install_program">İndir</string>
     <string name="mah_ads_refresh_btn">Tekrar</string>
@@ -19,5 +19,7 @@
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Detaylı</string>
 
     <string name="mah_ads_info_popup_text">MAHAds kütüphane</string>
+    <string name="mah_ads_updated_text">Güncellendi</string>
+    <string name="mah_ads_play_service_not_found">Uygulamayı indirmek için Google Play hizmetlerini yükleyin</string>
 
 </resources>

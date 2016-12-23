@@ -11,56 +11,41 @@
     android:paddingRight="10dp"
     android:paddingTop="5dp" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginRight="10dp"
-        android:gravity="center"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ivProgramImgMAHAds"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:src="@color/mah_ads_no_img_color" />
 
-        <RelativeLayout
-            android:layout_width="80dp"
-            android:layout_height="70dp" >
+        <TextView
+            android:id="@+id/tvNewText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mah_dlg_text_view_new_shape"
+            android:paddingBottom="0dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="0dp"
+            android:text="@string/mah_ads_new_text"
+            android:textColor="@color/mah_ads_text_view_new_text_color"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:lines="1"
+            android:maxLength="15"
+            android:ellipsize="end"/>
 
-            <ImageView
-                android:id="@+id/ivProgramImgMAHAds"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="0dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:src="@color/mah_ads_no_img_color" />
-
-            <com.mobapphome.mahads.tools.gui.AngledLinearLayout
-                android:id="@+id/lytProgramNewTextMAHAds"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/tvNewText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/mah_dlg_text_view_new_shape"
-                    android:paddingBottom="0dp"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingTop="0dp"
-                    android:text="@string/mah_ads_new_text"
-                    android:textColor="@color/mah_ads_text_view_new_text_color"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-            </com.mobapphome.mahads.tools.gui.AngledLinearLayout>
-        </RelativeLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical" >
 
@@ -92,8 +77,8 @@
                     android:layout_marginRight="10dp"
                     android:gravity="center_vertical"
                     android:text="-xcxcxcxcxcxcxcxcxc"
-                    android:textColor="@color/mah_ads_all_and_btn_text_color"
-                    android:textSize="15sp" />
+                    android:textColor="@color/mah_ads_program_item_desc_text_color"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout

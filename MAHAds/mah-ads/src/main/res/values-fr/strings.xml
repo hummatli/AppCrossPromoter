@@ -7,20 +7,22 @@
     <string name="mah_ads_dlg_title">Suggestion</string>
     <string name="mah_ads_text_google_play">Ouvert en GooglePlay</string>
     <string name="mah_ads_info_version">Version</string>
-    <string name="mah_ads_internet_update_error">Erreur, s\'il vous plaît check Internet connexion</string>
+    <string name="mah_ads_internet_update_error">Erreur, vérifiez la connexion internet et réessayez.</string>
     <string name="mah_ads_open_program">Ouvrir</string>
     <string name="mah_ads_install_program">Installer</string>
     <string name="mah_ads_refresh_btn">Reprise</string>
-    <string name="mah_ads_free_aps">Recommande apps</string>
+    <string name="mah_ads_free_aps">Recommandé applications</string>
     <string name="mah_ads_new_text">Nouveau</string>
     
     <string name="mah_ads_dlg_exit_question">Voulez-vous sortir?</string>
     <string name="mah_ads_dlg_exit_positive_btn_txt">Sortie</string>
     <string name="mah_ads_dlg_exit_negativ_btn_txt">Rester</string>
     
-    <string name="mah_ads_dlg_exit_btn_more_txt_1">Apps</string>
-    <string name="mah_ads_dlg_exit_btn_more_txt_2">détaillé</string>
+    <string name="mah_ads_dlg_exit_btn_more_txt_1">Applications</string>
+    <string name="mah_ads_dlg_exit_btn_more_txt_2">Détaillé</string>
 
     <string name="mah_ads_info_popup_text">MAHAds bibliothèque</string>
+    <string name="mah_ads_updated_text">Actualisé</string>
+    <string name="mah_ads_play_service_not_found">Installer Google Play Services pour installer l\'application</string>
 
 </resources>

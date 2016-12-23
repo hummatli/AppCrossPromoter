@@ -36,7 +36,7 @@ public class LocaleHelper {
     }
 
     public static void setLocale(Context context, String language) {
-        Log.i("test", "Language = " + language);
+        Log.i(MainActivity.LOG_TAG_MAH_ADS_SAMPLE, "Language = " + language);
         persist(context, language);
         updateResources(context, language);
     }

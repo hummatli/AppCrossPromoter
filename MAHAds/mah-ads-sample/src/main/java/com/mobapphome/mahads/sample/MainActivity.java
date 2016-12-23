@@ -3,6 +3,7 @@ package com.mobapphome.mahads.sample;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,10 +12,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.mobapphome.mahads.tools.MAHAdsController;
-import com.mobapphome.mahads.tools.MAHAdsExitListener;
 
-public class MainActivity extends AppCompatActivity implements MAHAdsExitListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
+import com.mobapphome.mahads.MAHAdsDlgExit;
+import com.mobapphome.mahads.tools.MAHAdsController;
+
+
+public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAHAdsDlgExitListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
+
+    final public static String LOG_TAG_MAH_ADS_SAMPLE = "mah_ads_sample_log";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
             currentLang = "english";
         } else if (currentLang.equals("az")) {
             currentLang = "azerbaijan";
+        } else if (currentLang.equals("fr")) {
+            currentLang = "france";
         } else if (currentLang.equals("ru")) {
             currentLang = "russia";
         } else if (currentLang.equals("tr")) {
@@ -57,7 +64,8 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
 
         // For MAHAds init
         // METHOD 1
-        MAHAdsController.init(this, "http://ubuntu1mah.cloudapp.net/mah_ads_dir/");
+        MAHAdsController.init(this,"https://project-943403214286171762.firebaseapp.com/mah_ads_dir/",
+                "github_apps_prg_version.json", "github_apps_prg_list.json");
         // METHOD 1
     }
 
@@ -124,7 +132,10 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
         finish();
     }
 
-
+    @Override
+    public void onEventHappened(String eventStr) {
+        Log.i(LOG_TAG_MAH_ADS_SAMPLE, eventStr);
+    }
 
     //Selection event for language spinner
     @Override
@@ -137,6 +148,8 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
             LocaleHelper.setLocale(this, "en");
         } else if (item.toLowerCase().startsWith("azerbaijan")) {
             LocaleHelper.setLocale(this, "az");
+        } else if (item.toLowerCase().startsWith("france")) {
+            LocaleHelper.setLocale(this, "fr");
         } else if (item.toLowerCase().startsWith("russia")) {
             LocaleHelper.setLocale(this, "ru");
         } else if (item.toLowerCase().startsWith("turkey")) {
