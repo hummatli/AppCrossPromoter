@@ -98,7 +98,7 @@ Library contains from to Dialog component
 	}
 ```
 
-**2)** Call  `MAHAdsController.init()` in your project's starting point. For example: MainActivity's `onCreate()` method or in splash activity. Check url to point your services root path.  `MAHAdsController.init()` method has two variation with different arguments.
+**2)** Call `MAHAdsController.init()` in your project's starting point. For example: MainActivity's `onCreate()` method or in splash activity. Check url to point your services root path.  `MAHAdsController.init()` method has two variation with different arguments.
 Code: 
 ```java
 	MAHAdsController.init(this,"http://highsoft.az/mahads/", "github_apps_prg_version.json", "github_apps_prg_list.json")
@@ -214,9 +214,10 @@ public *;
 ```
 
 ## Help - Issues
-If you have any probelm with setting library please let me know. Write to settarxan@gmail.com. I will help.
+If you have any problem with setting and using library or want to ask question, please let me know. Create [issue](https://github.com/hummatli/MAHAds/issues) or write to <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>. I will help.
 
 ## Releases - Upgrade documentation
+See [releases](https://github.com/hummatli/MAHAds/releases). Please,read release notes to migrate your app from old version to a newer.
 
 ## To contribute
 I am open to here offers and opinions from you  
