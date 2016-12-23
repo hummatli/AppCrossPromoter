@@ -82,7 +82,7 @@ Library contains from to Dialog component
   
   
 ## Installation manual
-<b>`1)`</b> To import library to you project add following lines to project's `build.gradle` file. The last stable version is `1.0.6`
+**1)** To import library to you project add following lines to project's `build.gradle` file. The last stable version is `1.0.6`
 
 ```
 	dependencies {
@@ -90,20 +90,20 @@ Library contains from to Dialog component
 	}
 ```
 
-<b>`2)`</b> Call  `MAHAdsController.init()` in your project's starting point. For example: MainActivity's `onCreate()` method or in splash activity. Check url to point your services root path.  `MAHAdsController.init()` method has two variation with different arguments.
+**2)** Call  `MAHAdsController.init()` in your project's starting point. For example: MainActivity's `onCreate()` method or in splash activity. Check url to point your services root path.  `MAHAdsController.init()` method has two variation with different arguments.
 Code: 
 ```java
 	MAHAdsController.init(this,"http://highsoft.az/mahads/", "github_apps_prg_version.json", "github_apps_prg_list.json")
 ```
 
-<b>`3)`</b> Call `MAHAdsController.callExitDialog()` when your app quits. It opens `MAHAdsDlgExit` dilog. `MAHAdsController.callExitDialog()` method has three variation with different arguments.  By the help oh this arguments you can customize `Info button` on the upper right corner of dilog.
+**3)** Call `MAHAdsController.callExitDialog()` when your app quits. It opens `MAHAdsDlgExit` dilog. `MAHAdsController.callExitDialog()` method has three variation with different arguments.  By the help oh this arguments you can customize `Info button` on the upper right corner of dilog.
 Code:	
 ```java
 	public void onBackPressed() {
 		MAHAdsController.callExitDialog(activity);
 	}
 ```
-<b>Note:</b> To implement `MAHAdsDlgExit` Dialog's `onYes()`, `onNo()`, `onExitWithoutExitDlg()` , `onEventHappened(String eventStr)` your main activity has to implement `MAHAdsExitListener`. Otherwise it will through `ClassCastExeption`. `"Your activity must implement MAHAdsExitListener"` 
+**Note:** To implement `MAHAdsDlgExit` Dialog's `onYes()`, `onNo()`, `onExitWithoutExitDlg()` , `onEventHappened(String eventStr)` your main activity has to implement `MAHAdsExitListener`. Otherwise it will through `ClassCastExeption`. `"Your activity must implement MAHAdsExitListener"` 
 ```java
 	public class MainActivity extends AppCompatActivity implements MAHAdsExitListener{
 	   @Override
@@ -120,13 +120,13 @@ Code:
 	}
 ```
 
-<b>`4)`</b> To open `MAHAdsDlgPrograms` call `MAHAdsController.callProgramsDialog()`. In library sample it has added to menu. `MAHAdsController.callProgramsDialog()` method has three variation with different arguments.  By the help oh this arguments you can customize `Info button` on the upper right corner of dilog. 
+**4)** To open `MAHAdsDlgPrograms` call `MAHAdsController.callProgramsDialog()`. In library sample it has added to menu. `MAHAdsController.callProgramsDialog()` method has three variation with different arguments.  By the help oh this arguments you can customize `Info button` on the upper right corner of dilog. 
 Code:	
 ```java
 	MAHAdsController.callProgramsDialog(activity);
 ```
 
-<b>`5)`</b> To customize `MAHAds` dialog UI and overide colors set these values on your main projects `color.xml` file
+**5)** To customize `MAHAds` dialog UI and overide colors set these values on your main projects `color.xml` file
 ```xml
 	<color name="mah_ads_window_background_color">#FFFFFFFF</color>
 	<color name="mah_ads_title_bar_color">#FF3F51B5</color>
@@ -147,9 +147,9 @@ Code:
 	<color name="mah_ads_no_img_color">#333F51B5</color>			
 ```
 
-<b>`7)`</b>` Localization:`  Module now supports 4 languages ` (English, Azerbaijan, Russia, Turkey)` .  To set localization to app use your own method or if it is static and don't change in program session you can just simply add 		`LocaleUpdater.updateLocale(this, "your_lang");` in the start of your app. For examlpe  `LocaleUpdater.updateLocale(this, "ru");`
+**7)** `Localization:`  Module now supports 4 languages ` (English, Azerbaijan, Russia, Turkey)` .  To set localization to app use your own method or if it is static and don't change in program session you can just simply add 		`LocaleUpdater.updateLocale(this, "your_lang");` in the start of your app. For examlpe  `LocaleUpdater.updateLocale(this, "ru");`
 
-<b>`8)`</b> To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values
+**8)** To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values
 
 ```xml
     <string name="mah_ads_close">Close</string>
@@ -174,9 +174,9 @@ Code:
     <string name="mah_ads_info_popup_text">MAHAds library</string>
     <!--new--> <string name="mah_ads_play_service_not_found">Install Google Play Services to install application</string>
 ```
-<b>Note:</b> You can even customize dialogs in your application. Copy `layout/mah_ads_dialog_programs.xml`,  `layout/mah_ads_dialog_exit.xml`files and put in your layot dir and customize  them as you want. But keep view ids as they are. They will overide older ones from library. 
+**Note** You can even customize dialogs in your application. Copy `layout/mah_ads_dialog_programs.xml`,  `layout/mah_ads_dialog_exit.xml`files and put in your layot dir and customize  them as you want. But keep view ids as they are. They will overide older ones from library. 
  
-<b>`8)`</b> As modul takes information from web servcie you need add `INTERNET` permission to main project.
+**8)** As modul takes information from web servcie you need add `INTERNET` permission to main project.
 ```xml
 	<uses-permission android:name="android.permission.INTERNET" />
 ```
