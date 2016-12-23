@@ -166,7 +166,7 @@ Code:
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Detailed</string>
 
     <string name="mah_ads_info_popup_text">MAHAds library</string>
-    <string name="mah_ads_play_service_not_found">Install Google Play Services to install application</string><!--new-->
+    <!--new--> <string name="mah_ads_play_service_not_found">Install Google Play Services to install application</string>
 ```
 <b>Note:</b> You can even customize dialogs in your application. Copy `layout/mah_ads_dialog_programs.xml`,  `layout/mah_ads_dialog_exit.xml`files and put in your layot dir and customize  them as you want. But keep view ids as they are. They will overide older ones from library. 
  
