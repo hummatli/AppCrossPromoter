@@ -247,7 +247,7 @@ We need help to add new language localization support for libarary. If you have 
 To contribute get <a href="https://github.com/hummatli/MAHAds/blob/master/MAHAds/mah-ads/src/main/res/values/strings.xml">res/values/string.xml</a> file and translate to newer language. Place it on res/values-"spacific_lang"/string.xml
 
 ### Applications using MAHAds
-Please [ping](mailto:settarxan@gmail.com) me or send a pull request if you would like to see your app in the start of the list.
+Please feel free to [contact](mailto:settarxan@gmail.com) me or submit a pull request to add your app in the start of the list.
 
 Icon | Application | Icon | Application
 ------------ | ------------- | ------------- | -------------
