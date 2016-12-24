@@ -2,7 +2,7 @@
 [ ![Download](https://api.bintray.com/packages/hummatli/maven/mah-ads/images/download.svg) ](https://bintray.com/hummatli/maven/mah-ads/_latestVersion) [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15) [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000)](http://www.apache.org/licenses/LICENSE-2.0) 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MAHAds-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4509)
 
-## Contents
+### Contents
 * [Description](https://github.com/hummatli/MAHAds#description)
 * [Service structure](https://github.com/hummatli/MAHAds#service-structure)
 * [Library structure](https://github.com/hummatli/MAHAds#library-structure)
@@ -15,7 +15,7 @@
 * [Applications using MAHAds](https://github.com/hummatli/MAHAds#applications-using-mahads)
 * [Other libraries by developer](https://github.com/hummatli/MAHAds#other-libraries-by-developer)
 
-## Description
+### Description
 Library for advertisement own apps through your other apps.
 By the help of this lib you can provide your apps list to users through your own other apps and let to install them. 
 Library has build on IDE `Android Studio` and binaries have added to `jcenter()`  `maven` repository.
@@ -23,15 +23,15 @@ Library has build on IDE `Android Studio` and binaries have added to `jcenter()`
 
 There is a list of [application using MAHAds](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads). It would be nice if see your app link there too. If you use this library and want to see your app in the start of the [list](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads) please [inform me](mailto:settarxan@gmail.com) or send a pull request.
 
-## Sample App in PlayStore
+### Sample App in PlayStore
 <a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample">MAHAds - Sample</a> app has published on Google PlayStore. You can easly test module functionality with downloading it.
 <br><a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample"><img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/google-play-badge.png" width="200px"/></a> 
 
-## Screenshots
+### Screenshots
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/exit_dlg.png" width="200px"/>
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/programs_dlg.png" width="200px"/>
 
-## Service structure
+### Service structure
 To provide your apps list you have to implement service provider. Structure of the service is as below. Your root folder has to contain `imgs` folder and two files `program_version.json`, `program_list.json`.
 
 Now you can set `canonical` - imgs/avto_nishanlar2.png and `noncanonical` - https://highsoft.az/avto_nishanlar2.png link to image for example. 
@@ -81,7 +81,7 @@ Library has testes with up to `1000 program items` in program list. It works nor
 You can provide `http://` and `https://` services. Library works both of them.  
 You can check you json validity with this [jsonlint.com](http://jsonlint.com/)
 
-## Library structure
+### Library structure
 Library has `MAHAdsController.init()` method. It initialize modul, downloads program list from service and cashes them.
 
 Library contains from to Dialog component
@@ -89,7 +89,7 @@ Library contains from to Dialog component
 * `MAHAdsDlgPrograms` - This dialog list your application from service and let you open nd install them
   
   
-## Installation manual
+### Installation manual
 **1)** To import library to you project add following lines to project's `build.gradle` file. The last stable version is `2.0.2`
 
 ```
@@ -189,7 +189,7 @@ Code:
 	<uses-permission android:name="android.permission.INTERNET" />
 ```
 
-## Proguard configuration
+### Proguard configuration
 MAHAds uses <a href="https://github.com/jhy/jsoup">Jsoup</a> lib. There for if you want to create your project with proguard you need to add following configuration to your proguard file.
 
 ```gradle
@@ -213,13 +213,13 @@ public *;
 ##---------------End: proguard configuration for Bumptech/Glide--------------------------------
 ```
 
-## Help - Issues
+### Help - Issues
 If you have any problem with setting and using library or want to ask question, please let me know. Create [issue](https://github.com/hummatli/MAHAds/issues) or write to <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>. I will help.
 
-## Releases - Upgrade documentation
+### Releases - Upgrade documentation
 See [releases](https://github.com/hummatli/MAHAds/releases). Please,read release notes to migrate your app from old version to a newer.
 
-## To contribute
+### To contribute
 I am open to here offers and opinions from you  
 
 * Fork it
@@ -229,12 +229,12 @@ I am open to here offers and opinions from you
 * Create new Pull Request
 * Star it
 
-## Contributors
+### Contributors
 * Developer:
 [Sattar Hummatli](https://github.com/hummatli) - [LinkedIn](https://www.linkedin.com/in/hummatli), settarxan@gmail.com, [Other libs](https://github.com/hummatli/MAHAds#other-libraries-by-developer)
 * Translator `French` language: [Fariz Aghayev](https://github.com/farizaghayev)
 
-## Localization
+### Localization
 Library now supports following languages 
 * English
 * Azerbaijan
@@ -246,7 +246,7 @@ Library now supports following languages
 We need help to add new language localization support for libarary. If you have any hope to help us we were very happy and you can check following <i><a href="https://github.com/hummatli/MAHAds/issues">GitHub Issues URL</a></i> to contribute.
 To contribute get <a href="https://github.com/hummatli/MAHAds/blob/master/MAHAds/mah-ads/src/main/res/values/strings.xml">res/values/string.xml</a> file and translate to newer language. Place it on res/values-"spacific_lang"/string.xml
 
-## Applications using MAHAds
+### Applications using MAHAds
 Please [ping](mailto:settarxan@gmail.com) me or send a pull request if you would like to see your app in the start of the list.
 
 Icon | Application | Icon | Application
@@ -258,11 +258,11 @@ Icon | Application | Icon | Application
 <img src="https://lh6.ggpht.com/9g7gUdqyzc51oPIGX7pGf1_gs70WDizny9JfUExteTw_v0BFRLzx69xSmwhg3t7XQiE=w300-rw" width="48" height="48" /> | [Avto Nişanlar](https://play.google.com/store/apps/details?id=com.mobapphome.avtonishanlar) | <img src="https://lh5.ggpht.com/P_TyFmB5BzYDGWl3yliDHkQr_ttrYzHS3yQk3mBS3QuJJ5TJZ1pMj8lx-wmUmAHiUw=w300-rw" width="48" height="48" /> | [Ləzzət](https://play.google.com/store/apps/details?id=com.mobapphome.lezzet)
 
 
-## Other libraries by developer
+### Other libraries by developer
 * [![MAHAndroidUpdater](https://img.shields.io/badge/GitHUB-MAHAndroidUpdater-green.svg)](https://github.com/hummatli/MAHAndroidUpdater) - Android update checker library. Library for notifing update information to installed android apps on android device.  
 * [![MAHEncryptorLib](https://img.shields.io/badge/GitHUB-MAHEncryptorLib-green.svg)](https://github.com/hummatli/MAHEncryptorLib) - Library for encryption and decryption strings on Android apps and PC Java applications.
 
-## License
+### License
 Copyright 2015  - [Sattar Hummatli](https://www.linkedin.com/in/hummatli)   
 
 Licensed under the Apache License, Version 2.0 (the "License");
