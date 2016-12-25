@@ -5,6 +5,11 @@
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/exit_dlg.png" width="200px"/>
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/programs_dlg.png" width="200px"/>
 
+### Contributors
+* Developer:
+[Sattar Hummatli](https://github.com/hummatli) - [LinkedIn](https://www.linkedin.com/in/hummatli), settarxan@gmail.com, [Other libs](https://github.com/hummatli/MAHAds#other-libraries-by-developer)
+* Translator `French` language: [Fariz Aghayev](https://github.com/farizaghayev)
+
 ### Contents
 * [Description](https://github.com/hummatli/MAHAds#description)
 * [Service structure](https://github.com/hummatli/MAHAds#service-structure)
@@ -227,11 +232,6 @@ I am open to here offers and opinions from you
 * Push to the branch (git push origin my-new-feature)
 * Create new Pull Request
 * Star it
-
-### Contributors
-* Developer:
-[Sattar Hummatli](https://github.com/hummatli) - [LinkedIn](https://www.linkedin.com/in/hummatli), settarxan@gmail.com, [Other libs](https://github.com/hummatli/MAHAds#other-libraries-by-developer)
-* Translator `French` language: [Fariz Aghayev](https://github.com/farizaghayev)
 
 ### Localization
 Library now supports following languages 
