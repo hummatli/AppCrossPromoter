@@ -238,6 +238,7 @@ I am open to here offers and opinions from you
 Library now supports following languages 
 * English
 * Azerbaijan
+* Portuguese
 * Russia
 * Turkey
 * French
