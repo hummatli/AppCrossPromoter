@@ -61,12 +61,13 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
         } else if (currentLang.equals("pt")) {
             currentLang = "portuguese";
         } else if (currentLang.equals("fr")) {
-            currentLang = "france";
+            currentLang = "french";
         } else if (currentLang.equals("ru")) {
             currentLang = "russia";
         } else if (currentLang.equals("tr")) {
             currentLang = "turkey";
         }
+
 
         //Setting spinner to right language
         for (int i = 0; i < langsArray.length; i++) {
@@ -165,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
             LocaleHelper.setLocale(this, "az");
         } else if (item.toLowerCase().startsWith("portuguese")) {
             LocaleHelper.setLocale(this, "pt");
-        } else if (item.toLowerCase().startsWith("france")) {
+        } else if (item.toLowerCase().startsWith("french")) {
             LocaleHelper.setLocale(this, "fr");
         } else if (item.toLowerCase().startsWith("russia")) {
             LocaleHelper.setLocale(this, "ru");
