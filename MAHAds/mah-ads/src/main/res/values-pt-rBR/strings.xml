@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MAHAds</string>
+
+    <!-- For English local default-->
+    <string name="mah_ads_close">Fechar</string>
+    <string name="mah_ads_dlg_title">Recomendado</string>
+    <string name="mah_ads_text_google_play">Abrir no GooglePlay</string>
+    <string name="mah_ads_info_version">Versão</string>
+    <string name="mah_ads_internet_update_error">Erro, verifique sua conexão com a internet</string>
+    <string name="mah_ads_open_program">Abrir</string>
+    <string name="mah_ads_install_program">Instalar</string>
+    <string name="mah_ads_refresh_btn">Tentar Novamente</string>
+    <string name="mah_ads_free_aps">Aplicações Recomendadas</string>
+    <string name="mah_ads_new_text">Nova</string> <!-- "Nova" for feminine, and "Novo" for masculine -->
+    
+    <string name="mah_ads_dlg_exit_question">Você deseja sair?</string>
+    <string name="mah_ads_dlg_exit_positive_btn_txt">Sair</string>
+    <string name="mah_ads_dlg_exit_negativ_btn_txt">Ficar</string>
+    
+    <string name="mah_ads_dlg_exit_btn_more_txt_1">Aplicações</string>
+    <string name="mah_ads_dlg_exit_btn_more_txt_2">Detalhes</string>
+
+    <string name="mah_ads_info_popup_text">MAHAds library</string>
+
+</resources>
