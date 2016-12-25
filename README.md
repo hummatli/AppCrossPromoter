@@ -242,7 +242,7 @@ Library now supports following languages
 * Russia
 * Turkey
 * French
-* [Add yours language]
+* [Add yours language](https://github.com/hummatli/MAHAds/blob/master/README.md#to-contribute-for-localization)
 
 #### To contribute for localization  
 We need help to add new language localization support for libarary. If you have any hope to help us we were very happy and you can check following <i><a href="https://github.com/hummatli/MAHAds/issues">GitHub Issues URL</a></i> to contribute.
