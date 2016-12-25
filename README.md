@@ -99,7 +99,7 @@ Library contains from to Dialog component
 
 ```
 	dependencies {
-    		compile 'com.mobapphome.library:mah-ads:2.0.2'
+    		compile 'com.mobapphome.library:mah-ads:2.0.3'
 	}
 ```
 
