@@ -16,6 +16,9 @@ import android.widget.Toast;
 import com.mobapphome.mahads.MAHAdsDlgExit;
 import com.mobapphome.mahads.tools.MAHAdsController;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAHAdsDlgExitListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
 
@@ -28,12 +31,23 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
         findViewById(R.id.mahBtnProgramsDlgTest).setOnClickListener(this);
         findViewById(R.id.mahBtnExitDlgTest).setOnClickListener(this);
 
-        ((TextView)findViewById(R.id.tvMAHAdsLibGithubUrl)).setMovementMethod(LinkMovementMethod.getInstance());
-        ((TextView)findViewById(R.id.tvMAHAdsLibJCenterURL)).setMovementMethod(LinkMovementMethod.getInstance());
-        ((TextView)findViewById(R.id.tvMAHAdsLibContrubute)).setMovementMethod(LinkMovementMethod.getInstance());
+        ((TextView) findViewById(R.id.tvMAHAdsLibGithubUrl)).setMovementMethod(LinkMovementMethod.getInstance());
+        ((TextView) findViewById(R.id.tvMAHAdsLibJCenterURL)).setMovementMethod(LinkMovementMethod.getInstance());
+        ((TextView) findViewById(R.id.tvMAHAdsLibContrubute)).setMovementMethod(LinkMovementMethod.getInstance());
+
+        String[] langsArray = new String[]{
+                "Azerbaijan",
+                "English",
+                "Portuguese",
+                "French",
+                "Russian",
+                "Turkey"};
 
         Spinner langSpinner = (Spinner) findViewById(R.id.langSpinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.langs_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter adapter = new ArrayAdapter<CharSequence>(
+                this,
+                android.R.layout.simple_spinner_item,
+                new ArrayList<CharSequence>(Arrays.asList(langsArray)));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         langSpinner.setAdapter(adapter);
 
@@ -44,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
             currentLang = "english";
         } else if (currentLang.equals("az")) {
             currentLang = "azerbaijan";
+        } else if (currentLang.equals("pt")) {
+            currentLang = "portuguese";
         } else if (currentLang.equals("fr")) {
             currentLang = "france";
         } else if (currentLang.equals("ru")) {
@@ -53,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
         }
 
         //Setting spinner to right language
-        String[] langsArray = getResources().getStringArray(R.array.langs_array);
         for (int i = 0; i < langsArray.length; i++) {
             if (langsArray[i].toLowerCase().startsWith(currentLang)) {
                 langSpinner.setSelection(i);
@@ -64,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
 
         // For MAHAds init
         // METHOD 1
-        MAHAdsController.init(this,"https://project-943403214286171762.firebaseapp.com/mah_ads_dir/",
+        MAHAdsController.init(this, "https://project-943403214286171762.firebaseapp.com/mah_ads_dir/",
                 "github_apps_prg_version.json", "github_apps_prg_list.json");
         // METHOD 1
     }
@@ -148,6 +163,8 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
             LocaleHelper.setLocale(this, "en");
         } else if (item.toLowerCase().startsWith("azerbaijan")) {
             LocaleHelper.setLocale(this, "az");
+        } else if (item.toLowerCase().startsWith("portuguese")) {
+            LocaleHelper.setLocale(this, "pt");
         } else if (item.toLowerCase().startsWith("france")) {
             LocaleHelper.setLocale(this, "fr");
         } else if (item.toLowerCase().startsWith("russia")) {

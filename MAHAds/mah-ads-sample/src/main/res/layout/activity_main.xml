@@ -36,53 +36,69 @@
                 android:paddingBottom="10dp"
                 android:paddingTop="30dp">
 
+
+
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:paddingEnd="10dp"
+                                android:paddingRight="10dp"
+                                android:text="@string/txt_lang"
+                                android:textSize="15sp" />
+
+                            <Spinner
+                                android:id="@+id/langSpinner"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="start"
-                            android:paddingEnd="10dp"
-                            android:paddingRight="10dp"
-                            android:text="@string/txt_lang"
-                            android:textSize="15sp" />
+                            android:paddingBottom="25dp"
+                            android:text="@string/txt_language_change_tip"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="13sp" />
 
-                        <Spinner
-                            android:id="@+id/langSpinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="start"
-                        android:paddingBottom="25dp"
-                        android:text="@string/txt_language_change_tip"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="13sp" />
+                        android:orientation="vertical">
+                        <Button
+                            android:id="@+id/mahBtnProgramsDlgTest"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_btn_open_programs_dlg" />
 
-                    <Button
-                        android:id="@+id/mahBtnProgramsDlgTest"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/txt_btn_open_programs_dlg" />
-
-                    <Button
-                        android:id="@+id/mahBtnExitDlgTest"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/txt_btn_open_exit_dlg" />
+                        <Button
+                            android:id="@+id/mahBtnExitDlgTest"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_btn_open_exit_dlg" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
