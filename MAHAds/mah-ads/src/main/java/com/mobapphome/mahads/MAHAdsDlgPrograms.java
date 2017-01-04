@@ -137,7 +137,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
             lytErrorF1.setVisibility(View.GONE);
             lstProgram.setVisibility(View.GONE);
 
-
+            burda set setViewAfterLoad caqrilmali ve isread from cache nezere al
 
             MAHAdsController.getUpdater().updateProgramList(getActivityMAH());
 
