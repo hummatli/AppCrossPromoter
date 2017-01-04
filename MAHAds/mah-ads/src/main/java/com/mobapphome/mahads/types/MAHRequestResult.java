@@ -11,6 +11,7 @@ public class MAHRequestResult {
     private List<Program> programsFiltered;
     private List<Program> programsSelected;
     private ResultState resultState;
+    private boolean readFromWeb = false;
 
     public enum ResultState {SUCCESS, ERR_JSON_IS_NULL_OR_EMPTY, ERR_JSON_HAS_TOTAL_ERROR, ERR_SOME_ITEMS_HAS_JSON_SYNTAX_ERROR}
 
@@ -41,5 +42,13 @@ public class MAHRequestResult {
 
     public void setProgramsFiltered(List<Program> programsFiltered) {
         this.programsFiltered = programsFiltered;
+    }
+
+    public boolean isReadFromWeb() {
+        return readFromWeb;
+    }
+
+    public void setReadFromWeb(boolean readFromWeb) {
+        this.readFromWeb = readFromWeb;
     }
 }

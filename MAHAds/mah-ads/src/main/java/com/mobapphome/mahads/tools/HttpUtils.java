@@ -51,7 +51,9 @@ public class HttpUtils {
 
         Utils.writeStringToCache(context, jsonStr);
 
-        return jsonToProgramList(jsonStr);
+        MAHRequestResult requestResult = jsonToProgramList(jsonStr);
+        requestResult.setReadFromWeb(true);
+        return requestResult;
     }
 
 

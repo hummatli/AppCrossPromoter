@@ -136,6 +136,9 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
             lytLoadingF1.setVisibility(View.VISIBLE);
             lytErrorF1.setVisibility(View.GONE);
             lstProgram.setVisibility(View.GONE);
+
+
+
             MAHAdsController.getUpdater().updateProgramList(getActivityMAH());
 
             Animation animation = new RotateAnimation(0.0f, 360.0f,
