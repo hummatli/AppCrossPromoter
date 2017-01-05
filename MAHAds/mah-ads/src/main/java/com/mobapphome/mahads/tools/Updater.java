@@ -3,7 +3,6 @@ package com.mobapphome.mahads.tools;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.View;
 
 import com.mobapphome.mahads.MAHAdsDlgExit;
 import com.mobapphome.mahads.MAHAdsDlgPrograms;
@@ -38,7 +37,7 @@ public class Updater {
 
                 MAHRequestResult requestResult = HttpUtils.jsonToProgramList(Utils.readStringFromCache(activity));
                 Utils.filterMAHRequestResult(activity, requestResult);
-                MAHAdsController.setSelectedPrograms(requestResult.getProgramsSelected());
+                MAHAdsController.setMahRequestResult(requestResult);
 
                 try {
                     int myVersion = Utils.getVersionFromLocal();
@@ -76,7 +75,7 @@ public class Updater {
 
                 Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Request Result state" + requestResult.getResultState());
                 Utils.filterMAHRequestResult(activity, requestResult);
-                MAHAdsController.setSelectedPrograms(requestResult.getProgramsSelected());
+                MAHAdsController.setMahRequestResult(requestResult);
 
                 return requestResult;
             }
@@ -89,14 +88,14 @@ public class Updater {
                 if (mahRequestResult != null) {
                     MAHAdsDlgPrograms fragDlgPrograms = (MAHAdsDlgPrograms) activity.getSupportFragmentManager()
                             .findFragmentByTag(MAHAdsController.TAG_MAH_ADS_DLG_PROGRAMS);
-                    if (fragDlgPrograms != null) {
-                        fragDlgPrograms.setViewAfterLoad(mahRequestResult);
+                    if (fragDlgPrograms != null &&
+                            mahRequestResult.isReadFromWeb()) {
+                        fragDlgPrograms.setUI(mahRequestResult);
                     }
 
                     MAHAdsDlgExit fragDlgExit = (MAHAdsDlgExit) activity.getSupportFragmentManager()
                             .findFragmentByTag(MAHAdsController.TAG_MAH_ADS_DLG_EXIT);
                     if (fragDlgExit != null &&
-                            //fragDlgExit.getLytProgsPanel().getVisibility() != View.VISIBLE &&
                             mahRequestResult.isReadFromWeb()
                             ) {
                         fragDlgExit.setUi(mahRequestResult.getProgramsSelected());

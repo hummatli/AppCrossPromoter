@@ -34,7 +34,6 @@ import android.widget.Toast;
 
 import com.mobapphome.mahads.mahfragments.MAHDialogFragment;
 import com.mobapphome.mahads.mahfragments.MAHFragmentExeption;
-import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.types.MAHRequestResult;
 import com.mobapphome.mahads.types.Program;
@@ -50,6 +49,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
     TextView tvErrorResultF1;
     ListView lstProgram;
     List<Object> items;
+    ImageView ivLoading;
 
     boolean btnInfoVisibility;
     boolean btnInfoWithMenu;
@@ -127,31 +127,21 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
             ivBtnCancel.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_title_bar_text_color));
             ivBtnInfo.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_title_bar_text_color));
 
-            if(btnInfoVisibility){
+            if (btnInfoVisibility) {
                 ivBtnInfo.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 ivBtnInfo.setVisibility(View.INVISIBLE);
             }
 
-            lytLoadingF1.setVisibility(View.VISIBLE);
-            lytErrorF1.setVisibility(View.GONE);
-            lstProgram.setVisibility(View.GONE);
+            ivLoading = (ImageView) view.findViewById(R.id.ivLoadingMahAds);
+            ivLoading.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_all_and_btn_text_color));
+            ivLoading.setImageResource(R.drawable.ic_loading_mah);
 
-            burda set setViewAfterLoad caqrilmali ve isread from cache nezere al
 
+            setUI(MAHAdsController.getMahRequestResult());
+
+            //Call to update data from service or local
             MAHAdsController.getUpdater().updateProgramList(getActivityMAH());
-
-            Animation animation = new RotateAnimation(0.0f, 360.0f,
-                    Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
-                    0.5f);
-
-            animation.setDuration(350);
-            animation.setInterpolator(new LinearInterpolator());
-            animation.setRepeatCount(Animation.INFINITE);
-            ImageView iv = (ImageView) view.findViewById(R.id.ivLoadingMahAds);
-            iv.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_all_and_btn_text_color));
-            iv.setImageResource(R.drawable.ic_loading_mah);
-            iv.startAnimation(animation);
 
             MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvTitle));
             MAHAdsController.setFontTextView(tvErrorResultF1);
@@ -163,8 +153,10 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
         }
     }
 
-    public void setViewAfterLoad(final MAHRequestResult result) {
+    public void setUI(final MAHRequestResult result) {
         Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "------Result State is " + result.getResultState());
+
+        ivLoading.clearAnimation();
 
         if (result.getResultState() == MAHRequestResult.ResultState.SUCCESS
                 || result.getResultState() == MAHRequestResult.ResultState.ERR_SOME_ITEMS_HAS_JSON_SYNTAX_ERROR) {
@@ -186,16 +178,32 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
                 }
             });
         } else {
-            lstProgram.post(new Runnable() {
-                @Override
-                public void run() {
-                    lytLoadingF1.setVisibility(View.GONE);
-                    lytErrorF1.setVisibility(View.VISIBLE);
-                    lstProgram.setVisibility(View.GONE);
-                    tvErrorResultF1.setText(getResources().getString(
-                            R.string.mah_ads_internet_update_error));
-                }
-            });
+            if (result.isReadFromWeb()) {
+                lstProgram.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        lytLoadingF1.setVisibility(View.GONE);
+                        lytErrorF1.setVisibility(View.VISIBLE);
+                        lstProgram.setVisibility(View.GONE);
+                        tvErrorResultF1.setText(getResources().getString(
+                                R.string.mah_ads_internet_update_error));
+                    }
+                });
+            } else {
+                Animation animationLoading = new RotateAnimation(0.0f, 360.0f,
+                        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
+                        0.5f);
+
+                animationLoading.setDuration(350);
+                animationLoading.setInterpolator(new LinearInterpolator());
+                animationLoading.setRepeatCount(Animation.INFINITE);
+
+                lytLoadingF1.setVisibility(View.VISIBLE);
+                lytErrorF1.setVisibility(View.GONE);
+                lstProgram.setVisibility(View.GONE);
+
+                ivLoading.startAnimation(animationLoading);
+            }
         }
     }
 
@@ -208,7 +216,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
         try {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(btnInfoActionURL));
             getContext().startActivity(browserIntent);
-        }catch (ActivityNotFoundException nfe){
+        } catch (ActivityNotFoundException nfe) {
             String str = "You haven't set correct url to btnInfoActionURL, your url = " + btnInfoActionURL;
             Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
             Log.d(MAHAdsController.LOG_TAG_MAH_ADS, str, nfe);

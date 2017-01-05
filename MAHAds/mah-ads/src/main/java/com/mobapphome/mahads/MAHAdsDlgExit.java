@@ -178,7 +178,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
                 }
             });
 
-            setUi(MAHAdsController.getSelectedPrograms());
+            setUi(MAHAdsController.getMahRequestResult().getProgramsSelected());
 
             MAHAdsController.getUpdater().updateProgramList(getActivityMAH());
 

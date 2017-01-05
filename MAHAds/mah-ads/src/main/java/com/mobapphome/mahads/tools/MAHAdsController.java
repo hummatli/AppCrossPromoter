@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.mobapphome.mahads.MAHAdsDlgExit;
 import com.mobapphome.mahads.MAHAdsDlgPrograms;
 import com.mobapphome.mahads.R;
+import com.mobapphome.mahads.types.MAHRequestResult;
 import com.mobapphome.mahads.types.Program;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class MAHAdsController {
 	private static boolean internalCalled = false;
 	private static String fontName = null;
 
-	public static List<Program> selectedPrograms;
+	public static MAHRequestResult mahRequestResult;
 	private static Updater updater;
 
 	/**
@@ -227,11 +228,11 @@ public class MAHAdsController {
 		MAHAdsController.internalCalled = internalCalled;
 	}
 
-	public static List<Program> getSelectedPrograms() {
-		return selectedPrograms;
+	public static MAHRequestResult getMahRequestResult() {
+		return mahRequestResult;
 	}
 
-	public static void setSelectedPrograms(List<Program> selectedPrograms) {
-		MAHAdsController.selectedPrograms = selectedPrograms;
+	public static void setMahRequestResult(MAHRequestResult mahRequestResult) {
+		MAHAdsController.mahRequestResult = mahRequestResult;
 	}
 }
