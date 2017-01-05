@@ -5,6 +5,12 @@
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/exit_dlg.png" width="200px"/>
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/programs_dlg.png" width="200px"/>
 
+### Contributors
+* Developer:
+[Sattar Hummatli](https://github.com/hummatli) - [LinkedIn](https://www.linkedin.com/in/hummatli), settarxan@gmail.com, [Other libs](https://github.com/hummatli/MAHAds#other-libraries-by-developer)
+* Translator `French`: [Fariz Aghayev](https://github.com/farizaghayev)
+* Translator `Portuguese`: [azzarr](https://github.com/azzarr)
+
 ### Contents
 * [Description](https://github.com/hummatli/MAHAds#description)
 * [Service structure](https://github.com/hummatli/MAHAds#service-structure)
@@ -93,7 +99,7 @@ Library contains from to Dialog component
 
 ```
 	dependencies {
-    		compile 'com.mobapphome.library:mah-ads:2.0.2'
+    		compile 'com.mobapphome.library:mah-ads:2.0.3'
 	}
 ```
 
@@ -228,20 +234,17 @@ I am open to here offers and opinions from you
 * Create new Pull Request
 * Star it
 
-### Contributors
-* Developer:
-[Sattar Hummatli](https://github.com/hummatli) - [LinkedIn](https://www.linkedin.com/in/hummatli), settarxan@gmail.com, [Other libs](https://github.com/hummatli/MAHAds#other-libraries-by-developer)
-* Translator `French` language: [Fariz Aghayev](https://github.com/farizaghayev)
-
 ### Localization
 Library now supports following languages 
 * English
 * Azerbaijan
+* Portuguese
 * Russia
 * Turkey
 * French
+* [Add yours language](https://github.com/hummatli/MAHAds/blob/master/README.md#to-contribute-for-localization)
 
-**To contribute for localization**  
+#### To contribute for localization  
 We need help to add new language localization support for libarary. If you have any hope to help us we were very happy and you can check following <i><a href="https://github.com/hummatli/MAHAds/issues">GitHub Issues URL</a></i> to contribute.
 To contribute get <a href="https://github.com/hummatli/MAHAds/blob/master/MAHAds/mah-ads/src/main/res/values/strings.xml">res/values/string.xml</a> file and translate to newer language. Place it on res/values-"spacific_lang"/string.xml
 
