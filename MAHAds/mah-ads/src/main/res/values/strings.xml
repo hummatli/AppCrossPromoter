@@ -16,7 +16,7 @@
     <string name="mah_ads_new_text">New</string>
     <string name="mah_ads_updated_text">Updated</string>
 
-    <string name="mah_ads_dlg_exit_question">Do you want exit?</string>
+    <string name="mah_ads_dlg_exit_question">Do you want to exit?</string>
     <string name="mah_ads_dlg_exit_positive_btn_txt">Exit</string>
     <string name="mah_ads_dlg_exit_negativ_btn_txt">Stay</string>
     

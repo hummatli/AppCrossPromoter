@@ -3,26 +3,26 @@
 <!-- These file needs to translate to German language-->
 
 <resources>
-    <string name="mah_ads_close">Schließen</string>
+    <string name="mah_ads_close">In der Nähe</string>
     <string name="mah_ads_dlg_title">Empfohlen</string>
-    <string name="mah_ads_text_google_play">In Google Play öffnen</string>
+    <string name="mah_ads_text_google_play">Öffnen Sie in GooglePlay</string>
     <string name="mah_ads_info_version">Version</string>
-    <string name="mah_ads_internet_update_error">Fehler, bitte überprüfen Sie die Internetverbindung und versuchen Sie es erneut.</string>
+    <string name="mah_ads_internet_update_error">Fehler, bitte überprüfen Sie die Internetverbindung, und versuchen Sie es erneut.</string>
     <string name="mah_ads_open_program">Öffnen</string>
     <string name="mah_ads_install_program">Installieren</string>
-    <string name="mah_ads_refresh_btn">Wiederholen</string>
+    <string name="mah_ads_refresh_btn">Versuchen Sie es erneut</string>
     <string name="mah_ads_free_aps">Empfohlene Anwendungen</string>
     <string name="mah_ads_new_text">Neu</string>
     
-    <string name="mah_ads_dlg_exit_question">Möchten Sie beenden?</string>
-    <string name="mah_ads_dlg_exit_positive_btn_txt">Ausgang</string>
-    <string name="mah_ads_dlg_exit_negativ_btn_txt">Bleibe</string>
+    <string name="mah_ads_dlg_exit_question">Möchten Sie wirklich beenden?</string>
+    <string name="mah_ads_dlg_exit_positive_btn_txt">Beenden</string>
+    <string name="mah_ads_dlg_exit_negativ_btn_txt">Aufenthalt</string>
     
     <string name="mah_ads_dlg_exit_btn_more_txt_1">Anwendungen</string>
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Detailliert</string>
 
     <string name="mah_ads_info_popup_text">MAHAds library</string>
     <string name="mah_ads_updated_text">Aktualisiert</string>
-    <string name="mah_ads_play_service_not_found">Installieren Sie Google Play Services, um die Anwendung zu installieren</string>
+    <string name="mah_ads_play_service_not_found">Installieren Sie Google Dienste zu installieren.</string>
 
 </resources>
