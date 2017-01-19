@@ -10,18 +10,18 @@
     <string name="mah_ads_internet_update_error">Error, compruebe la conexión a Internet y vuelva a intentarlo.</string>
     <string name="mah_ads_open_program">Abrir</string>
     <string name="mah_ads_install_program">Instalar</string>
-    <string name="mah_ads_refresh_btn">Reintentar</string>
+    <string name="mah_ads_refresh_btn">procesar de nuevo</string>
     <string name="mah_ads_free_aps">Aplicaciones recomendadas</string>
     <string name="mah_ads_new_text">Nuevo</string>
     
-    <string name="mah_ads_dlg_exit_question">¿Está seguro de que desea salir?</string>
-    <string name="mah_ads_dlg_exit_positive_btn_txt">Salir</string>
-    <string name="mah_ads_dlg_exit_negativ_btn_txt">Estancia</string>
+    <string name="mah_ads_dlg_exit_question">"¿Quieres salir? "</string>
+    <string name="mah_ads_dlg_exit_positive_btn_txt">Salir de</string>
+    <string name="mah_ads_dlg_exit_negativ_btn_txt">Permanecer</string>
     
     <string name="mah_ads_dlg_exit_btn_more_txt_1">Aplicaciones</string>
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Detallado</string>
 
-    <string name="mah_ads_info_popup_text">MAHAds library</string>
+    <string name="mah_ads_info_popup_text">Biblioteca de MAHAds</string>
     <string name="mah_ads_updated_text">Actualizado</string>
     <string name="mah_ads_play_service_not_found">Instalar Google Play Servicios para instalar la aplicación</string>
 
