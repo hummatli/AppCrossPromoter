@@ -121,7 +121,6 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
             tvErrorResultF1 = (TextView) view.findViewById(R.id.tvErrorResultMAHAds);
 
 
-
             view.findViewById(R.id.mah_ads_dlg_programs_btn_close).setOnClickListener(this);
             view.findViewById(R.id.btnErrorRefreshMAHAds).setOnClickListener(this);
 
@@ -149,7 +148,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
 
 
             startLoading();
-            setUI(MAHAdsController.getMahRequestResult());
+            setUI(MAHAdsController.getMahRequestResult(), true);
 
             //Call to update data from service or local
             MAHAdsController.getUpdater().updateProgramList(getActivityMAH());
@@ -164,7 +163,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
         }
     }
 
-    public void setUI(final MAHRequestResult result) {
+    public void setUI(final MAHRequestResult result, boolean firstTime) {
         Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "------Result State is " + result.getResultState());
 
 
@@ -199,17 +198,17 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
                     }
                 });
             } else {
-
-                lstProgram.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        lytErrorF1.setVisibility(View.VISIBLE);
-                        lstProgram.setVisibility(View.GONE);
-                        tvErrorResultF1.setText(getResources().getString(
-                                R.string.mah_ads_internet_update_error));
-                    }
-                });
-
+                if (!firstTime) {
+                    lstProgram.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            lytErrorF1.setVisibility(View.VISIBLE);
+                            lstProgram.setVisibility(View.GONE);
+                            tvErrorResultF1.setText(getResources().getString(
+                                    R.string.mah_ads_internet_update_error));
+                        }
+                    });
+                }
             }
         }
 

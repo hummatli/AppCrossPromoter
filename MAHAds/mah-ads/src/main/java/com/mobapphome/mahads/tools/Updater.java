@@ -98,7 +98,7 @@ public class Updater {
                     MAHAdsDlgPrograms fragDlgPrograms = (MAHAdsDlgPrograms) activity.getSupportFragmentManager()
                             .findFragmentByTag(MAHAdsController.TAG_MAH_ADS_DLG_PROGRAMS);
                     if (fragDlgPrograms != null) {
-                        fragDlgPrograms.setUI(mahRequestResult);
+                        fragDlgPrograms.setUI(mahRequestResult, false);
                     }
 
                     MAHAdsDlgExit fragDlgExit = (MAHAdsDlgExit) activity.getSupportFragmentManager()
