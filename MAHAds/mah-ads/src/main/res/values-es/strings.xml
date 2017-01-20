@@ -10,7 +10,7 @@
     <string name="mah_ads_internet_update_error">Error, compruebe la conexión a Internet y vuelva a intentarlo.</string>
     <string name="mah_ads_open_program">Abrir</string>
     <string name="mah_ads_install_program">Instalar</string>
-    <string name="mah_ads_refresh_btn">procesar de nuevo</string>
+    <string name="mah_ads_refresh_btn">Reintentar</string>
     <string name="mah_ads_free_aps">Aplicaciones recomendadas</string>
     <string name="mah_ads_new_text">Nuevo</string>
     
