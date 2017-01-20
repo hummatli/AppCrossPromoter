@@ -291,7 +291,7 @@
                 android:text="@string/mah_ads_dlg_exit_question"
                 android:textColor="@color/mah_ads_question_txt_color"
                 android:textSize="23sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
 
         </LinearLayout>

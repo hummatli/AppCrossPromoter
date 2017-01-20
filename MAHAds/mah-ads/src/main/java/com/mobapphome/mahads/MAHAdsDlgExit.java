@@ -192,6 +192,17 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             MAHAdsController.setFontTextView(btnYes);
             MAHAdsController.setFontTextView(btnNo);
 
+
+            //Minimize the lines of question textview in  languages where question str is longer
+            TextView tvQuestionTxt = (TextView) view.findViewById(R.id.tvQuestionTxt);
+            String strQuest = getString(R.string.mah_ads_dlg_exit_question);
+            if(strQuest.length() > 20){
+                tvQuestionTxt.setMinLines(2);
+            }
+//            else {
+//                tvQuestionTxt.setMinLines(1);
+//            }
+
             return view;
         } catch (MAHFragmentExeption e) {
             Log.d(MAHAdsController.LOG_TAG_MAH_ADS, e.getMessage(), e);
