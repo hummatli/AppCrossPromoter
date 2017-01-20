@@ -66,73 +66,70 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
+            android:layout_weight="1">
             <LinearLayout
-                android:id="@+id/lytLoadingMahAds"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/ivLoadingMahAds"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_loading_mah" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lytErrorMAHAds"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:paddingBottom="10dp">
-
-                <TextView
-                    android:id="@+id/tvErrorResultMAHAds"
+                <LinearLayout
+                    android:id="@+id/lytErrorMAHAds"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Result"
-                    android:textColor="@color/mah_ads_colorAccent"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="10dp"/>
-                <Button
-                    android:id="@+id/btnErrorRefreshMAHAds"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/mah_dlg_btn_other_selector"
-                    android:gravity="center"
-                    android:text="@string/mah_ads_refresh_btn"
-                    android:textColor="@color/mah_ads_all_and_btn_text_color"
-                    android:textSize="18sp"
-                    android:minHeight="10dp"
-                    android:minWidth="10dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingLeft="10dp"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
                     android:paddingRight="10dp"
-                    style="@style/Widget.AppCompat.ActionButton"/>
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/tvErrorResultMAHAds"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Result"
+                        android:textColor="@color/mah_ads_colorAccent"
+                        android:textSize="18sp"
+                        android:layout_marginBottom="10dp"/>
+                    <Button
+                        android:id="@+id/btnErrorRefreshMAHAds"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/mah_dlg_btn_other_selector"
+                        android:gravity="center"
+                        android:text="@string/mah_ads_refresh_btn"
+                        android:textColor="@color/mah_ads_all_and_btn_text_color"
+                        android:textSize="18sp"
+                        android:minHeight="10dp"
+                        android:minWidth="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        style="@style/Widget.AppCompat.ActionButton"/>
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/lstMahAds"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
             </LinearLayout>
 
-            <ListView
-                android:id="@+id/lstMahAds"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/ivLoadingMahAds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_loading_mah"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
 
         <LinearLayout
             android:layout_width="fill_parent"

@@ -44,17 +44,21 @@ import java.util.List;
 public class MAHAdsDlgPrograms extends MAHDialogFragment implements
         View.OnClickListener {
 
-    LinearLayout lytLoadingF1;
-    LinearLayout lytErrorF1;
+    View view;
+
     TextView tvErrorResultF1;
-    ListView lstProgram;
-    List<Object> items;
     ImageView ivLoading;
+    ListView lstProgram;
+    LinearLayout lytErrorF1;
+
+
+    List<Object> items;
 
     boolean btnInfoVisibility;
     boolean btnInfoWithMenu;
     String btnInfoMenuItemTitle;
     String btnInfoActionURL;
+    boolean dataHasAlreadySet = false;
 
     public MAHAdsDlgPrograms() {
         // Empty constructor required for DialogFragment
@@ -92,7 +96,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
             btnInfoMenuItemTitle = args.getString("btnInfoMenuItemTitle");
             btnInfoActionURL = args.getString("btnInfoActionURL");
 
-            View view = inflater.inflate(R.layout.mah_ads_dialog_programs, container);
+            view = inflater.inflate(R.layout.mah_ads_dialog_programs, container);
 
             getDialog().getWindow().getAttributes().windowAnimations = R.style.MAHAdsDialogAnimation;
             getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -112,10 +116,12 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
             });
 
 
-            lytLoadingF1 = (LinearLayout) view.findViewById(R.id.lytLoadingMahAds);
+            lstProgram = (ListView) view.findViewById(R.id.lstMahAds);
             lytErrorF1 = (LinearLayout) view.findViewById(R.id.lytErrorMAHAds);
             tvErrorResultF1 = (TextView) view.findViewById(R.id.tvErrorResultMAHAds);
-            lstProgram = (ListView) view.findViewById(R.id.lstMahAds);
+
+
+
             view.findViewById(R.id.mah_ads_dlg_programs_btn_close).setOnClickListener(this);
             view.findViewById(R.id.btnErrorRefreshMAHAds).setOnClickListener(this);
 
@@ -137,7 +143,12 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
             ivLoading.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_all_and_btn_text_color));
             ivLoading.setImageResource(R.drawable.ic_loading_mah);
 
+            lstProgram.setVisibility(View.GONE);
+            lytErrorF1.setVisibility(View.GONE);
+            ivLoading.setVisibility(View.GONE);
 
+
+            startLoading();
             setUI(MAHAdsController.getMahRequestResult());
 
             //Call to update data from service or local
@@ -156,10 +167,10 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
     public void setUI(final MAHRequestResult result) {
         Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "------Result State is " + result.getResultState());
 
-        ivLoading.clearAnimation();
 
         if (result.getResultState() == MAHRequestResult.ResultState.SUCCESS
                 || result.getResultState() == MAHRequestResult.ResultState.ERR_SOME_ITEMS_HAS_JSON_SYNTAX_ERROR) {
+            dataHasAlreadySet = true;
             final List<Program> programsExceptMyself = result.getProgramsFiltered();
             items = new LinkedList<>();
             for (Program c : programsExceptMyself) {
@@ -172,7 +183,6 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
                 public void run() {
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "lstProgram post called");
                     lstProgram.setAdapter(adapterInit);
-                    lytLoadingF1.setVisibility(View.GONE);
                     lytErrorF1.setVisibility(View.GONE);
                     lstProgram.setVisibility(View.VISIBLE);
                 }
@@ -182,7 +192,6 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
                 lstProgram.post(new Runnable() {
                     @Override
                     public void run() {
-                        lytLoadingF1.setVisibility(View.GONE);
                         lytErrorF1.setVisibility(View.VISIBLE);
                         lstProgram.setVisibility(View.GONE);
                         tvErrorResultF1.setText(getResources().getString(
@@ -190,23 +199,51 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
                     }
                 });
             } else {
-                Animation animationLoading = new RotateAnimation(0.0f, 360.0f,
-                        Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
-                        0.5f);
 
-                animationLoading.setDuration(350);
-                animationLoading.setInterpolator(new LinearInterpolator());
-                animationLoading.setRepeatCount(Animation.INFINITE);
+                lstProgram.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        lytErrorF1.setVisibility(View.VISIBLE);
+                        lstProgram.setVisibility(View.GONE);
+                        tvErrorResultF1.setText(getResources().getString(
+                                R.string.mah_ads_internet_update_error));
+                    }
+                });
 
-                lytLoadingF1.setVisibility(View.VISIBLE);
-                lytErrorF1.setVisibility(View.GONE);
-                lstProgram.setVisibility(View.GONE);
-
-                ivLoading.startAnimation(animationLoading);
             }
         }
+
+        stopLoading();
     }
 
+    public void startLoading() {
+        if (dataHasAlreadySet) {
+            return;
+        }
+        Animation animationLoading = new RotateAnimation(0.0f, 360.0f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
+                0.5f);
+
+        animationLoading.setDuration(350);
+        animationLoading.setInterpolator(new LinearInterpolator());
+        animationLoading.setRepeatCount(Animation.INFINITE);
+
+        ivLoading.startAnimation(animationLoading);
+        ivLoading.setVisibility(View.VISIBLE);
+        lstProgram.setVisibility(View.GONE);
+        lytErrorF1.setVisibility(View.GONE);
+
+        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Animation started");
+    }
+
+    public void stopLoading() {
+        ivLoading.setVisibility(View.GONE);
+        lstProgram.setVisibility(View.GONE);
+        lytErrorF1.setVisibility(View.GONE);
+
+        ivLoading.clearAnimation();
+        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Animation stopped");
+    }
 
     public void onClose() {
         dismissAllowingStateLoss();
@@ -251,9 +288,6 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
                     showMAHlib();
                 }
             } else if (v.getId() == R.id.btnErrorRefreshMAHAds) {
-                lytLoadingF1.setVisibility(View.VISIBLE);
-                lytErrorF1.setVisibility(View.GONE);
-                lstProgram.setVisibility(View.GONE);
                 MAHAdsController.getUpdater().updateProgramList(getActivityMAH());
             }
         } catch (MAHFragmentExeption e) {

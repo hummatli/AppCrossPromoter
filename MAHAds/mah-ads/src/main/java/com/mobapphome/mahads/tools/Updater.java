@@ -26,6 +26,13 @@ public class Updater {
             return;
         }
 
+        MAHAdsDlgPrograms fragDlgPrograms = (MAHAdsDlgPrograms) activity.getSupportFragmentManager()
+                .findFragmentByTag(MAHAdsController.TAG_MAH_ADS_DLG_PROGRAMS);
+
+        if (fragDlgPrograms != null) {
+            fragDlgPrograms.startLoading();
+        }
+
         new AsyncTask<Void, Void, MAHRequestResult>() {
 
             @Override
@@ -85,11 +92,12 @@ public class Updater {
                 super.onPostExecute(mahRequestResult);
                 Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "MAHRequestResult isReadFromWeb = " + mahRequestResult.isReadFromWeb());
 
+
                 if (mahRequestResult != null) {
+
                     MAHAdsDlgPrograms fragDlgPrograms = (MAHAdsDlgPrograms) activity.getSupportFragmentManager()
                             .findFragmentByTag(MAHAdsController.TAG_MAH_ADS_DLG_PROGRAMS);
-                    if (fragDlgPrograms != null &&
-                            mahRequestResult.isReadFromWeb()) {
+                    if (fragDlgPrograms != null) {
                         fragDlgPrograms.setUI(mahRequestResult);
                     }
 
