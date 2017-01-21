@@ -96,11 +96,11 @@ Library contains from to Dialog component
   
   
 ### Installation manual
-**1)** To import library to you project add following lines to project's `build.gradle` file. The last stable version is `2.0.4`
+**1)** To import library to you project add following lines to project's `build.gradle` file. The last stable version is `2.0.9`
 
 ```
 	dependencies {
-    		compile 'com.mobapphome.library:mah-ads:2.0.4'
+    		compile 'com.mobapphome.library:mah-ads:2.0.9'
 	}
 ```
 
@@ -237,12 +237,15 @@ I am open to here offers and opinions from you
 
 ### Localization
 Library now supports following languages 
-* English
 * Azerbaijan
+* English
+* French
+* German
+* Hindi
 * Portuguese
 * Russia
+* Spanish
 * Turkey
-* French
 * [Add yours language](https://github.com/hummatli/MAHAds/blob/master/README.md#to-contribute-for-localization)
 
 #### To contribute for localization  
