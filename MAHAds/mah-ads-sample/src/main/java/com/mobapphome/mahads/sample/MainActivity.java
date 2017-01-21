@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
         String[] langsArray = new String[]{
                 "Azerbaijani",
                 "English",
-                "Hindi",
-                "German",
-                "Portuguese",
                 "French",
+                "German",
+                "Hindi",
+                "Portuguese",
                 "Russian",
                 "Spanish",
                 "Turkish"};
