@@ -10,6 +10,7 @@
 [Sattar Hummatli](https://github.com/hummatli) - [LinkedIn](https://www.linkedin.com/in/hummatli), settarxan@gmail.com, [Other libs](https://github.com/hummatli/MAHAds#other-libraries-by-developer)
 * Translator `French`: [Fariz Aghayev](https://github.com/farizaghayev)
 * Translator `Portuguese`: [azzarr](https://github.com/azzarr)
+* Translator `Hindi, German, Spanish`: [Harsh Dalwadi](https://github.com/dalwadi2)
 
 ### Contents
 * [Description](https://github.com/hummatli/MAHAds#description)
