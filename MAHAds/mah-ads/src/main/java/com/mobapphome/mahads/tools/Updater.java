@@ -106,7 +106,7 @@ public class Updater {
                     if (fragDlgExit != null &&
                             mahRequestResult.isReadFromWeb()
                             ) {
-                        fragDlgExit.setUi(mahRequestResult.getProgramsSelected());
+                        fragDlgExit.setUi(mahRequestResult);
                     }
                 }
 

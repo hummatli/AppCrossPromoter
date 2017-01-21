@@ -164,11 +164,11 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
     }
 
     public void setUI(final MAHRequestResult result, boolean firstTime) {
-        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "------Result State is " + result.getResultState());
+        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "------Result State is " + ((result == null) ? null : result.getResultState()));
 
 
-        if (result.getResultState() == MAHRequestResult.ResultState.SUCCESS
-                || result.getResultState() == MAHRequestResult.ResultState.ERR_SOME_ITEMS_HAS_JSON_SYNTAX_ERROR) {
+        if (result != null && (result.getResultState() == MAHRequestResult.ResultState.SUCCESS
+                || result.getResultState() == MAHRequestResult.ResultState.ERR_SOME_ITEMS_HAS_JSON_SYNTAX_ERROR)) {
             dataHasAlreadySet = true;
             final List<Program> programsExceptMyself = result.getProgramsFiltered();
             items = new LinkedList<>();
@@ -187,7 +187,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
                 }
             });
         } else {
-            if (result.isReadFromWeb()) {
+            if (result == null || result.isReadFromWeb()) {
                 lstProgram.post(new Runnable() {
                     @Override
                     public void run() {

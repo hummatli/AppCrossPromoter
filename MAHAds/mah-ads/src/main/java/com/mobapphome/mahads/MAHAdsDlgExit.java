@@ -38,6 +38,7 @@ import com.mobapphome.mahads.mahfragments.MAHDialogFragment;
 import com.mobapphome.mahads.mahfragments.MAHFragmentExeption;
 import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.Utils;
+import com.mobapphome.mahads.types.MAHRequestResult;
 import com.mobapphome.mahads.types.Program;
 import java.util.List;
 
@@ -178,7 +179,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
                 }
             });
 
-            setUi(MAHAdsController.getMahRequestResult().getProgramsSelected());
+            setUi(MAHAdsController.getMahRequestResult());
 
             MAHAdsController.getUpdater().updateProgramList(getActivityMAH());
 
@@ -214,20 +215,22 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
         return lytProgsPanel;
     }
 
-    public void setUi(List<Program> programsSelected) {
+    public void setUi(MAHRequestResult mahRequestResult) {
         Drawable imgNotFoundDrawable = ContextCompat.getDrawable(getContext(), R.drawable.img_not_found);
         imgNotFoundDrawable.setColorFilter(ContextCompat.getColor(getContext(), R.color.mah_ads_no_image_color), PorterDuff.Mode.SRC_IN);
 
-        if (programsSelected == null || programsSelected.size() <= 0) {
-            if (programsSelected == null) {
+        if (mahRequestResult == null || mahRequestResult.getProgramsSelected() == null || mahRequestResult.getProgramsSelected().size() <= 0) {
+
+            if (mahRequestResult != null && mahRequestResult.getProgramsSelected() == null) {
                 exitCallback.onEventHappened("MAHAdsController programSelected is null");
             }
+
             lytProgsPanel.setVisibility(View.GONE);
             tvAsBtnMore.setText(view.getResources().getString(R.string.mah_ads_dlg_exit_btn_more_txt_1));
-        } else if (programsSelected.size() == 1) {
+        } else if (mahRequestResult.getProgramsSelected().size() == 1) {
             lytProgsPanel.setVisibility(View.VISIBLE);
             lytProg2MAHAdsExtDlg.setVisibility(View.GONE);
-            prog1 = programsSelected.get(0);
+            prog1 = mahRequestResult.getProgramsSelected().get(0);
             ((TextView) view.findViewById(R.id.tvProg1NameMAHAdsExtDlg)).setText(prog1.getName());
 
             Glide.with(getContext())
@@ -254,7 +257,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             lytProgsPanel.setVisibility(View.VISIBLE);
             lytProg2MAHAdsExtDlg.setVisibility(View.VISIBLE);
 
-            prog1 = programsSelected.get(0);
+            prog1 = mahRequestResult.getProgramsSelected().get(0);
             ((TextView) view.findViewById(R.id.tvProg1NameMAHAdsExtDlg)).setText(prog1.getName());
             Glide.with(getContext())
                     .load(Utils.getUrlOfImage(prog1.getImg()))
@@ -277,14 +280,8 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
                 tvFresnestProg1.setVisibility(View.GONE);
             }
 
-            prog2 = programsSelected.get(1);
+            prog2 = mahRequestResult.getProgramsSelected().get(1);
             ((TextView) view.findViewById(R.id.tvProg2NameMAHAdsExtDlg)).setText(prog2.getName());
-
-//                    Picasso.with(view.getContext())
-//                            .load(MAHAdsController.urlRootOnServer + prog2.getImg())
-//                            .placeholder(R.drawable.img_place_holder_normal)
-//                            .error(imgNotFoundDrawable)
-//                            .into((ImageView) view.findViewById(R.id.ivProg2ImgMAHAds));
 
             Glide.with(getContext())
                     .load(Utils.getUrlOfImage(prog2.getImg()))
