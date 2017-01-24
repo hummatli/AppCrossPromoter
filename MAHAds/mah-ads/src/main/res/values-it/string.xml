@@ -11,7 +11,7 @@
     <string name="mah_ads_dlg_title">Consigliati</string>
     <string name="mah_ads_text_google_play">Apri in Google Play</string>
     <string name="mah_ads_info_version">Versione</string>
-    <string name="mah_ads_internet_update_error">Errore, perfavore controlla la tua connesione a internet e ritenta.</string>
+    <string name="mah_ads_internet_update_error">Errore, per favore controlla la tua connessione a internet e ritenta.</string>
     <!--command verb--> <string name="mah_ads_open_program">Apri</string>
     <!--command verb--> <string name="mah_ads_install_program">Installa</string>
     <!--command verb--><string name="mah_ads_refresh_btn">Riprova</string>
