@@ -4,6 +4,7 @@
 
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/exit_dlg.png" width="200px"/>
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/programs_dlg.png" width="200px"/>
+<img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/img3.png" width="200px"/>
 
 ### Contributors
 * Developer:
@@ -11,6 +12,7 @@
 * Translator `French`: [Fariz Aghayev](https://github.com/farizaghayev)
 * Translator `Portuguese`: [azzarr](https://github.com/azzarr)
 * Translator `Hindi, German, Spanish`: [Harsh Dalwadi](https://github.com/dalwadi2)
+* Translator `Italian`: [Rawnly](https://github.com/rawnly)
 
 ### Contents
 * [Description](https://github.com/hummatli/MAHAds#description)
@@ -242,6 +244,7 @@ Library now supports following languages
 * French
 * German
 * Hindi
+* Italian
 * Portuguese
 * Russia
 * Spanish
