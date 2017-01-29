@@ -6,6 +6,16 @@
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/programs_dlg.png" width="200px"/>
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/img3.png" width="200px"/>
 
+<img src="https://raw.githubusercontent.com/hummatli/MAHAndroidUpdater/master/imgs/green_star.png" width="20px"/>  _**Don't forget to start the protect to project**_
+
+### Description
+Library for advertisement own apps through your other apps.
+By the help of this lib you can provide your apps list to users through your own other apps and let to install them. 
+Library has build on IDE `Android Studio` and binaries have added to `jcenter()`  `maven` repository.
+<br>You can check  <a href="https://bintray.com/hummatli/maven/mah-ads#statistics">jCenter() download statistics</a> on this link - https://bintray.com/hummatli/maven/mah-ads#statistics
+
+There is a list of [application using MAHAds](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads). It would be nice if see your app link there too. If you use this library and want to see your app in the start of the [list](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads) please [inform me](mailto:settarxan@gmail.com) or send a pull request.
+
 ### Contributors
 * Developer:
 [Sattar Hummatli](https://github.com/hummatli) - [LinkedIn](https://www.linkedin.com/in/hummatli), settarxan@gmail.com, [Other libs](https://github.com/hummatli/MAHAds#other-libraries-by-developer)
@@ -26,14 +36,6 @@
 * [Localization](https://github.com/hummatli/MAHAds#localization)
 * [Applications using MAHAds](https://github.com/hummatli/MAHAds#applications-using-mahads)
 * [Other libraries by developer](https://github.com/hummatli/MAHAds#other-libraries-by-developer)
-
-### Description
-Library for advertisement own apps through your other apps.
-By the help of this lib you can provide your apps list to users through your own other apps and let to install them. 
-Library has build on IDE `Android Studio` and binaries have added to `jcenter()`  `maven` repository.
-<br>You can check  <a href="https://bintray.com/hummatli/maven/mah-ads#statistics">jCenter() download statistics</a> on this link - https://bintray.com/hummatli/maven/mah-ads#statistics
-
-There is a list of [application using MAHAds](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads). It would be nice if see your app link there too. If you use this library and want to see your app in the start of the [list](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads) please [inform me](mailto:settarxan@gmail.com) or send a pull request.
 
 ### Sample App in PlayStore
 <a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample">MAHAds - Sample</a> app has published on Google PlayStore. You can easly test module functionality with downloading it.
