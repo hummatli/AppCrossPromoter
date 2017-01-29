@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
@@ -14,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
 import android.widget.BaseAdapter;
@@ -104,9 +102,9 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
             TextView tvOpenGooglePLay = (TextView) vi.findViewById(R.id.tvOpenInstallMAHAds);
 
             if (Utils.checkPackageIfExists(vi.getContext(), pckgName)) {
-                tvOpenGooglePLay.setText(vi.getContext().getResources().getString(R.string.mah_ads_open_program));
+                tvOpenGooglePLay.setText(vi.getContext().getResources().getString(R.string.cmnd_verb_mah_ads_open_program));
             } else {
-                tvOpenGooglePLay.setText(vi.getContext().getResources().getString(R.string.mah_ads_install_program));
+                tvOpenGooglePLay.setText(vi.getContext().getResources().getString(R.string.cmnd_verb_mah_ads_install_program));
             }
             // Setting all values in listview
             nameTV.setText(currProgram.getName());

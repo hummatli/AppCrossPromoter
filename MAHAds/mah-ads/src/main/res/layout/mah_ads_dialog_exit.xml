@@ -154,7 +154,7 @@
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
                             android:paddingTop="0dp"
-                            android:text="@string/mah_ads_new_text"
+                            android:text="@string/adjective_mah_ads_new_text"
                             android:textColor="@color/mah_ads_text_view_new_text_color"
                             android:textSize="12sp"
                             android:textStyle="bold"
@@ -222,7 +222,7 @@
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
                             android:paddingTop="0dp"
-                            android:text="@string/mah_ads_new_text"
+                            android:text="@string/adjective_mah_ads_new_text"
                             android:textColor="@color/mah_ads_text_view_new_text_color"
                             android:textSize="12sp"
                             android:textStyle="bold"
@@ -313,7 +313,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/mah_ads_dlg_exit_positive_btn_txt"
+            android:text="@string/cmnd_verb_mah_ads_dlg_exit_positive_btn_txt"
             android:textColor="@color/mah_ads_yes_no_txt_color"
             android:textSize="17sp" />
 
@@ -323,7 +323,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/mah_ads_dlg_exit_negativ_btn_txt"
+            android:text="@string/cmnd_verb_mah_ads_dlg_exit_negativ_btn_txt"
             android:textColor="@color/mah_ads_yes_no_txt_color"
             android:textSize="17sp" />
     </LinearLayout>

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="mah_ads_close">Kapat</string>
+    <string name="cmnd_verb_mah_ads_close">Kapat</string>
     <string name="mah_ads_dlg_title">Tavsiye edilenler</string>
     <string name="mah_ads_text_google_play">Google Play\'de aç</string>
     <string name="mah_ads_info_version">Versiyon</string>
     <string name="mah_ads_internet_update_error">Hata oluştu. İnternet bağlantınızı kontrol edin ve tekrar deneyin.</string>
-    <string name="mah_ads_open_program">Aç</string>
-    <string name="mah_ads_install_program">İndir</string>
-    <string name="mah_ads_refresh_btn">Tekrar</string>
+    <string name="cmnd_verb_mah_ads_open_program">Aç</string>
+    <string name="cmnd_verb_mah_ads_install_program">İndir</string>
+    <string name="cmnd_verb_mah_ads_refresh_btn">Tekrar</string>
     <string name="mah_ads_free_aps">Tavsiye edilen uygulamalar</string>
-    <string name="mah_ads_new_text">Yeni</string>
+    <string name="adjective_mah_ads_new_text">Yeni</string>
 
     <string name="mah_ads_dlg_exit_question">Çıkışı onayla</string>
-    <string name="mah_ads_dlg_exit_positive_btn_txt">Çık</string>
-    <string name="mah_ads_dlg_exit_negativ_btn_txt">Kal</string>
+    <string name="cmnd_verb_mah_ads_dlg_exit_positive_btn_txt">Çık</string>
+    <string name="cmnd_verb_mah_ads_dlg_exit_negativ_btn_txt">Kal</string>
 
     <string name="mah_ads_dlg_exit_btn_more_txt_1">Uygulamalar</string>
     <string name="mah_ads_dlg_exit_btn_more_txt_2">Detaylı</string>

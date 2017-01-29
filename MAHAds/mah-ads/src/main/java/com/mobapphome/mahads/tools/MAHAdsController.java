@@ -73,7 +73,7 @@ public class MAHAdsController {
 		MAHAdsController.urlForProgramList = urlForProgramList;
 		MAHAdsController.urlRootOnServer = Utils.getRootFromUrl(urlForProgramList);
 
-		sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+//		sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
 
 		setInternalCalled(activity.getIntent().getBooleanExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, false));
 
@@ -196,7 +196,10 @@ public class MAHAdsController {
 		}
 	}
 
-	protected static SharedPreferences getSharedPref() {
+	protected static SharedPreferences getSharedPref(Context context) {
+		if(sharedPref == null) {
+			sharedPref = context.getSharedPreferences("MAH_Ads", Context.MODE_PRIVATE);
+		}
 		return sharedPref;
 	}
 

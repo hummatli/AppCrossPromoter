@@ -94,7 +94,7 @@ public class HttpUtils {
         }
     }
 
-    static public int requestProgramsVersion(String url)
+    static public int requestProgramsVersion(Context context, String url)
             throws IOException {
 
         int ret = 0;
@@ -129,7 +129,7 @@ public class HttpUtils {
         try {
             JSONObject reader = new JSONObject(jsonStr);
             ret = Integer.parseInt(reader.getString("version"));
-            MAHAdsController.getSharedPref().edit().putInt(Constants.MAH_ADS_VERSION, ret).apply();
+            MAHAdsController.getSharedPref(context).edit().putInt(Constants.MAH_ADS_VERSION, ret).apply();
         } catch (JSONException e) {
             Log.d(MAHAdsController.LOG_TAG_MAH_ADS, e.toString(), e);
         } catch (NumberFormatException nfe) {

@@ -67,8 +67,8 @@ public class Utils {
         return null;
     }
 
-    public static int getVersionFromLocal() {
-        int ret = MAHAdsController.getSharedPref().getInt(Constants.MAH_ADS_VERSION, -1);
+    public static int getVersionFromLocal(Context context) {
+        int ret = MAHAdsController.getSharedPref(context).getInt(Constants.MAH_ADS_VERSION, -1);
         return ret;
     }
 

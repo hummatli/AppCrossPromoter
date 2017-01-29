@@ -47,8 +47,8 @@ public class Updater {
                 MAHAdsController.setMahRequestResult(requestResult);
 
                 try {
-                    int myVersion = Utils.getVersionFromLocal();
-                    int currVersion = HttpUtils.requestProgramsVersion(MAHAdsController.urlForProgramVersion);
+                    int myVersion = Utils.getVersionFromLocal(activity);
+                    int currVersion = HttpUtils.requestProgramsVersion(activity, MAHAdsController.urlForProgramVersion);
 
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Version from base  " + myVersion + " Version from web = " + currVersion);
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "program list url = " + MAHAdsController.urlForProgramList);

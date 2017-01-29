@@ -103,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/mah_dlg_btn_other_selector"
                         android:gravity="center"
-                        android:text="@string/mah_ads_refresh_btn"
+                        android:text="@string/cmnd_verb_mah_ads_refresh_btn"
                         android:textColor="@color/mah_ads_all_and_btn_text_color"
                         android:textSize="18sp"
                         android:minHeight="10dp"
@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
-                android:text="@string/mah_ads_close"
+                android:text="@string/cmnd_verb_mah_ads_close"
                 android:textColor="@color/mah_ads_yes_no_txt_color"
                 android:textSize="17sp" />
         </LinearLayout>

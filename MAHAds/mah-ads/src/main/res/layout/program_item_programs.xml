@@ -33,7 +33,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="0dp"
-            android:text="@string/mah_ads_new_text"
+            android:text="@string/adjective_mah_ads_new_text"
             android:textColor="@color/mah_ads_text_view_new_text_color"
             android:textSize="12sp"
             android:textStyle="bold"

@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
                 "French",
                 "German",
                 "Hindi",
+                "Italian",
                 "Portuguese",
                 "Russian",
                 "Spanish",
@@ -57,18 +58,20 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
         //Setting local.
         LocaleHelper.onCreate(this, "en");
         String currentLang = LocaleHelper.getLanguage(this);
-        if (currentLang.equals("en")) {
-            currentLang = "english";
-        } else if (currentLang.equals("az")) {
+        if (currentLang.equals("az")) {
             currentLang = "azerbaijani";
-        } else if (currentLang.equals("hi")) {
-            currentLang = "hindi";
-        } else if (currentLang.equals("de")) {
-            currentLang = "german";
-        } else if (currentLang.equals("pt")) {
-            currentLang = "portuguese";
+        } else if (currentLang.equals("en")) {
+            currentLang = "english";
         } else if (currentLang.equals("fr")) {
             currentLang = "french";
+        } else if (currentLang.equals("de")) {
+            currentLang = "german";
+        } else if (currentLang.equals("hi")) {
+            currentLang = "hindi";
+        } else if (currentLang.equals("it")) {
+            currentLang = "italian";
+        } else if (currentLang.equals("pt")) {
+            currentLang = "portuguese";
         } else if (currentLang.equals("ru")) {
             currentLang = "russian";
         } else if (currentLang.equals("es")) {
@@ -169,18 +172,20 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
 
         // Showing selected spinner item
         Toast.makeText(parent.getContext(), "Selected: " + item + " id:" + id, Toast.LENGTH_LONG).show();
-        if (item.toLowerCase().startsWith("english")) {
-            LocaleHelper.setLocale(this, "en");
-        } else if (item.toLowerCase().startsWith("azerbaijani")) {
+        if (item.toLowerCase().startsWith("azerbaijani")) {
             LocaleHelper.setLocale(this, "az");
-        } else if (item.toLowerCase().startsWith("hindi")) {
-            LocaleHelper.setLocale(this, "hi");
-        } else if (item.toLowerCase().startsWith("german")) {
-            LocaleHelper.setLocale(this, "de");
-        } else if (item.toLowerCase().startsWith("portuguese")) {
-            LocaleHelper.setLocale(this, "pt");
+        } else if (item.toLowerCase().startsWith("english")) {
+            LocaleHelper.setLocale(this, "en");
         } else if (item.toLowerCase().startsWith("french")) {
             LocaleHelper.setLocale(this, "fr");
+        } else if (item.toLowerCase().startsWith("german")) {
+            LocaleHelper.setLocale(this, "de");
+        } else if (item.toLowerCase().startsWith("hindi")) {
+            LocaleHelper.setLocale(this, "hi");
+        } else if (item.toLowerCase().startsWith("italian")) {
+            LocaleHelper.setLocale(this, "it");
+        } else if (item.toLowerCase().startsWith("portuguese")) {
+            LocaleHelper.setLocale(this, "pt");
         } else if (item.toLowerCase().startsWith("russian")) {
             LocaleHelper.setLocale(this, "ru");
         } else if (item.toLowerCase().startsWith("spanish")) {

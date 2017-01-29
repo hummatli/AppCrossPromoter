@@ -1,7 +1,6 @@
 package com.mobapphome.mahads.types;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.mobapphome.mahads.R;
@@ -55,7 +54,7 @@ public class Program implements Serializable {
         String retStr = null;
         switch (getFreshnest()) {
             case NEW:
-                retStr = context.getString(R.string.mah_ads_new_text);
+                retStr = context.getString(R.string.adjective_mah_ads_new_text);
                 break;
 
             case UPDATED:
