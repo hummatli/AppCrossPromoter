@@ -165,7 +165,10 @@ Code:
 
 **7)** `Localization:`  Following languages is supporting by the lib - [Supported Languages](https://github.com/hummatli/MAHAds#localization).  To set localization to app use your own method or if it is static and don't change in program session you can just simply add 		`LocaleUpdater.updateLocale(this, "your_lang");` in the start of your app. For examlpe  `LocaleUpdater.updateLocale(this, "ru");`
 
-**8)** To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values
+**8)** To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values.   
+To help translators there prefixes on the name of strings
+* < command verb (actions)> - These are commands verbs. Meaninaction on UI , dialogs
+* < adjective > - adjectives
 
 ```xml
     <!-- * command verb--> <string name="cmnd_verb_mah_ads_close">Close</string>
@@ -252,7 +255,11 @@ Library now supports following languages
 * [Add yours language](https://github.com/hummatli/MAHAds/blob/master/README.md#to-contribute-for-localization)
 
 #### To contribute for localization  
-**Be carefull, I have added `<!--command verb-->` tag on the start of command verb (actions) in `values/string.xml`. Don't translate them as an adjective.**   
+**To help translator in context I have added prefixes to the start of the string names.
+Be carefull when translating. Prefixes are following:**   
+_* < command verb (actions)> - These are commands verbs. Meaninaction on UI , dialogs_   
+_* < noun > - these are nouns not action (verb)_    
+
 We need help to add new language localization support for libarary. If you have any hope to help us we were very happy and you can check following <i><a href="https://github.com/hummatli/MAHAds/issues">GitHub Issues URL</a></i> to contribute.
 To contribute get <a href="https://github.com/hummatli/MAHAds/blob/master/MAHAds/mah-ads/src/main/res/values/strings.xml">res/values/string.xml</a> file and translate to newer language. Place it on res/values-"spacific_lang"/string.xml
 
