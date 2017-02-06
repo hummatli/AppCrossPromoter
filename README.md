@@ -9,7 +9,7 @@
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/img3.png" width="200px"/>
 
 ### Description
-Library for advertisement own apps through your other apps.
+Library for cross-promote, advertisement of own apps through your other apps.
 By the help of this lib you can provide your apps list to users through your own other apps and let to install them. 
 Library has build on IDE `Android Studio` and binaries have added to `jcenter()`  `maven` repository.
 <br>You can check  <a href="https://bintray.com/hummatli/maven/mah-ads#statistics">jCenter() download statistics</a> on this link - https://bintray.com/hummatli/maven/mah-ads#statistics
