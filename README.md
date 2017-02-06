@@ -1,5 +1,4 @@
 # MAHAds - <a href="https://play.google.com/store/apps/developer?id=Sattar+Hummatli+-+MobAppHome">MobAppHome</a>  advertisment library 
-<img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/green_star.png" width="20px"/>  _**Don't forget to start the protect to support us**_  
 
 [ ![Download](https://api.bintray.com/packages/hummatli/maven/mah-ads/images/download.svg) ](https://bintray.com/hummatli/maven/mah-ads/_latestVersion) [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15) [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000)](http://www.apache.org/licenses/LICENSE-2.0) 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MAHAds-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4509)
@@ -15,6 +14,8 @@ Library has build on IDE `Android Studio` and binaries have added to `jcenter()`
 <br>You can check  <a href="https://bintray.com/hummatli/maven/mah-ads#statistics">jCenter() download statistics</a> on this link - https://bintray.com/hummatli/maven/mah-ads#statistics
 
 There is a list of [application using MAHAds](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads). It would be nice if see your app link there too. If you use this library and want to see your app in the start of the [list](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads) please [inform me](mailto:settarxan@gmail.com) or send a pull request.
+
+<img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/green_star.png" width="20px"/>  _**Don't forget to start the protect to support us**_   
 
 ### Contributors
 * Developer:
