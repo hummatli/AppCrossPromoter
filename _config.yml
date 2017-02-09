@@ -1,0 +1,8 @@
+title: MAHAds
+description: "Library for advertisement own apps through other apps "
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
