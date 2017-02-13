@@ -1,5 +1,8 @@
 package com.mobapphome.mahads.sample;
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
@@ -9,11 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mobapphome.mahads.MAHAdsDlgExit;
+import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.MAHAdsController;
 
 import java.util.ArrayList;
@@ -28,6 +33,17 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+        ImageView imageView = (ImageView) findViewById(R.id.ivMAHForkMeOnGithub);
+        Drawable forkMeImg= getResources().getDrawable(R.drawable.forkme_green);
+        // setting the opacity (alpha)
+        forkMeImg.setAlpha(180);
+        // setting the images on the ImageViews
+        imageView.setImageDrawable(forkMeImg);
+
+        imageView.setOnClickListener(this);
         findViewById(R.id.mahBtnProgramsDlgTest).setOnClickListener(this);
         findViewById(R.id.mahBtnExitDlgTest).setOnClickListener(this);
 
@@ -137,6 +153,9 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
             //METHOD 2
             MAHAdsController.callExitDialog(this);
             //METHOD 2
+        } else if (view.getId() == R.id.ivMAHForkMeOnGithub) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.MAH_ADS_GITHUB_LINK));
+            startActivity(browserIntent);
         }
     }
 
