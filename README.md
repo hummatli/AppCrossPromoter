@@ -1,5 +1,4 @@
 # MAHAds - <a href="https://play.google.com/store/apps/developer?id=Sattar+Hummatli+-+MobAppHome">MobAppHome</a>  advertisment library 
-<img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/green_star.png" width="20px"/>  _**Don't forget to start the protect to support us**_  
 
 [ ![Download](https://api.bintray.com/packages/hummatli/maven/mah-ads/images/download.svg) ](https://bintray.com/hummatli/maven/mah-ads/_latestVersion) [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15) [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000)](http://www.apache.org/licenses/LICENSE-2.0) 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MAHAds-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4509)
@@ -9,12 +8,17 @@
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/img3.png" width="200px"/>
 
 ### Description
-Library for advertisement own apps through your other apps.
+Free, open source, third party Android library for cross-promote, advertisement of own apps through your other apps.
 By the help of this lib you can provide your apps list to users through your own other apps and let to install them. 
 Library has build on IDE `Android Studio` and binaries have added to `jcenter()`  `maven` repository.
-<br>You can check  <a href="https://bintray.com/hummatli/maven/mah-ads#statistics">jCenter() download statistics</a> on this link - https://bintray.com/hummatli/maven/mah-ads#statistics
+<br>You can check  [jCenter() download statistics](https://bintray.com/hummatli/maven/mah-ads#statistics) on this [link](https://bintray.com/hummatli/maven/mah-ads#statistics)
 
 There is a list of [application using MAHAds](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads). It would be nice if see your app link there too. If you use this library and want to see your app in the start of the [list](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads) please [inform me](mailto:settarxan@gmail.com) or send a pull request.
+
+* [jCenter() download statistics](https://bintray.com/hummatli/maven/mah-ads#statistics)
+* [Application using MAHAndroidUpdater](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads)
+
+<img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/green_star.png" width="20px"/>  _**Don't forget to start the protect to support us**_   
 
 ### Contributors
 * Developer:
@@ -39,7 +43,7 @@ There is a list of [application using MAHAds](https://github.com/hummatli/MAHAnd
 
 ### Sample App in PlayStore
 <a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample">MAHAds - Sample</a> app has published on Google PlayStore. You can easly test module functionality with downloading it.
-<br><a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample"><img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/google-play-badge.png" width="200px"/></a> 
+<br><a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample"><img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/google-play-badge.png" height="90px"/></a> <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/mahads_google_play_url_qr_code.jpg" height="100px"/> 
 
 ### Service structure
 To provide your apps list you have to implement service provider. Structure of the service is as below. Your root folder has to contain `imgs` folder and two files `program_version.json`, `program_list.json`.
@@ -275,6 +279,7 @@ Icon | Application | Icon | Application
 <img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/millionaire_az.png" width="48" height="48" /> | [Milyonçu](https://play.google.com/store/apps/details?id=com.mobapphome.milyoncu) | <img src="https://lh3.ggpht.com/kfuLs-Ic0xR3SOFdjJ3FVeI0es2oXTCEt1T2y8tEVeYm7otSuSSBDlrpz4wXtIygf4k=w300-rw" width="48" height="48" /> | [Məzənnə](https://play.google.com/store/apps/details?id=com.mobapphome.currency)
 <img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/mah_ads_sample_icon.png" width="48" height="48" /> | [MAHAds - Sample](https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample) | <img src="https://lh4.ggpht.com/b_9Tt-HGVWTUEpq4tpPvvf9iH9lbrMu6HDPitLxd5bzpUhf68Ifm0arFy7tH12GAJ8M=w300-rw" width="48" height="48" /> | [DYP Qanunlar və Cərimələr](https://play.google.com/store/apps/details?id=com.mobapphome.avtolowpenal)
 <img src="https://lh6.ggpht.com/9g7gUdqyzc51oPIGX7pGf1_gs70WDizny9JfUExteTw_v0BFRLzx69xSmwhg3t7XQiE=w300-rw" width="48" height="48" /> | [Avto Nişanlar](https://play.google.com/store/apps/details?id=com.mobapphome.avtonishanlar) | <img src="https://lh5.ggpht.com/P_TyFmB5BzYDGWl3yliDHkQr_ttrYzHS3yQk3mBS3QuJJ5TJZ1pMj8lx-wmUmAHiUw=w300-rw" width="48" height="48" /> | [Ləzzət](https://play.google.com/store/apps/details?id=com.mobapphome.lezzet)
+<img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/millionaire_de.png" width="48" height="48" />| [Millionär - Deutsche](https://play.google.com/store/apps/details?id=com.mobapphome.millionaire.ge) | |
 
 
 ### Other libraries by developer
