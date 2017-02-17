@@ -8,6 +8,8 @@
   <a target="_blank" href="http://android-arsenal.com/details/1/4509"><img src="https://img.shields.io/badge/Android%20Arsenal-MAHAds-brightgreen.svg?style=flat" /></a>
 </p>
 
+<p align="center">Free, open source, third party Android library for cross-promote, advertisement of own apps through your other apps. Check out the <a href="https://github.com/hummatli/MAHAds/wiki">wiki</a>.</p>
+
 <p align="center">
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/exit_dlg.png" width="200px"/>
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/programs_dlg.png" width="200px"/>
