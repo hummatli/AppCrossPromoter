@@ -33,10 +33,10 @@ public class Updater {
             fragDlgPrograms.startLoading();
         }
 
-        new AsyncTask<Void, Void, MAHRequestResult>() {
+        new AsyncTask<String, Void, MAHRequestResult>() {
 
             @Override
-            protected MAHRequestResult doInBackground(Void... voids) {
+            protected MAHRequestResult doInBackground(String... args) {
                 Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "inside of doInBackground , loading = " + loading);
 
                 //Setting loading to true
@@ -48,10 +48,10 @@ public class Updater {
 
                 try {
                     int myVersion = Utils.getVersionFromLocal(activity);
-                    int currVersion = HttpUtils.requestProgramsVersion(activity, MAHAdsController.urlForProgramVersion);
+                    int currVersion = HttpUtils.requestProgramsVersion(activity, args[0]);
 
                     Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Version from base  " + myVersion + " Version from web = " + currVersion);
-                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "program list url = " + MAHAdsController.urlForProgramList);
+                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "program list url = " + args[1]);
 
                     //Ceck version to see are there any new verion in the web
                     if (myVersion == currVersion) {
@@ -61,13 +61,13 @@ public class Updater {
                                 || requestResult.getResultState() == MAHRequestResult.ResultState.ERR_JSON_IS_NULL_OR_EMPTY
                                 || requestResult.getResultState() == MAHRequestResult.ResultState.ERR_JSON_HAS_TOTAL_ERROR) {
                             //Read again from the web if upper errors has apears
-                            requestResult = HttpUtils.requestPrograms(activity, MAHAdsController.urlForProgramList);
+                            requestResult = HttpUtils.requestPrograms(activity, args[1]);
                             Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from web, In reattemt case");
                         }
                         Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from local, In version equal case");
                     } else {
                         //Read from the web if versions are different
-                        requestResult = HttpUtils.requestPrograms(activity, MAHAdsController.urlForProgramList);
+                        requestResult = HttpUtils.requestPrograms(activity, args[1]);
                         Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from web, In version different case");
                     }
                 } catch (IOException e) {
@@ -114,6 +114,6 @@ public class Updater {
                 loading = false;
                 Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Set loading to = " + loading);
             }
-        }.execute();
+        }.execute(MAHAdsController.urlForProgramVersion, MAHAdsController.urlForProgramList);
     }
 }
