@@ -33,6 +33,7 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.mobapphome.mahads.mahfragments.MAHDialogFragment;
@@ -82,10 +83,9 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
         // Empty constructor required for DialogFragment
     }
 
-    public static MAHAdsDlgExit newInstance(
-            MAHRequestResult mahRequestResult,
-            Urls urls,
-            String fontName,
+    public static MAHAdsDlgExit newInstance(MAHRequestResult mahRequestResult,
+                                            Urls urls,
+                                            String fontName,
                                             boolean btnInfoVisibility,
                                             boolean btnInfoWithMenu,
                                             String btnInfoMenuItemTitle,
@@ -112,7 +112,8 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
                              Bundle savedInstanceState) {
         try {
             Log.i(Constants.LOG_TAG_MAH_ADS, "MAH Ads Dld exit Created ");
@@ -172,9 +173,9 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             ivBtnInfo.setOnClickListener(this);
             view.findViewById(R.id.mah_ads_dlg_exit_lyt_btn_other).setOnClickListener(this);
 
-            if(btnInfoVisibility){
+            if (btnInfoVisibility) {
                 ivBtnInfo.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 ivBtnInfo.setVisibility(View.INVISIBLE);
             }
 
@@ -215,7 +216,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             //Minimize the lines of question textview in  languages where question str is longer
             TextView tvQuestionTxt = (TextView) view.findViewById(R.id.tvQuestionTxt);
             String strQuest = getString(R.string.mah_ads_dlg_exit_question);
-            if(strQuest.length() > 20){
+            if (strQuest.length() > 20) {
                 tvQuestionTxt.setMinLines(2);
             }
 //            else {
@@ -352,7 +353,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
         try {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(btnInfoActionURL));
             getContext().startActivity(browserIntent);
-        }catch (ActivityNotFoundException nfe){
+        } catch (ActivityNotFoundException nfe) {
             String str = "You haven't set correct url to btnInfoActionURL, your url = " + btnInfoActionURL;
             Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
             Log.d(Constants.LOG_TAG_MAH_ADS, str, nfe);

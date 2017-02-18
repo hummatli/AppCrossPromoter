@@ -98,8 +98,8 @@ public class Updater {
 
                     MAHAdsDlgExit fragDlgExit = (MAHAdsDlgExit) activity.getSupportFragmentManager()
                             .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_EXIT);
-                    if (fragDlgExit != null &&
-                            mahRequestResult.isReadFromWeb()
+                    if (fragDlgExit != null
+                            //&& mahRequestResult.isReadFromWeb()
                             ) {
                         fragDlgExit.setUi(mahRequestResult);
                     }
