@@ -47,7 +47,7 @@ public class HttpUtils {
                 .get();
 
         String jsonStr = doc.body().text();
-        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programlist json = " + jsonStr);
+        Log.i(Constants.LOG_TAG_MAH_ADS, "Programlist json = " + jsonStr);
 
         Utils.writeStringToCache(context, jsonStr);
 
@@ -62,7 +62,7 @@ public class HttpUtils {
         List<Program> ret = new LinkedList<>();
         if (jsonStr == null
                 || jsonStr.isEmpty()) {
-            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Json is null or empty");
+            Log.i(Constants.LOG_TAG_MAH_ADS, "Json is null or empty");
             return new MAHRequestResult(ret, MAHRequestResult.ResultState.ERR_JSON_IS_NULL_OR_EMPTY);
         }
 
@@ -83,13 +83,13 @@ public class HttpUtils {
                     ret.add(new Program(0, name, desc, uri, img, releaseDate, updateDate));
                     //Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Added = " + name);
                 } catch (JSONException e) {
-                    Log.d(MAHAdsController.LOG_TAG_MAH_ADS, "Program item in json has a syntax problem " + e.toString(), e);
+                    Log.d(Constants.LOG_TAG_MAH_ADS, "Program item in json has a syntax problem " + e.toString(), e);
                     stateForRead = MAHRequestResult.ResultState.ERR_SOME_ITEMS_HAS_JSON_SYNTAX_ERROR;
                 }
             }
             return new MAHRequestResult(ret, stateForRead);
         } catch (JSONException e) {
-            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, e.toString(), e);
+            Log.d(Constants.LOG_TAG_MAH_ADS, e.toString(), e);
             return new MAHRequestResult(ret, MAHRequestResult.ResultState.ERR_JSON_HAS_TOTAL_ERROR);
         }
     }
@@ -121,7 +121,7 @@ public class HttpUtils {
                 .execute();
 
 
-        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Response content type = " + response.contentType());
+        Log.i(Constants.LOG_TAG_MAH_ADS, "Response content type = " + response.contentType());
         Document doc = response.parse();
         String jsonStr = doc.body().text();
         //Log.i(MAHAdsController.LOG_TAG_MAH_ADS, jsonStr);
@@ -129,11 +129,11 @@ public class HttpUtils {
         try {
             JSONObject reader = new JSONObject(jsonStr);
             ret = Integer.parseInt(reader.getString("version"));
-            MAHAdsController.getSharedPref(context).edit().putInt(Constants.MAH_ADS_VERSION, ret).apply();
+            Utils.getSharedPref(context).edit().putInt(Constants.MAH_ADS_VERSION, ret).apply();
         } catch (JSONException e) {
-            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, e.toString(), e);
+            Log.d(Constants.LOG_TAG_MAH_ADS, e.toString(), e);
         } catch (NumberFormatException nfe) {
-            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, nfe.toString(),nfe);
+            Log.d(Constants.LOG_TAG_MAH_ADS, nfe.toString(),nfe);
         }
         return ret;
     }

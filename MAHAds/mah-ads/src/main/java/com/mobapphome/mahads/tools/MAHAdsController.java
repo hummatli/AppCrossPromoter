@@ -21,23 +21,14 @@ import com.mobapphome.mahads.types.Program;
 import java.util.List;
 
 public class MAHAdsController {
-	public static final String MAH_ADS_INTERNAL_CALLED = "internal_called";
-	public static final String LOG_TAG_MAH_ADS = "mah_ads_log";
+	public String urlForProgramVersion;
+	public String urlForProgramList;
+	public String urlRootOnServer;
+	private boolean internalCalled = false;
+	private String fontName = null;
 
-	protected static final String PROGRAM_LIST_CACHE = "program_list_cache2";
-	protected static final String TAG_MAH_ADS_DLG_PROGRAMS = "tag_mah_ads_dlg_programs";
-	protected static final String TAG_MAH_ADS_DLG_EXIT = "tag_mah_ads_dlg_exit";
-
-
-	public static String urlForProgramVersion;
-	public static String urlForProgramList;
-	public static String urlRootOnServer;
-	private static SharedPreferences sharedPref;
-	private static boolean internalCalled = false;
-	private static String fontName = null;
-
-	public static MAHRequestResult mahRequestResult;
-	private static Updater updater;
+	public MAHRequestResult mahRequestResult;
+	private Updater updater;
 
 	/**
 	 * Initializes MAHAds library
@@ -47,8 +38,9 @@ public class MAHAdsController {
 	 *                        urlForProgramList = urlRootOnServer + "program_list.php"
      */
 	@Deprecated
-	public static void init(@NonNull final FragmentActivity activity, @NonNull String urlRootOnServer) {
-		MAHAdsController.init(activity, urlRootOnServer, "program_version.php", "program_list.php");
+	public void init(@NonNull final FragmentActivity activity,
+					 @NonNull String urlRootOnServer) {
+		init(activity, urlRootOnServer, "program_version.php", "program_list.php");
 	}
 
 	/**
@@ -58,8 +50,11 @@ public class MAHAdsController {
 	 * @param programVersionUrlEnd Url end for program version
 	 * @param urlForProgramListUrlEnd Url end for program list
 	 */
-	public static void init(@NonNull final FragmentActivity activity, @NonNull String urlRootOnServer, @NonNull String programVersionUrlEnd, @NonNull String urlForProgramListUrlEnd) {
-		MAHAdsController.init(activity, urlRootOnServer + programVersionUrlEnd, urlRootOnServer + urlForProgramListUrlEnd);
+	public void init(@NonNull final FragmentActivity activity,
+					 @NonNull String urlRootOnServer,
+					 @NonNull String programVersionUrlEnd,
+					 @NonNull String urlForProgramListUrlEnd) {
+		init(activity, urlRootOnServer + programVersionUrlEnd, urlRootOnServer + urlForProgramListUrlEnd);
 	}
 
 	/**
@@ -68,14 +63,14 @@ public class MAHAdsController {
 	 * @param urlForProgramVersion Url for program version
 	 * @param urlForProgramList Url for program list. In this case: urlRootOnServer will be set to the root of urlForProgramList
 	 */
-	public static void init(@NonNull final FragmentActivity activity, @NonNull String urlForProgramVersion, @NonNull String urlForProgramList) {
-		MAHAdsController.urlForProgramVersion = urlForProgramVersion;
-		MAHAdsController.urlForProgramList = urlForProgramList;
-		MAHAdsController.urlRootOnServer = Utils.getRootFromUrl(urlForProgramList);
+	public void init(@NonNull final FragmentActivity activity,
+					 @NonNull String urlForProgramVersion,
+					 @NonNull String urlForProgramList) {
+		this.urlForProgramVersion = urlForProgramVersion;
+		this.urlForProgramList = urlForProgramList;
+		this.urlRootOnServer = Utils.getRootFromUrl(urlForProgramList);
 
-//		sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
-
-		setInternalCalled(activity.getIntent().getBooleanExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, false));
+		setInternalCalled(activity.getIntent().getBooleanExtra(Constants.MAH_ADS_INTERNAL_CALLED, false));
 
 		getUpdater().updateProgramList(activity);
 	}
@@ -84,9 +79,9 @@ public class MAHAdsController {
 	 * Gets static updater object created in init method or creates new one if is null
 	 * @return updater object
      */
-	public static Updater getUpdater() {
+	public Updater getUpdater() {
 		if(updater == null){
-			updater = Updater.newInstance();
+			updater = new Updater(this);
 		}
 		return updater;
 	}
@@ -96,7 +91,7 @@ public class MAHAdsController {
 	 * then application will quit not opening ExitDialog
 	 * @param activity Activity which method has called
 	 */
-	public static void callExitDialog(FragmentActivity activity) {
+	public void callExitDialog(FragmentActivity activity) {
 		callExitDialog(activity, true, true);
 	}
 
@@ -107,7 +102,9 @@ public class MAHAdsController {
 	 * @param btnInfoVisibility If true shows info button
 	 * @param btnInfoWithMenu If true adds popup menu to info button
 	 */
-	public static void callExitDialog(FragmentActivity activity, boolean btnInfoVisibility, boolean btnInfoWithMenu) {
+	public void callExitDialog(FragmentActivity activity,
+							   boolean btnInfoVisibility,
+							   boolean btnInfoWithMenu) {
 		callExitDialog(activity, btnInfoVisibility, btnInfoWithMenu, activity.getString(R.string.mah_ads_info_popup_text), Constants.MAH_ADS_GITHUB_LINK);
 	}
 
@@ -120,7 +117,7 @@ public class MAHAdsController {
 	 * @param btnInfoMenuItemTitle Title of menu item for info button
 	 * @param btnInfoActionURL Url to open when clicking to info button or info menu item
      */
-	public static void callExitDialog(FragmentActivity activity,
+	public void callExitDialog(FragmentActivity activity,
 									  boolean btnInfoVisibility,
 									  boolean btnInfoWithMenu,
 									  String btnInfoMenuItemTitle,
@@ -139,8 +136,8 @@ public class MAHAdsController {
 			}
 		}else{
 			showDlg(activity,
-					MAHAdsDlgExit.newInstance(btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
-					TAG_MAH_ADS_DLG_EXIT);
+					MAHAdsDlgExit.newInstance(mahRequestResult, urlRootOnServer, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
+					Constants.TAG_MAH_ADS_DLG_EXIT);
 		}
 	}
 
@@ -148,7 +145,7 @@ public class MAHAdsController {
 	 * Calls ProgramsDialog to open
 	 * @param activity Activity which method has called
      */
-	public static void callProgramsDialog(FragmentActivity activity) {
+	public void callProgramsDialog(FragmentActivity activity) {
 		callProgramsDialog(activity, true, true);
 	}
 
@@ -158,7 +155,9 @@ public class MAHAdsController {
 	 * @param btnInfoVisibility If true shows info button
 	 * @param btnInfoWithMenu If true adds popup menu to info button
 	 */
-	public static void callProgramsDialog(FragmentActivity activity, boolean btnInfoVisibility, boolean btnInfoWithMenu) {
+	public void callProgramsDialog(FragmentActivity activity,
+								   boolean btnInfoVisibility,
+								   boolean btnInfoWithMenu) {
 		callProgramsDialog(activity, btnInfoVisibility, btnInfoWithMenu, activity.getString(R.string.mah_ads_info_popup_text), Constants.MAH_ADS_GITHUB_LINK);
 	}
 
@@ -170,23 +169,23 @@ public class MAHAdsController {
 	 * @param btnInfoMenuItemTitle Title of menu item for info button
 	 * @param btnInfoActionURL Url to open when clicking to info button or info menu item
 	 */
-	public static void callProgramsDialog(FragmentActivity activity,
+	public void callProgramsDialog(FragmentActivity activity,
 										  boolean btnInfoVisibility,
 										  boolean btnInfoWithMenu,
 										  String btnInfoMenuItemTitle,
 										  @NonNull String btnInfoActionURL) {
 		showDlg(activity,
-				MAHAdsDlgPrograms.newInstance(btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
-				TAG_MAH_ADS_DLG_PROGRAMS);
+				MAHAdsDlgPrograms.newInstance(mahRequestResult, urlRootOnServer, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
+				Constants.TAG_MAH_ADS_DLG_PROGRAMS);
 	}
 
-	static private void showDlg(FragmentActivity activity, Fragment frag, String fragTag) {
+	public static void showDlg(FragmentActivity activity, Fragment frag, String fragTag) {
 
 		if (!activity.isFinishing()) {
 			FragmentManager fragmentManager = activity.getSupportFragmentManager();
 			Fragment fr = fragmentManager.findFragmentByTag(fragTag);
 			if (fr != null && !fr.isHidden()) {
-				Log.i(LOG_TAG_MAH_ADS, "showDlg  dismissed");
+				Log.i(Constants.LOG_TAG_MAH_ADS, "showDlg  dismissed");
                 ((DialogFragment) fr).dismissAllowingStateLoss();
 			}
 
@@ -196,46 +195,27 @@ public class MAHAdsController {
 		}
 	}
 
-	protected static SharedPreferences getSharedPref(Context context) {
-		if(sharedPref == null) {
-			sharedPref = context.getSharedPreferences("MAH_Ads", Context.MODE_PRIVATE);
-		}
-		return sharedPref;
-	}
-
-	public static void setFontTextView(TextView tv) {
-		if(fontName == null){
-			return;
-		}
-		try{
-			Typeface font = Typeface.createFromAsset(tv.getContext().getAssets(),fontName);
-			tv.setTypeface(font);
-		}catch(RuntimeException r){
-			Log.e("test", "Error " + r.getMessage());
-		}
-	}
-
-	public static String getFontName() {
+	public String getFontName() {
 		return fontName;
 	}
 
-	public static void setFontName(String fontName) {
-		MAHAdsController.fontName = fontName;
+	public void setFontName(String fontName) {
+		this.fontName = fontName;
 	}
 
-	private static boolean isInternalCalled() {
+	private boolean isInternalCalled() {
 		return internalCalled;
 	}
 
-	private static void setInternalCalled(boolean internalCalled) {
-		MAHAdsController.internalCalled = internalCalled;
+	private void setInternalCalled(boolean internalCalled) {
+		this.internalCalled = internalCalled;
 	}
 
-	public static MAHRequestResult getMahRequestResult() {
+	public MAHRequestResult getMahRequestResult() {
 		return mahRequestResult;
 	}
 
-	public static void setMahRequestResult(MAHRequestResult mahRequestResult) {
-		MAHAdsController.mahRequestResult = mahRequestResult;
+	public void setMahRequestResult(MAHRequestResult mahRequestResult) {
+		this.mahRequestResult = mahRequestResult;
 	}
 }

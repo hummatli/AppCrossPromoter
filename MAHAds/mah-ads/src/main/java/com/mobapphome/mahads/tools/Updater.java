@@ -12,46 +12,46 @@ import java.io.IOException;
 
 public class Updater {
     public boolean loading = false;
+    MAHAdsController mahAdsController;
 
 
-    public static Updater newInstance() {
-        return new Updater();
+    public Updater(MAHAdsController mahAdsController){
+        this.mahAdsController = mahAdsController;
     }
 
     public void updateProgramList(final FragmentActivity activity) {
-        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Update info called , loading = " + loading);
+        Log.i(Constants.LOG_TAG_MAH_ADS, "Update info called , loading = " + loading);
         if (loading) {
-            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Accept_3");
-            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Loading");
+            Log.i(Constants.LOG_TAG_MAH_ADS, "Accept_3");
+            Log.i(Constants.LOG_TAG_MAH_ADS, "Loading");
             return;
         }
 
         MAHAdsDlgPrograms fragDlgPrograms = (MAHAdsDlgPrograms) activity.getSupportFragmentManager()
-                .findFragmentByTag(MAHAdsController.TAG_MAH_ADS_DLG_PROGRAMS);
+                .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_PROGRAMS);
 
         if (fragDlgPrograms != null) {
             fragDlgPrograms.startLoading();
         }
 
-        new AsyncTask<Void, Void, MAHRequestResult>() {
+        new AsyncTask<String, Void, MAHRequestResult>() {
 
             @Override
-            protected MAHRequestResult doInBackground(Void... voids) {
-                Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "inside of doInBackground , loading = " + loading);
+            protected MAHRequestResult doInBackground(String... args) {
+                Log.i(Constants.LOG_TAG_MAH_ADS, "inside of doInBackground , loading = " + loading);
 
                 //Setting loading to true
                 loading = true;
 
+                //Read from cache
                 MAHRequestResult requestResult = HttpUtils.jsonToProgramList(Utils.readStringFromCache(activity));
-                Utils.filterMAHRequestResult(activity, requestResult);
-                MAHAdsController.setMahRequestResult(requestResult);
 
                 try {
                     int myVersion = Utils.getVersionFromLocal(activity);
-                    int currVersion = HttpUtils.requestProgramsVersion(activity, MAHAdsController.urlForProgramVersion);
+                    int currVersion = HttpUtils.requestProgramsVersion(activity, args[0]);
 
-                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Version from base  " + myVersion + " Version from web = " + currVersion);
-                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "program list url = " + MAHAdsController.urlForProgramList);
+                    Log.i(Constants.LOG_TAG_MAH_ADS, "Version from base  " + myVersion + " Version from web = " + currVersion);
+                    Log.i(Constants.LOG_TAG_MAH_ADS, "program list url = " + args[1]);
 
                     //Ceck version to see are there any new verion in the web
                     if (myVersion == currVersion) {
@@ -61,59 +61,60 @@ public class Updater {
                                 || requestResult.getResultState() == MAHRequestResult.ResultState.ERR_JSON_IS_NULL_OR_EMPTY
                                 || requestResult.getResultState() == MAHRequestResult.ResultState.ERR_JSON_HAS_TOTAL_ERROR) {
                             //Read again from the web if upper errors has apears
-                            requestResult = HttpUtils.requestPrograms(activity, MAHAdsController.urlForProgramList);
-                            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from web, In reattemt case");
+                            requestResult = HttpUtils.requestPrograms(activity, args[1]);
+                            Log.i(Constants.LOG_TAG_MAH_ADS, "Programs red from web, In reattemt case");
                         }
-                        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from local, In version equal case");
+                        Log.i(Constants.LOG_TAG_MAH_ADS, "Programs red from local, In version equal case");
                     } else {
                         //Read from the web if versions are different
-                        requestResult = HttpUtils.requestPrograms(activity, MAHAdsController.urlForProgramList);
-                        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from web, In version different case");
+                        requestResult = HttpUtils.requestPrograms(activity, args[1]);
+                        Log.i(Constants.LOG_TAG_MAH_ADS, "Programs red from web, In version different case");
                     }
                 } catch (IOException e) {
-                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Accept_6");
-                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, " " + e.getMessage());
+                    Log.i(Constants.LOG_TAG_MAH_ADS, "Accept_6");
+                    Log.i(Constants.LOG_TAG_MAH_ADS, " " + e.getMessage());
 
                     //Read from the cache if exception throwns. Fro example network error
                     //requestResult = HttpUtils.jsonToProgramList(Utils.readStringFromCache(activity));
-                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs red from local, In exception case");
+                    Log.i(Constants.LOG_TAG_MAH_ADS, "Programs red from local, In exception case");
                 }
-                Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs count = " + requestResult.getProgramsTotal().size());
+                Log.i(Constants.LOG_TAG_MAH_ADS, "Programs count = " + requestResult.getProgramsTotal().size());
 
-                Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Request Result state" + requestResult.getResultState());
+                Log.i(Constants.LOG_TAG_MAH_ADS, "Request Result state" + requestResult.getResultState());
+
                 Utils.filterMAHRequestResult(activity, requestResult);
-                MAHAdsController.setMahRequestResult(requestResult);
-
                 return requestResult;
             }
 
             @Override
             protected void onPostExecute(MAHRequestResult mahRequestResult) {
                 super.onPostExecute(mahRequestResult);
-                Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "MAHRequestResult isReadFromWeb = " + mahRequestResult.isReadFromWeb());
+                Log.i(Constants.LOG_TAG_MAH_ADS, "MAHRequestResult isReadFromWeb = " + mahRequestResult.isReadFromWeb());
 
 
                 if (mahRequestResult != null) {
 
                     MAHAdsDlgPrograms fragDlgPrograms = (MAHAdsDlgPrograms) activity.getSupportFragmentManager()
-                            .findFragmentByTag(MAHAdsController.TAG_MAH_ADS_DLG_PROGRAMS);
+                            .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_PROGRAMS);
                     if (fragDlgPrograms != null) {
                         fragDlgPrograms.setUI(mahRequestResult, false);
                     }
 
                     MAHAdsDlgExit fragDlgExit = (MAHAdsDlgExit) activity.getSupportFragmentManager()
-                            .findFragmentByTag(MAHAdsController.TAG_MAH_ADS_DLG_EXIT);
+                            .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_EXIT);
                     if (fragDlgExit != null &&
                             mahRequestResult.isReadFromWeb()
                             ) {
                         fragDlgExit.setUi(mahRequestResult);
                     }
                 }
+                mahAdsController.setMahRequestResult(mahRequestResult);
+
 
                 //Setting loading to false
                 loading = false;
-                Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Set loading to = " + loading);
+                Log.i(Constants.LOG_TAG_MAH_ADS, "Set loading to = " + loading);
             }
-        }.execute();
+        }.execute(mahAdsController.urlForProgramVersion, mahAdsController.urlForProgramList);
     }
 }

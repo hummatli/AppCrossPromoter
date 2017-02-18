@@ -34,10 +34,13 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.mobapphome.mahads.mahfragments.MAHDialogFragment;
 import com.mobapphome.mahads.mahfragments.MAHFragmentExeption;
+import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.MAHAdsController;
 import com.mobapphome.mahads.tools.Utils;
+import com.mobapphome.mahads.tools.gui.TextViewFontSetter;
 import com.mobapphome.mahads.types.MAHRequestResult;
 import com.mobapphome.mahads.types.Program;
 import java.util.List;
@@ -56,10 +59,14 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
     TextView tvFresnestProg1 = null;
     TextView tvFresnestProg2 = null;
 
+    List<Program> programsSeleceted;
+    String urlRootOnServer;
+    String fontName;
     boolean btnInfoVisibility;
     boolean btnInfoWithMenu;
     String btnInfoMenuItemTitle;
     String btnInfoActionURL;
+    MAHRequestResult mahRequestResult;
 
 
     public interface MAHAdsDlgExitListener {
@@ -76,12 +83,20 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
         // Empty constructor required for DialogFragment
     }
 
-    public static MAHAdsDlgExit newInstance(boolean btnInfoVisibility,
+    public static MAHAdsDlgExit newInstance(
+            MAHRequestResult mahRequestResult,
+            String urlRootOnServer,
+            String fontName,
+                                            boolean btnInfoVisibility,
                                             boolean btnInfoWithMenu,
                                             String btnInfoMenuItemTitle,
                                             String btnInfoActionURL) {
         MAHAdsDlgExit dialog = new MAHAdsDlgExit();
         Bundle args = new Bundle();
+        Gson gson = new Gson();
+        args.putString("mahRequestResult", gson.toJson(mahRequestResult));
+        args.putString("urlRootOnServer", urlRootOnServer);
+        args.putString("fontName", fontName);
         args.putBoolean("btnInfoVisibility", btnInfoVisibility);
         args.putBoolean("btnInfoWithMenu", btnInfoWithMenu);
         args.putString("btnInfoMenuItemTitle", btnInfoMenuItemTitle);
@@ -94,22 +109,26 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NORMAL, R.style.MAHAdsDlgExit);
-        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Exit dialog greated");
+        Log.i(Constants.LOG_TAG_MAH_ADS, "Exit dialog greated");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         try {
-            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "MAH Ads Dld exit Created ");
+            Log.i(Constants.LOG_TAG_MAH_ADS, "MAH Ads Dld exit Created ");
 
             Bundle args = getArguments();
+            Gson gson = new Gson();
+            mahRequestResult = gson.fromJson(args.getString("mahRequestResult"), MAHRequestResult.class);
+            urlRootOnServer = args.getString("urlRootOnServer");
+            fontName = args.getString("fontName");
             btnInfoVisibility = args.getBoolean("btnInfoVisibility");
             btnInfoWithMenu = args.getBoolean("btnInfoWithMenu");
             btnInfoMenuItemTitle = args.getString("btnInfoMenuItemTitle");
             btnInfoActionURL = args.getString("btnInfoActionURL");
 
-            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "With popInfoMenu" + btnInfoWithMenu);
+            Log.i(Constants.LOG_TAG_MAH_ADS, "With popInfoMenu" + btnInfoWithMenu);
             // This makes sure that the container activity has implemented
             // the callback interface. If not, it throws an exception
             try {
@@ -179,19 +198,19 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
                 }
             });
 
-            setUi(MAHAdsController.getMahRequestResult());
+            setUi(mahRequestResult);
 
-            MAHAdsController.getUpdater().updateProgramList(getActivityMAH());
+            //MAHAdsController.getUpdater().updateProgramList(getActivityMAH());
 
-            MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvTitle));
-            MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvProg1NewText));
-            MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvProg2NewText));
-            MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvProg1NameMAHAdsExtDlg));
-            MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvProg2NameMAHAdsExtDlg));
-            MAHAdsController.setFontTextView(tvAsBtnMore);
-            MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvQuestionTxt));
-            MAHAdsController.setFontTextView(btnYes);
-            MAHAdsController.setFontTextView(btnNo);
+            TextViewFontSetter.setFontTextView((TextView) view.findViewById(R.id.tvTitle), fontName);
+            TextViewFontSetter.setFontTextView((TextView) view.findViewById(R.id.tvProg1NewText), fontName);
+            TextViewFontSetter.setFontTextView((TextView) view.findViewById(R.id.tvProg2NewText), fontName);
+            TextViewFontSetter.setFontTextView((TextView) view.findViewById(R.id.tvProg1NameMAHAdsExtDlg), fontName);
+            TextViewFontSetter.setFontTextView((TextView) view.findViewById(R.id.tvProg2NameMAHAdsExtDlg), fontName);
+            TextViewFontSetter.setFontTextView(tvAsBtnMore, fontName);
+            TextViewFontSetter.setFontTextView((TextView) view.findViewById(R.id.tvQuestionTxt), fontName);
+            TextViewFontSetter.setFontTextView(btnYes, fontName);
+            TextViewFontSetter.setFontTextView(btnNo, fontName);
 
 
             //Minimize the lines of question textview in  languages where question str is longer
@@ -206,7 +225,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
 
             return view;
         } catch (MAHFragmentExeption e) {
-            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, e.getMessage(), e);
+            Log.d(Constants.LOG_TAG_MAH_ADS, e.getMessage(), e);
             return null;
         }
     }
@@ -221,7 +240,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
 
         if (mahRequestResult == null || mahRequestResult.getProgramsSelected() == null || mahRequestResult.getProgramsSelected().size() <= 0) {
 
-            if (mahRequestResult != null && mahRequestResult.getProgramsSelected() == null) {
+            if (mahRequestResult == null && mahRequestResult.getProgramsSelected() == null) {
                 exitCallback.onEventHappened("MAHAdsController programSelected is null");
             }
 
@@ -234,7 +253,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             ((TextView) view.findViewById(R.id.tvProg1NameMAHAdsExtDlg)).setText(prog1.getName());
 
             Glide.with(getContext())
-                    .load(Utils.getUrlOfImage(prog1.getImg()))
+                    .load(Utils.getUrlOfImage(urlRootOnServer, prog1.getImg()))
                     .centerCrop()
                     .placeholder(R.drawable.img_place_holder_normal)
                     .crossFade()
@@ -260,7 +279,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             prog1 = mahRequestResult.getProgramsSelected().get(0);
             ((TextView) view.findViewById(R.id.tvProg1NameMAHAdsExtDlg)).setText(prog1.getName());
             Glide.with(getContext())
-                    .load(Utils.getUrlOfImage(prog1.getImg()))
+                    .load(Utils.getUrlOfImage(urlRootOnServer, prog1.getImg()))
                     .centerCrop()
                     .placeholder(R.drawable.img_place_holder_normal)
                     .crossFade()
@@ -284,7 +303,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             ((TextView) view.findViewById(R.id.tvProg2NameMAHAdsExtDlg)).setText(prog2.getName());
 
             Glide.with(getContext())
-                    .load(Utils.getUrlOfImage(prog2.getImg()))
+                    .load(Utils.getUrlOfImage(urlRootOnServer, prog2.getImg()))
                     .centerCrop()
                     .placeholder(R.drawable.img_place_holder_normal)
                     .crossFade()
@@ -319,7 +338,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             //Some times it shows reappearing dialog on application close
             //There for i call dismiss() and later call for finish()
         } catch (MAHFragmentExeption e) {
-            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, e.getMessage(), e);
+            Log.d(Constants.LOG_TAG_MAH_ADS, e.getMessage(), e);
             return;
         }
     }
@@ -337,7 +356,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
         }catch (ActivityNotFoundException nfe){
             String str = "You haven't set correct url to btnInfoActionURL, your url = " + btnInfoActionURL;
             Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
-            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, str, nfe);
+            Log.d(Constants.LOG_TAG_MAH_ADS, str, nfe);
         }
     }
 
@@ -346,7 +365,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             if (Utils.checkPackageIfExists(getActivityMAH(), pckgName)) {
                 PackageManager pack = getActivityMAH().getPackageManager();
                 Intent app = pack.getLaunchIntentForPackage(pckgName);
-                app.putExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, true);
+                app.putExtra(Constants.MAH_ADS_INTERNAL_CALLED, true);
                 getContext().startActivity(app);
             } else {
                 if (!pckgName.isEmpty()) {
@@ -354,7 +373,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
                 }
             }
         } catch (MAHFragmentExeption e) {
-            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, e.getMessage(), e);
+            Log.d(Constants.LOG_TAG_MAH_ADS, e.getMessage(), e);
             return;
         }
     }
@@ -390,14 +409,16 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             } else if (v.getId() == R.id.mah_ads_dlg_exit_btn_no) {
                 onNo();
             } else if (v.getId() == R.id.mah_ads_dlg_exit_lyt_btn_other) {
-                MAHAdsController.callProgramsDialog(getActivityMAH(), btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL);
+                MAHAdsController.showDlg(getActivityMAH(),
+                        MAHAdsDlgPrograms.newInstance(mahRequestResult, urlRootOnServer, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
+                        Constants.TAG_MAH_ADS_DLG_PROGRAMS);
             } else if (v.getId() == R.id.lytProg1MAHAdsExtDlg && prog1 != null) {
                 openAppOrMarketAcitivity(prog1.getUri().trim());
             } else if (v.getId() == R.id.lytProg2MAHAdsExtDlg && prog2 != null) {
                 openAppOrMarketAcitivity(prog2.getUri().trim());
             }
         } catch (MAHFragmentExeption e) {
-            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, e.getMessage(), e);
+            Log.d(Constants.LOG_TAG_MAH_ADS, e.getMessage(), e);
             return;
         }
     }

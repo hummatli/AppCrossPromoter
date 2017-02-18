@@ -3,6 +3,7 @@ package com.mobapphome.mahads.tools;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -37,12 +38,12 @@ public class Utils {
         FileOutputStream outputStream;
 
         try {
-            outputStream = context.openFileOutput(MAHAdsController.PROGRAM_LIST_CACHE, Context.MODE_PRIVATE);
+            outputStream = context.openFileOutput(Constants.PROGRAM_LIST_CACHE, Context.MODE_PRIVATE);
             outputStream.write(stringToCache.getBytes());
             outputStream.close();
         } catch (Exception e) {
             //e.printStackTrace();
-            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, "IOexception = " + e.getMessage(), e);
+            Log.d(Constants.LOG_TAG_MAH_ADS, "IOexception = " + e.getMessage(), e);
         }
     }
 
@@ -50,7 +51,7 @@ public class Utils {
         FileInputStream inputStream;
 
         try {
-            inputStream = context.openFileInput(MAHAdsController.PROGRAM_LIST_CACHE);
+            inputStream = context.openFileInput(Constants.PROGRAM_LIST_CACHE);
 
             BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder total = new StringBuilder();
@@ -61,24 +62,24 @@ public class Utils {
             inputStream.close();
             return total.toString();
         } catch (Exception e) {
-            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, "IOexception = " +e.getMessage(), e);
+            Log.d(Constants.LOG_TAG_MAH_ADS, "IOexception = " +e.getMessage(), e);
             //e.printStackTrace();
         }
         return null;
     }
 
     public static int getVersionFromLocal(Context context) {
-        int ret = MAHAdsController.getSharedPref(context).getInt(Constants.MAH_ADS_VERSION, -1);
+        int ret = getSharedPref(context).getInt(Constants.MAH_ADS_VERSION, -1);
         return ret;
     }
 
 
-    public static String getUrlOfImage(String initialUrlForImage) {
+    public static String getUrlOfImage(String urlRootOnServer, String initialUrlForImage) {
         if (initialUrlForImage.startsWith("http://") ||
                 initialUrlForImage.startsWith("https://")) {
             return initialUrlForImage;
         } else {
-            return MAHAdsController.urlRootOnServer + initialUrlForImage;
+            return urlRootOnServer + initialUrlForImage;
         }
     }
 
@@ -95,7 +96,7 @@ public class Utils {
             context.startActivity(marketIntent);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(context, context.getString(R.string.mah_ads_play_service_not_found), Toast.LENGTH_LONG).show();
-            Log.e(MAHAdsController.LOG_TAG_MAH_ADS, context.getString(R.string.mah_ads_play_service_not_found) + e.getMessage());
+            Log.e(Constants.LOG_TAG_MAH_ADS, context.getString(R.string.mah_ads_play_service_not_found) + e.getMessage());
         }
     }
 
@@ -152,12 +153,14 @@ public class Utils {
 
             return requestResult;
         }else{
-            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs total is null");
+            Log.i(Constants.LOG_TAG_MAH_ADS, "Programs total is null");
             return requestResult;
         }
     }
 
-
+    public static SharedPreferences getSharedPref(Context context) {
+        return context.getSharedPreferences("MAH_ADS", Context.MODE_PRIVATE);
+    }
 
 }
 
