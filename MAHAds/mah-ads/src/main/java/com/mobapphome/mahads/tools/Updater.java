@@ -4,22 +4,18 @@ import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import com.mobapphome.mahads.MAHAdsController;
 import com.mobapphome.mahads.MAHAdsDlgExit;
 import com.mobapphome.mahads.MAHAdsDlgPrograms;
 import com.mobapphome.mahads.types.MAHRequestResult;
+import com.mobapphome.mahads.types.Urls;
 
 import java.io.IOException;
 
 public class Updater {
-    public boolean loading = false;
-    MAHAdsController mahAdsController;
+    static private boolean loading = false;
 
-
-    public Updater(MAHAdsController mahAdsController){
-        this.mahAdsController = mahAdsController;
-    }
-
-    public void updateProgramList(final FragmentActivity activity) {
+    static public void updateProgramList(final FragmentActivity activity, Urls urls) {
         Log.i(Constants.LOG_TAG_MAH_ADS, "Update info called , loading = " + loading);
         if (loading) {
             Log.i(Constants.LOG_TAG_MAH_ADS, "Accept_3");
@@ -108,13 +104,14 @@ public class Updater {
                         fragDlgExit.setUi(mahRequestResult);
                     }
                 }
-                mahAdsController.setMahRequestResult(mahRequestResult);
 
+
+                MAHAdsController.setMahRequestResult(mahRequestResult);
 
                 //Setting loading to false
                 loading = false;
                 Log.i(Constants.LOG_TAG_MAH_ADS, "Set loading to = " + loading);
             }
-        }.execute(mahAdsController.urlForProgramVersion, mahAdsController.urlForProgramList);
+        }.execute(urls.getUrlForProgramVersion(), urls.getUrlForProgramList());
     }
 }

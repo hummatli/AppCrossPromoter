@@ -34,7 +34,7 @@ public class Utils {
         }
     }
 
-    public static void writeStringToCache(final Context context, String stringToCache) {
+    static void writeStringToCache(final Context context, String stringToCache) {
         FileOutputStream outputStream;
 
         try {
@@ -47,7 +47,7 @@ public class Utils {
         }
     }
 
-    public static String readStringFromCache(final Context context) {
+    static String readStringFromCache(final Context context) {
         FileInputStream inputStream;
 
         try {
@@ -68,9 +68,8 @@ public class Utils {
         return null;
     }
 
-    public static int getVersionFromLocal(Context context) {
-        int ret = getSharedPref(context).getInt(Constants.MAH_ADS_VERSION, -1);
-        return ret;
+    static int getVersionFromLocal(Context context) {
+        return getSharedPref(context).getInt(Constants.MAH_ADS_VERSION, -1);
     }
 
 
@@ -85,8 +84,7 @@ public class Utils {
 
 
     public static String getRootFromUrl(String urlStr) {
-        String rootStr = urlStr.substring(0, urlStr.lastIndexOf('/') + 1);
-        return rootStr;
+        return urlStr.substring(0, urlStr.lastIndexOf('/') + 1);
     }
 
     static public void showMarket(Context context, String pckgName){
@@ -115,7 +113,7 @@ public class Utils {
         }
     }
 
-    public static MAHRequestResult filterMAHRequestResult(final Context context, MAHRequestResult requestResult) {
+    static MAHRequestResult filterMAHRequestResult(final Context context, MAHRequestResult requestResult) {
 
         List<Program> programsTotal = requestResult.getProgramsTotal();
         if (programsTotal != null) {
@@ -158,7 +156,7 @@ public class Utils {
         }
     }
 
-    public static SharedPreferences getSharedPref(Context context) {
+    static SharedPreferences getSharedPref(Context context) {
         return context.getSharedPreferences("MAH_ADS", Context.MODE_PRIVATE);
     }
 

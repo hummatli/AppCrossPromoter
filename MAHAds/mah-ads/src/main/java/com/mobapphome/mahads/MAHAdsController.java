@@ -1,8 +1,5 @@
-package com.mobapphome.mahads.tools;
+package com.mobapphome.mahads;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -10,25 +7,18 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.widget.TextView;
 
-import com.mobapphome.mahads.MAHAdsDlgExit;
-import com.mobapphome.mahads.MAHAdsDlgPrograms;
-import com.mobapphome.mahads.R;
+import com.mobapphome.mahads.tools.Constants;
+import com.mobapphome.mahads.tools.Updater;
+import com.mobapphome.mahads.tools.Utils;
 import com.mobapphome.mahads.types.MAHRequestResult;
-import com.mobapphome.mahads.types.Program;
-
-import java.util.List;
+import com.mobapphome.mahads.types.Urls;
 
 public class MAHAdsController {
-	public String urlForProgramVersion;
-	public String urlForProgramList;
-	public String urlRootOnServer;
+	private Urls urls;
 	private boolean internalCalled = false;
 	private String fontName = null;
-
-	public MAHRequestResult mahRequestResult;
-	private Updater updater;
+	private static MAHRequestResult mahRequestResult;
 
 	/**
 	 * Initializes MAHAds library
@@ -66,25 +56,14 @@ public class MAHAdsController {
 	public void init(@NonNull final FragmentActivity activity,
 					 @NonNull String urlForProgramVersion,
 					 @NonNull String urlForProgramList) {
-		this.urlForProgramVersion = urlForProgramVersion;
-		this.urlForProgramList = urlForProgramList;
-		this.urlRootOnServer = Utils.getRootFromUrl(urlForProgramList);
 
+		urls = new Urls(urlForProgramVersion, urlForProgramList, Utils.getRootFromUrl(urlForProgramList));
 		setInternalCalled(activity.getIntent().getBooleanExtra(Constants.MAH_ADS_INTERNAL_CALLED, false));
 
-		getUpdater().updateProgramList(activity);
+
+		Updater.updateProgramList(activity, urls);
 	}
 
-	/**
-	 * Gets static updater object created in init method or creates new one if is null
-	 * @return updater object
-     */
-	public Updater getUpdater() {
-		if(updater == null){
-			updater = new Updater(this);
-		}
-		return updater;
-	}
 
 	/**
 	 * Calls ExitDialog to open. If current dialog has opened through MAHAds dialogs
@@ -136,7 +115,7 @@ public class MAHAdsController {
 			}
 		}else{
 			showDlg(activity,
-					MAHAdsDlgExit.newInstance(mahRequestResult, urlRootOnServer, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
+					MAHAdsDlgExit.newInstance(mahRequestResult, urls, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
 					Constants.TAG_MAH_ADS_DLG_EXIT);
 		}
 	}
@@ -175,11 +154,11 @@ public class MAHAdsController {
 										  String btnInfoMenuItemTitle,
 										  @NonNull String btnInfoActionURL) {
 		showDlg(activity,
-				MAHAdsDlgPrograms.newInstance(mahRequestResult, urlRootOnServer, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
+				MAHAdsDlgPrograms.newInstance(mahRequestResult, urls, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
 				Constants.TAG_MAH_ADS_DLG_PROGRAMS);
 	}
 
-	public static void showDlg(FragmentActivity activity, Fragment frag, String fragTag) {
+	static void showDlg(FragmentActivity activity, Fragment frag, String fragTag) {
 
 		if (!activity.isFinishing()) {
 			FragmentManager fragmentManager = activity.getSupportFragmentManager();
@@ -211,11 +190,7 @@ public class MAHAdsController {
 		this.internalCalled = internalCalled;
 	}
 
-	public MAHRequestResult getMahRequestResult() {
-		return mahRequestResult;
-	}
-
-	public void setMahRequestResult(MAHRequestResult mahRequestResult) {
-		this.mahRequestResult = mahRequestResult;
+	public static void setMahRequestResult(MAHRequestResult mahRequestResult) {
+		MAHAdsController.mahRequestResult = mahRequestResult;
 	}
 }

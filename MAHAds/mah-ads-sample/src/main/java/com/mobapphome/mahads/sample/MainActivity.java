@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.mobapphome.mahads.MAHAdsDlgExit;
 import com.mobapphome.mahads.tools.Constants;
-import com.mobapphome.mahads.tools.MAHAdsController;
+import com.mobapphome.mahads.MAHAdsController;
 
 import java.util.ArrayList;
 import java.util.Arrays;

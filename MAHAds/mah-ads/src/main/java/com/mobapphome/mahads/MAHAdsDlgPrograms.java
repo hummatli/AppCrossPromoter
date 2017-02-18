@@ -36,10 +36,11 @@ import com.google.gson.Gson;
 import com.mobapphome.mahads.mahfragments.MAHDialogFragment;
 import com.mobapphome.mahads.mahfragments.MAHFragmentExeption;
 import com.mobapphome.mahads.tools.Constants;
-import com.mobapphome.mahads.tools.MAHAdsController;
-import com.mobapphome.mahads.tools.gui.TextViewFontSetter;
+import com.mobapphome.mahads.tools.Updater;
+import com.mobapphome.mahads.mahfragments.TextViewFontSetter;
 import com.mobapphome.mahads.types.MAHRequestResult;
 import com.mobapphome.mahads.types.Program;
+import com.mobapphome.mahads.types.Urls;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -58,7 +59,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
     List<Object> items;
 
     MAHRequestResult mahRequestResult;
-    String urlRootOnServer;
+    Urls urls;
     String fontName;
     boolean btnInfoVisibility;
     boolean btnInfoWithMenu;
@@ -72,7 +73,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
 
     public static MAHAdsDlgPrograms newInstance(
             MAHRequestResult mahRequestResult,
-            String urlRootOnServer,
+            Urls urls,
             String fontName,boolean btnInfoVisibility,
                                                 boolean btnInfoWithMenu,
                                                 String btnInfoMenuItemTitle,
@@ -81,7 +82,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
         Bundle args = new Bundle();
         Gson gson = new Gson();
         args.putString("mahRequestResult", gson.toJson(mahRequestResult));
-        args.putString("urlRootOnServer", urlRootOnServer);
+        args.putString("urls", gson.toJson(urls));
         args.putString("fontName", fontName);
         args.putBoolean("btnInfoVisibility", btnInfoVisibility);
         args.putBoolean("btnInfoWithMenu", btnInfoWithMenu);
@@ -100,13 +101,13 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //try {
+        try {
             Log.i(Constants.LOG_TAG_MAH_ADS, "MAH Ads Programs Dlg Created ");
 
             Bundle args = getArguments();
             Gson gson = new Gson();
             mahRequestResult = gson.fromJson(args.getString("mahRequestResult"), MAHRequestResult.class);
-            urlRootOnServer = args.getString("urlRootOnServer");
+            urls = gson.fromJson(args.getString("urls"), Urls.class);
             fontName = args.getString("fontName");
             btnInfoVisibility = args.getBoolean("btnInfoVisibility");
             btnInfoWithMenu = args.getBoolean("btnInfoWithMenu");
@@ -168,16 +169,16 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
             setUI(mahRequestResult, true);
 
             //Call to update data from service or local
-            //MAHAdsController.getUpdater().updateProgramList(getActivityMAH());
+            Updater.updateProgramList(getActivityMAH(), urls);
 
             TextViewFontSetter.setFontTextView((TextView) view.findViewById(R.id.tvTitle), fontName);
             TextViewFontSetter.setFontTextView(tvErrorResultF1, fontName);
             TextViewFontSetter.setFontTextView((TextView) view.findViewById(R.id.btnErrorRefreshMAHAds), fontName);
             return view;
-//        } catch (MAHFragmentExeption e) {
-//            Log.d(Constants.LOG_TAG_MAH_ADS, e.getMessage(), e);
-//            return null;
-//        }
+        } catch (MAHFragmentExeption e) {
+            Log.d(Constants.LOG_TAG_MAH_ADS, e.getMessage(), e);
+            return null;
+        }
     }
 
     public void setUI(final MAHRequestResult result, boolean firstTime) {
@@ -192,7 +193,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
             for (Program c : programsExceptMyself) {
                 items.add(c);
             }
-            final ProgramItmAdptPrograms adapterInit = new ProgramItmAdptPrograms(getContext(), items, urlRootOnServer, fontName);
+            final ProgramItmAdptPrograms adapterInit = new ProgramItmAdptPrograms(getContext(), items, urls.getUrlRootOnServer(), fontName);
 
             lstProgram.post(new Runnable() {
                 @Override
@@ -278,7 +279,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
 
     @Override
     public void onClick(View v) {
-       // try {
+        try {
             if (v.getId() == R.id.mah_ads_dlg_programs_btnCancel
                     || v.getId() == R.id.mah_ads_dlg_programs_btn_close) {
                 onClose();
@@ -304,11 +305,11 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
                     showMAHlib();
                 }
             } else if (v.getId() == R.id.btnErrorRefreshMAHAds) {
-                //MAHAdsController.getUpdater().updateProgramList(getActivityMAH());
+                Updater.updateProgramList(getActivityMAH(), urls);
             }
-//        } catch (MAHFragmentExeption e) {
-//            Log.d(Constants.LOG_TAG_MAH_ADS, e.getMessage(), e);
-//            return;
-//        }
+        } catch (MAHFragmentExeption e) {
+            Log.d(Constants.LOG_TAG_MAH_ADS, e.getMessage(), e);
+            return;
+        }
     }
 }

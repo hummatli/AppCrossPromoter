@@ -23,12 +23,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.Utils;
-import com.mobapphome.mahads.tools.gui.TextViewFontSetter;
+import com.mobapphome.mahads.mahfragments.TextViewFontSetter;
 import com.mobapphome.mahads.types.Program;
 
 import java.util.List;
 
-public class ProgramItmAdptPrograms extends BaseAdapter implements
+class ProgramItmAdptPrograms extends BaseAdapter implements
         View.OnClickListener {
 
     private final String TAG = ProgramItmAdptPrograms.class.getName();
