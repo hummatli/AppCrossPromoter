@@ -296,6 +296,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
                 tvFresnestProg1.setAnimation(animRotate);
                 tvFresnestProg1.setVisibility(View.VISIBLE);
             } else {
+                tvFresnestProg1.clearAnimation();
                 tvFresnestProg1.setVisibility(View.GONE);
             }
 
@@ -319,12 +320,14 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
                 tvFresnestProg2.setAnimation(animRotate);
                 tvFresnestProg2.setVisibility(View.VISIBLE);
             } else {
+                tvFresnestProg2.clearAnimation();
                 tvFresnestProg2.setVisibility(View.GONE);
             }
 
             lytProg1MAHAdsExtDlg.setOnClickListener(MAHAdsDlgExit.this);
             lytProg2MAHAdsExtDlg.setOnClickListener(MAHAdsDlgExit.this);
             tvAsBtnMore.setText(view.getResources().getString(R.string.mah_ads_dlg_exit_btn_more_txt_2));
+            //Log.i(Constants.LOG_TAG_MAH_ADS, "freshnestStr1 = " + freshnestStr + " freshnestStr2 = " + freshnestStr2);
         }
     }
 
@@ -420,6 +423,14 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
         } catch (MAHFragmentExeption e) {
             Log.d(Constants.LOG_TAG_MAH_ADS, e.getMessage(), e);
             return;
+        }
+    }
+
+    public boolean isProgramsPanelVisible(){
+        if(lytProgsPanel.getVisibility() == View.VISIBLE){
+            return true;
+        }else {
+            return false;
         }
     }
 }

@@ -26,7 +26,7 @@ public class Updater {
         MAHAdsDlgPrograms fragDlgPrograms = (MAHAdsDlgPrograms) activity.getSupportFragmentManager()
                 .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_PROGRAMS);
 
-        if (fragDlgPrograms != null) {
+        if (fragDlgPrograms != null && fragDlgPrograms.isVisible()) {
             fragDlgPrograms.startLoading();
         }
 
@@ -41,6 +41,10 @@ public class Updater {
 
                 //Read from cache
                 MAHRequestResult requestResult = HttpUtils.jsonToProgramList(Utils.readStringFromCache(activity));
+                //Here we filter and set MAHAdsController for first time from cache
+                Utils.filterMAHRequestResult(activity, requestResult);
+                MAHAdsController.setMahRequestResult(requestResult);
+
 
                 try {
                     int myVersion = Utils.getVersionFromLocal(activity);
@@ -66,19 +70,17 @@ public class Updater {
                         requestResult = HttpUtils.requestPrograms(activity, args[1]);
                         Log.i(Constants.LOG_TAG_MAH_ADS, "Programs red from web, In version different case");
                     }
+                    //In this place we filter mahrequest from web
+                    Utils.filterMAHRequestResult(activity, requestResult);
                 } catch (IOException e) {
                     Log.i(Constants.LOG_TAG_MAH_ADS, "Accept_6");
                     Log.i(Constants.LOG_TAG_MAH_ADS, " " + e.getMessage());
-
-                    //Read from the cache if exception throwns. Fro example network error
-                    //requestResult = HttpUtils.jsonToProgramList(Utils.readStringFromCache(activity));
                     Log.i(Constants.LOG_TAG_MAH_ADS, "Programs red from local, In exception case");
                 }
                 Log.i(Constants.LOG_TAG_MAH_ADS, "Programs count = " + requestResult.getProgramsTotal().size());
 
                 Log.i(Constants.LOG_TAG_MAH_ADS, "Request Result state" + requestResult.getResultState());
 
-                Utils.filterMAHRequestResult(activity, requestResult);
                 return requestResult;
             }
 
@@ -99,13 +101,13 @@ public class Updater {
                     MAHAdsDlgExit fragDlgExit = (MAHAdsDlgExit) activity.getSupportFragmentManager()
                             .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_EXIT);
                     if (fragDlgExit != null
-                            //&& mahRequestResult.isReadFromWeb()
-                            ) {
+                            && (mahRequestResult.isReadFromWeb() || !fragDlgExit.isProgramsPanelVisible())) {
                         fragDlgExit.setUi(mahRequestResult);
                     }
                 }
 
 
+                //In this place we set MAHAdsController's mahrequest from web
                 MAHAdsController.setMahRequestResult(mahRequestResult);
 
                 //Setting loading to false

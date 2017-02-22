@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -109,10 +110,16 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
 
         // For MAHAds init
         // METHOD 1
-        mahAdsController = new MAHAdsController();
-        mahAdsController.init(this, "https://project-943403214286171762.firebaseapp.com/mah_ads_dir/",
+        mahAdsController = MAHAdsController.getInstance();
+        mahAdsController.init(this, savedInstanceState, "https://project-943403214286171762.firebaseapp.com/mah_ads_dir/",
                 "github_apps_prg_version.json", "github_apps_prg_list.json");
         // METHOD 1
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mahAdsController.onSaveInstanceState(outState);
     }
 
     @Override

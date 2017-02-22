@@ -1,5 +1,6 @@
 package com.mobapphome.mahads;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -8,17 +9,37 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.Updater;
 import com.mobapphome.mahads.tools.Utils;
 import com.mobapphome.mahads.types.MAHRequestResult;
 import com.mobapphome.mahads.types.Urls;
 
+
 public class MAHAdsController {
+	private static MAHAdsController instance = null;
+	private static MAHRequestResult mahRequestResult; //This variable saves in savedInstanceState
+
+
 	private Urls urls;
 	private boolean internalCalled = false;
-	private String fontName = null;
-	private static MAHRequestResult mahRequestResult;
+	private String fontName = null;//This variable saves in savedInstanceState
+
+
+	protected MAHAdsController() {
+	}
+
+	/**
+	 * Creates and returns MAHAdsController object if there is not
+	 * @return new insatnce of MAHAdsController
+     */
+	public static MAHAdsController getInstance() {
+		if(instance == null) {
+			instance = new MAHAdsController();
+		}
+		return instance;
+	}
 
 	/**
 	 * Initializes MAHAds library
@@ -29,8 +50,9 @@ public class MAHAdsController {
      */
 	@Deprecated
 	public void init(@NonNull final FragmentActivity activity,
+					 Bundle savedInstanceState,
 					 @NonNull String urlRootOnServer) {
-		init(activity, urlRootOnServer, "program_version.php", "program_list.php");
+		init(activity, savedInstanceState, urlRootOnServer, "program_version.php", "program_list.php");
 	}
 
 	/**
@@ -41,10 +63,11 @@ public class MAHAdsController {
 	 * @param urlForProgramListUrlEnd Url end for program list
 	 */
 	public void init(@NonNull final FragmentActivity activity,
+					 Bundle savedInstanceState,
 					 @NonNull String urlRootOnServer,
 					 @NonNull String programVersionUrlEnd,
 					 @NonNull String urlForProgramListUrlEnd) {
-		init(activity, urlRootOnServer + programVersionUrlEnd, urlRootOnServer + urlForProgramListUrlEnd);
+		init(activity, savedInstanceState, urlRootOnServer + programVersionUrlEnd, urlRootOnServer + urlForProgramListUrlEnd);
 	}
 
 	/**
@@ -54,16 +77,33 @@ public class MAHAdsController {
 	 * @param urlForProgramList Url for program list. In this case: urlRootOnServer will be set to the root of urlForProgramList
 	 */
 	public void init(@NonNull final FragmentActivity activity,
+					 Bundle savedInstanceState,
 					 @NonNull String urlForProgramVersion,
 					 @NonNull String urlForProgramList) {
 
 		urls = new Urls(urlForProgramVersion, urlForProgramList, Utils.getRootFromUrl(urlForProgramList));
 		setInternalCalled(activity.getIntent().getBooleanExtra(Constants.MAH_ADS_INTERNAL_CALLED, false));
 
+		if (savedInstanceState != null) {
+			Gson gson = new Gson();
+			mahRequestResult = gson.fromJson(savedInstanceState.getString("mahRequestResult"), MAHRequestResult.class);
+			fontName = savedInstanceState.getString("fontName");
+
+			if(mahRequestResult != null){
+				//If mahRequestResult is exists in savedInstanceState then don't need do request service again. return;
+				return;
+			}
+		}
 
 		Updater.updateProgramList(activity, urls);
 	}
 
+
+	public void onSaveInstanceState(Bundle savedInstanceState){
+		Gson gson = new Gson();
+		savedInstanceState.putString("mahRequestResult", gson.toJson(mahRequestResult));
+		savedInstanceState.putString("fontName", fontName);
+	}
 
 	/**
 	 * Calls ExitDialog to open. If current dialog has opened through MAHAds dialogs
