@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.mobapphome.mahads.mahfragments.MAHDialogFragment;
 import com.mobapphome.mahads.mahfragments.MAHFragmentExeption;
@@ -254,6 +255,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
 
             Glide.with(getContext())
                     .load(Utils.getUrlOfImage(urls.getUrlRootOnServer(), prog1.getImg()))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
                     .placeholder(R.drawable.img_place_holder_normal)
                     .crossFade()
@@ -280,6 +282,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             ((TextView) view.findViewById(R.id.tvProg1NameMAHAdsExtDlg)).setText(prog1.getName());
             Glide.with(getContext())
                     .load(Utils.getUrlOfImage(urls.getUrlRootOnServer(), prog1.getImg()))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
                     .placeholder(R.drawable.img_place_holder_normal)
                     .crossFade()
@@ -305,6 +308,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
 
             Glide.with(getContext())
                     .load(Utils.getUrlOfImage(urls.getUrlRootOnServer(), prog2.getImg()))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
                     .placeholder(R.drawable.img_place_holder_normal)
                     .crossFade()

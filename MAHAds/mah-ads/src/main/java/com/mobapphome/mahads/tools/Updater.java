@@ -26,7 +26,9 @@ public class Updater {
         MAHAdsDlgPrograms fragDlgPrograms = (MAHAdsDlgPrograms) activity.getSupportFragmentManager()
                 .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_PROGRAMS);
 
-        if (fragDlgPrograms != null && fragDlgPrograms.isVisible()) {
+        if (fragDlgPrograms != null
+                && fragDlgPrograms.isVisible()
+                && !fragDlgPrograms.isRemoving()) {
             fragDlgPrograms.startLoading();
         }
 

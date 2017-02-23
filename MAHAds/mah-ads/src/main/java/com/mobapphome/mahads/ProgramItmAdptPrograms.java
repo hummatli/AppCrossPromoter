@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.Utils;
 import com.mobapphome.mahads.mahfragments.TextViewFontSetter;
@@ -123,6 +124,7 @@ class ProgramItmAdptPrograms extends BaseAdapter implements
 
             Glide.with(vi.getContext())
                     .load(Utils.getUrlOfImage(urlRootOnServer, currProgram.getImg()))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
                     .placeholder(R.drawable.img_place_holder_normal)
                     .crossFade()
