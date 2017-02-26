@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -19,7 +20,7 @@ import android.widget.Toast;
 
 import com.mobapphome.mahads.MAHAdsDlgExit;
 import com.mobapphome.mahads.tools.Constants;
-import com.mobapphome.mahads.tools.MAHAdsController;
+import com.mobapphome.mahads.MAHAdsController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +29,7 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAHAdsDlgExitListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     final public static String LOG_TAG_MAH_ADS_SAMPLE = "mah_ads_sample_log";
+    MAHAdsController mahAdsController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,9 +110,16 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
 
         // For MAHAds init
         // METHOD 1
-        MAHAdsController.init(this, "https://project-943403214286171762.firebaseapp.com/mah_ads_dir/",
+        mahAdsController = MAHAdsController.getInstance();
+        mahAdsController.init(this, savedInstanceState, "https://project-943403214286171762.firebaseapp.com/mah_ads_dir/",
                 "github_apps_prg_version.json", "github_apps_prg_list.json");
         // METHOD 1
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mahAdsController.onSaveInstanceState(outState);
     }
 
     @Override
@@ -131,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
         } else if (id == R.id.action_mahads) {
             // For MAHAds programs dialog
             //METHOD 3
-            MAHAdsController.callProgramsDialog(this);
+            mahAdsController.callProgramsDialog(this);
             //METHOD 3
             return true;
         }
@@ -146,12 +155,12 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
         if (view.getId() == R.id.mahBtnProgramsDlgTest) {
             // For MAHAds programs dialog
             //METHOD 3
-            MAHAdsController.callProgramsDialog(this);
+            mahAdsController.callProgramsDialog(this);
             //METHOD 3
         } else if (view.getId() == R.id.mahBtnExitDlgTest) {
             // For MAHAds exit
             //METHOD 2
-            MAHAdsController.callExitDialog(this);
+            mahAdsController.callExitDialog(this);
             //METHOD 2
         } else if (view.getId() == R.id.ivMAHForkMeOnGithub) {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.MAH_ADS_GITHUB_LINK));
@@ -222,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements MAHAdsDlgExit.MAH
     public void onBackPressed() {
         // For MAHAds exit
         //METHOD 2
-        MAHAdsController.callExitDialog(this);
+        mahAdsController.callExitDialog(this);
         //METHOD 2
     }
 }

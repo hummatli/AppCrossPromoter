@@ -3,6 +3,7 @@ package com.mobapphome.mahads.tools;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -33,24 +34,24 @@ public class Utils {
         }
     }
 
-    public static void writeStringToCache(final Context context, String stringToCache) {
+    static void writeStringToCache(final Context context, String stringToCache) {
         FileOutputStream outputStream;
 
         try {
-            outputStream = context.openFileOutput(MAHAdsController.PROGRAM_LIST_CACHE, Context.MODE_PRIVATE);
+            outputStream = context.openFileOutput(Constants.PROGRAM_LIST_CACHE, Context.MODE_PRIVATE);
             outputStream.write(stringToCache.getBytes());
             outputStream.close();
         } catch (Exception e) {
             //e.printStackTrace();
-            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, "IOexception = " + e.getMessage(), e);
+            Log.d(Constants.LOG_TAG_MAH_ADS, "IOexception = " + e.getMessage(), e);
         }
     }
 
-    public static String readStringFromCache(final Context context) {
+    static String readStringFromCache(final Context context) {
         FileInputStream inputStream;
 
         try {
-            inputStream = context.openFileInput(MAHAdsController.PROGRAM_LIST_CACHE);
+            inputStream = context.openFileInput(Constants.PROGRAM_LIST_CACHE);
 
             BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder total = new StringBuilder();
@@ -61,31 +62,29 @@ public class Utils {
             inputStream.close();
             return total.toString();
         } catch (Exception e) {
-            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, "IOexception = " +e.getMessage(), e);
+            Log.d(Constants.LOG_TAG_MAH_ADS, "IOexception = " +e.getMessage(), e);
             //e.printStackTrace();
         }
         return null;
     }
 
-    public static int getVersionFromLocal(Context context) {
-        int ret = MAHAdsController.getSharedPref(context).getInt(Constants.MAH_ADS_VERSION, -1);
-        return ret;
+    static int getVersionFromLocal(Context context) {
+        return getSharedPref(context).getInt(Constants.MAH_ADS_VERSION, -1);
     }
 
 
-    public static String getUrlOfImage(String initialUrlForImage) {
+    public static String getUrlOfImage(String urlRootOnServer, String initialUrlForImage) {
         if (initialUrlForImage.startsWith("http://") ||
                 initialUrlForImage.startsWith("https://")) {
             return initialUrlForImage;
         } else {
-            return MAHAdsController.urlRootOnServer + initialUrlForImage;
+            return urlRootOnServer + initialUrlForImage;
         }
     }
 
 
     public static String getRootFromUrl(String urlStr) {
-        String rootStr = urlStr.substring(0, urlStr.lastIndexOf('/') + 1);
-        return rootStr;
+        return urlStr.substring(0, urlStr.lastIndexOf('/') + 1);
     }
 
     static public void showMarket(Context context, String pckgName){
@@ -95,7 +94,7 @@ public class Utils {
             context.startActivity(marketIntent);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(context, context.getString(R.string.mah_ads_play_service_not_found), Toast.LENGTH_LONG).show();
-            Log.e(MAHAdsController.LOG_TAG_MAH_ADS, context.getString(R.string.mah_ads_play_service_not_found) + e.getMessage());
+            Log.e(Constants.LOG_TAG_MAH_ADS, context.getString(R.string.mah_ads_play_service_not_found) + e.getMessage());
         }
     }
 
@@ -114,7 +113,7 @@ public class Utils {
         }
     }
 
-    public static MAHRequestResult filterMAHRequestResult(final Context context, MAHRequestResult requestResult) {
+    static MAHRequestResult filterMAHRequestResult(final Context context, MAHRequestResult requestResult) {
 
         List<Program> programsTotal = requestResult.getProgramsTotal();
         if (programsTotal != null) {
@@ -152,12 +151,14 @@ public class Utils {
 
             return requestResult;
         }else{
-            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Programs total is null");
+            Log.i(Constants.LOG_TAG_MAH_ADS, "Programs total is null");
             return requestResult;
         }
     }
 
-
+    static SharedPreferences getSharedPref(Context context) {
+        return context.getSharedPreferences("MAH_ADS", Context.MODE_PRIVATE);
+    }
 
 }
 

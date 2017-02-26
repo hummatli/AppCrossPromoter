@@ -21,23 +21,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.mobapphome.mahads.tools.MAHAdsController;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.mobapphome.mahads.tools.Constants;
 import com.mobapphome.mahads.tools.Utils;
+import com.mobapphome.mahads.mahfragments.TextViewFontSetter;
 import com.mobapphome.mahads.types.Program;
 
 import java.util.List;
 
-public class ProgramItmAdptPrograms extends BaseAdapter implements
+class ProgramItmAdptPrograms extends BaseAdapter implements
         View.OnClickListener {
 
     private final String TAG = ProgramItmAdptPrograms.class.getName();
     private List<Object> items;
     private static LayoutInflater inflater = null;
+    String urlRootOnServer;
+    String fontName;
 
 
-    public ProgramItmAdptPrograms(Context context, List<Object> items) {
+    public ProgramItmAdptPrograms(Context context, List<Object> items, String urlRootOnServer,
+                                  String fontName) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.items = items;
+        this.urlRootOnServer = urlRootOnServer;
+        this.fontName = fontName;
     }
 
     public int getCount() {
@@ -72,7 +79,7 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
                     if (Utils.checkPackageIfExists(vi.getContext(), pckgName)) {
                         PackageManager pack = vi.getContext().getPackageManager();
                         Intent app = pack.getLaunchIntentForPackage(pckgName);
-                        app.putExtra(MAHAdsController.MAH_ADS_INTERNAL_CALLED, true);
+                        app.putExtra(Constants.MAH_ADS_INTERNAL_CALLED, true);
                         vi.getContext().startActivity(app);
                     } else {
                         if (!pckgName.isEmpty()) {
@@ -110,13 +117,14 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
             nameTV.setText(currProgram.getName());
             descTV.setText(currProgram.getDesc());
 
-            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, Utils.getUrlOfImage(currProgram.getImg()));
+            Log.i(Constants.LOG_TAG_MAH_ADS, Utils.getUrlOfImage(urlRootOnServer, currProgram.getImg()));
 
             Drawable imgNotFoundDrawable = ContextCompat.getDrawable(inflater.getContext(), R.drawable.img_not_found);
             imgNotFoundDrawable.setColorFilter(ContextCompat.getColor(inflater.getContext(), R.color.mah_ads_no_image_color), PorterDuff.Mode.SRC_IN);
 
             Glide.with(vi.getContext())
-                    .load(Utils.getUrlOfImage(currProgram.getImg()))
+                    .load(Utils.getUrlOfImage(urlRootOnServer, currProgram.getImg()))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
                     .placeholder(R.drawable.img_place_holder_normal)
                     .crossFade()
@@ -154,10 +162,10 @@ public class ProgramItmAdptPrograms extends BaseAdapter implements
                 }
             });
 
-            MAHAdsController.setFontTextView((TextView) vi.findViewById(R.id.tvNewText));
-            MAHAdsController.setFontTextView(nameTV);
-            MAHAdsController.setFontTextView(descTV);
-            MAHAdsController.setFontTextView(tvOpenGooglePLay);
+            TextViewFontSetter.setFontTextView((TextView) vi.findViewById(R.id.tvNewText), fontName);
+            TextViewFontSetter.setFontTextView(nameTV, fontName);
+            TextViewFontSetter.setFontTextView(descTV, fontName);
+            TextViewFontSetter.setFontTextView(tvOpenGooglePLay, fontName);
             return vi;
         } else {
             return null;

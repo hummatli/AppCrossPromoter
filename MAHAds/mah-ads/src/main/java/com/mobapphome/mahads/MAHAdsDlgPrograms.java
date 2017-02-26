@@ -32,11 +32,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.mobapphome.mahads.mahfragments.MAHDialogFragment;
 import com.mobapphome.mahads.mahfragments.MAHFragmentExeption;
-import com.mobapphome.mahads.tools.MAHAdsController;
+import com.mobapphome.mahads.tools.Constants;
+import com.mobapphome.mahads.tools.Updater;
+import com.mobapphome.mahads.mahfragments.TextViewFontSetter;
 import com.mobapphome.mahads.types.MAHRequestResult;
 import com.mobapphome.mahads.types.Program;
+import com.mobapphome.mahads.types.Urls;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -54,6 +58,9 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
 
     List<Object> items;
 
+    MAHRequestResult mahRequestResult;
+    Urls urls;
+    String fontName;
     boolean btnInfoVisibility;
     boolean btnInfoWithMenu;
     String btnInfoMenuItemTitle;
@@ -64,12 +71,19 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
         // Empty constructor required for DialogFragment
     }
 
-    public static MAHAdsDlgPrograms newInstance(boolean btnInfoVisibility,
-                                                boolean btnInfoWithMenu,
-                                                String btnInfoMenuItemTitle,
-                                                String btnInfoActionURL) {
+    public static MAHAdsDlgPrograms newInstance(
+            MAHRequestResult mahRequestResult,
+            Urls urls,
+            String fontName, boolean btnInfoVisibility,
+            boolean btnInfoWithMenu,
+            String btnInfoMenuItemTitle,
+            String btnInfoActionURL) {
         MAHAdsDlgPrograms dialog = new MAHAdsDlgPrograms();
         Bundle args = new Bundle();
+        Gson gson = new Gson();
+        args.putString("mahRequestResult", gson.toJson(mahRequestResult));
+        args.putString("urls", gson.toJson(urls));
+        args.putString("fontName", fontName);
         args.putBoolean("btnInfoVisibility", btnInfoVisibility);
         args.putBoolean("btnInfoWithMenu", btnInfoWithMenu);
         args.putString("btnInfoMenuItemTitle", btnInfoMenuItemTitle);
@@ -88,9 +102,13 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         try {
-            Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "MAH Ads Programs Dlg Created ");
+            Log.i(Constants.LOG_TAG_MAH_ADS, "MAH Ads Programs Dlg Created ");
 
             Bundle args = getArguments();
+            Gson gson = new Gson();
+            mahRequestResult = gson.fromJson(args.getString("mahRequestResult"), MAHRequestResult.class);
+            urls = gson.fromJson(args.getString("urls"), Urls.class);
+            fontName = args.getString("fontName");
             btnInfoVisibility = args.getBoolean("btnInfoVisibility");
             btnInfoWithMenu = args.getBoolean("btnInfoWithMenu");
             btnInfoMenuItemTitle = args.getString("btnInfoMenuItemTitle");
@@ -148,23 +166,25 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
 
 
             startLoading();
-            setUI(MAHAdsController.getMahRequestResult(), true);
+            setUI(mahRequestResult, true);
 
-            //Call to update data from service or local
-            MAHAdsController.getUpdater().updateProgramList(getActivityMAH());
+            if (savedInstanceState == null) {
+                //Call to update data from service or local
+                Updater.updateProgramList(getActivityMAH(), urls);
+            }
 
-            MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.tvTitle));
-            MAHAdsController.setFontTextView(tvErrorResultF1);
-            MAHAdsController.setFontTextView((TextView) view.findViewById(R.id.btnErrorRefreshMAHAds));
+            TextViewFontSetter.setFontTextView((TextView) view.findViewById(R.id.tvTitle), fontName);
+            TextViewFontSetter.setFontTextView(tvErrorResultF1, fontName);
+            TextViewFontSetter.setFontTextView((TextView) view.findViewById(R.id.btnErrorRefreshMAHAds), fontName);
             return view;
         } catch (MAHFragmentExeption e) {
-            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, e.getMessage(), e);
+            Log.d(Constants.LOG_TAG_MAH_ADS, e.getMessage(), e);
             return null;
         }
     }
 
     public void setUI(final MAHRequestResult result, boolean firstTime) {
-        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "------Result State is " + ((result == null) ? null : result.getResultState()));
+        Log.i(Constants.LOG_TAG_MAH_ADS, "------Result State is " + ((result == null) ? null : result.getResultState()));
 
 
         if (result != null && (result.getResultState() == MAHRequestResult.ResultState.SUCCESS
@@ -175,12 +195,12 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
             for (Program c : programsExceptMyself) {
                 items.add(c);
             }
-            final ProgramItmAdptPrograms adapterInit = new ProgramItmAdptPrograms(getContext(), items);
+            final ProgramItmAdptPrograms adapterInit = new ProgramItmAdptPrograms(getContext(), items, urls.getUrlRootOnServer(), fontName);
 
             lstProgram.post(new Runnable() {
                 @Override
                 public void run() {
-                    Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "lstProgram post called");
+                    Log.i(Constants.LOG_TAG_MAH_ADS, "lstProgram post called");
                     lstProgram.setAdapter(adapterInit);
                     lytErrorF1.setVisibility(View.GONE);
                     lstProgram.setVisibility(View.VISIBLE);
@@ -232,7 +252,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
         lstProgram.setVisibility(View.GONE);
         lytErrorF1.setVisibility(View.GONE);
 
-        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Animation started");
+        Log.i(Constants.LOG_TAG_MAH_ADS, "Animation started");
     }
 
     public void stopLoading() {
@@ -241,7 +261,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
         lytErrorF1.setVisibility(View.GONE);
 
         ivLoading.clearAnimation();
-        Log.i(MAHAdsController.LOG_TAG_MAH_ADS, "Animation stopped");
+        Log.i(Constants.LOG_TAG_MAH_ADS, "Animation stopped");
     }
 
     public void onClose() {
@@ -255,7 +275,7 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
         } catch (ActivityNotFoundException nfe) {
             String str = "You haven't set correct url to btnInfoActionURL, your url = " + btnInfoActionURL;
             Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
-            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, str, nfe);
+            Log.d(Constants.LOG_TAG_MAH_ADS, str, nfe);
         }
     }
 
@@ -287,10 +307,10 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
                     showMAHlib();
                 }
             } else if (v.getId() == R.id.btnErrorRefreshMAHAds) {
-                MAHAdsController.getUpdater().updateProgramList(getActivityMAH());
+                Updater.updateProgramList(getActivityMAH(), urls);
             }
         } catch (MAHFragmentExeption e) {
-            Log.d(MAHAdsController.LOG_TAG_MAH_ADS, e.getMessage(), e);
+            Log.d(Constants.LOG_TAG_MAH_ADS, e.getMessage(), e);
             return;
         }
     }
