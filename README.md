@@ -112,7 +112,7 @@ You can provide `http://` and `https://` services. Library works both of them.
 You can check you json validity with this [jsonlint.com](http://jsonlint.com/)
 
 ### Library structure
-Library has `MAHAdsController.init()` method. It initialize modul, downloads program list from service and cashes them.
+Library has `init()` method. It initialize modul, downloads program list from service and cashes them.
 
 Library contains from to Dialog component
 * `MAHAdsDlgExit`- This dialog calls when app quits and offers user quit or stay in app. By the way it offers random two application from your list
@@ -120,18 +120,22 @@ Library contains from to Dialog component
   
   
 ### Installation manual
-**1)** To import library to you project add following lines to project's `build.gradle` file. The last stable version is `2.1.0`
+**1)** To import library to you project add following lines to project's `build.gradle` file. The last stable version is `2.1.2`
 
 ```
 	dependencies {
-    		compile 'com.mobapphome.library:mah-ads:2.1.0'
+    		compile 'com.mobapphome.library:mah-ads:2.1.2'
 	}
 ```
 
-**2)** Call `MAHAdsController.init()` in your project's starting point. For example: MainActivity's `onCreate()` method or in splash activity. Check url to point your services root path.  `MAHAdsController.init()` method has two variation with different arguments.
+**2)** Declare your gloabal variable on the MainActivity `MAHAdsController mahAdsController;`
+
+**2)** Create instance and call init() in  `onCreate()` of MainActivity. Check url to point your services root path.  `init()` method has different variations with different arguments.
 Code: 
 ```java
-	MAHAdsController.init(this,"http://highsoft.az/mahads/", "github_apps_prg_version.json", "github_apps_prg_list.json")
+	mahAdsController = MAHAdsController.getInstance();
+	mahAdsController.init(this, savedInstanceState, "https://project-943403214286171762.firebaseapp.com/mah_ads_dir/",
+                "github_apps_prg_version.json", "github_apps_prg_list.json")
 ```
 
 **3)** Call `MAHAdsController.callExitDialog()` when your app quits. It opens `MAHAdsDlgExit` dilog. `MAHAdsController.callExitDialog()` method has three variation with different arguments.  By the help oh this arguments you can customize `Info button` on the upper right corner of dilog.
