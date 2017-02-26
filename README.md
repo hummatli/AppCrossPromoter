@@ -128,7 +128,7 @@ Library contains from to Dialog component
 	}
 ```
 
-**2)** Declare your gloabal variable on the MainActivity  
+**2)** Declare your global variable on the MainActivity  
 `MAHAdsController mahAdsController;`
 
 **3)** Create instance and call init() in  `onCreate()` of MainActivity. Check url to point your services root path.  `init()` method has different variations with different arguments.  
