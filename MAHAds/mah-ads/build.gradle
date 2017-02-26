@@ -7,6 +7,7 @@ ext {
     publishedGroupId = 'com.mobapphome.library'
     libraryName = 'MAHAds'
     artifact = 'mah-ads'
+    
 
     libraryDescription = 'MAHAds library is  for advertisement own apps through other apps. By the help of this lib you can provide your apps to users of your other apps.'
 
