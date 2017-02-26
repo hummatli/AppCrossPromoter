@@ -201,7 +201,9 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
 
             setUi(mahRequestResult);
 
-            Updater.updateProgramList(getActivityMAH(), urls);
+            if(savedInstanceState == null){
+                Updater.updateProgramList(getActivityMAH(), urls);
+            }
 
             TextViewFontSetter.setFontTextView((TextView) view.findViewById(R.id.tvTitle), fontName);
             TextViewFontSetter.setFontTextView((TextView) view.findViewById(R.id.tvProg1NewText), fontName);

@@ -74,10 +74,10 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
     public static MAHAdsDlgPrograms newInstance(
             MAHRequestResult mahRequestResult,
             Urls urls,
-            String fontName,boolean btnInfoVisibility,
-                                                boolean btnInfoWithMenu,
-                                                String btnInfoMenuItemTitle,
-                                                String btnInfoActionURL) {
+            String fontName, boolean btnInfoVisibility,
+            boolean btnInfoWithMenu,
+            String btnInfoMenuItemTitle,
+            String btnInfoActionURL) {
         MAHAdsDlgPrograms dialog = new MAHAdsDlgPrograms();
         Bundle args = new Bundle();
         Gson gson = new Gson();
@@ -168,8 +168,10 @@ public class MAHAdsDlgPrograms extends MAHDialogFragment implements
             startLoading();
             setUI(mahRequestResult, true);
 
-            //Call to update data from service or local
-            Updater.updateProgramList(getActivityMAH(), urls);
+            if (savedInstanceState == null) {
+                //Call to update data from service or local
+                Updater.updateProgramList(getActivityMAH(), urls);
+            }
 
             TextViewFontSetter.setFontTextView((TextView) view.findViewById(R.id.tvTitle), fontName);
             TextViewFontSetter.setFontTextView(tvErrorResultF1, fontName);
