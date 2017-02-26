@@ -128,21 +128,37 @@ Library contains from to Dialog component
 	}
 ```
 
-**2)** Declare your gloabal variable on the MainActivity `MAHAdsController mahAdsController;`
+**2)** Declare your gloabal variable on the MainActivity  
+`MAHAdsController mahAdsController;`
 
-**2)** Create instance and call init() in  `onCreate()` of MainActivity. Check url to point your services root path.  `init()` method has different variations with different arguments.
+**3)** Create instance and call init() in  `onCreate()` of MainActivity. Check url to point your services root path.  `init()` method has different variations with different arguments.  
 Code: 
 ```java
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 	mahAdsController = MAHAdsController.getInstance();
 	mahAdsController.init(this, savedInstanceState, "https://project-943403214286171762.firebaseapp.com/mah_ads_dir/",
                 "github_apps_prg_version.json", "github_apps_prg_list.json")
+    }
 ```
 
-**3)** Call `MAHAdsController.callExitDialog()` when your app quits. It opens `MAHAdsDlgExit` dilog. `MAHAdsController.callExitDialog()` method has three variation with different arguments.  By the help oh this arguments you can customize `Info button` on the upper right corner of dilog.
+**4)** Call `onSaveInstanceState(outState)` to prevent request service again on recreating of activity 
+Code: 
+```java
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mahAdsController.onSaveInstanceState(outState);
+    }
+```
+
+
+**5)** Call `callExitDialog()` when your app quits. It opens `MAHAdsDlgExit` dilog. `callExitDialog()` method has three variation with different arguments.  By the help oh this arguments you can customize `Info button` on the upper right corner of dilog.
 Code:	
 ```java
 	public void onBackPressed() {
-		MAHAdsController.callExitDialog(activity);
+		mahAdsController.callExitDialog(activity);
 	}
 ```
 **Note:** To implement `MAHAdsDlgExit` Dialog's `onYes()`, `onNo()`, `onExitWithoutExitDlg()` , `onEventHappened(String eventStr)` your main activity has to implement `MAHAdsExitListener`. Otherwise it will through `ClassCastExeption`. `"Your activity must implement MAHAdsExitListener"` 
@@ -162,13 +178,13 @@ Code:
 	}
 ```
 
-**4)** To open `MAHAdsDlgPrograms` call `MAHAdsController.callProgramsDialog()`. In library sample it has added to menu. `MAHAdsController.callProgramsDialog()` method has three variation with different arguments.  By the help oh this arguments you can customize `Info button` on the upper right corner of dilog. 
+**6)** To open `MAHAdsDlgPrograms` call `callProgramsDialog()`. In library sample it has added to menu. `callProgramsDialog()` method has three variation with different arguments.  By the help oh this arguments you can customize `Info button` on the upper right corner of dilog. 
 Code:	
 ```java
-	MAHAdsController.callProgramsDialog(activity);
+	mahAdsController.callProgramsDialog(activity);
 ```
 
-**5)** To customize `MAHAds` dialog UI and overide colors set these values on your main projects `color.xml` file
+**7)** To customize `MAHAds` dialog UI and overide colors set these values on your main projects `color.xml` file
 ```xml
 	<color name="mah_ads_window_background_color">#FFFFFFFF</color>
 	<color name="mah_ads_title_bar_color">#FF3F51B5</color>
@@ -189,9 +205,9 @@ Code:
 	<color name="mah_ads_no_img_color">#333F51B5</color>			
 ```
 
-**7)** `Localization:`  Following languages is supporting by the lib - [Supported Languages](https://github.com/hummatli/MAHAds#localization).  To set localization to app use your own method or if it is static and don't change in program session you can just simply add 		`LocaleUpdater.updateLocale(this, "your_lang");` in the start of your app. For examlpe  `LocaleUpdater.updateLocale(this, "ru");`
+**8)** `Localization:`  Following languages is supporting by the lib - [Supported Languages](https://github.com/hummatli/MAHAds#localization).  To set localization to app use your own method or if it is static and don't change in program session you can just simply add 		`LocaleUpdater.updateLocale(this, "your_lang");` in the start of your app. For examlpe  `LocaleUpdater.updateLocale(this, "ru");`
 
-**8)** To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values.   
+**9)** To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values.   
 To help translators there prefixes on the name of strings
 * < command verb (actions)> - These are commands verbs. Meaninaction on UI , dialogs
 * < adjective > - adjectives
@@ -221,7 +237,7 @@ To help translators there prefixes on the name of strings
 ```
 **Note** You can even customize dialogs in your application. Copy `layout/mah_ads_dialog_programs.xml`,  `layout/mah_ads_dialog_exit.xml`files and put in your layot dir and customize  them as you want. But keep view ids as they are. They will overide older ones from library. 
  
-**8)** As modul takes information from web servcie you need add `INTERNET` permission to main project.
+**10)** As modul takes information from web servcie you need add `INTERNET` permission to main project.
 ```xml
 	<uses-permission android:name="android.permission.INTERNET" />
 ```
