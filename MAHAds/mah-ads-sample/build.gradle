@@ -8,8 +8,8 @@ android {
         applicationId "com.mobapphome.mahads.sample"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 10
-        versionName "2.0.7"
+        versionCode 11
+        versionName "2.1.1"
     }
 
     signingConfigs {
@@ -33,6 +33,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:appcompat-v7:25.2.0'
     compile project(':mah-ads')
 }
