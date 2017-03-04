@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.mobapphome.mahads.mahfragments.MAHDialogFragment;
@@ -254,6 +255,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             lytProg2MAHAdsExtDlg.setVisibility(View.GONE);
             prog1 = mahRequestResult.getProgramsSelected().get(0);
             ((TextView) view.findViewById(R.id.tvProg1NameMAHAdsExtDlg)).setText(prog1.getName());
+
 
             Glide.with(getContext())
                     .load(Utils.getUrlOfImage(urls.getUrlRootOnServer(), prog1.getImg()))
