@@ -243,7 +243,7 @@ To help translators there prefixes on the name of strings
 ```
 
 ### Proguard configuration
-MAHAds uses <a href="https://github.com/jhy/jsoup">Jsoup</a>, (GSON)[https://github.com/google/gson], (Glide)[https://github.com/bumptech/glide] libraries. Therefore if you want to create your project with proguard you'll need to add proguard configuration to your proguard file. Look at (Progurad File)[https://github.com/hummatli/MAHAds/blob/master/MAHAds/proguard-rules-mah-ads.pro]
+MAHAds uses [Jsoup](https://github.com/jhy/jsoup), [GSON](https://github.com/google/gson), [Glide](https://github.com/bumptech/glide) libraries. Therefore if you want to create your project with proguard you'll need to add proguard configuration to your proguard file. Look at (Progurad File)[https://github.com/hummatli/MAHAds/blob/master/MAHAds/proguard-rules-mah-ads.pro]
 
 ### Help - Issues
 If you have any problem with setting and using library or want to ask question, please let me know. Create [issue](https://github.com/hummatli/MAHAds/issues) or write to <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>. I will help.
