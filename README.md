@@ -243,47 +243,7 @@ To help translators there prefixes on the name of strings
 ```
 
 ### Proguard configuration
-MAHAds uses <a href="https://github.com/jhy/jsoup">Jsoup</a> lib. There for if you want to create your project with proguard you need to add following configuration to your proguard file.
-
-```gradle
-##-----------------To show exceptions right --------------------------------------
--keep public class * extends java.lang.Exception
-
-##---------------Begin: proguard configuration for Jsoup--------------------------------
--keep public class org.jsoup.** {
-public *;
-}
-##---------------End: proguard configuration for Jsoup--------------------------------
-
-##---------------Begin: proguard configuration for Bumptech/Glide--------------------------------
--keep public class * implements com.bumptech.glide.module.GlideModule
--keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
-  **[] $VALUES;
-  public *;
-}
-#Following is needed for Glide on DexGuard only. Uncomment it when DexGuard
-#-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
-##---------------End: proguard configuration for Bumptech/Glide--------------------------------
-
-
-##---------------Begin: Proguard configuration for Gson  --------------------------------------
-# Gson uses generic type information stored in a class file when working with fields. Proguard
-# removes such information by default, so configure it to keep all of it.
--keepattributes Signature
-
-# For using GSON @Expose annotation
--keepattributes *Annotation*
-
-# Gson specific classes
--keep class sun.misc.Unsafe { *; }
-#-keep class com.google.gson.stream.** { *; }
-
-# Application classes that will be serialized/deserialized over Gson
--keep class com.google.gson.examples.android.model.** { *; }
-
--keepclassmembers enum * { *; }
-##---------------End: Proguard configuration for Gson  --------------------------------------
-```
+MAHAds uses [Jsoup](https://github.com/jhy/jsoup), [GSON](https://github.com/google/gson), [Glide](https://github.com/bumptech/glide) libraries. Therefore if you want to create your project with proguard you'll need to add proguard configuration to your proguard file. Look at [Progurad File](https://github.com/hummatli/MAHAds/blob/master/MAHAds/proguard-rules-mah-ads.pro)
 
 ### Help - Issues
 If you have any problem with setting and using library or want to ask question, please let me know. Create [issue](https://github.com/hummatli/MAHAds/issues) or write to <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>. I will help.
