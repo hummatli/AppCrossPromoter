@@ -258,7 +258,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
 
             Glide.with(getContext())
                     .load(Utils.getUrlOfImage(urls.getUrlRootOnServer(), prog1.getImg()))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    //.diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
                     .placeholder(R.drawable.img_place_holder_normal)
                     .crossFade()
@@ -285,7 +285,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
             ((TextView) view.findViewById(R.id.tvProg1NameMAHAdsExtDlg)).setText(prog1.getName());
             Glide.with(getContext())
                     .load(Utils.getUrlOfImage(urls.getUrlRootOnServer(), prog1.getImg()))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    //.diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
                     .placeholder(R.drawable.img_place_holder_normal)
                     .crossFade()
@@ -311,7 +311,7 @@ public class MAHAdsDlgExit extends MAHDialogFragment implements
 
             Glide.with(getContext())
                     .load(Utils.getUrlOfImage(urls.getUrlRootOnServer(), prog2.getImg()))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    //.diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
                     .placeholder(R.drawable.img_place_holder_normal)
                     .crossFade()

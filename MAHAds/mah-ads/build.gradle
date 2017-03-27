@@ -14,7 +14,7 @@ ext {
     siteUrl = 'https://github.com/hummatli/MAHAds'
     gitUrl = 'https://github.com/hummatli/MAHAds.git'
 
-    libraryVersion = '2.1.4-beta.1'
+    libraryVersion = '2.1.5'
 
     developerId = 'hummatli'
     developerName = 'Sattar Hummatli'

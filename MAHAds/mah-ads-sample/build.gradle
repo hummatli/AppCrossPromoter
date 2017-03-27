@@ -8,8 +8,8 @@ android {
         applicationId "com.mobapphome.mahads.sample"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 11
-        versionName "2.1.1"
+        versionCode 12
+        versionName "2.1.2"
     }
 
     signingConfigs {

@@ -124,7 +124,7 @@ class ProgramItmAdptPrograms extends BaseAdapter implements
 
             Glide.with(vi.getContext())
                     .load(Utils.getUrlOfImage(urlRootOnServer, currProgram.getImg()))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    //.diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
                     .placeholder(R.drawable.img_place_holder_normal)
                     .crossFade()
