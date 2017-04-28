@@ -29,10 +29,10 @@ By the help of this lib you can provide your apps list to users through your own
 Library has build on IDE `Android Studio` and binaries have added to `jcenter()`  `maven` repository.
 <br>You can check  [jCenter() download statistics](https://bintray.com/hummatli/maven/mah-ads#statistics) on this [link](https://bintray.com/hummatli/maven/mah-ads#statistics)
 
-There is a list of [application using MAHAds](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads). It would be nice if see your app link there too. If you use this library and want to see your app in the start of the [list](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads) please [inform me](mailto:settarxan@gmail.com) or send a pull request.
+There is a list of [application using MAHAds](https://github.com/hummatli/MAHAds#applications-using-mahads). It would be nice if see your app link there too. If you use this library and want to see your app in the start of the [list](https://github.com/hummatli/MAHAds#applications-using-mahads) please [inform me](mailto:settarxan@gmail.com) or send a pull request.
 
 * [jCenter() download statistics](https://bintray.com/hummatli/maven/mah-ads#statistics)
-* [Application using MAHAndroidUpdater](https://github.com/hummatli/MAHAndroidUpdater#applications-using-mahads)
+* [Application using MAHAds](https://github.com/hummatli/MAHAds#applications-using-mahads)
 
 <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/green_star.png" width="20px"/>  _**Don't forget to start the protect to support us**_   
 
