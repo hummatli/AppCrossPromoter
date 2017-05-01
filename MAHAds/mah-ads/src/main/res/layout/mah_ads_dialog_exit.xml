@@ -81,19 +81,22 @@
             android:paddingRight="10dp"
             android:paddingTop="0dp">
 
+            <!--Set visibilty to gone-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/game_dialog_in_stroke" />
+                android:background="@drawable/game_dialog_in_stroke"
+                android:visibility="gone"/>
 
+            <!--Changed mariginTop from 0 to 10-->
             <LinearLayout
                 android:id="@+id/lytProgsPanel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="10dp"
                 android:baselineAligned="false"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -244,7 +247,7 @@
                 android:layout_marginBottom="0dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/mah_dlg_btn_other_selector"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -271,13 +274,16 @@
                     android:textSize="15sp" />
             </LinearLayout>
 
-
+            <!--Changed mariginTop from 5 to 10
+            Added margin right and left-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/game_dialog_in_stroke" />
+                android:layout_marginTop="10dp"
+                android:background="@drawable/game_dialog_in_stroke"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"/>
 
             <TextView
                 android:id="@+id/tvQuestionTxt"
