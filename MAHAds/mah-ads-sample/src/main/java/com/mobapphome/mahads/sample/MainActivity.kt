@@ -97,8 +97,9 @@ class MainActivity : AppCompatActivity(), MAHAdsDlgExitListener, View.OnClickLis
 
         // For MAHAds init
         // METHOD 1
-        mahAdsController = MAHAdsController.instance!!
-        mahAdsController!!.init(this, savedInstanceState!!, "https://project-943403214286171762.firebaseapp.com/mah_ads_dir/",
+        //mahAdsController = MAHAdsController.instance
+        mahAdsController = MAHAdsController()
+        mahAdsController!!.init(this, savedInstanceState, "https://project-943403214286171762.firebaseapp.com/mah_ads_dir/",
                 "github_apps_prg_version.json", "github_apps_prg_list.json")
         // METHOD 1
     }
@@ -173,7 +174,7 @@ class MainActivity : AppCompatActivity(), MAHAdsDlgExitListener, View.OnClickLis
     }
 
     //Selection event for language spinner
-    override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+    override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         val item = parent.getItemAtPosition(pos).toString()
 
         // Showing selected spinner item

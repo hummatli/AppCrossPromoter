@@ -20,7 +20,7 @@
 
 
         <ImageButton
-            android:id="@+id/mah_ads_dlg_exit_btnCancel"
+            android:id="@+id/ivBtnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -48,7 +48,7 @@
 
 
         <ImageButton
-            android:id="@+id/mah_ads_dlg_exit_btnInfo"
+            android:id="@+id/ivBtnInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -149,7 +149,7 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/tvProg1NewText"
+                            android:id="@+id/tvFresnestProg1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/mah_dlg_text_view_new_shape"
@@ -217,7 +217,7 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/tvProg2NewText"
+                            android:id="@+id/tvFresnestProg2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/mah_dlg_text_view_new_shape"
@@ -241,7 +241,7 @@
 
 
             <LinearLayout
-                android:id="@+id/mah_ads_dlg_exit_lyt_btn_other"
+                android:id="@+id/lytBtnOther"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
@@ -257,7 +257,7 @@
                 android:paddingTop="0dp">
 
                 <ImageView
-                    android:id="@+id/mah_ads_dlg_exit_iv_play_store_btn_other"
+                    android:id="@+id/iconBtnOther"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
@@ -314,7 +314,7 @@
         android:paddingTop="2dp">
 
         <Button
-            android:id="@+id/mah_ads_dlg_exit_btn_yes"
+            android:id="@+id/btnYes"
             style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -324,7 +324,7 @@
             android:textSize="17sp" />
 
         <Button
-            android:id="@+id/mah_ads_dlg_exit_btn_no"
+            android:id="@+id/btnNo"
             style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

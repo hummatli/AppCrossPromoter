@@ -20,7 +20,7 @@ object Updater {
         }
 
         val fragDlgPrograms = activity.supportFragmentManager
-                .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_PROGRAMS) as MAHAdsDlgPrograms
+                .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_PROGRAMS) as MAHAdsDlgPrograms?
 
         if (fragDlgPrograms != null
                 && fragDlgPrograms.isVisible
@@ -90,11 +90,11 @@ object Updater {
                 if (mahRequestResult != null) {
 
                     val fragDlgPrograms = activity.supportFragmentManager
-                            .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_PROGRAMS) as MAHAdsDlgPrograms
+                            .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_PROGRAMS) as MAHAdsDlgPrograms?
                     fragDlgPrograms?.setUI(mahRequestResult, false)
 
                     val fragDlgExit = activity.supportFragmentManager
-                            .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_EXIT) as MAHAdsDlgExit
+                            .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_EXIT) as MAHAdsDlgExit?
                     if (fragDlgExit != null && (mahRequestResult.isReadFromWeb || !fragDlgExit.isProgramsPanelVisible)) {
                         fragDlgExit.setUi(mahRequestResult)
                     }

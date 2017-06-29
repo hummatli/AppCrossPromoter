@@ -24,7 +24,6 @@ data class Program(
         var update_date: String
 ) : Serializable {
 
-    var DATE_FORMATTER: SimpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
     var ONE_MONTTH_MILLI_SEC = 1000L * 60 * 60 * 24 * 30
 
 
@@ -59,7 +58,7 @@ data class Program(
         var isFresh = false
 
         try {
-            val dateAsDate = DATE_FORMATTER.parse(dateStr)
+            val dateAsDate = SimpleDateFormat("dd/MM/yyyy", Locale.US).parse(dateStr)
             if (dateAsDate != null) {
                 val dateToday = Date().time
                 val dateChecked = dateAsDate.time

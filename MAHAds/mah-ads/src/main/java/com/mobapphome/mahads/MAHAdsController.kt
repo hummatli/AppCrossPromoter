@@ -7,9 +7,13 @@ import android.support.v4.app.FragmentActivity
 import android.util.Log
 import com.google.gson.Gson
 import com.mobapphome.mahads.tools.*
+import com.mobapphome.mahads.tools.GsonDeserializeExclusion
+import com.google.gson.GsonBuilder
 
 
-class MAHAdsController protected constructor() {
+
+
+class MAHAdsController {
 
 
     private var urls: Urls? = null
@@ -28,7 +32,7 @@ class MAHAdsController protected constructor() {
      * @param urlForProgramListUrlEnd Url end for program list
      */
     @JvmOverloads fun init(activity: FragmentActivity,
-                           savedInstanceState: Bundle,
+                           savedInstanceState: Bundle?,
                            urlRootOnServer: String,
                            programVersionUrlEnd: String,
                            urlForProgramListUrlEnd: String) {
@@ -53,6 +57,7 @@ class MAHAdsController protected constructor() {
 
         if (savedInstanceState != null) {
             val gson = Gson()
+
             mahRequestResult = gson.fromJson(savedInstanceState.getString("mahRequestResult"), MAHRequestResult::class.java)
             fontName = savedInstanceState.getString("fontName")
 
@@ -67,7 +72,7 @@ class MAHAdsController protected constructor() {
 
 
     fun onSaveInstanceState(savedInstanceState: Bundle) {
-        val gson = Gson()
+        val gson =  Gson()
         savedInstanceState.putString("mahRequestResult", gson.toJson(mahRequestResult))
         savedInstanceState.putString("fontName", fontName)
     }
@@ -104,7 +109,7 @@ class MAHAdsController protected constructor() {
 
         } else {
             showDlg(activity,
-                    MAHAdsDlgExit.newInstance(mahRequestResult!!, urls!!, fontName!!, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
+                    MAHAdsDlgExit.newInstance(mahRequestResult, urls, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
                     Constants.TAG_MAH_ADS_DLG_EXIT)
         }
     }
@@ -127,18 +132,18 @@ class MAHAdsController protected constructor() {
                                          btnInfoMenuItemTitle: String = activity.getString(R.string.mah_ads_info_popup_text),
                                          btnInfoActionURL: String = Constants.MAH_ADS_GITHUB_LINK) {
         showDlg(activity,
-                MAHAdsDlgPrograms.newInstance(mahRequestResult!!, urls!!, fontName!!, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
+                MAHAdsDlgPrograms.newInstance(mahRequestResult, urls, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
                 Constants.TAG_MAH_ADS_DLG_PROGRAMS)
     }
 
     companion object {
-        var instance: MAHAdsController? = null
-            get() {
-                if (instance == null) {
-                    instance = MAHAdsController()
-                }
-                return instance
-            }
+//        var instance: MAHAdsController? = null
+//            get() {
+//                if (instance == null) {
+//                    instance = MAHAdsController()
+//                }
+//                return instance
+//            }
         var mahRequestResult: MAHRequestResult? = null //This variable saves in savedInstanceState
 
 

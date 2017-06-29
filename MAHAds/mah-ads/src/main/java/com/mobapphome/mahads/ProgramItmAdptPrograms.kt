@@ -16,11 +16,11 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.mobapphome.mahads.mahfragments.TextViewFontSetter
 import com.mobapphome.mahads.tools.*
+import com.mobapphome.mahandroidupdater.commons.setFontTextView
 
-internal class ProgramItmAdptPrograms(context: Context, private val items: List<Any>, var urlRootOnServer: String,
-                                      var fontName: String) : BaseAdapter(), View.OnClickListener {
+internal class ProgramItmAdptPrograms(context: Context, private val items: List<Any>, var urlRootOnServer: String?,
+                                      var fontName: String?) : BaseAdapter(), View.OnClickListener {
 
     private val TAG = ProgramItmAdptPrograms::class.java.name
 
@@ -46,7 +46,7 @@ internal class ProgramItmAdptPrograms(context: Context, private val items: List<
 
     }
 
-    override fun getView(position: Int, convertView: View, parent: ViewGroup): View? {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
         val obj = items[position]
         if (obj is Program) {
             val currProgram = obj
@@ -95,13 +95,13 @@ internal class ProgramItmAdptPrograms(context: Context, private val items: List<
             nameTV.text = currProgram.name
             descTV.text = currProgram.desc
 
-            Log.i(Constants.LOG_TAG_MAH_ADS, getUrlOfImage(urlRootOnServer, currProgram.img))
+            Log.i(Constants.LOG_TAG_MAH_ADS, getUrlOfImage(urlRootOnServer!!, currProgram.img))
 
             val imgNotFoundDrawable = ContextCompat.getDrawable(inflater!!.context, R.drawable.img_not_found)
             imgNotFoundDrawable.setColorFilter(ContextCompat.getColor(inflater!!.context, R.color.mah_ads_no_image_color), PorterDuff.Mode.SRC_IN)
 
             Glide.with(vi.context)
-                    .load(getUrlOfImage(urlRootOnServer, currProgram.img))
+                    .load(getUrlOfImage(urlRootOnServer!!, currProgram.img))
                     //.diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
                     .placeholder(R.drawable.img_place_holder_normal)
@@ -132,10 +132,11 @@ internal class ProgramItmAdptPrograms(context: Context, private val items: List<
                 popup.show()// showing popup menu
             }
 
-            TextViewFontSetter.setFontTextView(vi.findViewById(R.id.tvNewText) as TextView, fontName)
-            TextViewFontSetter.setFontTextView(nameTV, fontName)
-            TextViewFontSetter.setFontTextView(descTV, fontName)
-            TextViewFontSetter.setFontTextView(tvOpenGooglePLay, fontName)
+
+            (vi.findViewById(R.id.tvNewText) as TextView).setFontTextView(fontName)
+            nameTV.setFontTextView(fontName)
+            descTV.setFontTextView(fontName)
+            tvOpenGooglePLay.setFontTextView(fontName)
             return vi
         } else {
             return null

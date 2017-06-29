@@ -6,7 +6,6 @@ package com.mobapphome.mahads
 
 
 import android.content.ActivityNotFoundException
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
@@ -25,19 +24,16 @@ import android.widget.*
 import com.google.gson.Gson
 import com.mobapphome.mahads.mahfragments.MAHDialogFragment
 import com.mobapphome.mahads.mahfragments.MAHFragmentExeption
-import com.mobapphome.mahads.mahfragments.TextViewFontSetter
 import com.mobapphome.mahads.tools.Constants
 import com.mobapphome.mahads.tools.MAHRequestResult
 import com.mobapphome.mahads.tools.Updater
 import com.mobapphome.mahads.tools.Urls
+import com.mobapphome.mahandroidupdater.commons.setFontTextView
+import kotlinx.android.synthetic.main.mah_ads_dialog_programs.*
 import java.util.*
 
 class MAHAdsDlgPrograms : MAHDialogFragment(), View.OnClickListener {
-    var tvErrorResultF1: TextView? = null
-    var ivLoading: ImageView? = null
-    var lstProgram: ListView? = null
-    var lytErrorF1: LinearLayout? = null
-    var items: MutableList<Any>? = null
+    val items: MutableList<Any> = LinkedList<Any>()
     var mahRequestResult: MAHRequestResult? = null
     var urls: Urls? = null
     var fontName: String? = null
@@ -73,64 +69,54 @@ class MAHAdsDlgPrograms : MAHDialogFragment(), View.OnClickListener {
             dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             //getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
             dialog.setCanceledOnTouchOutside(false)
-            dialog.setOnKeyListener(DialogInterface.OnKeyListener { dialog, keyCode, event ->
+            dialog.setOnKeyListener { dialog, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
-
                     onClose()
-                    return@OnKeyListener true
                 }
                 false
-            })
-
-
-            lstProgram = view.findViewById(R.id.lstMahAds) as ListView
-            lytErrorF1 = view.findViewById(R.id.lytErrorMAHAds) as LinearLayout
-            tvErrorResultF1 = view.findViewById(R.id.tvErrorResultMAHAds) as TextView
-
-
-            view.findViewById(R.id.mah_ads_dlg_programs_btn_close).setOnClickListener(this)
-            view.findViewById(R.id.btnErrorRefreshMAHAds).setOnClickListener(this)
-
-            val ivBtnCancel = view.findViewById(R.id.mah_ads_dlg_programs_btnCancel) as ImageView
-            val ivBtnInfo = view.findViewById(R.id.mah_ads_dlg_programs_btnInfo) as ImageView
-
-            ivBtnCancel.setOnClickListener(this)
-            ivBtnInfo.setOnClickListener(this)
-            ivBtnCancel.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_title_bar_text_color))
-            ivBtnInfo.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_title_bar_text_color))
-
-            if (btnInfoVisibility) {
-                ivBtnInfo.visibility = View.VISIBLE
-            } else {
-                ivBtnInfo.visibility = View.INVISIBLE
             }
 
-            ivLoading = view.findViewById(R.id.ivLoadingMahAds) as ImageView
-            //ivLoading.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_all_and_btn_text_color))
-            ivLoading?.setImageResource(R.drawable.ic_loading_mah)
-            ivLoading?.getDrawable()?.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_all_and_btn_text_color), PorterDuff.Mode.MULTIPLY );
-
-            lstProgram?.visibility = View.GONE
-            lytErrorF1?.visibility = View.GONE
-            ivLoading?.visibility = View.GONE
-
-
-            startLoading()
-            setUI(mahRequestResult, true)
-
-            if (savedInstanceState == null) {
-                //Call to update data from service or local
-                Updater.updateProgramList(activityMAH, urls!!)
-            }
-
-            TextViewFontSetter.setFontTextView(view.findViewById(R.id.tvTitle) as TextView, fontName)
-            TextViewFontSetter.setFontTextView(tvErrorResultF1!!, fontName)
-            TextViewFontSetter.setFontTextView(view.findViewById(R.id.btnErrorRefreshMAHAds) as TextView, fontName)
             return view
         } catch (e: MAHFragmentExeption) {
             Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
             return null
         }
+
+    }
+
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        btnClose.setOnClickListener(this)
+        btnErrorRefreshMAHAds.setOnClickListener(this)
+        ivBtnCancel.setOnClickListener(this)
+        ivBtnInfo.setOnClickListener(this)
+        ivBtnCancel.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_title_bar_text_color))
+        ivBtnInfo.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_title_bar_text_color))
+
+        ivBtnInfo.visibility = if (btnInfoVisibility) View.VISIBLE else View.INVISIBLE
+
+        ivLoading.setImageResource(R.drawable.ic_loading_mah)
+        ivLoading.getDrawable()?.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_all_and_btn_text_color), PorterDuff.Mode.MULTIPLY);
+
+        lstProgram.visibility = View.GONE
+        lytErrorF1.visibility = View.GONE
+        ivLoading.visibility = View.GONE
+
+
+        startLoading()
+        setUI(mahRequestResult, true)
+
+        if (savedInstanceState == null) {
+            //Call to update data from service or local
+            Updater.updateProgramList(activityMAH, urls!!)
+        }
+
+        tvTitle.setFontTextView(fontName)
+        tvErrorResultF1.setFontTextView(fontName)
+        //btnErrorRefreshMAHAds.setFontTextView(fontName)
+
 
     }
 
@@ -141,32 +127,31 @@ class MAHAdsDlgPrograms : MAHDialogFragment(), View.OnClickListener {
         if (result != null && (result.resultState === MAHRequestResult.ResultState.SUCCESS || result.resultState === MAHRequestResult.ResultState.ERR_SOME_ITEMS_HAS_JSON_SYNTAX_ERROR)) {
             dataHasAlreadySet = true
             val programsExceptMyself = result.programsFiltered
-            items = LinkedList<Any>()
             for (c in programsExceptMyself!!) {
-                items?.add(c)
+                items.add(c)
             }
-            val adapterInit = ProgramItmAdptPrograms(context, items!!, urls!!.urlRootOnServer!!, fontName!!)
+            val adapterInit = ProgramItmAdptPrograms(context, items, urls?.urlRootOnServer, fontName)
 
-            lstProgram!!.post {
+            lstProgram.post {
                 Log.i(Constants.LOG_TAG_MAH_ADS, "lstProgram post called")
-                lstProgram!!.adapter = adapterInit
-                lytErrorF1!!.visibility = View.GONE
-                lstProgram!!.visibility = View.VISIBLE
+                lstProgram.adapter = adapterInit
+                lytErrorF1.visibility = View.GONE
+                lstProgram.visibility = View.VISIBLE
             }
         } else {
             if (result == null || result.isReadFromWeb) {
-                lstProgram!!.post {
-                    lytErrorF1!!.visibility = View.VISIBLE
-                    lstProgram!!.visibility = View.GONE
-                    tvErrorResultF1!!.text = resources.getString(
+                lstProgram.post {
+                    lytErrorF1.visibility = View.VISIBLE
+                    lstProgram.visibility = View.GONE
+                    tvErrorResultF1.text = resources.getString(
                             R.string.mah_ads_internet_update_error)
                 }
             } else {
                 if (!firstTime) {
-                    lstProgram!!.post {
-                        lytErrorF1!!.visibility = View.VISIBLE
-                        lstProgram!!.visibility = View.GONE
-                        tvErrorResultF1!!.text = resources.getString(
+                    lstProgram.post {
+                        lytErrorF1.visibility = View.VISIBLE
+                        lstProgram.visibility = View.GONE
+                        tvErrorResultF1.text = resources.getString(
                                 R.string.mah_ads_internet_update_error)
                     }
                 }
@@ -188,10 +173,10 @@ class MAHAdsDlgPrograms : MAHDialogFragment(), View.OnClickListener {
         animationLoading.interpolator = LinearInterpolator()
         animationLoading.repeatCount = Animation.INFINITE
 
-        ivLoading!!.startAnimation(animationLoading)
-        ivLoading!!.visibility = View.VISIBLE
-        lstProgram!!.visibility = View.GONE
-        lytErrorF1!!.visibility = View.GONE
+        ivLoading.startAnimation(animationLoading)
+        ivLoading.visibility = View.VISIBLE
+        lstProgram.visibility = View.GONE
+        lytErrorF1.visibility = View.GONE
 
         Log.i(Constants.LOG_TAG_MAH_ADS, "Animation started")
     }
@@ -223,9 +208,9 @@ class MAHAdsDlgPrograms : MAHDialogFragment(), View.OnClickListener {
 
     override fun onClick(v: View) {
         try {
-            if (v.id == R.id.mah_ads_dlg_programs_btnCancel || v.id == R.id.mah_ads_dlg_programs_btn_close) {
+            if (v.id == R.id.ivBtnCancel || v.id == R.id.btnClose) {
                 onClose()
-            } else if (v.id == R.id.mah_ads_dlg_programs_btnInfo) {
+            } else if (v.id == R.id.ivBtnInfo) {
 
                 if (btnInfoWithMenu) {
                     val itemIdForInfo = 1
@@ -257,9 +242,10 @@ class MAHAdsDlgPrograms : MAHDialogFragment(), View.OnClickListener {
     companion object {
 
         fun newInstance(
-                mahRequestResult: MAHRequestResult,
-                urls: Urls,
-                fontName: String, btnInfoVisibility: Boolean,
+                mahRequestResult: MAHRequestResult?,
+                urls: Urls?,
+                fontName: String?,
+                btnInfoVisibility: Boolean,
                 btnInfoWithMenu: Boolean,
                 btnInfoMenuItemTitle: String,
                 btnInfoActionURL: String): MAHAdsDlgPrograms {

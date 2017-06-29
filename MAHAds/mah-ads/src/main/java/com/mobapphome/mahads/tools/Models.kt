@@ -1,5 +1,10 @@
 package com.mobapphome.mahads.tools
 
+import com.google.gson.FieldAttributes
+import com.google.gson.ExclusionStrategy
+import java.text.SimpleDateFormat
+
+
 /**
  * Created by settar on 6/25/17.
  */
@@ -28,4 +33,16 @@ interface MAHAdsDlgExitListener {
     fun onExitWithoutExitDlg()
 
     fun onEventHappened(eventStr: String)
+}
+
+class GsonDeserializeExclusion : ExclusionStrategy {
+
+    override fun shouldSkipField(f: FieldAttributes): Boolean {
+        return f.declaredClass == SimpleDateFormat::class.java
+    }
+
+    override fun shouldSkipClass(clazz: Class<*>): Boolean {
+        return false
+    }
+
 }
