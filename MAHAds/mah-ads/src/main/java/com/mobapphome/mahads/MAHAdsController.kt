@@ -96,7 +96,7 @@ class MAHAdsController private constructor(){
             // This makes sure that the container activity has implemented
             // the callback interface. If not, it throws an exception
             try {
-                val exitCallback = activity as MAHAdsDlgExitListener
+                val exitCallback = activity as MAHAdsDlgExit.MAHAdsDlgExitListener
                 exitCallback.onExitWithoutExitDlg()
             } catch (e: ClassCastException) {
                 throw ClassCastException(activity.toString() + " must implement MAHAdsDlgExitListener")

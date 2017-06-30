@@ -27,6 +27,15 @@ class SampleActivityKotlin : AppCompatActivity(), MAHAdsDlgExit.MAHAdsDlgExitLis
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //This block is only in Kotlin sample
+        run {
+            title = getString(R.string.title_kotlin_sample)
+            mahBtnOpenJavaSample.setOnClickListener {
+                val intent = Intent(this, SampleActivityJava::class.java)
+                startActivity(intent)
+            }
+        }
+
         val forkMeImg = ContextCompat.getDrawable(this, R.drawable.forkme_green)
         // setting the opacity (alpha)
         forkMeImg.alpha = 180

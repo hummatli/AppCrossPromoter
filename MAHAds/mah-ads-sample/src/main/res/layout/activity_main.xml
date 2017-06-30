@@ -104,6 +104,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/txt_btn_open_exit_dlg" />
+
+                            <Button
+                                android:id="@+id/mahBtnOpenJavaSample"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/txt_btn_open_java_sample" />
                         </LinearLayout>
                     </LinearLayout>
 

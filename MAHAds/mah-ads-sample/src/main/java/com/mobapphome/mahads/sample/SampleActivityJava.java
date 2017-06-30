@@ -40,6 +40,11 @@ public class SampleActivityJava extends AppCompatActivity implements MAHAdsDlgEx
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //This block is only in Java sample---------------
+        {
+            findViewById(R.id.mahBtnOpenJavaSample).setVisibility(View.GONE);
+            setTitle(getString(R.string.title_java_sample));
+        }
 
         ImageView imageView = (ImageView) findViewById(R.id.ivForkMeOnGithub);
         Drawable forkMeImg = getResources().getDrawable(R.drawable.forkme_green);
