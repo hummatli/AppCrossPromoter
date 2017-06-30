@@ -1,9 +1,11 @@
 package com.mobapphome.mahads.tools
 
 object Constants {
+    @JvmField
     val MAH_ADS_VERSION = "mah_ads_version"
     val PROGRAM_LIST_CACHE = "program_list_cache2"
 
+    @JvmField
     val MAH_ADS_GITHUB_LINK = "https://github.com/hummatli/MAHAds"
     val MAH_ADS_INTERNAL_CALLED = "internal_called"
     val LOG_TAG_MAH_ADS = "mah_ads_log"

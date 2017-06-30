@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".SampleActivityKotlin">
 
 
     <RelativeLayout
@@ -94,13 +94,13 @@
                             android:orientation="vertical">
 
                             <Button
-                                android:id="@+id/mahBtnProgramsDlgTest"
+                                android:id="@+id/btnProgramsDlgTest"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/txt_btn_open_programs_dlg" />
 
                             <Button
-                                android:id="@+id/mahBtnExitDlgTest"
+                                android:id="@+id/btnExitDlgTest"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/txt_btn_open_exit_dlg" />
@@ -185,7 +185,7 @@
         </ScrollView>
 
         <ImageView
-            android:id="@+id/ivMAHForkMeOnGithub"
+            android:id="@+id/ivForkMeOnGithub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

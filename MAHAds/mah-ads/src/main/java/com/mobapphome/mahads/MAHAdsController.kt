@@ -7,8 +7,6 @@ import android.support.v4.app.FragmentActivity
 import android.util.Log
 import com.google.gson.Gson
 import com.mobapphome.mahads.tools.*
-import com.mobapphome.mahads.tools.GsonDeserializeExclusion
-import com.google.gson.GsonBuilder
 
 
 class MAHAdsController private constructor(){
@@ -135,13 +133,14 @@ class MAHAdsController private constructor(){
 
     companion object {
 
-        private var instance: MAHAdsController? = null
-
-        fun newInstance():MAHAdsController? {
-            if (instance == null) {
-                instance = MAHAdsController()
+        @JvmStatic
+        var instance: MAHAdsController? = null
+        private set
+        get() {
+            if (field == null) {
+                field = MAHAdsController()
             }
-            return instance
+            return field
         }
 
         var mahRequestResult: MAHRequestResult? = null //This variable saves in savedInstanceState

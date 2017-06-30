@@ -1,9 +1,6 @@
 package com.mobapphome.mahads.sample
 
 import android.content.Context
-import android.content.SharedPreferences
-import android.content.res.Configuration
-import android.content.res.Resources
 import android.preference.PreferenceManager
 import android.util.Log
 
@@ -28,17 +25,20 @@ object LocaleHelper {
         setLocale(context, lang)
     }
 
+    @JvmStatic
     fun onCreate(context: Context, defaultLanguage: String) {
         val lang = getPersistedData(context, defaultLanguage)
         setLocale(context, lang)
     }
 
+    @JvmStatic
     fun getLanguage(context: Context): String {
         return getPersistedData(context, Locale.getDefault().language)
     }
 
+    @JvmStatic
     fun setLocale(context: Context, language: String) {
-        Log.i(MainActivity.LOG_TAG_MAH_ADS_SAMPLE, "Language = " + language)
+        Log.i(SampleActivityKotlin.LOG_TAG_MAH_ADS_SAMPLE, "Language = " + language)
         persist(context, language)
         updateResources(context, language)
     }

@@ -136,9 +136,9 @@ class MAHAdsDlgExit(
         tvFresnestProg1.makeGone()
         tvFresnestProg2.makeGone()
 
-        iconBtnOther.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_all_and_btn_text_color))
-        ivBtnCancel.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_title_bar_text_color))
-        ivBtnInfo.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_title_bar_text_color))
+        iconBtnOther.setColorFilterCompat(R.color.mah_ads_all_and_btn_text_color)
+        ivBtnCancel.setColorFilterCompat(R.color.mah_ads_title_bar_text_color)
+        ivBtnInfo.setColorFilterCompat( R.color.mah_ads_title_bar_text_color)
 
         mah_ads_dlg_scroll.post { mah_ads_dlg_scroll.fullScroll(ScrollView.FOCUS_DOWN) }
 
@@ -346,4 +346,15 @@ class MAHAdsDlgExit(
             return dialog
         }
     }
+
+    interface MAHAdsDlgExitListener {
+        fun onYes()
+
+        fun onNo()
+
+        fun onExitWithoutExitDlg()
+
+        fun onEventHappened(eventStr: String)
+    }
+
 }// Empty constructor required for DialogFragment

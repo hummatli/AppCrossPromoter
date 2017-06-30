@@ -18,15 +18,14 @@ import java.util.*
 
 
 //General --------------------------------------------------------------------
-fun checkPackageIfExists(context: Context, pckgName: String): Boolean {
-    try {
-        val info = context.packageManager.getApplicationInfo(pckgName, 0)
-        return true
-    } catch (e: PackageManager.NameNotFoundException) {
-        return false
-    }
+fun checkPackageIfExists(context: Context, pckgName: String): Boolean =
+        try {
+            val info = context.packageManager.getApplicationInfo(pckgName, 0)
+            true
+        } catch (e: PackageManager.NameNotFoundException) {
+            false
+        }
 
-}
 
 fun writeStringToCache(context: Context, stringToCache: String) {
     val outputStream: FileOutputStream
@@ -68,23 +67,18 @@ fun readStringFromCache(context: Context): String? {
     return null
 }
 
-fun getVersionFromLocal(context: Context): Int {
-    return getSharedPref(context).getInt(Constants.MAH_ADS_VERSION, -1)
-}
+fun getVersionFromLocal(context: Context): Int = getSharedPref(context).getInt(Constants.MAH_ADS_VERSION, -1)
 
 
-fun getUrlOfImage(urlRootOnServer: String, initialUrlForImage: String): String {
-    if (initialUrlForImage.startsWith("http://") || initialUrlForImage.startsWith("https://")) {
-        return initialUrlForImage
-    } else {
-        return urlRootOnServer + initialUrlForImage
-    }
-}
+fun getUrlOfImage(urlRootOnServer: String, initialUrlForImage: String): String =
+        if (initialUrlForImage.startsWith("http://") || initialUrlForImage.startsWith("https://")) {
+            initialUrlForImage
+        } else {
+            urlRootOnServer + initialUrlForImage
+        }
 
 
-fun getRootFromUrl(urlStr: String): String {
-    return urlStr.substring(0, urlStr.lastIndexOf('/') + 1)
-}
+fun getRootFromUrl(urlStr: String): String = urlStr.substring(0, urlStr.lastIndexOf('/') + 1)
 
 fun showMarket(context: Context, pckgName: String) {
     val marketIntent = Intent(Intent.ACTION_VIEW)
@@ -116,54 +110,47 @@ private fun programSelect(programsSource: MutableList<Program>, programsSelected
 fun filterMAHRequestResult(context: Context, requestResult: MAHRequestResult): MAHRequestResult {
 
     val programsTotal = requestResult.programsTotal
-    if (programsTotal != null) {
-        val programsFiltered = LinkedList<Program>()
-        val programsNotInstalledOld = LinkedList<Program>()
-        val programsNotInstalledFresh = LinkedList<Program>()
-        val programsInstalled = LinkedList<Program>()
+    val programsFiltered = LinkedList<Program>()
+    val programsNotInstalledOld = LinkedList<Program>()
+    val programsNotInstalledFresh = LinkedList<Program>()
+    val programsInstalled = LinkedList<Program>()
 
-        for (c in programsTotal) {
-            if (c.uri.trim { it <= ' ' } != context.packageName.trim { it <= ' ' }) {
-                programsFiltered.add(c)
-                if (!checkPackageIfExists(context, c.uri.trim { it <= ' ' })) {
-                    val freshnest = c.freshnest
-                    if (freshnest == Freshnest.NEW || freshnest == Freshnest.UPDATED) {
-                        programsNotInstalledFresh.add(c)
-                    } else {
-                        programsNotInstalledOld.add(c)
-                    }
+    for (c in programsTotal) {
+        if (c.uri.trim { it <= ' ' } != context.packageName.trim { it <= ' ' }) {
+            programsFiltered.add(c)
+            if (!checkPackageIfExists(context, c.uri.trim { it <= ' ' })) {
+                val freshnest = c.freshnest
+                if (freshnest == Program.Freshnest.NEW || freshnest == Program.Freshnest.UPDATED) {
+                    programsNotInstalledFresh.add(c)
                 } else {
-                    programsInstalled.add(c)
+                    programsNotInstalledOld.add(c)
                 }
+            } else {
+                programsInstalled.add(c)
             }
         }
-
-        //For generating selected programs start
-        val programsSelectedLocal = LinkedList<Program>()
-        programSelect(programsNotInstalledFresh, programsSelectedLocal)
-        programSelect(programsNotInstalledOld, programsSelectedLocal)
-        programSelect(programsInstalled, programsSelectedLocal)
-
-
-        requestResult.programsFiltered = programsFiltered
-        requestResult.programsSelected = programsSelectedLocal
-
-        return requestResult
-    } else {
-        Log.i(Constants.LOG_TAG_MAH_ADS, "Programs total is null")
-        return requestResult
     }
+
+    //For generating selected programs start
+    val programsSelectedLocal = LinkedList<Program>()
+    programSelect(programsNotInstalledFresh, programsSelectedLocal)
+    programSelect(programsNotInstalledOld, programsSelectedLocal)
+    programSelect(programsInstalled, programsSelectedLocal)
+
+
+    requestResult.programsFiltered = programsFiltered
+    requestResult.programsSelected = programsSelectedLocal
+
+    return requestResult
 }
 
-fun getSharedPref(context: Context): SharedPreferences {
-    return context.getSharedPreferences("MAH_ADS", Context.MODE_PRIVATE)
-}
+fun getSharedPref(context: Context): SharedPreferences = context.getSharedPreferences("MAH_ADS", Context.MODE_PRIVATE)
 
-fun sorrWithMAHExeption(f: () -> Unit) {
-    try {
-        f()
-    } catch (e: MAHFragmentExeption) {
-        Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
-    }
-}
+fun sorrWithMAHExeption(f: () -> Unit) =
+        try {
+            f()
+        } catch (e: MAHFragmentExeption) {
+            Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
+        }
+
 
