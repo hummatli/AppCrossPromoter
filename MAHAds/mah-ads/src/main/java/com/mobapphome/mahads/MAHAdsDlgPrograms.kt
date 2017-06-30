@@ -35,16 +35,17 @@ import kotlinx.android.synthetic.main.mah_ads_dialog_programs.*
 import java.util.*
 
 
-class MAHAdsDlgPrograms : MAHDialogFragment() {
-    val items: MutableList<Any> = LinkedList<Any>()
-    var mahRequestResult: MAHRequestResult? = null
-    var urls: Urls? = null
-    var fontName: String? = null
-    var btnInfoVisibility: Boolean = false
-    var btnInfoWithMenu: Boolean = false
-    var btnInfoMenuItemTitle: String? = null
-    var btnInfoActionURL: String? = null
-    var dataHasAlreadySet = false
+class MAHAdsDlgPrograms(val items: MutableList<Any> = LinkedList<Any>(),
+                        var mahRequestResult: MAHRequestResult? = null,
+                        var urls: Urls? = null,
+                        var fontName: String? = null,
+                        var btnInfoVisibility: Boolean = false,
+                        var btnInfoWithMenu: Boolean = false,
+                        var btnInfoMenuItemTitle: String? = null,
+                        var btnInfoActionURL: String? = null,
+                        var dataHasAlreadySet: Boolean = false)
+    : MAHDialogFragment() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -145,8 +146,8 @@ class MAHAdsDlgPrograms : MAHDialogFragment() {
 
         if (result != null && (result.resultState === MAHRequestResult.ResultState.SUCCESS || result.resultState === MAHRequestResult.ResultState.ERR_SOME_ITEMS_HAS_JSON_SYNTAX_ERROR)) {
             dataHasAlreadySet = true
-            val programsExceptMyself = result.programsFiltered
-            for (c in programsExceptMyself!!) {
+
+            for (c in result.programsFiltered!!) {
                 items.add(c)
             }
 

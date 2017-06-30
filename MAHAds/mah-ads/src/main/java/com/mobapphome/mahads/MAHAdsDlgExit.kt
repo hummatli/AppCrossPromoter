@@ -29,18 +29,20 @@ import com.mobapphome.mahandroidupdater.commons.*
 import kotlinx.android.synthetic.main.mah_ads_dialog_exit.*
 
 
-class MAHAdsDlgExit : MAHDialogFragment() {
-    var prog1: Program? = null
-    var prog2: Program? = null
-    var exitCallback: MAHAdsDlgExitListener? = null
+class MAHAdsDlgExit(
+        var prog1: Program? = null,
+        var prog2: Program? = null,
+        var exitCallback: MAHAdsDlgExitListener? = null,
 
-    var urls: Urls? = null
-    var fontName: String? = null
-    var btnInfoVisibility: Boolean = false
-    var btnInfoWithMenu: Boolean = false
-    var btnInfoMenuItemTitle: String? = null
-    var btnInfoActionURL: String? = null
-    var mahRequestResult: MAHRequestResult? = null
+        var urls: Urls? = null,
+        var fontName: String? = null,
+        var btnInfoVisibility: Boolean = false,
+        var btnInfoWithMenu: Boolean = false,
+        var btnInfoMenuItemTitle: String? = null,
+        var btnInfoActionURL: String? = null,
+        var mahRequestResult: MAHRequestResult? = null)
+    : MAHDialogFragment() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -169,7 +171,8 @@ class MAHAdsDlgExit : MAHDialogFragment() {
         val imgNotFoundDrawable = ContextCompat.getDrawable(context, R.drawable.img_not_found)
         imgNotFoundDrawable.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_no_image_color), PorterDuff.Mode.SRC_IN)
 
-        if (mahRequestResult == null || mahRequestResult.programsSelected == null || mahRequestResult.programsSelected!!.size <= 0) {
+        //if (mahRequestResult == null || mahRequestResult.programsSelected == null || mahRequestResult.programsSelected!!.isEmpty() ) {
+        if (mahRequestResult?.programsSelected?.isEmpty() ?: true) {
 
             if (mahRequestResult != null && mahRequestResult.programsSelected == null) {
                 exitCallback!!.onEventHappened("MAHAdsController programSelected is null")
@@ -177,7 +180,7 @@ class MAHAdsDlgExit : MAHDialogFragment() {
 
             lytProgsPanel.makeGone()
             mah_ads_dlg_exit_tv_btn_other.text = view!!.resources.getString(R.string.mah_ads_dlg_exit_btn_more_txt_1)
-        } else if (mahRequestResult.programsSelected!!.size == 1) {
+        } else if (mahRequestResult?.programsSelected?.size == 1) {
             lytProgsPanel.makeVisible()
             lytProg2MAHAdsExtDlg.makeGone()
             prog1 = mahRequestResult.programsSelected!![0]
@@ -196,9 +199,7 @@ class MAHAdsDlgExit : MAHDialogFragment() {
             if (freshnestStr != null) {
                 tvFresnestProg1.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog1!!.getFreshnestStrTextSizeInSP(context).toFloat())
                 tvFresnestProg1.text = freshnestStr
-                val animRotate = AnimationUtils.loadAnimation(context, R.anim.tv_rotate) as RotateAnimation
-                animRotate.fillAfter = true //For the textview to remain at the same place after the rotation
-                tvFresnestProg1.animation = animRotate
+                tvFresnestProg1.startAnimationFillAfter(R.anim.tv_rotate)
                 tvFresnestProg1.makeVisible()
             } else {
                 tvFresnestProg1.makeGone()
@@ -214,7 +215,7 @@ class MAHAdsDlgExit : MAHDialogFragment() {
             lytProgsPanel.makeVisible()
             lytProg2MAHAdsExtDlg.makeVisible()
 
-            prog1 = mahRequestResult.programsSelected!![0]
+            prog1 = mahRequestResult!!.programsSelected!![0]
             tvProg1NameMAHAdsExtDlg.text = prog1!!.name
             Glide.with(context)
                     .load(getUrlOfImage(urls!!.urlRootOnServer!!, prog1!!.img))
@@ -230,9 +231,7 @@ class MAHAdsDlgExit : MAHDialogFragment() {
             if (freshnestStr != null) {
                 tvFresnestProg1.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog1!!.getFreshnestStrTextSizeInSP(context).toFloat())
                 tvFresnestProg1.text = freshnestStr
-                val animRotate = AnimationUtils.loadAnimation(context, R.anim.tv_rotate) as RotateAnimation
-                animRotate.fillAfter = true //For the textview to remain at the same place after the rotation
-                tvFresnestProg1.animation = animRotate
+                tvFresnestProg1.startAnimationFillAfter(R.anim.tv_rotate)
                 tvFresnestProg1.makeVisible()
             } else {
                 tvFresnestProg1.clearAnimation()
@@ -255,9 +254,7 @@ class MAHAdsDlgExit : MAHDialogFragment() {
             if (freshnestStr2 != null) {
                 tvFresnestProg2.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog2!!.getFreshnestStrTextSizeInSP(context).toFloat())
                 tvFresnestProg2.text = freshnestStr2
-                val animRotate = AnimationUtils.loadAnimation(context, R.anim.tv_rotate) as RotateAnimation
-                animRotate.fillAfter = true //For the textview to remain at the same place after the rotation
-                tvFresnestProg2.animation = animRotate
+                tvFresnestProg2.startAnimationFillAfter(R.anim.tv_rotate)
                 tvFresnestProg2.makeVisible()
             } else {
                 tvFresnestProg2.clearAnimation()

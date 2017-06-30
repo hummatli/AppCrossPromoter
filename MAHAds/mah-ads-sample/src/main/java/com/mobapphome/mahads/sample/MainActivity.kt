@@ -98,7 +98,6 @@ class MainActivity : AppCompatActivity(), MAHAdsDlgExitListener, View.OnClickLis
         // For MAHAds init
         // METHOD 1
         mahAdsController = MAHAdsController.newInstance()
-       // mahAdsController = MAHAdsController()
         mahAdsController!!.init(this, savedInstanceState, "https://project-943403214286171762.firebaseapp.com/mah_ads_dir/",
                 "github_apps_prg_version.json", "github_apps_prg_list.json")
         // METHOD 1
