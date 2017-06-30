@@ -29,7 +29,7 @@ import com.mobapphome.mahandroidupdater.commons.setFontTextView
 import kotlinx.android.synthetic.main.mah_ads_dialog_exit.*
 
 
-class MAHAdsDlgExit : MAHDialogFragment(), View.OnClickListener {
+class MAHAdsDlgExit : MAHDialogFragment() {
     var prog1: Program? = null
     var prog2: Program? = null
     var exitCallback: MAHAdsDlgExitListener? = null
@@ -78,7 +78,7 @@ class MAHAdsDlgExit : MAHDialogFragment(), View.OnClickListener {
             dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             //getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
             dialog.setCanceledOnTouchOutside(false)
-            dialog.setOnKeyListener{ dialog, keyCode, event ->
+            dialog.setOnKeyListener { dialog, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
                     onNo()
                 }
@@ -96,11 +96,37 @@ class MAHAdsDlgExit : MAHDialogFragment(), View.OnClickListener {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnYes.setOnClickListener(this)
-        btnNo.setOnClickListener(this)
-        ivBtnCancel.setOnClickListener(this)
-        ivBtnInfo.setOnClickListener(this)
-        lytBtnOther.setOnClickListener(this)
+        btnYes.setOnClickListener { sorrWithMAHExeption { onYes() } }
+        btnNo.setOnClickListener { sorrWithMAHExeption { onNo() } }
+        ivBtnCancel.setOnClickListener { sorrWithMAHExeption { dismissAllowingStateLoss() } }
+        ivBtnInfo.setOnClickListener { v ->
+            sorrWithMAHExeption {
+                if (btnInfoWithMenu) {
+                    val itemIdForInfo = 1
+                    val popup = PopupMenu(context, v)
+                    popup.menu.add(Menu.NONE, itemIdForInfo, 1, btnInfoMenuItemTitle)
+
+                    // registering popup with OnMenuItemClickListener
+                    popup.setOnMenuItemClickListener { item ->
+                        if (item.itemId == itemIdForInfo) {
+                            showMAHlib()
+                        }
+                        true
+                    }
+
+                    popup.show()// showing popup menu
+                } else {
+                    showMAHlib()
+                }
+            }
+        }
+        lytBtnOther.setOnClickListener {
+            sorrWithMAHExeption {
+                MAHAdsController.showDlg(activityMAH,
+                        MAHAdsDlgPrograms.newInstance(mahRequestResult, urls, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle!!, btnInfoActionURL!!),
+                        Constants.TAG_MAH_ADS_DLG_PROGRAMS)
+            }
+        }
 
         if (btnInfoVisibility) {
             ivBtnInfo.visibility = View.VISIBLE
@@ -153,11 +179,11 @@ class MAHAdsDlgExit : MAHDialogFragment(), View.OnClickListener {
                 exitCallback!!.onEventHappened("MAHAdsController programSelected is null")
             }
 
-            lytProgsPanel!!.visibility = View.GONE
+            lytProgsPanel.visibility = View.GONE
             mah_ads_dlg_exit_tv_btn_other.text = view!!.resources.getString(R.string.mah_ads_dlg_exit_btn_more_txt_1)
         } else if (mahRequestResult.programsSelected!!.size == 1) {
-            lytProgsPanel!!.visibility = View.VISIBLE
-            lytProg2MAHAdsExtDlg!!.visibility = View.GONE
+            lytProgsPanel.visibility = View.VISIBLE
+            lytProg2MAHAdsExtDlg.visibility = View.GONE
             prog1 = mahRequestResult.programsSelected!![0]
             tvProg1NameMAHAdsExtDlg.text = prog1!!.name
 
@@ -172,20 +198,25 @@ class MAHAdsDlgExit : MAHDialogFragment(), View.OnClickListener {
                     .into(ivProg1ImgMAHAds)
             val freshnestStr = prog1!!.getFreshnestStr(context)
             if (freshnestStr != null) {
-                tvFresnestProg1!!.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog1!!.getFreshnestStrTextSizeInSP(context).toFloat())
-                tvFresnestProg1!!.text = freshnestStr
+                tvFresnestProg1.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog1!!.getFreshnestStrTextSizeInSP(context).toFloat())
+                tvFresnestProg1.text = freshnestStr
                 val animRotate = AnimationUtils.loadAnimation(context, R.anim.tv_rotate) as RotateAnimation
                 animRotate.fillAfter = true //For the textview to remain at the same place after the rotation
-                tvFresnestProg1!!.animation = animRotate
-                tvFresnestProg1!!.visibility = View.VISIBLE
+                tvFresnestProg1.animation = animRotate
+                tvFresnestProg1.visibility = View.VISIBLE
             } else {
-                tvFresnestProg1!!.visibility = View.GONE
+                tvFresnestProg1.visibility = View.GONE
             }
-            lytProg1MAHAdsExtDlg!!.setOnClickListener(this@MAHAdsDlgExit)
+
+            lytProg1MAHAdsExtDlg.setOnClickListener {
+                sorrWithMAHExeption {
+                    if (prog1 != null) openAppOrMarketAcitivity(prog1!!.uri.trim { it <= ' ' })
+                }
+            }
             mah_ads_dlg_exit_tv_btn_other.text = view!!.resources.getString(R.string.mah_ads_dlg_exit_btn_more_txt_2)
         } else {
-            lytProgsPanel!!.visibility = View.VISIBLE
-            lytProg2MAHAdsExtDlg!!.visibility = View.VISIBLE
+            lytProgsPanel.visibility = View.VISIBLE
+            lytProg2MAHAdsExtDlg.visibility = View.VISIBLE
 
             prog1 = mahRequestResult.programsSelected!![0]
             tvProg1NameMAHAdsExtDlg.text = prog1!!.name
@@ -201,15 +232,15 @@ class MAHAdsDlgExit : MAHDialogFragment(), View.OnClickListener {
 
             val freshnestStr = prog1!!.getFreshnestStr(context)
             if (freshnestStr != null) {
-                tvFresnestProg1!!.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog1!!.getFreshnestStrTextSizeInSP(context).toFloat())
-                tvFresnestProg1!!.text = freshnestStr
+                tvFresnestProg1.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog1!!.getFreshnestStrTextSizeInSP(context).toFloat())
+                tvFresnestProg1.text = freshnestStr
                 val animRotate = AnimationUtils.loadAnimation(context, R.anim.tv_rotate) as RotateAnimation
                 animRotate.fillAfter = true //For the textview to remain at the same place after the rotation
-                tvFresnestProg1!!.animation = animRotate
-                tvFresnestProg1!!.visibility = View.VISIBLE
+                tvFresnestProg1.animation = animRotate
+                tvFresnestProg1.visibility = View.VISIBLE
             } else {
-                tvFresnestProg1!!.clearAnimation()
-                tvFresnestProg1!!.visibility = View.GONE
+                tvFresnestProg1.clearAnimation()
+                tvFresnestProg1.visibility = View.GONE
             }
 
             prog2 = mahRequestResult.programsSelected!![1]
@@ -226,38 +257,41 @@ class MAHAdsDlgExit : MAHDialogFragment(), View.OnClickListener {
 
             val freshnestStr2 = prog2!!.getFreshnestStr(context)
             if (freshnestStr2 != null) {
-                tvFresnestProg2!!.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog2!!.getFreshnestStrTextSizeInSP(context).toFloat())
-                tvFresnestProg2!!.text = freshnestStr2
+                tvFresnestProg2.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog2!!.getFreshnestStrTextSizeInSP(context).toFloat())
+                tvFresnestProg2.text = freshnestStr2
                 val animRotate = AnimationUtils.loadAnimation(context, R.anim.tv_rotate) as RotateAnimation
                 animRotate.fillAfter = true //For the textview to remain at the same place after the rotation
-                tvFresnestProg2!!.animation = animRotate
-                tvFresnestProg2!!.visibility = View.VISIBLE
+                tvFresnestProg2.animation = animRotate
+                tvFresnestProg2.visibility = View.VISIBLE
             } else {
-                tvFresnestProg2!!.clearAnimation()
-                tvFresnestProg2!!.visibility = View.GONE
+                tvFresnestProg2.clearAnimation()
+                tvFresnestProg2.visibility = View.GONE
             }
 
-            lytProg1MAHAdsExtDlg!!.setOnClickListener(this@MAHAdsDlgExit)
-            lytProg2MAHAdsExtDlg!!.setOnClickListener(this@MAHAdsDlgExit)
+            lytProg1MAHAdsExtDlg.setOnClickListener {
+                sorrWithMAHExeption {
+                    if (prog1 != null) openAppOrMarketAcitivity(prog1!!.uri.trim { it <= ' ' })
+
+                }
+            }
+            lytProg2MAHAdsExtDlg.setOnClickListener {
+                sorrWithMAHExeption {
+                    if (prog2 != null) openAppOrMarketAcitivity(prog2!!.uri.trim { it <= ' ' })
+                }
+            }
             mah_ads_dlg_exit_tv_btn_other.text = view!!.resources.getString(R.string.mah_ads_dlg_exit_btn_more_txt_2)
             //Log.i(Constants.LOG_TAG_MAH_ADS, "freshnestStr1 = " + freshnestStr + " freshnestStr2 = " + freshnestStr2);
         }
     }
 
-    fun onYes() {
-        try {
-            dismissAllowingStateLoss()
-            exitCallback!!.onYes()
-            activityMAH.finish()
-            //The problem when appears on application close is for the transition animation time difference.
-            //Time for home screen animation and other animation is differenet
-            //Some times it shows reappearing dialog on application close
-            //There for i call dismiss() and later call for finish()
-        } catch (e: MAHFragmentExeption) {
-            Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
-            return
-        }
-
+    fun onYes() = sorrWithMAHExeption {
+        dismissAllowingStateLoss()
+        exitCallback!!.onYes()
+        activityMAH.finish()
+        //The problem when appears on application close is for the transition animation time difference.
+        //Time for home screen animation and other animation is differenet
+        //Some times it shows reappearing dialog on application close
+        //There for i call dismiss() and later call for finish()
     }
 
 
@@ -266,79 +300,31 @@ class MAHAdsDlgExit : MAHDialogFragment(), View.OnClickListener {
         dismissAllowingStateLoss()
     }
 
-    private fun showMAHlib() {
-        try {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(btnInfoActionURL))
-            context.startActivity(browserIntent)
-        } catch (nfe: ActivityNotFoundException) {
-            val str = "You haven't set correct url to btnInfoActionURL, your url = " + btnInfoActionURL
-            Toast.makeText(context, str, Toast.LENGTH_LONG).show()
-            Log.d(Constants.LOG_TAG_MAH_ADS, str, nfe)
-        }
+    private fun showMAHlib() =
+            try {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(btnInfoActionURL))
+                context.startActivity(browserIntent)
+            } catch (nfe: ActivityNotFoundException) {
+                val str = "You haven't set correct url to btnInfoActionURL, your url = " + btnInfoActionURL
+                Toast.makeText(context, str, Toast.LENGTH_LONG).show()
+                Log.d(Constants.LOG_TAG_MAH_ADS, str, nfe)
+            }
 
-    }
 
-    fun openAppOrMarketAcitivity(pckgName: String) {
-        try {
-            if (checkPackageIfExists(activityMAH, pckgName)) {
-                val pack = activityMAH.packageManager
-                val app = pack.getLaunchIntentForPackage(pckgName)
-                app.putExtra(Constants.MAH_ADS_INTERNAL_CALLED, true)
-                context.startActivity(app)
+    fun openAppOrMarketAcitivity(pckgName: String) = sorrWithMAHExeption {
+        if (checkPackageIfExists(activityMAH, pckgName)) {
+            val pack = activityMAH.packageManager
+            val app = pack.getLaunchIntentForPackage(pckgName)
+            app.putExtra(Constants.MAH_ADS_INTERNAL_CALLED, true)
+            context.startActivity(app)
+        } else {
+            if (!pckgName.isEmpty()) {
+                showMarket(context, pckgName)
             } else {
-                if (!pckgName.isEmpty()) {
-                    showMarket(context, pckgName)
-                }
             }
-        } catch (e: MAHFragmentExeption) {
-            Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
-            return
         }
-
     }
 
-    override fun onClick(v: View) {
-        try {
-            if (v.id == R.id.ivBtnCancel) {
-                dismissAllowingStateLoss()
-            } else if (v.id == R.id.ivBtnInfo) {
-
-                if (btnInfoWithMenu) {
-                    val itemIdForInfo = 1
-                    val popup = PopupMenu(context, v)
-                    popup.menu.add(Menu.NONE, itemIdForInfo, 1, btnInfoMenuItemTitle)
-
-                    // registering popup with OnMenuItemClickListener
-                    popup.setOnMenuItemClickListener { item ->
-                        if (item.itemId == itemIdForInfo) {
-                            showMAHlib()
-                        }
-                        true
-                    }
-
-                    popup.show()// showing popup menu
-                } else {
-                    showMAHlib()
-                }
-            } else if (v.id == R.id.btnYes) {
-                onYes()
-            } else if (v.id == R.id.btnNo) {
-                onNo()
-            } else if (v.id == R.id.lytBtnOther) {
-                MAHAdsController.showDlg(activityMAH,
-                        MAHAdsDlgPrograms.newInstance(mahRequestResult, urls, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle!!, btnInfoActionURL!!),
-                        Constants.TAG_MAH_ADS_DLG_PROGRAMS)
-            } else if (v.id == R.id.lytProg1MAHAdsExtDlg && prog1 != null) {
-                openAppOrMarketAcitivity(prog1!!.uri.trim { it <= ' ' })
-            } else if (v.id == R.id.lytProg2MAHAdsExtDlg && prog2 != null) {
-                openAppOrMarketAcitivity(prog2!!.uri.trim { it <= ' ' })
-            }
-        } catch (e: MAHFragmentExeption) {
-            Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
-            return
-        }
-
-    }
 
     val isProgramsPanelVisible: Boolean
         get() {

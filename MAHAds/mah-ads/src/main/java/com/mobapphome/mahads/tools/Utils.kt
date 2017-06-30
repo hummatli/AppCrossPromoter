@@ -9,6 +9,7 @@ import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import com.mobapphome.mahads.R
+import com.mobapphome.mahads.mahfragments.MAHFragmentExeption
 import java.io.BufferedReader
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -156,5 +157,13 @@ fun filterMAHRequestResult(context: Context, requestResult: MAHRequestResult): M
 
 fun getSharedPref(context: Context): SharedPreferences {
     return context.getSharedPreferences("MAH_ADS", Context.MODE_PRIVATE)
+}
+
+fun sorrWithMAHExeption(f: () -> Unit) {
+    try {
+        f()
+    } catch (e: MAHFragmentExeption) {
+        Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
+    }
 }
 

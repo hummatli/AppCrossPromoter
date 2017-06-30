@@ -11,10 +11,7 @@ import com.mobapphome.mahads.tools.GsonDeserializeExclusion
 import com.google.gson.GsonBuilder
 
 
-
-
-class MAHAdsController {
-
+class MAHAdsController private constructor(){
 
     private var urls: Urls? = null
     private var isInternalCalled = false
@@ -72,7 +69,7 @@ class MAHAdsController {
 
 
     fun onSaveInstanceState(savedInstanceState: Bundle) {
-        val gson =  Gson()
+        val gson = Gson()
         savedInstanceState.putString("mahRequestResult", gson.toJson(mahRequestResult))
         savedInstanceState.putString("fontName", fontName)
     }
@@ -137,13 +134,16 @@ class MAHAdsController {
     }
 
     companion object {
-//        var instance: MAHAdsController? = null
-//            get() {
-//                if (instance == null) {
-//                    instance = MAHAdsController()
-//                }
-//                return instance
-//            }
+
+        private var instance: MAHAdsController? = null
+
+        fun newInstance():MAHAdsController? {
+            if (instance == null) {
+                instance = MAHAdsController()
+            }
+            return instance
+        }
+
         var mahRequestResult: MAHRequestResult? = null //This variable saves in savedInstanceState
 
 

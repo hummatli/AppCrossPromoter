@@ -14,6 +14,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.PopupMenu
 import android.util.Log
 import android.view.*
@@ -24,15 +25,16 @@ import android.widget.*
 import com.google.gson.Gson
 import com.mobapphome.mahads.mahfragments.MAHDialogFragment
 import com.mobapphome.mahads.mahfragments.MAHFragmentExeption
-import com.mobapphome.mahads.tools.Constants
-import com.mobapphome.mahads.tools.MAHRequestResult
-import com.mobapphome.mahads.tools.Updater
-import com.mobapphome.mahads.tools.Urls
+import com.mobapphome.mahads.tools.*
 import com.mobapphome.mahandroidupdater.commons.setFontTextView
 import kotlinx.android.synthetic.main.mah_ads_dialog_programs.*
 import java.util.*
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 
-class MAHAdsDlgPrograms : MAHDialogFragment(), View.OnClickListener {
+
+class MAHAdsDlgPrograms : MAHDialogFragment() {
     val items: MutableList<Any> = LinkedList<Any>()
     var mahRequestResult: MAHRequestResult? = null
     var urls: Urls? = null
@@ -81,17 +83,36 @@ class MAHAdsDlgPrograms : MAHDialogFragment(), View.OnClickListener {
             Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
             return null
         }
-
     }
 
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnClose.setOnClickListener(this)
-        btnErrorRefreshMAHAds.setOnClickListener(this)
-        ivBtnCancel.setOnClickListener(this)
-        ivBtnInfo.setOnClickListener(this)
+        btnClose.setOnClickListener { sorrWithMAHExeption { onClose() } }
+        btnErrorRefreshMAHAds.setOnClickListener { sorrWithMAHExeption { Updater.updateProgramList(activityMAH, urls!!) } }
+        ivBtnCancel.setOnClickListener { sorrWithMAHExeption { onClose() } }
+        ivBtnInfo.setOnClickListener { v ->
+            sorrWithMAHExeption {
+                if (btnInfoWithMenu) {
+                    val itemIdForInfo = 1
+                    val popup = PopupMenu(context, v)
+                    popup.menu.add(Menu.NONE, itemIdForInfo, 1, btnInfoMenuItemTitle)
+
+                    // registering popup with OnMenuItemClickListener
+                    popup.setOnMenuItemClickListener { item ->
+                        if (item.itemId == itemIdForInfo) {
+                            showMAHlib()
+                        }
+                        true
+                    }
+
+                    popup.show()// showing popup menu
+                } else {
+                    showMAHlib()
+                }
+            }
+        }
         ivBtnCancel.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_title_bar_text_color))
         ivBtnInfo.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_title_bar_text_color))
 
@@ -116,8 +137,6 @@ class MAHAdsDlgPrograms : MAHDialogFragment(), View.OnClickListener {
         tvTitle.setFontTextView(fontName)
         tvErrorResultF1.setFontTextView(fontName)
         //btnErrorRefreshMAHAds.setFontTextView(fontName)
-
-
     }
 
     fun setUI(result: MAHRequestResult?, firstTime: Boolean) {
@@ -130,10 +149,53 @@ class MAHAdsDlgPrograms : MAHDialogFragment(), View.OnClickListener {
             for (c in programsExceptMyself!!) {
                 items.add(c)
             }
-            val adapterInit = ProgramItmAdptPrograms(context, items, urls?.urlRootOnServer, fontName)
+
+            val adapterInit = ProgramItmAdptNew(items, urls?.urlRootOnServer, fontName,
+                    listenerOnClick = {
+                        if (it is Program) {
+                            val pckgName = it.uri.trim { it <= ' ' }
+                            if (checkPackageIfExists(context, pckgName)) {
+                                val pack = context.packageManager
+                                val app = pack.getLaunchIntentForPackage(pckgName)
+                                app.putExtra(Constants.MAH_ADS_INTERNAL_CALLED, true)
+                                context.startActivity(app)
+                            } else {
+                                if (!pckgName.isEmpty()) {
+                                    showMarket(context, pckgName)
+                                }
+                            }
+                        }
+                    },
+                    listenerOnMoreClick = { item, v ->
+                        if (item is Program) {
+                            val pckgName = item.uri.trim { it <= ' ' }
+                            val popup = PopupMenu(context, v)
+                            // Inflating the Popup using xml file
+                            popup.menuInflater.inflate(R.menu.program_popup_menu, popup.menu)
+                            // registering popup with OnMenuItemClickListener
+                            popup.setOnMenuItemClickListener {
+                                if (it.itemId == R.id.popupMenuOpenOnGoogleP) {
+                                    if (!pckgName.isEmpty()) {
+                                        showMarket(context, pckgName)
+                                    }
+                                }
+                                true
+                            }
+                            popup.show()// showing popup menu
+                        }
+                    })
+
 
             lstProgram.post {
                 Log.i(Constants.LOG_TAG_MAH_ADS, "lstProgram post called")
+                //lstProgram.layoutManager = GridLayoutManager(context, 2)
+
+
+                val mLayoutManager = LinearLayoutManager(context)
+                lstProgram.setLayoutManager(mLayoutManager)
+                lstProgram.setItemAnimator(DefaultItemAnimator())
+
+
                 lstProgram.adapter = adapterInit
                 lytErrorF1.visibility = View.GONE
                 lstProgram.visibility = View.VISIBLE
@@ -182,62 +244,27 @@ class MAHAdsDlgPrograms : MAHDialogFragment(), View.OnClickListener {
     }
 
     fun stopLoading() {
-        ivLoading!!.visibility = View.GONE
-        lstProgram!!.visibility = View.GONE
-        lytErrorF1!!.visibility = View.GONE
+        ivLoading.visibility = View.GONE
+        lstProgram.visibility = View.GONE
+        lytErrorF1.visibility = View.GONE
 
-        ivLoading!!.clearAnimation()
+        ivLoading.clearAnimation()
         Log.i(Constants.LOG_TAG_MAH_ADS, "Animation stopped")
     }
 
-    fun onClose() {
-        dismissAllowingStateLoss()
-    }
+    fun onClose() = dismissAllowingStateLoss()
 
-    private fun showMAHlib() {
-        try {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(btnInfoActionURL))
-            context.startActivity(browserIntent)
-        } catch (nfe: ActivityNotFoundException) {
-            val str = "You haven't set correct url to btnInfoActionURL, your url = " + btnInfoActionURL
-            Toast.makeText(context, str, Toast.LENGTH_LONG).show()
-            Log.d(Constants.LOG_TAG_MAH_ADS, str, nfe)
-        }
 
-    }
-
-    override fun onClick(v: View) {
-        try {
-            if (v.id == R.id.ivBtnCancel || v.id == R.id.btnClose) {
-                onClose()
-            } else if (v.id == R.id.ivBtnInfo) {
-
-                if (btnInfoWithMenu) {
-                    val itemIdForInfo = 1
-                    val popup = PopupMenu(context, v)
-                    popup.menu.add(Menu.NONE, itemIdForInfo, 1, btnInfoMenuItemTitle)
-
-                    // registering popup with OnMenuItemClickListener
-                    popup.setOnMenuItemClickListener { item ->
-                        if (item.itemId == itemIdForInfo) {
-                            showMAHlib()
-                        }
-                        true
-                    }
-
-                    popup.show()// showing popup menu
-                } else {
-                    showMAHlib()
-                }
-            } else if (v.id == R.id.btnErrorRefreshMAHAds) {
-                Updater.updateProgramList(activityMAH, urls!!)
+    private fun showMAHlib() =
+            try {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(btnInfoActionURL))
+                context.startActivity(browserIntent)
+            } catch (nfe: ActivityNotFoundException) {
+                val str = "You haven't set correct url to btnInfoActionURL, your url = " + btnInfoActionURL
+                Toast.makeText(context, str, Toast.LENGTH_LONG).show()
+                Log.d(Constants.LOG_TAG_MAH_ADS, str, nfe)
             }
-        } catch (e: MAHFragmentExeption) {
-            Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
-            return
-        }
 
-    }
 
     companion object {
 

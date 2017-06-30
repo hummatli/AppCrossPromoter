@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/ivProgramImgMAHAds"
+            android:id="@+id/ivProgramImg"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginBottom="10dp"
@@ -25,7 +25,7 @@
             android:src="@color/mah_ads_no_img_color" />
 
         <TextView
-            android:id="@+id/tvNewText"
+            android:id="@+id/tvProgramNewText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/mah_dlg_text_view_new_shape"
@@ -61,7 +61,7 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/tvProgramNameMAHAds"
+                    android:id="@+id/tvProgramName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -71,7 +71,7 @@
                     android:textSize="19sp" />
 
                 <TextView
-                    android:id="@+id/tvProgramDescMAHAds"
+                    android:id="@+id/tvProgramDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -87,7 +87,7 @@
                 android:gravity="center|top" >
 
                 <ImageButton
-                    android:id="@+id/btnOverflowMAHAds"
+                    android:id="@+id/imgBtnMore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/mah_btn_install_open_background_selector"
@@ -113,7 +113,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tvOpenInstallMAHAds"
+                android:id="@+id/tvOpenInstall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"

@@ -13,10 +13,10 @@ import android.widget.TextView
  */
 
 
-fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View {
-    return LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)
-    TODO("Bu metod hele ishlemir, context == null")
-}
+//fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View {
+//    return LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)
+//    TODO("Bu metod hele ishlemir, context == null")
+//}
 
 
 fun TextView.decorateAsLink() {
@@ -35,4 +35,9 @@ fun TextView.setFontTextView(fontName: String?) {
         Log.e("test", "Error " + r.message)
     }
 
+}
+
+
+fun ViewGroup.inflate(layoutRes: Int): View {
+    return LayoutInflater.from(context).inflate(layoutRes, this, false)
 }

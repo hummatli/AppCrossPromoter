@@ -20,7 +20,7 @@ import com.mobapphome.mahads.tools.*
 import com.mobapphome.mahandroidupdater.commons.setFontTextView
 
 internal class ProgramItmAdptPrograms(context: Context, private val items: List<Any>, var urlRootOnServer: String?,
-                                      var fontName: String?) : BaseAdapter(), View.OnClickListener {
+                                      var fontName: String?) : BaseAdapter() {
 
     private val TAG = ProgramItmAdptPrograms::class.java.name
 
@@ -41,10 +41,6 @@ internal class ProgramItmAdptPrograms(context: Context, private val items: List<
         return position.toLong()
     }
 
-
-    override fun onClick(arg0: View) {
-
-    }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
         val obj = items[position]
@@ -67,7 +63,9 @@ internal class ProgramItmAdptPrograms(context: Context, private val items: List<
                 }
             }
 
-            val tvProgramNewText = vi.findViewById(R.id.tvNewText) as TextView
+
+
+            val tvProgramNewText = vi.findViewById(R.id.tvProgramNewText) as TextView
             tvProgramNewText.visibility = View.GONE
             val freshnestStr = currProgram.getFreshnestStr(inflater!!.context)
             if (freshnestStr != null) {
@@ -81,10 +79,11 @@ internal class ProgramItmAdptPrograms(context: Context, private val items: List<
                 tvProgramNewText.visibility = View.GONE
             }
 
-            val nameTV = vi.findViewById(R.id.tvProgramNameMAHAds) as TextView
-            val descTV = vi.findViewById(R.id.tvProgramDescMAHAds) as TextView
-            val ivImg = vi.findViewById(R.id.ivProgramImgMAHAds) as ImageView
-            val tvOpenGooglePLay = vi.findViewById(R.id.tvOpenInstallMAHAds) as TextView
+
+            val nameTV = vi.findViewById(R.id.tvProgramName) as TextView
+            val descTV = vi.findViewById(R.id.tvProgramDesc) as TextView
+            val ivImg = vi.findViewById(R.id.ivProgramImg) as ImageView
+            val tvOpenGooglePLay = vi.findViewById(R.id.tvOpenInstall) as TextView
 
             if (checkPackageIfExists(vi.context, pckgName)) {
                 tvOpenGooglePLay.text = vi.context.resources.getString(R.string.cmnd_verb_mah_ads_open_program)
@@ -110,7 +109,7 @@ internal class ProgramItmAdptPrograms(context: Context, private val items: List<
                     .into(ivImg)
 
 
-            val ivMore = vi.findViewById(R.id.btnOverflowMAHAds) as ImageButton
+            val ivMore = vi.findViewById(R.id.imgBtnMore) as ImageButton
             ivMore.setColorFilter(ContextCompat.getColor(inflater!!.context, R.color.mah_ads_all_and_btn_text_color))
 
             ivMore.setImageResource(R.drawable.ic_more_vert_grey600_24dp)
@@ -133,7 +132,8 @@ internal class ProgramItmAdptPrograms(context: Context, private val items: List<
             }
 
 
-            (vi.findViewById(R.id.tvNewText) as TextView).setFontTextView(fontName)
+
+            (vi.findViewById(R.id.tvProgramNewText) as TextView).setFontTextView(fontName)
             nameTV.setFontTextView(fontName)
             descTV.setFontTextView(fontName)
             tvOpenGooglePLay.setFontTextView(fontName)
@@ -143,6 +143,7 @@ internal class ProgramItmAdptPrograms(context: Context, private val items: List<
         }
 
     }
+
 
     companion object {
         private var inflater: LayoutInflater? = null
