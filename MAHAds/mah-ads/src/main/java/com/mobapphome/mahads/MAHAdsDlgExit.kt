@@ -25,7 +25,7 @@ import com.google.gson.Gson
 import com.mobapphome.mahads.mahfragments.MAHDialogFragment
 import com.mobapphome.mahads.mahfragments.MAHFragmentExeption
 import com.mobapphome.mahads.tools.*
-import com.mobapphome.mahandroidupdater.commons.setFontTextView
+import com.mobapphome.mahandroidupdater.commons.*
 import kotlinx.android.synthetic.main.mah_ads_dialog_exit.*
 
 
@@ -128,14 +128,11 @@ class MAHAdsDlgExit : MAHDialogFragment() {
             }
         }
 
-        if (btnInfoVisibility) {
-            ivBtnInfo.visibility = View.VISIBLE
-        } else {
-            ivBtnInfo.visibility = View.INVISIBLE
-        }
+        if (btnInfoVisibility) ivBtnInfo.makeVisible() else ivBtnInfo.makeInvisible()
 
-        tvFresnestProg1.visibility = View.GONE
-        tvFresnestProg2.visibility = View.GONE
+
+        tvFresnestProg1.makeGone()
+        tvFresnestProg2.makeGone()
 
         iconBtnOther.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_all_and_btn_text_color))
         ivBtnCancel.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_title_bar_text_color))
@@ -145,9 +142,8 @@ class MAHAdsDlgExit : MAHDialogFragment() {
 
         setUi(mahRequestResult)
 
-        if (savedInstanceState == null) {
-            Updater.updateProgramList(activityMAH, urls!!)
-        }
+        if (savedInstanceState == null) Updater.updateProgramList(activityMAH, urls!!)
+
 
         tvTitle.setFontTextView(fontName)
         tvFresnestProg1.setFontTextView(fontName)
@@ -179,11 +175,11 @@ class MAHAdsDlgExit : MAHDialogFragment() {
                 exitCallback!!.onEventHappened("MAHAdsController programSelected is null")
             }
 
-            lytProgsPanel.visibility = View.GONE
+            lytProgsPanel.makeGone()
             mah_ads_dlg_exit_tv_btn_other.text = view!!.resources.getString(R.string.mah_ads_dlg_exit_btn_more_txt_1)
         } else if (mahRequestResult.programsSelected!!.size == 1) {
-            lytProgsPanel.visibility = View.VISIBLE
-            lytProg2MAHAdsExtDlg.visibility = View.GONE
+            lytProgsPanel.makeVisible()
+            lytProg2MAHAdsExtDlg.makeGone()
             prog1 = mahRequestResult.programsSelected!![0]
             tvProg1NameMAHAdsExtDlg.text = prog1!!.name
 
@@ -203,9 +199,9 @@ class MAHAdsDlgExit : MAHDialogFragment() {
                 val animRotate = AnimationUtils.loadAnimation(context, R.anim.tv_rotate) as RotateAnimation
                 animRotate.fillAfter = true //For the textview to remain at the same place after the rotation
                 tvFresnestProg1.animation = animRotate
-                tvFresnestProg1.visibility = View.VISIBLE
+                tvFresnestProg1.makeVisible()
             } else {
-                tvFresnestProg1.visibility = View.GONE
+                tvFresnestProg1.makeGone()
             }
 
             lytProg1MAHAdsExtDlg.setOnClickListener {
@@ -215,8 +211,8 @@ class MAHAdsDlgExit : MAHDialogFragment() {
             }
             mah_ads_dlg_exit_tv_btn_other.text = view!!.resources.getString(R.string.mah_ads_dlg_exit_btn_more_txt_2)
         } else {
-            lytProgsPanel.visibility = View.VISIBLE
-            lytProg2MAHAdsExtDlg.visibility = View.VISIBLE
+            lytProgsPanel.makeVisible()
+            lytProg2MAHAdsExtDlg.makeVisible()
 
             prog1 = mahRequestResult.programsSelected!![0]
             tvProg1NameMAHAdsExtDlg.text = prog1!!.name
@@ -237,10 +233,10 @@ class MAHAdsDlgExit : MAHDialogFragment() {
                 val animRotate = AnimationUtils.loadAnimation(context, R.anim.tv_rotate) as RotateAnimation
                 animRotate.fillAfter = true //For the textview to remain at the same place after the rotation
                 tvFresnestProg1.animation = animRotate
-                tvFresnestProg1.visibility = View.VISIBLE
+                tvFresnestProg1.makeVisible()
             } else {
                 tvFresnestProg1.clearAnimation()
-                tvFresnestProg1.visibility = View.GONE
+                tvFresnestProg1.makeGone()
             }
 
             prog2 = mahRequestResult.programsSelected!![1]
@@ -262,10 +258,10 @@ class MAHAdsDlgExit : MAHDialogFragment() {
                 val animRotate = AnimationUtils.loadAnimation(context, R.anim.tv_rotate) as RotateAnimation
                 animRotate.fillAfter = true //For the textview to remain at the same place after the rotation
                 tvFresnestProg2.animation = animRotate
-                tvFresnestProg2.visibility = View.VISIBLE
+                tvFresnestProg2.makeVisible()
             } else {
                 tvFresnestProg2.clearAnimation()
-                tvFresnestProg2.visibility = View.GONE
+                tvFresnestProg2.makeGone()
             }
 
             lytProg1MAHAdsExtDlg.setOnClickListener {
@@ -327,13 +323,8 @@ class MAHAdsDlgExit : MAHDialogFragment() {
 
 
     val isProgramsPanelVisible: Boolean
-        get() {
-            if (lytProgsPanel!!.visibility == View.VISIBLE) {
-                return true
-            } else {
-                return false
-            }
-        }
+        get() = lytProgsPanel!!.isVisible()
+
 
     companion object {
 

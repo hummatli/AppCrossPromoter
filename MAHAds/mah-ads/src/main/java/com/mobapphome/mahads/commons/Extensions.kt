@@ -13,12 +13,6 @@ import android.widget.TextView
  */
 
 
-//fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View {
-//    return LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)
-//    TODO("Bu metod hele ishlemir, context == null")
-//}
-
-
 fun TextView.decorateAsLink() {
     this.movementMethod = LinkMovementMethod.getInstance()
 }
@@ -38,6 +32,20 @@ fun TextView.setFontTextView(fontName: String?) {
 }
 
 
-fun ViewGroup.inflate(layoutRes: Int): View {
-    return LayoutInflater.from(context).inflate(layoutRes, this, false)
+fun ViewGroup.inflate(layoutRes: Int): View = LayoutInflater.from(context).inflate(layoutRes, this, false)
+
+fun View.makeVisible() {
+    visibility = View.VISIBLE
 }
+
+fun View.makeInvisible() {
+    visibility = View.INVISIBLE
+}
+
+fun View.makeGone() {
+    visibility = View.GONE
+}
+
+fun View.isVisible(): Boolean = visibility == View.VISIBLE
+fun View.isGone(): Boolean = visibility == View.GONE
+fun View.isInVisible(): Boolean = visibility == View.INVISIBLE

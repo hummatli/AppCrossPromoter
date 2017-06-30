@@ -81,7 +81,7 @@
             android:paddingRight="10dp"
             android:paddingTop="0dp">
 
-            <!--Set visibilty to gone-->
+            <!--Set visibilty to makeGone-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

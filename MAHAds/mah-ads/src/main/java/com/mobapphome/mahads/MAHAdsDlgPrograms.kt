@@ -27,7 +27,10 @@ import com.google.gson.Gson
 import com.mobapphome.mahads.mahfragments.MAHDialogFragment
 import com.mobapphome.mahads.mahfragments.MAHFragmentExeption
 import com.mobapphome.mahads.tools.*
+import com.mobapphome.mahandroidupdater.commons.makeGone
+import com.mobapphome.mahandroidupdater.commons.makeInvisible
 import com.mobapphome.mahandroidupdater.commons.setFontTextView
+import com.mobapphome.mahandroidupdater.commons.makeVisible
 import kotlinx.android.synthetic.main.mah_ads_dialog_programs.*
 import java.util.*
 
@@ -114,14 +117,14 @@ class MAHAdsDlgPrograms : MAHDialogFragment() {
         ivBtnCancel.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_title_bar_text_color))
         ivBtnInfo.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_title_bar_text_color))
 
-        ivBtnInfo.visibility = if (btnInfoVisibility) View.VISIBLE else View.INVISIBLE
+        if (btnInfoVisibility) ivBtnInfo.makeVisible() else ivBtnInfo.makeInvisible()
 
         ivLoading.setImageResource(R.drawable.ic_loading_mah)
         ivLoading.getDrawable()?.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_all_and_btn_text_color), PorterDuff.Mode.MULTIPLY);
 
-        rvProgram.visibility = View.GONE
-        lytErrorF1.visibility = View.GONE
-        ivLoading.visibility = View.GONE
+        rvProgram.makeGone()
+        lytErrorF1.makeGone()
+        ivLoading.makeGone()
 
 
         startLoading()
@@ -191,22 +194,22 @@ class MAHAdsDlgPrograms : MAHDialogFragment() {
 
 
                 rvProgram.adapter = adapterInit
-                lytErrorF1.visibility = View.GONE
-                rvProgram.visibility = View.VISIBLE
+                lytErrorF1.makeGone()
+                rvProgram.makeVisible()
             }
         } else {
             if (result == null || result.isReadFromWeb) {
                 rvProgram.post {
-                    lytErrorF1.visibility = View.VISIBLE
-                    rvProgram.visibility = View.GONE
+                    lytErrorF1.makeVisible()
+                    rvProgram.makeGone()
                     tvErrorResultF1.text = resources.getString(
                             R.string.mah_ads_internet_update_error)
                 }
             } else {
                 if (!firstTime) {
                     rvProgram.post {
-                        lytErrorF1.visibility = View.VISIBLE
-                        rvProgram.visibility = View.GONE
+                        lytErrorF1.makeVisible()
+                        rvProgram.makeGone()
                         tvErrorResultF1.text = resources.getString(
                                 R.string.mah_ads_internet_update_error)
                     }
@@ -230,17 +233,17 @@ class MAHAdsDlgPrograms : MAHDialogFragment() {
         animationLoading.repeatCount = Animation.INFINITE
 
         ivLoading.startAnimation(animationLoading)
-        ivLoading.visibility = View.VISIBLE
-        rvProgram.visibility = View.GONE
-        lytErrorF1.visibility = View.GONE
+        ivLoading.makeVisible()
+        rvProgram.makeGone()
+        lytErrorF1.makeGone()
 
         Log.i(Constants.LOG_TAG_MAH_ADS, "Animation started")
     }
 
     fun stopLoading() {
-        ivLoading.visibility = View.GONE
-        rvProgram.visibility = View.GONE
-        lytErrorF1.visibility = View.GONE
+        ivLoading.makeGone()
+        rvProgram.makeGone()
+        lytErrorF1.makeGone()
 
         ivLoading.clearAnimation()
         Log.i(Constants.LOG_TAG_MAH_ADS, "Animation stopped")
