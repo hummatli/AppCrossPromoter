@@ -168,8 +168,7 @@ class MAHAdsDlgExit(
     }
 
     fun setUi(mahRequestResult: MAHRequestResult?) {
-        val imgNotFoundDrawable = ContextCompat.getDrawable(context, R.drawable.img_not_found)
-        imgNotFoundDrawable.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_no_image_color), PorterDuff.Mode.SRC_IN)
+        val imgNotFoundDrawable = context.getDrawableWithColorFilter( R.drawable.img_not_found, R.color.mah_ads_no_image_color)
 
         //if (mahRequestResult == null || mahRequestResult.programsSelected == null || mahRequestResult.programsSelected!!.isEmpty() ) {
         if (mahRequestResult?.programsSelected?.isEmpty() ?: true) {
