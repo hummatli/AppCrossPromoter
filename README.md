@@ -120,11 +120,11 @@ Library contains from to Dialog component
   
   
 ### Installation manual
-**1)** To import library to you project add following lines to project's `build.gradle` file. The last stable version is `2.1.5`
+**1)** To import library(to downlaod) to you project add following lines to project's `build.gradle` file. The last stable version is `2.1.6`
 
 ```
 	dependencies {
-    		compile 'com.mobapphome.library:mah-ads:2.1.5'
+    		compile 'com.mobapphome.library:mah-ads:2.1.6'
 	}
 ```
 
@@ -252,7 +252,7 @@ If you have any problem with setting and using library or want to ask question, 
 See [releases](https://github.com/hummatli/MAHAds/releases). Please,read release notes to migrate your app from old version to a newer.
 
 ### To contribute
-I am open to here offers and opinions from you  
+I am open to hear offers and opinions from you  
 
 * Fork it
 * Create your feature branch (git checkout -b my-new-feature)
