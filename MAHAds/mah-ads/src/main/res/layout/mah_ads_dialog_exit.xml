@@ -149,7 +149,7 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/tvFresnestProg1"
+                            android:id="@+id/tvFreshnestProg1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/mah_dlg_text_view_new_shape"
@@ -217,7 +217,7 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/tvFresnestProg2"
+                            android:id="@+id/tvFreshnestProg2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/mah_dlg_text_view_new_shape"

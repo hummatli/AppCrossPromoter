@@ -15,13 +15,12 @@ import android.support.v7.widget.PopupMenu
 import android.util.Log
 import android.util.TypedValue
 import android.view.*
-import android.widget.*
+import android.widget.ScrollView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
-import com.mobapphome.mahads.commons.MAHDialogFragment
-import com.mobapphome.mahads.commons.MAHFragmentExeption
+import com.mobapphome.mahads.commons.*
 import com.mobapphome.mahads.tools.*
-import com.mobapphome.mahandroidupdater.commons.*
 import kotlinx.android.synthetic.main.mah_ads_dialog_exit.*
 
 
@@ -129,8 +128,8 @@ class MAHAdsDlgExit(
         if (btnInfoVisibility) ivBtnInfo.makeVisible() else ivBtnInfo.makeInvisible()
 
 
-        tvFresnestProg1.makeGone()
-        tvFresnestProg2.makeGone()
+        tvFreshnestProg1.makeGone()
+        tvFreshnestProg2.makeGone()
 
         iconBtnOther.setColorFilterCompat(R.color.mah_ads_all_and_btn_text_color)
         ivBtnCancel.setColorFilterCompat(R.color.mah_ads_title_bar_text_color)
@@ -144,8 +143,8 @@ class MAHAdsDlgExit(
 
 
         tvTitle.setFontTextView(fontName)
-        tvFresnestProg1.setFontTextView(fontName)
-        tvFresnestProg2.setFontTextView(fontName)
+        tvFreshnestProg1.setFontTextView(fontName)
+        tvFreshnestProg2.setFontTextView(fontName)
         tvProg1NameMAHAdsExtDlg.setFontTextView(fontName)
         tvProg2NameMAHAdsExtDlg.setFontTextView(fontName)
         mah_ads_dlg_exit_tv_btn_other.setFontTextView(fontName)
@@ -192,12 +191,12 @@ class MAHAdsDlgExit(
                     .into(ivProg1ImgMAHAds)
             val freshnestStr = prog1!!.getFreshnestStr(context)
             if (freshnestStr != null) {
-                tvFresnestProg1.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog1!!.getFreshnestStrTextSizeInSP(context).toFloat())
-                tvFresnestProg1.text = freshnestStr
-                tvFresnestProg1.startAnimationFillAfter(R.anim.tv_rotate)
-                tvFresnestProg1.makeVisible()
+                tvFreshnestProg1.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog1!!.getFreshnestStrTextSizeInSP(context).toFloat())
+                tvFreshnestProg1.text = freshnestStr
+                tvFreshnestProg1.startAnimationFillAfter(R.anim.tv_rotate)
+                tvFreshnestProg1.makeVisible()
             } else {
-                tvFresnestProg1.makeGone()
+                tvFreshnestProg1.makeGone()
             }
 
             lytProg1MAHAdsExtDlg.setOnClickListener {
@@ -224,13 +223,13 @@ class MAHAdsDlgExit(
 
             val freshnestStr = prog1!!.getFreshnestStr(context)
             if (freshnestStr != null) {
-                tvFresnestProg1.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog1!!.getFreshnestStrTextSizeInSP(context).toFloat())
-                tvFresnestProg1.text = freshnestStr
-                tvFresnestProg1.startAnimationFillAfter(R.anim.tv_rotate)
-                tvFresnestProg1.makeVisible()
+                tvFreshnestProg1.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog1!!.getFreshnestStrTextSizeInSP(context).toFloat())
+                tvFreshnestProg1.text = freshnestStr
+                tvFreshnestProg1.startAnimationFillAfter(R.anim.tv_rotate)
+                tvFreshnestProg1.makeVisible()
             } else {
-                tvFresnestProg1.clearAnimation()
-                tvFresnestProg1.makeGone()
+                tvFreshnestProg1.clearAnimation()
+                tvFreshnestProg1.makeGone()
             }
 
             prog2 = mahRequestResult.programsSelected!![1]
@@ -247,13 +246,13 @@ class MAHAdsDlgExit(
 
             val freshnestStr2 = prog2!!.getFreshnestStr(context)
             if (freshnestStr2 != null) {
-                tvFresnestProg2.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog2!!.getFreshnestStrTextSizeInSP(context).toFloat())
-                tvFresnestProg2.text = freshnestStr2
-                tvFresnestProg2.startAnimationFillAfter(R.anim.tv_rotate)
-                tvFresnestProg2.makeVisible()
+                tvFreshnestProg2.setTextSize(TypedValue.COMPLEX_UNIT_SP, prog2!!.getFreshnestStrTextSizeInSP(context).toFloat())
+                tvFreshnestProg2.text = freshnestStr2
+                tvFreshnestProg2.startAnimationFillAfter(R.anim.tv_rotate)
+                tvFreshnestProg2.makeVisible()
             } else {
-                tvFresnestProg2.clearAnimation()
-                tvFresnestProg2.makeGone()
+                tvFreshnestProg2.clearAnimation()
+                tvFreshnestProg2.makeGone()
             }
 
             lytProg1MAHAdsExtDlg.setOnClickListener {

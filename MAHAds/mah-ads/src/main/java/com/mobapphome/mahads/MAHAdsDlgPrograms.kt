@@ -26,11 +26,8 @@ import android.widget.Toast
 import com.google.gson.Gson
 import com.mobapphome.mahads.commons.MAHDialogFragment
 import com.mobapphome.mahads.commons.MAHFragmentExeption
+import com.mobapphome.mahads.commons.*
 import com.mobapphome.mahads.tools.*
-import com.mobapphome.mahandroidupdater.commons.makeGone
-import com.mobapphome.mahandroidupdater.commons.makeInvisible
-import com.mobapphome.mahandroidupdater.commons.setFontTextView
-import com.mobapphome.mahandroidupdater.commons.makeVisible
 import kotlinx.android.synthetic.main.mah_ads_dialog_programs.*
 import java.util.*
 

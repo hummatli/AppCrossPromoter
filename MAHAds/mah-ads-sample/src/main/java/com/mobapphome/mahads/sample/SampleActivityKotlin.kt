@@ -14,8 +14,8 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.mobapphome.mahads.MAHAdsController
 import com.mobapphome.mahads.MAHAdsDlgExit
+import com.mobapphome.mahads.commons.decorateAsLink
 import com.mobapphome.mahads.tools.Constants
-import com.mobapphome.mahandroidupdater.commons.decorateAsLink
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 

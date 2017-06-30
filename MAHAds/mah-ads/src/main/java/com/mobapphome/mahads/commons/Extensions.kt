@@ -1,4 +1,4 @@
-package com.mobapphome.mahandroidupdater.commons
+package com.mobapphome.mahads.commons
 
 import android.content.Context
 import android.graphics.PorterDuff

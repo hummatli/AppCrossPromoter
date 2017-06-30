@@ -10,6 +10,7 @@ import android.util.Log
 import java.util.Locale
 
 object LocaleUpdater {
+    @JvmStatic
     fun updateLocale(context: Context, language: String) {
         val locale = Locale(language)
         Locale.setDefault(locale)

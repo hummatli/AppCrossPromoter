@@ -5,13 +5,12 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import com.bumptech.glide.Glide
+import com.mobapphome.mahads.commons.*
 import com.mobapphome.mahads.tools.Constants
 import com.mobapphome.mahads.tools.Program
 import com.mobapphome.mahads.tools.checkPackageIfExists
 import com.mobapphome.mahads.tools.getUrlOfImage
-import com.mobapphome.mahandroidupdater.commons.*
 import kotlinx.android.synthetic.main.program_item_programs.view.*
 
 /**
