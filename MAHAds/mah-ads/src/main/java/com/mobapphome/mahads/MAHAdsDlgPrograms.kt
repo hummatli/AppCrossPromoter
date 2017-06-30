@@ -14,14 +14,15 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PopupMenu
 import android.util.Log
 import android.view.*
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
-import android.widget.*
+import android.widget.Toast
 import com.google.gson.Gson
 import com.mobapphome.mahads.mahfragments.MAHDialogFragment
 import com.mobapphome.mahads.mahfragments.MAHFragmentExeption
@@ -29,9 +30,6 @@ import com.mobapphome.mahads.tools.*
 import com.mobapphome.mahandroidupdater.commons.setFontTextView
 import kotlinx.android.synthetic.main.mah_ads_dialog_programs.*
 import java.util.*
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 
 
 class MAHAdsDlgPrograms : MAHDialogFragment() {
@@ -121,7 +119,7 @@ class MAHAdsDlgPrograms : MAHDialogFragment() {
         ivLoading.setImageResource(R.drawable.ic_loading_mah)
         ivLoading.getDrawable()?.setColorFilter(ContextCompat.getColor(context, R.color.mah_ads_all_and_btn_text_color), PorterDuff.Mode.MULTIPLY);
 
-        lstProgram.visibility = View.GONE
+        rvProgram.visibility = View.GONE
         lytErrorF1.visibility = View.GONE
         ivLoading.visibility = View.GONE
 
@@ -142,7 +140,6 @@ class MAHAdsDlgPrograms : MAHDialogFragment() {
     fun setUI(result: MAHRequestResult?, firstTime: Boolean) {
         Log.i(Constants.LOG_TAG_MAH_ADS, "------Result State is " + result?.resultState)
 
-
         if (result != null && (result.resultState === MAHRequestResult.ResultState.SUCCESS || result.resultState === MAHRequestResult.ResultState.ERR_SOME_ITEMS_HAS_JSON_SYNTAX_ERROR)) {
             dataHasAlreadySet = true
             val programsExceptMyself = result.programsFiltered
@@ -150,7 +147,7 @@ class MAHAdsDlgPrograms : MAHDialogFragment() {
                 items.add(c)
             }
 
-            val adapterInit = ProgramItmAdptNew(items, urls?.urlRootOnServer, fontName,
+            val adapterInit = ProgramItmAdpt(items, urls?.urlRootOnServer, fontName,
                     listenerOnClick = {
                         if (it is Program) {
                             val pckgName = it.uri.trim { it <= ' ' }
@@ -186,33 +183,30 @@ class MAHAdsDlgPrograms : MAHDialogFragment() {
                     })
 
 
-            lstProgram.post {
+            rvProgram.post {
                 Log.i(Constants.LOG_TAG_MAH_ADS, "lstProgram post called")
-                //lstProgram.layoutManager = GridLayoutManager(context, 2)
+                //lstProgram.layoutManager = GridLayoutManager(context, 1)
+                rvProgram.layoutManager = LinearLayoutManager(context)
+                rvProgram.itemAnimator = DefaultItemAnimator()
 
 
-                val mLayoutManager = LinearLayoutManager(context)
-                lstProgram.setLayoutManager(mLayoutManager)
-                lstProgram.setItemAnimator(DefaultItemAnimator())
-
-
-                lstProgram.adapter = adapterInit
+                rvProgram.adapter = adapterInit
                 lytErrorF1.visibility = View.GONE
-                lstProgram.visibility = View.VISIBLE
+                rvProgram.visibility = View.VISIBLE
             }
         } else {
             if (result == null || result.isReadFromWeb) {
-                lstProgram.post {
+                rvProgram.post {
                     lytErrorF1.visibility = View.VISIBLE
-                    lstProgram.visibility = View.GONE
+                    rvProgram.visibility = View.GONE
                     tvErrorResultF1.text = resources.getString(
                             R.string.mah_ads_internet_update_error)
                 }
             } else {
                 if (!firstTime) {
-                    lstProgram.post {
+                    rvProgram.post {
                         lytErrorF1.visibility = View.VISIBLE
-                        lstProgram.visibility = View.GONE
+                        rvProgram.visibility = View.GONE
                         tvErrorResultF1.text = resources.getString(
                                 R.string.mah_ads_internet_update_error)
                     }
@@ -237,7 +231,7 @@ class MAHAdsDlgPrograms : MAHDialogFragment() {
 
         ivLoading.startAnimation(animationLoading)
         ivLoading.visibility = View.VISIBLE
-        lstProgram.visibility = View.GONE
+        rvProgram.visibility = View.GONE
         lytErrorF1.visibility = View.GONE
 
         Log.i(Constants.LOG_TAG_MAH_ADS, "Animation started")
@@ -245,7 +239,7 @@ class MAHAdsDlgPrograms : MAHDialogFragment() {
 
     fun stopLoading() {
         ivLoading.visibility = View.GONE
-        lstProgram.visibility = View.GONE
+        rvProgram.visibility = View.GONE
         lytErrorF1.visibility = View.GONE
 
         ivLoading.clearAnimation()

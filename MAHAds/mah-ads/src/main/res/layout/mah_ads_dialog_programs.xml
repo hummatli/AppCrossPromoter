@@ -116,7 +116,7 @@
                 </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/lstProgram"
+                    android:id="@+id/rvProgram"
                     android:scrollbars="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"

@@ -20,12 +20,12 @@ import kotlinx.android.synthetic.main.program_item_programs.view.*
  * Created by settar on 6/30/17.
  */
 
-class ProgramItmAdptNew(val items: List<Any>,
-                        val urlRootOnServer: String?,
-                        val fontName: String?,
-                        val listenerOnClick: (Any) -> Unit,
-                        val listenerOnMoreClick: (Any, View) -> Unit)
-    : RecyclerView.Adapter<ProgramItmAdptNew.ViewHolder>() {
+class ProgramItmAdpt(val items: List<Any>,
+                     val urlRootOnServer: String?,
+                     val fontName: String?,
+                     val listenerOnClick: (Any) -> Unit,
+                     val listenerOnMoreClick: (Any, View) -> Unit)
+    : RecyclerView.Adapter<ProgramItmAdpt.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder = ViewHolder(parent?.inflate(R.layout.program_item_programs)!!)
 
