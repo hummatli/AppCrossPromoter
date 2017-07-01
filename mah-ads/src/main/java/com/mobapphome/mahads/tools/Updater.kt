@@ -86,18 +86,13 @@ object Updater {
                 super.onPostExecute(mahRequestResult)
                 Log.i(Constants.LOG_TAG_MAH_ADS, "MAHRequestResult isReadFromWeb = " + mahRequestResult!!.isReadFromWeb)
 
+                //It calls twise. Needs to solve. I can not use this "mahRequestResult.isReadFromWeb".
+                // Cause in first time needs to show retry button. if I check it does not show
+                fragDlgPrograms?.setUI(mahRequestResult, false)
 
-                if (mahRequestResult != null) {
-
-                    val fragDlgPrograms = activity.supportFragmentManager
-                            .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_PROGRAMS) as MAHAdsDlgPrograms?
-                    fragDlgPrograms?.setUI(mahRequestResult, false) 
-
-                    val fragDlgExit = activity.supportFragmentManager
-                            .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_EXIT) as MAHAdsDlgExit?
-                    if (fragDlgExit != null && (mahRequestResult.isReadFromWeb || !fragDlgExit.isProgramsPanelVisible)) {
-                        fragDlgExit.setUi(mahRequestResult)
-                    }
+                val fragDlgExit = activity.supportFragmentManager.findFragmentByTag(Constants.TAG_MAH_ADS_DLG_EXIT) as MAHAdsDlgExit?
+                if (fragDlgExit != null && (mahRequestResult.isReadFromWeb || !fragDlgExit.isProgramsPanelVisible)) {
+                    fragDlgExit.setUi(mahRequestResult)
                 }
 
 

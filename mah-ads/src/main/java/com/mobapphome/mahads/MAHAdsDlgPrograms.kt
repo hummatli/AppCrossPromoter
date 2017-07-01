@@ -142,8 +142,11 @@ class MAHAdsDlgPrograms(val items: MutableList<Any> = LinkedList<Any>(),
         if (result != null && (result.resultState === MAHRequestResult.ResultState.SUCCESS || result.resultState === MAHRequestResult.ResultState.ERR_SOME_ITEMS_HAS_JSON_SYNTAX_ERROR)) {
             dataHasAlreadySet = true
 
-            for (c in result.programsFiltered!!) {
-                items.add(c)
+
+            items.clear()
+
+            result.programsFiltered!!.forEach {
+                items.add(it)
             }
 
             Log.i(Constants.LOG_TAG_MAH_ADS, "items count = ${items.size}")
