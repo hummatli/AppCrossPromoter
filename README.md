@@ -26,7 +26,7 @@
 ### Description
 Free, open source, third party Android library for cross-promote, advertisement of own apps through your other apps.
 By the help of this lib you can provide your apps list to users through your own other apps and let to install them. 
-Library has build on IDE `Android Studio` and binaries have added to `jcenter()`  `maven` repository.
+`Library has built with Kotlin language on Android Studio IDE` and binaries have added to `jcenter()`  `maven` repository.
 <br>You can check  [jCenter() download statistics](https://bintray.com/hummatli/maven/mah-ads#statistics) on this [link](https://bintray.com/hummatli/maven/mah-ads#statistics)
 
 There is a list of [application using MAHAds](https://github.com/hummatli/MAHAds#applications-using-mahads). It would be nice if see your app link there too. If you use this library and want to see your app in the start of the [list](https://github.com/hummatli/MAHAds#applications-using-mahads) please [inform me](mailto:settarxan@gmail.com) or send a pull request.
