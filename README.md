@@ -112,6 +112,8 @@ You can provide `http://` and `https://` services. Library works both of them.
 You can check you json validity with this [jsonlint.com](http://jsonlint.com/)
 
 ### Library structure
+`You can call with the same way in Kotlin and Java. Library contains samples both in Kotlin and Java`
+
 Library has `init()` method. It initialize modul, downloads program list from service and cashes them.
 
 Library contains from to Dialog component
