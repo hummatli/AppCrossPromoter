@@ -64,8 +64,6 @@ class MAHAdsDlgPrograms(val items: MutableList<Any> = LinkedList<Any>(),
             btnInfoMenuItemTitle = args.getString("btnInfoMenuItemTitle")
             btnInfoActionURL = args.getString("btnInfoActionURL")
 
-            val view = inflater!!.inflate(R.layout.mah_ads_dialog_programs, container)
-
             dialog.window!!.attributes.windowAnimations = R.style.MAHAdsDialogAnimation
             dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             //getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
@@ -77,7 +75,7 @@ class MAHAdsDlgPrograms(val items: MutableList<Any> = LinkedList<Any>(),
                 false
             }
 
-            return view
+            return inflater!!.inflate(R.layout.mah_ads_dialog_programs, container)
         } catch (e: MAHFragmentExeption) {
             Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
             return null
@@ -148,6 +146,7 @@ class MAHAdsDlgPrograms(val items: MutableList<Any> = LinkedList<Any>(),
                 items.add(c)
             }
 
+            Log.i(Constants.LOG_TAG_MAH_ADS, "items count = ${items.size}")
             val adapterInit = ProgramItmAdpt(items, urls?.urlRootOnServer, fontName,
                     listenerOnClick = {
                         if (it is Program) {

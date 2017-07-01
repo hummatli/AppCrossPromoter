@@ -3,10 +3,14 @@
     <string name="action_settings">Settings</string>
     <string name="title_kotlin_sample">Kotlin Sample Activity</string>
     <string name="title_java_sample">Java Sample Activity</string>
-    <string name="content_txt">
+    <string name="content_txt1">
         This is the sample for using MAHAds lib.
         \nMAHAds library is for advertisement your own apps through your other apps.
         By the help of this lib you can provide your apps to your users.
+        </string>
+    <string name="content_txt2">
+        Library has totally created by Kotlin language in Android Studio. Contains sample in both Kotlin and Java.
+        100% compatible with Kotlin and Java applications.
         </string>
 
     <string name="txt_lang">Language: </string>

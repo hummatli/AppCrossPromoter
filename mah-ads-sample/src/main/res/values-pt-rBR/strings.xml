@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MAHAds - Exemplo</string>
     <string name="action_settings">Configurações</string>
-    <string name="content_txt">
+    <string name="content_txt1">
         Este é um exemplo de como Usar MAHAds lib.
         \nMAHAds library foi criado para fazer propaganda de seus Aplicativos em seus Aplicativos.
         Com a ajuda desta biblioteca, você pode fornecer seus aplicativos aos seus usuários.

@@ -91,7 +91,7 @@ object Updater {
 
                     val fragDlgPrograms = activity.supportFragmentManager
                             .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_PROGRAMS) as MAHAdsDlgPrograms?
-                    fragDlgPrograms?.setUI(mahRequestResult, false)
+                    fragDlgPrograms?.setUI(mahRequestResult, false) 
 
                     val fragDlgExit = activity.supportFragmentManager
                             .findFragmentByTag(Constants.TAG_MAH_ADS_DLG_EXIT) as MAHAdsDlgExit?
