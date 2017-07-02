@@ -64,52 +64,7 @@ There is a list of [application using MAHAds](https://github.com/hummatli/MAHAds
 ### Service structure
 To provide your apps list you have to implement service provider. Structure of the service is as below. Your root folder has to contain `imgs` folder and two files `program_version.json`, `program_list.json`.
 
-Now you can set `canonical` - imgs/avto_nishanlar2.png and `noncanonical` - https://highsoft.az/avto_nishanlar2.png link to image for example. 
-
-``` 
-root->
-    imgs			- "contains logos for your porgram on the list"
-    program_version.json 	- "show the ads service version."
-    program_list.json 		- "contains program list"
-```
- 
- `program_version.json ` service has to return json as below. 
-
-```json
-{
-    "version":"13"
-}
-```
-
- `program_list.json` service has to return json as below. There is two  application in this sample:
-  
-```json
-{
-"programs":[ 
-    {
-    "name":"Avto Nişanlar",
-    "desc":"Bütün yol nişanları",
-    "uri":"com.mobapphome.avtonishanlar", 
-    "img":"imgs/avto_nishanlar2.png", 
-    "release_date":"22/12/2016",
-    "update_date":"22/12/2016"
-    },
-    {
-    "name":"Məzənnə", 
-    "desc":"Valyuta çeviricisi və məzənnələr", 
-    "uri":"com.mobapphome.currency",  
-    "img":"https://highsoft.az/mezenne2.png", 
-    "release_date":"22/12/2016",
-    "update_date":"22/12/2016"
-    }
-]
-}
-```
-
-`release_date` and `update_date` can be missed. Data will read.  
-Library has testes with up to `1000 program items` in program list. It works normally.  
-You can provide `http://` and `https://` services. Library works both of them.  
-You can check you json validity with this [jsonlint.com](http://jsonlint.com/)
+More check out <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Service-structure">wiki</a>.</p>
 
 ### Library structure
 `You can call with the same way in Kotlin and Java. Library contains samples both in Kotlin and Java`
