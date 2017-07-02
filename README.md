@@ -63,13 +63,11 @@ There is a list of [application using MAHAds](https://github.com/hummatli/MAHAds
 
 ### Service structure
 To provide your apps list you have to implement service provider. Structure of the service is as below. Your root folder has to contain `imgs` folder and two files `program_version.json`, `program_list.json`.
-
-Check for deatil <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Service-structure">wiki</a>.</p>
+For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Service-structure">wiki</a>.</p>
 
 ### Library structure
 `You can call with the same way in Kotlin and Java. Library contains samples both in Kotlin and Java`
-
-Check for deatil <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Library-structure">wiki</a>.</p>
+For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Library-structure">wiki</a>.</p>
   
 ### Installation manual
 To import library(to downlaod) to you project add following lines to project's `build.gradle` file. The last stable version is `2.1.6`
@@ -79,7 +77,7 @@ dependencies {
     compile 'com.mobapphome.library:mah-ads:2.1.6'
 }
 ```
-Check for deatil <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Installation-manual">wiki</a>.</p>
+For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Installation-manual">wiki</a>.</p>
 
 ### Proguard configuration
 MAHAds uses [Jsoup](https://github.com/jhy/jsoup), [GSON](https://github.com/google/gson), [Glide](https://github.com/bumptech/glide) libraries. Therefore if you want to create your project with proguard you'll need to add proguard configuration to your proguard file. Look at [Progurad File](https://github.com/hummatli/MAHAds/blob/master/MAHAds/proguard-rules-mah-ads.pro)
