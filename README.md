@@ -63,10 +63,12 @@ There is a list of [application using MAHAds](https://github.com/hummatli/MAHAds
 
 ### Service structure
 To provide your apps list you have to implement service provider. Structure of the service is as below. Your root folder has to contain `imgs` folder and two files `program_version.json`, `program_list.json`.
+
 For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Service-structure">wiki</a>.</p>
 
 ### Library structure
 `You can call with the same way in Kotlin and Java. Library contains samples both in Kotlin and Java`
+
 For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Library-structure">wiki</a>.</p>
   
 ### Installation manual
