@@ -131,7 +131,9 @@ dependencies {
 ```
 
 **2)** Declare your global variable on the MainActivity  
-`MAHAdsController mahAdsController;`
+```java
+MAHAdsController mahAdsController;
+```
 
 **3)** Create instance and call init() in  `onCreate()` of MainActivity. Check url to point your services root path.  `init()` method has different variations with different arguments.  
 Code: 
