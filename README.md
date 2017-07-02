@@ -76,34 +76,34 @@ root->
  `program_version.json ` service has to return json as below. 
 
 ```json
-	{
-	 "version":"13"
-	}
+{
+    "version":"13"
+}
 ```
 
  `program_list.json` service has to return json as below. There is two  application in this sample:
   
 ```json
+{
+"programs":[ 
 	{
-	"programs":[ 
-		{
-		  "name":"Avto Nişanlar", 
-		  "desc":"Bütün yol nişanları", 
-		  "uri":"com.mobapphome.avtonishanlar",  
-		  "img":"imgs/avto_nishanlar2.png", 
-		  "release_date":"22/12/2016",
-		  "update_date":"22/12/2016"
-		 },
-		 {
-		   "name":"Məzənnə", 
-		   "desc":"Valyuta çeviricisi və məzənnələr", 
-		   "uri":"com.mobapphome.currency",  
-		   "img":"https://highsoft.az/mezenne2.png", 
-		   "release_date":"22/12/2016",
-		   "update_date":"22/12/2016"
-		 }
-	]
-	}
+	  "name":"Avto Nişanlar", 
+	  "desc":"Bütün yol nişanları", 
+	  "uri":"com.mobapphome.avtonishanlar",  
+	  "img":"imgs/avto_nishanlar2.png", 
+	  "release_date":"22/12/2016",
+	  "update_date":"22/12/2016"
+	 },
+	 {
+	   "name":"Məzənnə", 
+	   "desc":"Valyuta çeviricisi və məzənnələr", 
+	   "uri":"com.mobapphome.currency",  
+	   "img":"https://highsoft.az/mezenne2.png", 
+	   "release_date":"22/12/2016",
+	   "update_date":"22/12/2016"
+	 }
+]
+}
 ```
 
 `release_date` and `update_date` can be missed. Data will read.  
@@ -125,9 +125,9 @@ Library contains from to Dialog component
 **1)** To import library(to downlaod) to you project add following lines to project's `build.gradle` file. The last stable version is `2.1.6`
 
 ```
-	dependencies {
-    		compile 'com.mobapphome.library:mah-ads:2.1.6'
-	}
+dependencies {
+    	compile 'com.mobapphome.library:mah-ads:2.1.6'
+}
 ```
 
 **2)** Declare your global variable on the MainActivity  
