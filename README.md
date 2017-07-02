@@ -1,5 +1,5 @@
-<h1 align="center">AppCrossPromoter - AndroidAdLib</h1>
-<h4 align="center">Android Library</h4>
+<h1 align="center">AppCrossPromoter</h1>
+<h4 align="center">Android Ad Library</h4>
 
 <p align="center">
   <a target="_blank" href="https://bintray.com/hummatli/maven/mah-ads/_latestVersion"><img src="https://api.bintray.com/packages/hummatli/maven/mah-ads/images/download.svg"></a>
