@@ -131,12 +131,13 @@ dependencies {
 ```
 
 **2)** Declare your global variable on the MainActivity  
+* Java:
 ```java
 MAHAdsController mahAdsController;
 ```
 
 **3)** Create instance and call init() in  `onCreate()` of MainActivity. Check url to point your services root path.  `init()` method has different variations with different arguments.  
-Code: 
+* Java: 
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +149,7 @@ protected void onCreate(Bundle savedInstanceState) {
 ```
 
 **4)** Call `onSaveInstanceState(outState)` to prevent request service again on recreating of activity 
-Code: 
+* Java: 
 ```java
 @Override
 protected void onSaveInstanceState(Bundle outState) {
@@ -159,13 +160,14 @@ protected void onSaveInstanceState(Bundle outState) {
 
 
 **5)** Call `callExitDialog()` when your app quits. It opens `MAHAdsDlgExit` dilog. `callExitDialog()` method has three variation with different arguments.  By the help oh this arguments you can customize `Info button` on the upper right corner of dilog.
-Code:	
+* Java:	
 ```java
 public void onBackPressed() {
     mahAdsController.callExitDialog(activity);
 }
 ```
 **Note:** To implement `MAHAdsDlgExit` Dialog's `onYes()`, `onNo()`, `onExitWithoutExitDlg()` , `onEventHappened(String eventStr)` your main activity has to implement `MAHAdsExitListener`. Otherwise it will through `ClassCastExeption`. `"Your activity must implement MAHAdsExitListener"` 
+* Java:
 ```java
 public class MainActivity extends AppCompatActivity implements MAHAdsExitListener{
     @Override
@@ -183,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements MAHAdsExitListene
 ```
 
 **6)** To open `MAHAdsDlgPrograms` call `callProgramsDialog()`. In library sample it has added to menu. `callProgramsDialog()` method has three variation with different arguments.  By the help oh this arguments you can customize `Info button` on the upper right corner of dilog. 
-Code:	
+* Java:
 ```java
     mahAdsController.callProgramsDialog(activity);
 ```
