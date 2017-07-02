@@ -72,11 +72,11 @@ For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidL
 For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Library-structure">wiki</a>.</p>
   
 ### Installation manual
-To import library(to downlaod) to you project add following lines to project's `build.gradle` file. The last stable version is `2.1.6`
+To import library(to downlaod) to you project add following lines to project's `build.gradle` file. The last stable version is `2.2.0`
 
 ```gradle
 dependencies {
-    compile 'com.mobapphome.library:mah-ads:2.1.6'
+    compile 'com.mobapphome.library:mah-ads:2.2.0'
 }
 ```
 For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Installation-manual">wiki</a>.</p>
