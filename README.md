@@ -64,17 +64,12 @@ There is a list of [application using MAHAds](https://github.com/hummatli/MAHAds
 ### Service structure
 To provide your apps list you have to implement service provider. Structure of the service is as below. Your root folder has to contain `imgs` folder and two files `program_version.json`, `program_list.json`.
 
-More check out <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Service-structure">wiki</a>.</p>
+Check for deatil <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Service-structure">wiki</a>.</p>
 
 ### Library structure
 `You can call with the same way in Kotlin and Java. Library contains samples both in Kotlin and Java`
 
-Library has `init()` method. It initialize modul, downloads program list from service and cashes them.
-
-Library contains from to Dialog component
-* `MAHAdsDlgExit`- This dialog calls when app quits and offers user quit or stay in app. By the way it offers random two application from your list
-* `MAHAdsDlgPrograms` - This dialog list your application from service and let you open nd install them
-  
+Check for deatil <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Library-structure">wiki</a>.</p>
   
 ### Installation manual
 **1)** To import library(to downlaod) to you project add following lines to project's `build.gradle` file. The last stable version is `2.1.6`
