@@ -64,189 +64,22 @@ There is a list of [application using MAHAds](https://github.com/hummatli/MAHAds
 ### Service structure
 To provide your apps list you have to implement service provider. Structure of the service is as below. Your root folder has to contain `imgs` folder and two files `program_version.json`, `program_list.json`.
 
-Now you can set `canonical` - imgs/avto_nishanlar2.png and `noncanonical` - https://highsoft.az/avto_nishanlar2.png link to image for example. 
-
-``` 
-root->
-    imgs			- "contains logos for your porgram on the list"
-    program_version.json 	- "show the ads service version."
-    program_list.json 		- "contains program list"
-```
- 
- `program_version.json ` service has to return json as below. 
-
-```json
-{
-    "version":"13"
-}
-```
-
- `program_list.json` service has to return json as below. There is two  application in this sample:
-  
-```json
-{
-"programs":[ 
-    {
-    "name":"Avto Nişanlar",
-    "desc":"Bütün yol nişanları",
-    "uri":"com.mobapphome.avtonishanlar", 
-    "img":"imgs/avto_nishanlar2.png", 
-    "release_date":"22/12/2016",
-    "update_date":"22/12/2016"
-    },
-    {
-    "name":"Məzənnə", 
-    "desc":"Valyuta çeviricisi və məzənnələr", 
-    "uri":"com.mobapphome.currency",  
-    "img":"https://highsoft.az/mezenne2.png", 
-    "release_date":"22/12/2016",
-    "update_date":"22/12/2016"
-    }
-]
-}
-```
-
-`release_date` and `update_date` can be missed. Data will read.  
-Library has testes with up to `1000 program items` in program list. It works normally.  
-You can provide `http://` and `https://` services. Library works both of them.  
-You can check you json validity with this [jsonlint.com](http://jsonlint.com/)
+For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Service-structure">wiki</a>.</p>
 
 ### Library structure
 `You can call with the same way in Kotlin and Java. Library contains samples both in Kotlin and Java`
 
-Library has `init()` method. It initialize modul, downloads program list from service and cashes them.
-
-Library contains from to Dialog component
-* `MAHAdsDlgExit`- This dialog calls when app quits and offers user quit or stay in app. By the way it offers random two application from your list
-* `MAHAdsDlgPrograms` - This dialog list your application from service and let you open nd install them
-  
+For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Library-structure">wiki</a>.</p>
   
 ### Installation manual
-**1)** To import library(to downlaod) to you project add following lines to project's `build.gradle` file. The last stable version is `2.1.6`
+To import library(to downlaod) to you project add following lines to project's `build.gradle` file. The last stable version is `2.1.6`
 
-```
+```gradle
 dependencies {
     compile 'com.mobapphome.library:mah-ads:2.1.6'
 }
 ```
-
-**2)** Declare your global variable on the MainActivity  
-* Java:
-```java
-MAHAdsController mahAdsController;
-```
-
-**3)** Create instance and call init() in  `onCreate()` of MainActivity. Check url to point your services root path.  `init()` method has different variations with different arguments.  
-* Java: 
-```java
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    mahAdsController = MAHAdsController.getInstance();
-    mahAdsController.init(this, savedInstanceState, "https://project-943403214286171762.firebaseapp.com/mah_ads_dir/",
-        "github_apps_prg_version.json", "github_apps_prg_list.json")
-}
-```
-
-**4)** Call `onSaveInstanceState(outState)` to prevent request service again on recreating of activity 
-* Java: 
-```java
-@Override
-protected void onSaveInstanceState(Bundle outState) {
-    super.onSaveInstanceState(outState);
-    mahAdsController.onSaveInstanceState(outState);
-}
-```
-
-
-**5)** Call `callExitDialog()` when your app quits. It opens `MAHAdsDlgExit` dilog. `callExitDialog()` method has three variation with different arguments.  By the help oh this arguments you can customize `Info button` on the upper right corner of dilog.
-* Java:	
-```java
-public void onBackPressed() {
-    mahAdsController.callExitDialog(activity);
-}
-```
-**Note:** To implement `MAHAdsDlgExit` Dialog's `onYes()`, `onNo()`, `onExitWithoutExitDlg()` , `onEventHappened(String eventStr)` your main activity has to implement `MAHAdsExitListener`. Otherwise it will through `ClassCastExeption`. `"Your activity must implement MAHAdsExitListener"` 
-* Java:
-```java
-public class MainActivity extends AppCompatActivity implements MAHAdsExitListener{
-    @Override
-    public void onYes() {}
-
-    @Override
-    public void onNo() {}
-    
-    @Override
-    public void onExitWithoutExitDlg() {}
-
-    @Override
-    public void onEventHappened(String eventStr) {}
-}
-```
-
-**6)** To open `MAHAdsDlgPrograms` call `callProgramsDialog()`. In library sample it has added to menu. `callProgramsDialog()` method has three variation with different arguments.  By the help oh this arguments you can customize `Info button` on the upper right corner of dilog. 
-* Java:
-```java
-    mahAdsController.callProgramsDialog(activity);
-```
-
-**7)** To customize `MAHAds` dialog UI and overide colors set these values on your main projects `color.xml` file
-```xml
-<color name="mah_ads_window_background_color">#FFFFFFFF</color>
-<color name="mah_ads_title_bar_color">#FF3F51B5</color>
-<!--new--> <color name="mah_ads_title_bar_text_color">#ffffff</color> 
-<color name="mah_ads_colorAccent">#FFFF4081</color>
-
-<color name="mah_ads_all_and_btn_text_color">#FF3F51B5</color>
-<!--new--> <color name="mah_ads_no_image_color">#3F51B5</color>
-<!--new--> <color name="mah_ads_program_item_desc_text_color">#4a76e6</color> 
-<color name="mah_ads_question_txt_color">#FF3F51B5</color>
-<color name="mah_ads_yes_no_txt_color">#FFFF4081</color>
-
-<color name="mah_ads_btn_other_border_color">#848ed2</color>
-<color name="mah_ads_btn_background_color_pressed">#333F51B5</color>
-
-<color name="mah_ads_text_view_new_background_color">#FF0000</color>
-<color name="mah_ads_text_view_new_text_color">#FFFFFFFF</color>
-<color name="mah_ads_no_img_color">#333F51B5</color>			
-```
-
-**8)** `Localization:`  Following languages is supporting by the lib - [Supported Languages](https://github.com/hummatli/MAHAds#localization).  To set localization to app use your own method or if it is static and don't change in program session you can just simply add 		`LocaleUpdater.updateLocale(this, "your_lang");` in the start of your app. For examlpe  `LocaleUpdater.updateLocale(this, "ru");`
-
-**9)** To customize `MAHAds` UI texts and overide them add these lines to main projects `string.xml` and set them values.   
-To help translators there prefixes on the name of strings
-* < command verb (actions)> - These are commands verbs. Meaninaction on UI , dialogs
-* < adjective > - adjectives
-
-```xml
-<!-- * command verb--> <string name="cmnd_verb_mah_ads_close">Close</string>
-<string name="mah_ads_dlg_title">Recommended</string>
-<string name="mah_ads_text_google_play">Open in Google Play</string>
-<string name="mah_ads_info_version">Version</string>
-<string name="mah_ads_internet_update_error">Error, please check internet connection and try again.</string>
-<!-- * command verb--> <string name="cmnd_verb_mah_ads_open_program">Open</string>
-<!-- * command verb--> <string name="cmnd_verb_mah_ads_install_program">Install</string>
-<!-- * command verb--><string name="cmnd_verb_mah_ads_refresh_btn">Retry</string>
-<string name="mah_ads_free_aps">Recommended applications</string>
-<!-- * adjective--><string name="adjective_mah_ads_new_text">New</string>
-<string name="mah_ads_updated_text">Updated</string>
-
-<string name="mah_ads_dlg_exit_question">Do you want to exit?</string>
-<!-- * command verb--><string name="cmnd_verb_mah_ads_dlg_exit_positive_btn_txt">Exit</string>
-<!-- * command verb--><string name="cmnd_verb_mah_ads_dlg_exit_negativ_btn_txt">Stay</string>
-    
-<string name="mah_ads_dlg_exit_btn_more_txt_1">Applications</string>
-<string name="mah_ads_dlg_exit_btn_more_txt_2">Detailed</string>
-
-<string name="mah_ads_info_popup_text">MAHAds library</string>
-<string name="mah_ads_play_service_not_found">Install Google Play Services to install application</string>
-```
-**Note** You can even customize dialogs in your application. Copy `layout/mah_ads_dialog_programs.xml`,  `layout/mah_ads_dialog_exit.xml`files and put in your layot dir and customize  them as you want. But keep view ids as they are. They will overide older ones from library. 
- 
-**10)** As modul takes information from web servcie you need add `INTERNET` permission to main project.
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-```
+For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Installation-manual">wiki</a>.</p>
 
 ### Proguard configuration
 MAHAds uses [Jsoup](https://github.com/jhy/jsoup), [GSON](https://github.com/google/gson), [Glide](https://github.com/bumptech/glide) libraries. Therefore if you want to create your project with proguard you'll need to add proguard configuration to your proguard file. Look at [Progurad File](https://github.com/hummatli/MAHAds/blob/master/MAHAds/proguard-rules-mah-ads.pro)
