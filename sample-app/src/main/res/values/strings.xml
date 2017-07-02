@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MAHAds - Sample</string>
+    <string name="app_name">AppCrossPromoter - Sample</string>
     <string name="action_settings">Settings</string>
     <string name="title_kotlin_sample">Kotlin Sample Activity</string>
     <string name="title_java_sample">Java Sample Activity</string>

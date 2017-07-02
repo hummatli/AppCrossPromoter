@@ -1,1 +1,1 @@
-include ':mah-ads-sample', ':mah-ads'
+include ':sample-app', ':library'
