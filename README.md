@@ -141,7 +141,7 @@ Icon | Application | Icon | Application
 * [![MAHEncryptorLib](https://img.shields.io/badge/GitHUB-MAHEncryptorLib-green.svg)](https://github.com/hummatli/MAHEncryptorLib) - Library for encryption and decryption strings on Android apps and PC Java applications.
 
 ### License
-Copyright 2015  - [Sattar Hummatli](https://www.linkedin.com/in/hummatli)   
+Copyright 2017  - [Sattar Hummatli](https://www.linkedin.com/in/hummatli)   
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
