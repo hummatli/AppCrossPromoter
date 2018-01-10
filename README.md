@@ -1,4 +1,4 @@
-<h1 align="center">AppCrossPromoter</h1>
+<h1 align="center">AppCrossPromoter - Java (Kotlin, Android)</h1>
 <h4 align="center">Android Ad Library</h4>
 
 <p align="center">
