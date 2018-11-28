@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="cmnd_verb_acp_close">Закрыть</string>
+    <string name="acp_dlg_title">Предлагаемые</string>
+    <string name="acp_text_google_play">Oткрыть в Google Play</string>
+    <string name="acp_info_version">Версия</string>
+    <string name="acp_internet_update_error">Произошла ошибка. Проверьте соединение с интернетом и попробуйте еще раз</string>
+    <string name="cmnd_verb_acp_open_program">Открыть</string>
+    <string name="cmnd_verb_acp_install_program">Загрузить</string>
+    <string name="cmnd_verb_acp_refresh_btn">Заново</string>
+    <string name="acp_free_aps">Предлагаемые программы</string>
+    <string name="adjective_acp_new_text">Новый</string>
+
+    <string name="acp_dlg_exit_question">Подтвердите выход</string>
+    <string name="cmnd_verb_acp_dlg_exit_positive_btn_txt">Выход</string>
+    <string name="cmnd_verb_acp_dlg_exit_negativ_btn_txt">Оставаться</string>
+
+    <string name="acp_dlg_exit_btn_more_txt_1">Программы</string>
+    <string name="acp_dlg_exit_btn_more_txt_2">Подробный</string>
+
+    <string name="acp_info_popup_text">MAHAds библиотека</string>
+    <string name="acp_updated_text">Oбновлен</string>
+    <string name="acp_play_service_not_found">Установите сервисы Google Play чтобы установить приложение</string>
+
+</resources>

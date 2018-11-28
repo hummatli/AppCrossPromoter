@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!--
+    Be carefull, To help to translat ein context meaning
+    I have added tags before string variable, Don't translate wrong meaning.
+        * command verb (actions) - These are commands verbs. Meaninaction on UI , dialogs
+        * adjective - adjectives
+    -->
+
+
+    <string name="app_name">MAHAds</string>
+
+    <!-- For English local default-->
+    <!-- * command verb--> <string name="cmnd_verb_acp_close">Close</string>
+    <string name="acp_dlg_title">Recommended</string>
+    <string name="acp_text_google_play">Open in Google Play</string>
+    <string name="acp_info_version">Version</string>
+    <string name="acp_internet_update_error">Error, please check internet connection and try again.</string>
+    <!-- * command verb--> <string name="cmnd_verb_acp_open_program">Open</string>
+    <!-- * command verb--> <string name="cmnd_verb_acp_install_program">Install</string>
+    <!-- * command verb--><string name="cmnd_verb_acp_refresh_btn">Retry</string>
+    <string name="acp_free_aps">Recommended applications</string>
+    <!-- * adjective--><string name="adjective_acp_new_text">New</string>
+    <string name="acp_updated_text">Updated</string>
+
+    <string name="acp_dlg_exit_question">Do you want to exit?</string>
+    <!-- * command verb--><string name="cmnd_verb_acp_dlg_exit_positive_btn_txt">Exit</string>
+    <!-- * command verb--><string name="cmnd_verb_acp_dlg_exit_negativ_btn_txt">Stay</string>
+
+    <string name="acp_dlg_exit_btn_more_txt_1">Applications</string>
+    <string name="acp_dlg_exit_btn_more_txt_2">Detailed</string>
+
+    <string name="acp_info_popup_text">MAHAds library</string>
+    <string name="acp_play_service_not_found">Install Google Play Services to install application</string>
+
+
+</resources>

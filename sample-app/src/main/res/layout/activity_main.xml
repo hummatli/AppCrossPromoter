@@ -151,7 +151,7 @@
                             android:layout_marginBottom="2dp"
                             android:layout_marginTop="2dp"
                             android:gravity="start"
-                            android:text="@string/mahads_lib_github_url"
+                            android:text="@string/acp_lib_github_url"
                             android:textSize="12sp" />
 
                         <TextView
@@ -161,7 +161,7 @@
                             android:layout_marginBottom="2dp"
                             android:layout_marginTop="2dp"
                             android:gravity="start"
-                            android:text="@string/mahads_lib_jcenter_url"
+                            android:text="@string/acp_lib_jcenter_url"
                             android:textSize="12sp" />
 
                         <TextView
@@ -187,7 +187,7 @@
                             android:layout_marginBottom="2dp"
                             android:layout_marginTop="2dp"
                             android:gravity="start"
-                            android:text="@string/mahads_lib_contubute"
+                            android:text="@string/acp_lib_contubute"
                             android:textSize="12sp" />
 
 

@@ -12,7 +12,7 @@
     <item
         android:id="@+id/action_mahads"
         android:orderInCategory="100"
-        android:title="@string/mah_ads_free_aps"
+        android:title="@string/acp_free_aps"
         android:icon="@drawable/ic_play_google"
         app:showAsAction="ifRoom"/> 
 </menu>

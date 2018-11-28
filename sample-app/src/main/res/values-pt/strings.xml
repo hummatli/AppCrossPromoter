@@ -15,9 +15,9 @@
 
     <string name="txt_language_change_tip">Abrir caixa de diálogo para ver a caixa de diálogo localizada</string>
 
-    <string name="mahads_lib_github_url">* <i><a href="https://github.com/hummatli/MAHAds">GitHub URL para essa Lib.</a></i></string>
-    <string name="mahads_lib_jcenter_url">* <i><a href="https://bintray.com/hummatli/maven/mah-ads#statistics">jCenter() estatísticas de download para essa Lib.</a></i></string>
-    <string name="mahads_lib_contubute">* Precisamos de ajuda para adicionar novas Traduções.
+    <string name="acp_lib_github_url">* <i><a href="https://github.com/hummatli/MAHAds">GitHub URL para essa Lib.</a></i></string>
+    <string name="acp_lib_jcenter_url">* <i><a href="https://bintray.com/hummatli/maven/mah-ads#statistics">jCenter() estatísticas de download para essa Lib.</a></i></string>
+    <string name="acp_lib_contubute">* Precisamos de ajuda para adicionar novas Traduções.
         Se você se sentir interessado em ajudar, ficaremos muito felizes verifique o Link
         <i><a href="https://github.com/hummatli/MAHAds/issues">GitHub Issues URL</a></i> Contribua.
         Qualquer dúvida ou problema <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>

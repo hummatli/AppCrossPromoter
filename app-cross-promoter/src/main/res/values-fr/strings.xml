@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- These file needs to translate to French language-->
+
+<resources>
+    <string name="cmnd_verb_acp_close">Fermer</string>
+    <string name="acp_dlg_title">Suggestion</string>
+    <string name="acp_text_google_play">Ouvert en GooglePlay</string>
+    <string name="acp_info_version">Version</string>
+    <string name="acp_internet_update_error">Erreur, vérifiez la connexion internet et réessayez.</string>
+    <string name="cmnd_verb_acp_open_program">Ouvrir</string>
+    <string name="cmnd_verb_acp_install_program">Installer</string>
+    <string name="cmnd_verb_acp_refresh_btn">Recomencer</string>
+    <string name="acp_free_aps">Recommandé applications</string>
+    <string name="adjective_acp_new_text">Nouveau</string>
+    
+    <string name="acp_dlg_exit_question">Souhaitez-vous quitter ?</string>
+    <string name="cmnd_verb_acp_dlg_exit_positive_btn_txt">Sortie</string>
+    <string name="cmnd_verb_acp_dlg_exit_negativ_btn_txt">Rester</string>
+    
+    <string name="acp_dlg_exit_btn_more_txt_1">Applications</string>
+    <string name="acp_dlg_exit_btn_more_txt_2">Détaillé</string>
+
+    <string name="acp_info_popup_text">MAHAds bibliothèque</string>
+    <string name="acp_updated_text">Actualisé</string>
+    <string name="acp_play_service_not_found">Installer Google Play Services pour installer l\'application</string>
+
+</resources>

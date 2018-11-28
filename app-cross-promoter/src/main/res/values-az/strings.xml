@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cmnd_verb_acp_close">Bağla</string>
+    <string name="acp_dlg_title">Tövsiyə edilənlər</string>
+    <string name="acp_text_google_play">GooglePlay-də aç</string>
+    <string name="acp_info_version">Versiya</string>
+    <string name="acp_internet_update_error">Xəta baş verdi. İnternet əlaqəsini yoxlayın və yenidən cəhd edin.</string>
+    <string name="cmnd_verb_acp_open_program">Aç</string>
+    <string name="cmnd_verb_acp_install_program">Yüklə</string>
+    <string name="cmnd_verb_acp_refresh_btn">Yenidən</string>
+    <string name="acp_free_aps">Tövsiyə edilən proqramlar</string>
+    <string name="adjective_acp_new_text">Yeni</string>
+
+    <string name="acp_dlg_exit_question">Çıxışı təsdiqləyin</string>
+    <string name="cmnd_verb_acp_dlg_exit_positive_btn_txt">Çıx</string>
+    <string name="cmnd_verb_acp_dlg_exit_negativ_btn_txt">Qal</string>
+
+    <string name="acp_dlg_exit_btn_more_txt_1">Proqramlar</string>
+    <string name="acp_dlg_exit_btn_more_txt_2">Ətraflı</string>
+
+    <string name="acp_info_popup_text">MAHAds kitabxanası</string>
+    <string name="acp_updated_text">Yeniləndi</string>
+    <string name="acp_play_service_not_found">Proqramı yükləmək üçün Google Play Service-i yükəyin</string>
+
+</resources>

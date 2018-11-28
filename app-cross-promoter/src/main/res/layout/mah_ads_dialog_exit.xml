@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/mah_dlg_main_lyt_shape"
+    android:minWidth="280dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mah_dlg_title_lyt_shape"
+        android:orientation="horizontal"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp">
+
+
+        <ImageButton
+            android:id="@+id/ivBtnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:paddingBottom="4dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="2dp"
+            android:paddingTop="4dp"
+            android:src="@drawable/ic_mah_cancel" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingBottom="0dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:paddingTop="0dp"
+            android:text="@string/acp_dlg_title"
+            android:textColor="@color/mah_ads_title_bar_text_color"
+            android:textSize="19sp" />
+
+
+        <ImageButton
+            android:id="@+id/ivBtnInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:paddingBottom="4dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:src="@drawable/ic_mah_info" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/mah_ads_dlg_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fadeScrollbars="false"
+        android:fadingEdgeLength="10dp"
+        android:fillViewport="true"
+        android:requiresFadingEdge="vertical"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="0dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="0dp">
+
+            <!--Set visibilty to makeGone-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/game_dialog_in_stroke"
+                android:visibility="gone"/>
+
+            <!--Changed mariginTop from 0 to 10-->
+            <LinearLayout
+                android:id="@+id/lytProgsPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="10dp"
+                android:baselineAligned="false"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/lytProg1MAHAdsExtDlg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/mah_dlg_btn_yes_no_background_selector">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingBottom="0dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="0dp">
+
+                            <ImageView
+                                android:id="@+id/ivProg1ImgMAHAds"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_marginBottom="0dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="10dp"
+                                android:src="@color/mah_ads_no_img_color" />
+
+                            <TextView
+                                android:id="@+id/tvProg1NameMAHAdsExtDlg"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:ellipsize="end"
+                                android:gravity="center_horizontal"
+                                android:maxLines="2"
+                                android:minLines="2"
+                                android:text="prog1"
+                                android:textColor="@color/mah_ads_all_and_btn_text_color"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvFreshnestProg1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/mah_dlg_text_view_new_shape"
+                            android:paddingBottom="0dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="0dp"
+                            android:text="@string/adjective_acp_new_text"
+                            android:textColor="@color/mah_ads_text_view_new_text_color"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:lines="1"
+                            android:maxLength="15"
+                            android:ellipsize="end"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/lytProg2MAHAdsExtDlg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/mah_dlg_btn_yes_no_background_selector"
+                        android:gravity="center_horizontal|top">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingBottom="0dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="0dp">
+
+                            <ImageView
+                                android:id="@+id/ivProg2ImgMAHAds"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_marginBottom="0dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="10dp"
+                                android:src="@color/mah_ads_no_img_color" />
+
+                            <TextView
+                                android:id="@+id/tvProg2NameMAHAdsExtDlg"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:ellipsize="end"
+                                android:gravity="center_horizontal"
+                                android:maxLines="2"
+                                android:minLines="2"
+                                android:text="prog2"
+                                android:textColor="@color/mah_ads_all_and_btn_text_color"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvFreshnestProg2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/mah_dlg_text_view_new_shape"
+                            android:paddingBottom="0dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="0dp"
+                            android:text="@string/adjective_acp_new_text"
+                            android:textColor="@color/mah_ads_text_view_new_text_color"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:lines="1"
+                            android:maxLength="15"
+                            android:ellipsize="end"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/lytBtnOther"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/mah_dlg_btn_other_selector"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="10dp"
+                android:paddingTop="0dp">
+
+                <ImageView
+                    android:id="@+id/iconBtnOther"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/ic_play_google" />
+
+                <TextView
+                    android:id="@+id/mah_ads_dlg_exit_tv_btn_other"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/acp_dlg_exit_btn_more_txt_1"
+                    android:textAllCaps="false"
+                    android:textColor="@color/mah_ads_all_and_btn_text_color"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <!--Changed mariginTop from 5 to 10
+            Added margin right and left-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/game_dialog_in_stroke"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"/>
+
+            <TextView
+                android:id="@+id/tvQuestionTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/acp_dlg_exit_question"
+                android:textColor="@color/mah_ads_question_txt_color"
+                android:textSize="23sp"
+                android:textStyle="bold"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="2dp">
+
+        <Button
+            android:id="@+id/btnYes"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/cmnd_verb_acp_dlg_exit_positive_btn_txt"
+            android:textColor="@color/mah_ads_yes_no_txt_color"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/btnNo"
+            style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/cmnd_verb_acp_dlg_exit_negativ_btn_txt"
+            android:textColor="@color/mah_ads_yes_no_txt_color"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -4,9 +4,9 @@
     <string name="title_kotlin_sample">Kotlin Sample Activity</string>
     <string name="title_java_sample">Java Sample Activity</string>
     <string name="content_txt1">
-        This is the sample for using MAHAds lib.
-        \nMAHAds library is for advertisement your own apps through your other apps.
-        By the help of this lib you can provide your apps to your users.
+        This is the sample of using AppCrossPromoter the lib.
+        \AppCrossPromoter is a library for advertisement of your Android apps through your other apps.
+        By the help of this lib you can provide your projects to the users of your other Android programs.
         </string>
     <string name="content_txt2">
         Library has totally created by Kotlin language in Android Studio. Contains sample in both Kotlin and Java.
@@ -22,11 +22,11 @@
 
     <string name="txt_language_change_tip">Open dialog to see localized dialog</string>
 
-    <string name="mahads_lib_github_url">* <i><a href="https://github.com/hummatli/MAHAds">GitHub URL for library</a></i></string>
-    <string name="mahads_lib_jcenter_url">* <i><a href="https://bintray.com/hummatli/maven/mah-ads#statistics">jCenter() download statitsics for library</a></i></string>
-    <string name="mahads_lib_contubute">* We need help to add new language localization support for libarary.
+    <string name="acp_lib_github_url">* <i><a href="https://github.com/hummatli/AppCrossPromoter">GitHub URL for library</a></i></string>
+    <string name="acp_lib_jcenter_url">* <i><a href="https://bintray.com/hummatli/maven/app-cross-promoter#statistics">jCenter() download statitsics for library</a></i></string>
+    <string name="acp_lib_contubute">* We need help to add new language localization support for libarary.
         If you have any hope to help us we were very happy and you can check following
-        <i><a href="https://github.com/hummatli/MAHAds/issues">GitHub Issues URL</a></i> contribute.
+        <i><a href="https://github.com/hummatli/AppCrossPromoter/issues">GitHub Issues URL</a></i> contribute.
         If you have any question please ask to me on <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>
     </string>
 </resources>
