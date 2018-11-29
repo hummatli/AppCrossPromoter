@@ -1,5 +1,5 @@
 <h1 align="center">AppCrossPromoter - Java (Kotlin, Android)</h1>
-<h4 align="center">Android Ad Library</h4>
+<h4 align="center">Android Ads Library</h4>
 
 <p align="center">
   <a target="_blank" href="https://bintray.com/hummatli/maven/app-cross-promoter/_latestVersion"><img src="https://api.bintray.com/packages/hummatli/maven/app-cross-promoter/images/download.svg"></a>
@@ -7,7 +7,7 @@
   <a target="_blank" href="http://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000"></a>
 </p>
 
-<p align="center">Cross-promote your own apps and manage direct-sold campaigns. Free, open source, third party Android library for cross-promote, advertisement of own apps through your other apps. Library has built with Kotlin language. Check out the <a href="https://github.com/hummatli/AppCrossPromoter/wiki">wiki</a>.</p>
+<p align="center">Cross-promote your own apps and manage the direct-sold campaigns. he free, open source, third party Android library to cross-promote advertise of your own apps through your other Android apps. This library has been built with the Kotlin language in the Android Studio IDE. Check out the <a href="https://github.com/hummatli/AppCrossPromoter/wiki">wiki</a>.</p>
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/hummatli/AppCrossPromoter/master/imgs/exit_dlg.png" width="200px"/>
@@ -22,17 +22,15 @@
 
 
 ### Description
-Free, open source, third party Android library for cross-promote, advertisement of own apps through your other apps.
-By the help of this lib you can provide your apps list to users through your own other apps and let to install them. 
-`Library has built with Kotlin language on Android Studio IDE` and binaries have added to `jcenter()`  `maven` repository.
-<br>You can check  [jCenter() download statistics](https://bintray.com/hummatli/maven/app-cross-promoter#statistics) on this [link](https://bintray.com/hummatli/maven/app-cross-promoter#statistics)
+The free, open source, third party Android library to cross-promote advertise of your own apps through your other Android apps. By the help of this lib you can provide the list of your apps to the users inside your other apps and let the to install. `This library has been built with the Kotlin language in the Android Studio IDE` and the binaries have added to the `jcenter()` `maven` repository.
+<br>You can check  [the jCenter() download statistics](https://bintray.com/hummatli/maven/app-cross-promoter#statistics) on this [link](https://bintray.com/hummatli/maven/app-cross-promoter#statistics)
 
-There is a list of [application using AppCrossPromoter](https://github.com/hummatli/AppCrossPromoter#applications-using-appcrosspromoter). It would be nice if see your app link there too. If you use this library and want to see your app in the start of the [list](https://github.com/hummatli/AppCrossPromoter#applications-using-appcrosspromoter) please [inform me](mailto:settarxan@gmail.com) or send a pull request.
+There is a list of [the applications which uses AppCrossPromoter](https://github.com/hummatli/AppCrossPromoter#applications-using-appcrosspromoter). It would be nice to see your apps' link there too. If you use this library and want to see it in the head of the [list](https://github.com/hummatli/AppCrossPromoter#applications-using-appcrosspromoter), please [inform me](mailto:settarxan@gmail.com) or send a pull request.
 
-* [jCenter() download statistics](https://bintray.com/hummatli/maven/app-cross-promoter#statistics)
-* [Application using AppCrossPromoter](https://github.com/hummatli/AppCrossPromoter#applications-using-appcrosspromoter)
+* [The jCenter() download statistics](https://bintray.com/hummatli/maven/app-cross-promoter#statistics)
+* [The applications which uses AppCrossPromoter](https://github.com/hummatli/AppCrossPromoter#applications-using-appcrosspromoter)
 
-<img src="https://raw.githubusercontent.com/hummatli/AppCrossPromoter/master/imgs/green_star.png" width="20px"/>  _**Don't forget to start the protect to support us**_   
+<img src="https://raw.githubusercontent.com/hummatli/AppCrossPromoter/master/imgs/green_star.png" width="20px"/>  _**Don't forget to star the protect to support us**_   
 
 ### Contributors
 * Developer:
