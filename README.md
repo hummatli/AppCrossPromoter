@@ -53,55 +53,44 @@ There is a list of [the applications which uses AppCrossPromoter](https://github
 * [Applications using AppCrossPromoter](https://github.com/hummatli/AppCrossPromoter#applications-using-appcrosspromoter)
 * [Other libraries by developer](https://github.com/hummatli/AppCrossPromoter#other-libraries-by-developer)
 
-### Sample App in PlayStore
-<a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample">AppCrossPromoter - Sample</a> app has published on Google PlayStore. You can easly test module functionality with downloading it.
+### A sample App in PlayStore
+<a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample">The AppCrossPromoter - Sample</a> app has published on the Google PlayStore. You can easly test the lib's functionality by downloading it.
 <br><a href="https://play.google.com/store/apps/details?id=com.mobapphome.mahads.sample"><img src="https://raw.githubusercontent.com/hummatli/AppCrossPromoter/master/imgs/google-play-badge.png" height="90px"/></a> <!--img src="https://raw.githubusercontent.com/hummatli/AppCrossPromoter/master/imgs/mahads_google_play_url_qr_code.jpg" height="100px"/-->
 
 ### Service structure
-To provide your apps list you have to implement service provider. Structure of the service is as below. Your root folder has to contain `imgs` folder and two files `program_version.json`, `program_list.json`.
+To provide your apps' list, you have to implement the service provider. The structure of the service is as below. Your root folder has to contain a `imgs` folder and two files - `program_version.json`, `program_list.json`.
 
-For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Service-structure">wiki</a>.</p>
+For details check the <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Service-structure">wiki</a>.</p>
 
 ### Library structure
-`You can call with the same way in Kotlin and Java. Library contains samples both in Kotlin and Java`
+`You can call it by the same way in Kotlin and Java. The library contains samples both in the Kotlin and Java languages.`
 
-For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Library-structure">wiki</a>.</p>
+For the details, check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Library-structure">the wiki</a>.</p>
   
 ### Installation manual
-To import library(to downlaod) to you project add following lines to project's `build.gradle` file. The last stable version is `2.5.5`
-
-```gradle
-repositories {
-    maven { url 'https://dl.bintray.com/hummatli/maven/' }
-}
-
-dependencies {
-    compile 'com.mobapphome.library:app-cross-promoter:2.5.5'
-}
-```
-For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Installation-manual">wiki</a>.</p>
+The last stable version is `2.5.5`. To configure the library in your project, check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Installation-manual">installation wiki page</a>.</p>
 
 ### Proguard configuration
-AppCrossPromoter uses [Jsoup](https://github.com/jhy/jsoup), [GSON](https://github.com/google/gson), [Glide](https://github.com/bumptech/glide) libraries. Therefore if you want to create your project with proguard you'll need to add proguard configuration to your proguard file. Look at [Progurad File](https://github.com/hummatli/AppCrossPromoter/blob/master/proguard-rules-app-cross-promoter.pro)
+AppCrossPromoter uses [Jsoup](https://github.com/jhy/jsoup), [GSON](https://github.com/google/gson), [Glide](https://github.com/bumptech/glide) libraries. Therefore, if you want to create your project with a proguard option, you'll need to add the proguard configuration to your proguard file. Look at the [progurad file](https://github.com/hummatli/AppCrossPromoter/blob/master/proguard-rules-app-cross-promoter.pro)
 
 ### Help - Issues
-If you have any problem with setting and using library or want to ask question, please let me know. Create [issue](https://github.com/hummatli/AppCrossPromoter/issues) or write to <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>. I will help.
+If you have any problems with configuration of the library or want to ask a question, please let me know. Create [issue](https://github.com/hummatli/AppCrossPromoter/issues) or write to <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>. I will help.
 
-### Releases - Upgrade documentation
-See [releases](https://github.com/hummatli/AppCrossPromoter/releases). Please,read release notes to migrate your app from old version to a newer.
+<!--### Releases - Upgrade documentation
+See the [releases](https://github.com/hummatli/AppCrossPromoter/releases). Please,read the release notes to migrate your app from an old version to a newer one.-->
 
 ### To contribute
-I am open to hear offers and opinions from you  
+I am ready to hear offers and opinions from you.  
 
 * Fork it
 * Create your feature branch (git checkout -b my-new-feature)
 * Commit your changes (git commit -am 'Added some feature')
 * Push to the branch (git push origin my-new-feature)
-* Create new Pull Request
+* Create a new Pull Request
 * Star it
 
 ### Localization
-Library now supports following languages 
+The library now supports the following languages: 
 * Azerbaijan
 * English
 * French
@@ -112,19 +101,19 @@ Library now supports following languages
 * Russia
 * Spanish
 * Turkey
-* [Add yours language](https://github.com/hummatli/AppCrossPromoter/blob/master/README.md#to-contribute-for-localization)
+* [Add your language](https://github.com/hummatli/AppCrossPromoter/blob/master/README.md#to-contribute-for-localization)
 
 #### To contribute for localization  
-**To help translator in context I have added prefixes to the start of the string names.
-Be carefull when translating. Prefixes are following:**   
-_* < command verb (actions)> - These are commands verbs. Meaninaction on UI , dialogs_   
+**To help to translator in context, I have added some prefixes to the start of the string names.
+Be carefull when you translate. The prefixes are following:**   
+_* < command verb (actions)> - These are the command verbs which mean actions on the UI._   
 _* < adjective > - adjectives_    
 
-We need help to add new language localization support for libarary. If you have any hope to help us we were very happy and you can check following <i><a href="https://github.com/hummatli/AppCrossPromoter/issues">GitHub Issues URL</a></i> to contribute.
-To contribute get <a href="https://github.com/hummatli/AppCrossPromoter/blob/master/app-cross-promoter/src/main/res/values/strings.xml">res/values/string.xml</a> file and translate to newer language. Place it on res/values-"spacific_lang"/string.xml
+We need your help to add a new language localization support to libarary. If you had any hope to help us, we would be very happy and you could check the following <i><a href="https://github.com/hummatli/AppCrossPromoter/issues">GitHub Issues URL</a></i> to contribute.
+To contribute, get the <a href="https://github.com/hummatli/AppCrossPromoter/blob/master/app-cross-promoter/src/main/res/values/strings.xml">res/values/string.xml</a> file and translate it to a newer language then place it on res/values-"spacific_lang"/string.xml.
 
 ### Applications using AppCrossPromoter
-Please feel free to [contact](mailto:settarxan@gmail.com) me or submit a pull request to add your app in the start of the list.
+Please feel free to [contact](mailto:settarxan@gmail.com) me or submit a pull request to add your app in the top of the list.
 
 Icon | Application | Icon | Application
 ------------ | ------------- | ------------- | -------------
@@ -137,8 +126,8 @@ Icon | Application | Icon | Application
 
 
 ### Other libraries by developer
-* [![AndroidAppUpdater](https://img.shields.io/badge/GitHUB-AndroidAppUpdater-green.svg)](https://github.com/hummatli/AndroidAppUpdater) - Android update checker library. Library for notifing update information to installed android apps on android device.  
-* [![SimpleEncryptionLib](https://img.shields.io/badge/GitHUB-SimpleEncryptionLib-green.svg)](https://github.com/hummatli/SimpleEncryptionLib) - Library for encryption and decryption strings on Android apps and PC Java applications.
+* [![AndroidAppUpdater](https://img.shields.io/badge/GitHUB-AndroidAppUpdater-green.svg)](https://github.com/hummatli/AndroidAppUpdater) - An Android library to check an update information on android device.  
+* [![SimpleEncryptionLib](https://img.shields.io/badge/GitHUB-SimpleEncryptionLib-green.svg)](https://github.com/hummatli/SimpleEncryptionLib) - The library to encrypt and decrypt strings on the Android apps and the PC Java applications.
 
 ### License
 Copyright 2017  - [Sattar Hummatli](https://www.linkedin.com/in/hummatli)   
