@@ -84,13 +84,13 @@ dependencies {
 For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Installation-manual">wiki</a>.</p>
 
 ### Proguard configuration
-AppCrossPromoter uses [Jsoup](https://github.com/jhy/jsoup), [GSON](https://github.com/google/gson), [Glide](https://github.com/bumptech/glide) libraries. Therefore if you want to create your project with proguard you'll need to add proguard configuration to your proguard file. Look at [Progurad File](https://github.com/hummatli/AppCrossPromoter/blob/master/MAHAds/proguard-rules-mah-ads.pro)
+AppCrossPromoter uses [Jsoup](https://github.com/jhy/jsoup), [GSON](https://github.com/google/gson), [Glide](https://github.com/bumptech/glide) libraries. Therefore if you want to create your project with proguard you'll need to add proguard configuration to your proguard file. Look at [Progurad File](https://github.com/hummatli/AppCrossPromoter/blob/master/proguard-rules-app-cross-promoter.pro)
 
 ### Help - Issues
-If you have any problem with setting and using library or want to ask question, please let me know. Create [issue](https://github.com/hummatli/MAHAds/issues) or write to <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>. I will help.
+If you have any problem with setting and using library or want to ask question, please let me know. Create [issue](https://github.com/hummatli/AppCrossPromoter/issues) or write to <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>. I will help.
 
 ### Releases - Upgrade documentation
-See [releases](https://github.com/hummatli/MAHAds/releases). Please,read release notes to migrate your app from old version to a newer.
+See [releases](https://github.com/hummatli/AppCrossPromoter/releases). Please,read release notes to migrate your app from old version to a newer.
 
 ### To contribute
 I am open to hear offers and opinions from you  
@@ -114,7 +114,7 @@ Library now supports following languages
 * Russia
 * Spanish
 * Turkey
-* [Add yours language](https://github.com/hummatli/MAHAds/blob/master/README.md#to-contribute-for-localization)
+* [Add yours language](https://github.com/hummatli/AppCrossPromoter/blob/master/README.md#to-contribute-for-localization)
 
 #### To contribute for localization  
 **To help translator in context I have added prefixes to the start of the string names.
@@ -122,10 +122,10 @@ Be carefull when translating. Prefixes are following:**
 _* < command verb (actions)> - These are commands verbs. Meaninaction on UI , dialogs_   
 _* < adjective > - adjectives_    
 
-We need help to add new language localization support for libarary. If you have any hope to help us we were very happy and you can check following <i><a href="https://github.com/hummatli/MAHAds/issues">GitHub Issues URL</a></i> to contribute.
-To contribute get <a href="https://github.com/hummatli/MAHAds/blob/master/MAHAds/mah-ads/src/main/res/values/strings.xml">res/values/string.xml</a> file and translate to newer language. Place it on res/values-"spacific_lang"/string.xml
+We need help to add new language localization support for libarary. If you have any hope to help us we were very happy and you can check following <i><a href="https://github.com/hummatli/AppCrossPromoter/issues">GitHub Issues URL</a></i> to contribute.
+To contribute get <a href="https://github.com/hummatli/AppCrossPromoter/blob/master/app-cross-promoter/src/main/res/values/strings.xml">res/values/string.xml</a> file and translate to newer language. Place it on res/values-"spacific_lang"/string.xml
 
-### Applications using MAHAds
+### Applications using AppCrossPromoter
 Please feel free to [contact](mailto:settarxan@gmail.com) me or submit a pull request to add your app in the start of the list.
 
 Icon | Application | Icon | Application
@@ -133,14 +133,14 @@ Icon | Application | Icon | Application
 [Your app] |[ping](mailto:settarxan@gmail.com) me or send a pull request | <img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/millionaire_en.png" width="48" height="48" /> | [Millionaire - in English](https://play.google.com/store/apps/details?id=com.mobapphome.millionaire.en)
 <img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/millionaire_ru.png" width="48" height="48" /> | [Миллионер - на Pусском](https://play.google.com/store/apps/details?id=com.mobapphome.millionaire.ru) | <img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/millionaire_tr.png" width="48" height="48" /> | [Milyoner - Türkçe](https://play.google.com/store/apps/details?id=com.mobapphome.millionaire.tr)
 <img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/millionaire_az.png" width="48" height="48" /> | [Milyonçu](https://play.google.com/store/apps/details?id=com.mobapphome.milyoncu) | <img src="https://lh3.ggpht.com/kfuLs-Ic0xR3SOFdjJ3FVeI0es2oXTCEt1T2y8tEVeYm7otSuSSBDlrpz4wXtIygf4k=w300-rw" width="48" height="48" /> | [Məzənnə](https://play.google.com/store/apps/details?id=com.mobapphome.currency)
-<img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/mah_ads_sample_icon.png" width="48" height="48" /> | [MAHAds - Sample](https://play.google.com/store/apps/details?id=appcrosspromoter.sample) | <img src="https://lh4.ggpht.com/b_9Tt-HGVWTUEpq4tpPvvf9iH9lbrMu6HDPitLxd5bzpUhf68Ifm0arFy7tH12GAJ8M=w300-rw" width="48" height="48" /> | [DYP Qanunlar və Cərimələr](https://play.google.com/store/apps/details?id=com.mobapphome.avtolowpenal)
+<img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/mah_ads_sample_icon.png" width="48" height="48" /> | [AppCrossPromoter - Sample](https://play.google.com/store/apps/details?id=appcrosspromoter.sample) | <img src="https://lh4.ggpht.com/b_9Tt-HGVWTUEpq4tpPvvf9iH9lbrMu6HDPitLxd5bzpUhf68Ifm0arFy7tH12GAJ8M=w300-rw" width="48" height="48" /> | [DYP Qanunlar və Cərimələr](https://play.google.com/store/apps/details?id=com.mobapphome.avtolowpenal)
 <img src="https://lh6.ggpht.com/9g7gUdqyzc51oPIGX7pGf1_gs70WDizny9JfUExteTw_v0BFRLzx69xSmwhg3t7XQiE=w300-rw" width="48" height="48" /> | [Avto Nişanlar](https://play.google.com/store/apps/details?id=com.mobapphome.avtonishanlar) | <img src="https://lh5.ggpht.com/P_TyFmB5BzYDGWl3yliDHkQr_ttrYzHS3yQk3mBS3QuJJ5TJZ1pMj8lx-wmUmAHiUw=w300-rw" width="48" height="48" /> | [Ləzzət](https://play.google.com/store/apps/details?id=com.mobapphome.lezzet)
 <img src="https://project-943403214286171762.firebaseapp.com/mah_ads_dir/imgs/millionaire_de.png" width="48" height="48" />| [Millionär - Deutsche](https://play.google.com/store/apps/details?id=com.mobapphome.millionaire.ge) | |
 
 
 ### Other libraries by developer
-* [![MAHAndroidUpdater](https://img.shields.io/badge/GitHUB-MAHAndroidUpdater-green.svg)](https://github.com/hummatli/MAHAndroidUpdater) - Android update checker library. Library for notifing update information to installed android apps on android device.  
-* [![MAHEncryptorLib](https://img.shields.io/badge/GitHUB-MAHEncryptorLib-green.svg)](https://github.com/hummatli/MAHEncryptorLib) - Library for encryption and decryption strings on Android apps and PC Java applications.
+* [![AndroidAppUpdater](https://img.shields.io/badge/GitHUB-AndroidAppUpdater-green.svg)](https://github.com/hummatli/AndroidAppUpdater) - Android update checker library. Library for notifing update information to installed android apps on android device.  
+* [![SimpleEncryptionLib](https://img.shields.io/badge/GitHUB-SimpleEncryptionLib-green.svg)](https://github.com/hummatli/SimpleEncryptionLib) - Library for encryption and decryption strings on Android apps and PC Java applications.
 
 ### License
 Copyright 2017  - [Sattar Hummatli](https://www.linkedin.com/in/hummatli)   
