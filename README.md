@@ -30,7 +30,7 @@ By the help of this lib you can provide your apps list to users through your own
 There is a list of [application using AppCrossPromoter](https://github.com/hummatli/AppCrossPromoter#applications-using-appcrosspromoter). It would be nice if see your app link there too. If you use this library and want to see your app in the start of the [list](https://github.com/hummatli/AppCrossPromoter#applications-using-appcrosspromoter) please [inform me](mailto:settarxan@gmail.com) or send a pull request.
 
 * [jCenter() download statistics](https://bintray.com/hummatli/maven/app-cross-promoter#statistics)
-* [Application using AppCrossPromoter](https://github.com/hummatli/AppCrossPromoter#applications-using-app-cross-promoter)
+* [Application using AppCrossPromoter](https://github.com/hummatli/AppCrossPromoter#applications-using-appcrosspromoter)
 
 <img src="https://raw.githubusercontent.com/hummatli/AppCrossPromoter/master/imgs/green_star.png" width="20px"/>  _**Don't forget to start the protect to support us**_   
 
