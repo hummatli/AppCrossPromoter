@@ -79,7 +79,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.mobapphome.library:app-cross-promoter:2.2.0'
+    compile 'com.mobapphome.library:app-cross-promoter:2.5.5'
 }
 ```
 For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Installation-manual">wiki</a>.</p>
