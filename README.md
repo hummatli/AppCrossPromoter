@@ -7,18 +7,17 @@
   <a target="_blank" href="http://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000"></a>
 </p>
 
-<p align="center">Cross-promote your own apps and manage direct-sold campaigns. Free, open source, third party Android library for cross-promote, advertisement of own apps through your other apps. Library has built with Kotlin language. Check out the <a href="https://github.com/hummatli/MAHAds/wiki">wiki</a>.</p>
+<p align="center">Cross-promote your own apps and manage direct-sold campaigns. Free, open source, third party Android library for cross-promote, advertisement of own apps through your other apps. Library has built with Kotlin language. Check out the <a href="https://github.com/hummatli/AppCrossPromoter/wiki">wiki</a>.</p>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/exit_dlg.png" width="200px"/>
-<img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/programs_dlg.png" width="200px"/>
-<img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/img3.png" width="200px"/>
+<img src="https://raw.githubusercontent.com/hummatli/AppCrossPromoter/master/imgs/exit_dlg.png" width="200px"/>
+<img src="https://raw.githubusercontent.com/hummatli/AppCrossPromoter/master/imgs/programs_dlg.png" width="200px"/>
+<img src="https://raw.githubusercontent.com/hummatli/AppCrossPromoter/master/imgs/img3.png" width="200px"/>
 
 </p>
 
 
-<!--[ ![Download](https://api.bintray.com/packages/hummatli/maven/mah-ads/images/download.svg) ](https://bintray.com/hummatli/maven/mah-ads/_latestVersion) [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15) [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000)](http://www.apache.org/licenses/LICENSE-2.0) 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MAHAds-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4509)-->
+<!--[ ![Download](https://api.bintray.com/packages/hummatli/maven/app-cross-promoter/images/download.svg) ](https://bintray.com/hummatli/maven/app-cross-promoter/_latestVersion) [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15) [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000)](http://www.apache.org/licenses/LICENSE-2.0)-->
 
 
 
@@ -26,39 +25,39 @@
 Free, open source, third party Android library for cross-promote, advertisement of own apps through your other apps.
 By the help of this lib you can provide your apps list to users through your own other apps and let to install them. 
 `Library has built with Kotlin language on Android Studio IDE` and binaries have added to `jcenter()`  `maven` repository.
-<br>You can check  [jCenter() download statistics](https://bintray.com/hummatli/maven/mah-ads#statistics) on this [link](https://bintray.com/hummatli/maven/mah-ads#statistics)
+<br>You can check  [jCenter() download statistics](https://bintray.com/hummatli/maven/app-cross-promoter#statistics) on this [link](https://bintray.com/hummatli/maven/app-cross-promoter#statistics)
 
-There is a list of [application using MAHAds](https://github.com/hummatli/MAHAds#applications-using-mahads). It would be nice if see your app link there too. If you use this library and want to see your app in the start of the [list](https://github.com/hummatli/MAHAds#applications-using-mahads) please [inform me](mailto:settarxan@gmail.com) or send a pull request.
+There is a list of [application using AppCrossPromoter](https://github.com/hummatli/AppCrossPromoter#applications-using-appcrosspromoter). It would be nice if see your app link there too. If you use this library and want to see your app in the start of the [list](https://github.com/hummatli/AppCrossPromoter#applications-using-appcrosspromoter) please [inform me](mailto:settarxan@gmail.com) or send a pull request.
 
-* [jCenter() download statistics](https://bintray.com/hummatli/maven/mah-ads#statistics)
-* [Application using MAHAds](https://github.com/hummatli/MAHAds#applications-using-mahads)
+* [jCenter() download statistics](https://bintray.com/hummatli/maven/app-cross-promoter#statistics)
+* [Application using AppCrossPromoter](https://github.com/hummatli/AppCrossPromoter#applications-using-app-cross-promoter)
 
-<img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/green_star.png" width="20px"/>  _**Don't forget to start the protect to support us**_   
+<img src="https://raw.githubusercontent.com/hummatli/AppCrossPromoter/master/imgs/green_star.png" width="20px"/>  _**Don't forget to start the protect to support us**_   
 
 ### Contributors
 * Developer:
-[Sattar Hummatli](https://github.com/hummatli) - [LinkedIn](https://www.linkedin.com/in/hummatli), settarxan@gmail.com, [Other libs](https://github.com/hummatli/MAHAds#other-libraries-by-developer)
+[Sattar Hummatli](https://github.com/hummatli) - [LinkedIn](https://www.linkedin.com/in/hummatli), settarxan@gmail.com, [Other libs](https://github.com/hummatli/AppCrossPromoter#other-libraries-by-developer)
 * Translator `French`: [Fariz Aghayev](https://github.com/farizaghayev)
 * Translator `Portuguese`: [azzarr](https://github.com/azzarr)
 * Translator `Hindi, German, Spanish`: [Harsh Dalwadi](https://github.com/dalwadi2)
 * Translator `Italian`: [Rawnly](https://github.com/rawnly)
 
 ### Contents
-* [Description](https://github.com/hummatli/MAHAds#description)
-* [Service structure](https://github.com/hummatli/MAHAds#service-structure)
-* [Library structure](https://github.com/hummatli/MAHAds#library-structure)
-* [Installation manual](https://github.com/hummatli/MAHAds#installation-manual)
-* [Help - Issues](https://github.com/hummatli/MAHAds#help---issues)
-* [Releases - Upgrade documentation](https://github.com/hummatli/MAHAds#releases---upgrade-documentation)
-* [To contribute](https://github.com/hummatli/MAHAds#to-contribute)
-* [Contributors](https://github.com/hummatli/MAHAdsr#contributors)
-* [Localization](https://github.com/hummatli/MAHAds#localization)
-* [Applications using MAHAds](https://github.com/hummatli/MAHAds#applications-using-mahads)
-* [Other libraries by developer](https://github.com/hummatli/MAHAds#other-libraries-by-developer)
+* [Description](https://github.com/hummatli/AppCrossPromoter#description)
+* [Service structure](https://github.com/hummatli/AppCrossPromoter#service-structure)
+* [Library structure](https://github.com/hummatli/AppCrossPromoter#library-structure)
+* [Installation manual](https://github.com/hummatli/AppCrossPromoter#installation-manual)
+* [Help - Issues](https://github.com/hummatli/AppCrossPromoter#help---issues)
+* [Releases - Upgrade documentation](https://github.com/hummatli/AppCrossPromoter#releases---upgrade-documentation)
+* [To contribute](https://github.com/hummatli/AppCrossPromoter#to-contribute)
+* [Contributors](https://github.com/hummatli/AppCrossPromoter#contributors)
+* [Localization](https://github.com/hummatli/AppCrossPromoter#localization)
+* [Applications using AppCrossPromoter](https://github.com/hummatli/AppCrossPromoter#applications-using-appcrosspromoter)
+* [Other libraries by developer](https://github.com/hummatli/AppCrossPromoter#other-libraries-by-developer)
 
 ### Sample App in PlayStore
-<a href="https://play.google.com/store/apps/details?id=appcrosspromoter.sample">MAHAds - Sample</a> app has published on Google PlayStore. You can easly test module functionality with downloading it.
-<br><a href="https://play.google.com/store/apps/details?id=appcrosspromoter.sample"><img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/google-play-badge.png" height="90px"/></a> <img src="https://raw.githubusercontent.com/hummatli/MAHAds/master/imgs/mahads_google_play_url_qr_code.jpg" height="100px"/>
+<a href="https://play.google.com/store/apps/details?id=appcrosspromoter.sample">AppCrossPromoter - Sample</a> app has published on Google PlayStore. You can easly test module functionality with downloading it.
+<br><a href="https://play.google.com/store/apps/details?id=appcrosspromoter.sample"><img src="https://raw.githubusercontent.com/hummatli/AppCrossPromoter/master/imgs/google-play-badge.png" height="90px"/></a> <img src="https://raw.githubusercontent.com/hummatli/AppCrossPromoter/master/imgs/mahads_google_play_url_qr_code.jpg" height="100px"/>
 
 ### Service structure
 To provide your apps list you have to implement service provider. Structure of the service is as below. Your root folder has to contain `imgs` folder and two files `program_version.json`, `program_list.json`.
@@ -85,7 +84,7 @@ dependencies {
 For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Installation-manual">wiki</a>.</p>
 
 ### Proguard configuration
-MAHAds uses [Jsoup](https://github.com/jhy/jsoup), [GSON](https://github.com/google/gson), [Glide](https://github.com/bumptech/glide) libraries. Therefore if you want to create your project with proguard you'll need to add proguard configuration to your proguard file. Look at [Progurad File](https://github.com/hummatli/MAHAds/blob/master/MAHAds/proguard-rules-mah-ads.pro)
+AppCrossPromoter uses [Jsoup](https://github.com/jhy/jsoup), [GSON](https://github.com/google/gson), [Glide](https://github.com/bumptech/glide) libraries. Therefore if you want to create your project with proguard you'll need to add proguard configuration to your proguard file. Look at [Progurad File](https://github.com/hummatli/AppCrossPromoter/blob/master/MAHAds/proguard-rules-mah-ads.pro)
 
 ### Help - Issues
 If you have any problem with setting and using library or want to ask question, please let me know. Create [issue](https://github.com/hummatli/MAHAds/issues) or write to <i><a href="mailto:settarxan@gmail.com">settarxan@gmail.com</a></i>. I will help.
