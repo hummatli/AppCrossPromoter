@@ -3,7 +3,7 @@
 
 <p align="center">
   <a target="_blank" href="https://bintray.com/hummatli/maven/mah-ads/_latestVersion"><img src="https://api.bintray.com/packages/hummatli/maven/mah-ads/images/download.svg"></a>
-  <a target="_blank" href="https://android-arsenal.com/api?level=15"><img src="https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat"></a>
+  <a target="_blank" href="https://android-arsenal.com/api?level=15"><img src="https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat"></a>
   <a target="_blank" href="http://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000"></a>
 </p>
 
@@ -71,11 +71,15 @@ For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidL
 For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Library-structure">wiki</a>.</p>
   
 ### Installation manual
-To import library(to downlaod) to you project add following lines to project's `build.gradle` file. The last stable version is `2.2.0`
+To import library(to downlaod) to you project add following lines to project's `build.gradle` file. The last stable version is `2.5.5`
 
 ```gradle
+repositories {
+    maven { url 'https://dl.bintray.com/hummatli/maven/' }
+}
+
 dependencies {
-    compile 'com.mobapphome.library:mah-ads:2.2.0'
+    compile 'com.mobapphome.library:app-cross-promoter:2.2.0'
 }
 ```
 For details check <a href="https://github.com/hummatli/AppCrossPromoter-AndroidLib/wiki/Installation-manual">wiki</a>.</p>
