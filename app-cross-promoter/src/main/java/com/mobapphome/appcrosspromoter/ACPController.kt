@@ -96,10 +96,10 @@ class ACPController private constructor(){
             // This makes sure that the container activity has implemented
             // the callback interface. If not, it throws an exception
             try {
-                val exitCallback = activity as ACPDlgExit.MAHAdsDlgExitListener
+                val exitCallback = activity as ACPDlgExit.ACPDlgExitListener
                 exitCallback.onExitWithoutExitDlg()
             } catch (e: ClassCastException) {
-                throw ClassCastException(activity.toString() + " must implement MAHAdsDlgExitListener")
+                throw ClassCastException(activity.toString() + " must implement ACPDlgExitListener")
             }
 
         } else {

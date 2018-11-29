@@ -43,7 +43,7 @@
             android:paddingRight="2dp"
             android:paddingTop="0dp"
             android:text="@string/acp_dlg_title"
-            android:textColor="@color/mah_ads_title_bar_text_color"
+            android:textColor="@color/acp_title_bar_text_color"
             android:textSize="19sp" />
 
 
@@ -132,7 +132,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_marginTop="10dp"
-                                android:src="@color/mah_ads_no_img_color" />
+                                android:src="@color/acp_no_img_color" />
 
                             <TextView
                                 android:id="@+id/tvProg1NameMAHAdsExtDlg"
@@ -144,7 +144,7 @@
                                 android:maxLines="2"
                                 android:minLines="2"
                                 android:text="prog1"
-                                android:textColor="@color/mah_ads_all_and_btn_text_color"
+                                android:textColor="@color/acp_all_and_btn_text_color"
                                 android:textSize="14sp" />
                         </LinearLayout>
 
@@ -158,7 +158,7 @@
                             android:paddingRight="5dp"
                             android:paddingTop="0dp"
                             android:text="@string/adjective_acp_new_text"
-                            android:textColor="@color/mah_ads_text_view_new_text_color"
+                            android:textColor="@color/acp_text_view_new_text_color"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:lines="1"
@@ -200,7 +200,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_marginTop="10dp"
-                                android:src="@color/mah_ads_no_img_color" />
+                                android:src="@color/acp_no_img_color" />
 
                             <TextView
                                 android:id="@+id/tvProg2NameMAHAdsExtDlg"
@@ -212,7 +212,7 @@
                                 android:maxLines="2"
                                 android:minLines="2"
                                 android:text="prog2"
-                                android:textColor="@color/mah_ads_all_and_btn_text_color"
+                                android:textColor="@color/acp_all_and_btn_text_color"
                                 android:textSize="14sp" />
                         </LinearLayout>
 
@@ -226,7 +226,7 @@
                             android:paddingRight="5dp"
                             android:paddingTop="0dp"
                             android:text="@string/adjective_acp_new_text"
-                            android:textColor="@color/mah_ads_text_view_new_text_color"
+                            android:textColor="@color/acp_text_view_new_text_color"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:lines="1"
@@ -270,7 +270,7 @@
                     android:gravity="center"
                     android:text="@string/acp_dlg_exit_btn_more_txt_1"
                     android:textAllCaps="false"
-                    android:textColor="@color/mah_ads_all_and_btn_text_color"
+                    android:textColor="@color/acp_all_and_btn_text_color"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -295,7 +295,7 @@
                 android:paddingRight="10dp"
                 android:paddingTop="10dp"
                 android:text="@string/acp_dlg_exit_question"
-                android:textColor="@color/mah_ads_question_txt_color"
+                android:textColor="@color/acp_question_txt_color"
                 android:textSize="23sp"
                 android:textStyle="bold"/>
 
@@ -320,7 +320,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/cmnd_verb_acp_dlg_exit_positive_btn_txt"
-            android:textColor="@color/mah_ads_yes_no_txt_color"
+            android:textColor="@color/acp_yes_no_txt_color"
             android:textSize="17sp" />
 
         <Button
@@ -330,7 +330,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/cmnd_verb_acp_dlg_exit_negativ_btn_txt"
-            android:textColor="@color/mah_ads_yes_no_txt_color"
+            android:textColor="@color/acp_yes_no_txt_color"
             android:textSize="17sp" />
     </LinearLayout>
 

@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-public class SampleActivityJava extends AppCompatActivity implements ACPDlgExit.MAHAdsDlgExitListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class SampleActivityJava extends AppCompatActivity implements ACPDlgExit.ACPDlgExitListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     final public static String LOG_TAG_MAH_ADS_SAMPLE = "mah_ads_sample_log";
     ACPController ACPController;

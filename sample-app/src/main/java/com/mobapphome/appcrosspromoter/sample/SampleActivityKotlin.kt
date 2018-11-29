@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
-class SampleActivityKotlin : AppCompatActivity(), ACPDlgExit.MAHAdsDlgExitListener {
+class SampleActivityKotlin : AppCompatActivity(), ACPDlgExit.ACPDlgExitListener {
     var ACPController: ACPController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

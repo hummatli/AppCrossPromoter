@@ -21,13 +21,13 @@ import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.mobapphome.appcrosspromoter.commons.*
 import com.mobapphome.appcrosspromoter.tools.*
-import kotlinx.android.synthetic.main.mah_ads_dialog_exit.*
+import kotlinx.android.synthetic.main.acp_dialog_exit.*
 
 
 class ACPDlgExit(
         var prog1: Program? = null,
         var prog2: Program? = null,
-        var exitCallback: MAHAdsDlgExitListener? = null,
+        var exitCallback: ACPDlgExitListener? = null,
 
         var urls: Urls? = null,
         var fontName: String? = null,
@@ -65,9 +65,9 @@ class ACPDlgExit(
             // This makes sure that the container activity has implemented
             // the callback interface. If not, it throws an exception
             try {
-                exitCallback = activityMAH as MAHAdsDlgExitListener
+                exitCallback = activityMAH as ACPDlgExitListener
             } catch (e: ClassCastException) {
-                throw ClassCastException(activityMAH.toString() + " must implement MAHAdsDlgExitListener")
+                throw ClassCastException(activityMAH.toString() + " must implement ACPDlgExitListener")
             }
 
 
@@ -82,7 +82,7 @@ class ACPDlgExit(
                 false
             }
 
-            return inflater!!.inflate(R.layout.mah_ads_dialog_exit, container)
+            return inflater!!.inflate(R.layout.acp_dialog_exit, container)
         } catch (e: MAHFragmentExeption) {
             Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
             return null
@@ -131,9 +131,9 @@ class ACPDlgExit(
         tvFreshnestProg1.makeGone()
         tvFreshnestProg2.makeGone()
 
-        iconBtnOther.setColorFilterCompat(R.color.mah_ads_all_and_btn_text_color)
-        ivBtnCancel.setColorFilterCompat(R.color.mah_ads_title_bar_text_color)
-        ivBtnInfo.setColorFilterCompat( R.color.mah_ads_title_bar_text_color)
+        iconBtnOther.setColorFilterCompat(R.color.acp_all_and_btn_text_color)
+        ivBtnCancel.setColorFilterCompat(R.color.acp_title_bar_text_color)
+        ivBtnInfo.setColorFilterCompat( R.color.acp_title_bar_text_color)
 
         mah_ads_dlg_scroll.post { mah_ads_dlg_scroll.fullScroll(ScrollView.FOCUS_DOWN) }
 
@@ -163,7 +163,7 @@ class ACPDlgExit(
     }
 
     fun setUi(mahRequestResult: MAHRequestResult?) {
-        val imgNotFoundDrawable = context!!.getDrawableWithColorFilter( R.drawable.img_not_found, R.color.mah_ads_no_image_color)
+        val imgNotFoundDrawable = context!!.getDrawableWithColorFilter( R.drawable.img_not_found, R.color.acp_no_image_color)
 
         //if (mahRequestResult == null || mahRequestResult.programsSelected == null || mahRequestResult.programsSelected!!.isEmpty() ) {
         if (mahRequestResult?.programsSelected?.isEmpty() ?: true) {
@@ -341,7 +341,7 @@ class ACPDlgExit(
         }
     }
 
-    interface MAHAdsDlgExitListener {
+    interface ACPDlgExitListener {
         fun onYes()
 
         fun onNo()

@@ -68,10 +68,10 @@ class ProgramItmAdpt(val items: List<Any>,
                         .centerCrop()
                         .placeholder(R.drawable.img_place_holder_normal)
                         .crossFade()
-                        .error(context.getDrawableWithColorFilter(R.drawable.img_not_found, R.color.mah_ads_no_image_color))
+                        .error(context.getDrawableWithColorFilter(R.drawable.img_not_found, R.color.acp_no_image_color))
                         .into(ivProgramImg)
 
-                imgBtnMore.setColorFilterCompat(R.color.mah_ads_all_and_btn_text_color)
+                imgBtnMore.setColorFilterCompat(R.color.acp_all_and_btn_text_color)
                 imgBtnMore.setImageResource(R.drawable.ic_more_vert_grey600_24dp)
 
                 tvProgramNewText.setFontTextView(fontName)

@@ -94,7 +94,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Result"
-                        android:textColor="@color/mah_ads_colorAccent"
+                        android:textColor="@color/acp_colorAccent"
                         android:textSize="18sp"
                         android:layout_marginBottom="10dp"/>
                     <Button
@@ -104,7 +104,7 @@
                         android:background="@drawable/mah_dlg_btn_other_selector"
                         android:gravity="center"
                         android:text="@string/cmnd_verb_acp_refresh_btn"
-                        android:textColor="@color/mah_ads_all_and_btn_text_color"
+                        android:textColor="@color/acp_all_and_btn_text_color"
                         android:textSize="18sp"
                         android:minHeight="10dp"
                         android:minWidth="10dp"
@@ -149,7 +149,7 @@
                 android:gravity="center"
                 style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                 android:text="@string/cmnd_verb_acp_close"
-                android:textColor="@color/mah_ads_yes_no_txt_color"
+                android:textColor="@color/acp_yes_no_txt_color"
                 android:textSize="17sp" />
         </LinearLayout>
     </LinearLayout>

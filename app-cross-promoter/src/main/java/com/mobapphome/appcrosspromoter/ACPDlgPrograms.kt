@@ -28,7 +28,7 @@ import com.mobapphome.appcrosspromoter.commons.MAHDialogFragment
 import com.mobapphome.appcrosspromoter.commons.MAHFragmentExeption
 import com.mobapphome.appcrosspromoter.commons.*
 import com.mobapphome.appcrosspromoter.tools.*
-import kotlinx.android.synthetic.main.mah_ads_dialog_programs.*
+import kotlinx.android.synthetic.main.acp_dialog_programs.*
 import java.util.*
 
 
@@ -75,7 +75,7 @@ class ACPDlgPrograms(val items: MutableList<Any> = LinkedList<Any>(),
                 false
             }
 
-            return inflater!!.inflate(R.layout.mah_ads_dialog_programs, container)
+            return inflater!!.inflate(R.layout.acp_dialog_programs, container)
         } catch (e: MAHFragmentExeption) {
             Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
             return null
@@ -110,13 +110,13 @@ class ACPDlgPrograms(val items: MutableList<Any> = LinkedList<Any>(),
                 }
             }
         }
-        ivBtnCancel.setColorFilter(ContextCompat.getColor(context!!, R.color.mah_ads_title_bar_text_color))
-        ivBtnInfo.setColorFilter(ContextCompat.getColor(context!!, R.color.mah_ads_title_bar_text_color))
+        ivBtnCancel.setColorFilter(ContextCompat.getColor(context!!, R.color.acp_title_bar_text_color))
+        ivBtnInfo.setColorFilter(ContextCompat.getColor(context!!, R.color.acp_title_bar_text_color))
 
         if (btnInfoVisibility) ivBtnInfo.makeVisible() else ivBtnInfo.makeInvisible()
 
         ivLoading.setImageResource(R.drawable.ic_loading_mah)
-        ivLoading.getDrawable()?.setColorFilter(ContextCompat.getColor(context!!, R.color.mah_ads_all_and_btn_text_color), PorterDuff.Mode.MULTIPLY);
+        ivLoading.getDrawable()?.setColorFilter(ContextCompat.getColor(context!!, R.color.acp_all_and_btn_text_color), PorterDuff.Mode.MULTIPLY);
 
         rvProgram.makeGone()
         lytErrorF1.makeGone()

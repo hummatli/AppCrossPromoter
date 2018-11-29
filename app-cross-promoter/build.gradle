@@ -16,7 +16,7 @@ ext {
     siteUrl = 'https://github.com/hummatli/AppCrossPromoter'
     gitUrl = 'https://github.com/hummatli/AppCrossPromoter.git'
 
-    libraryVersion = '2.4.0'
+    libraryVersion = '2.5.5'
 
     developerId = 'hummatli'
     developerName = 'Sattar Hummatli'
