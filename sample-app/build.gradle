@@ -6,7 +6,7 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        applicationId "com.mobapphome.appcrosspromoter.sample"
+        applicationId "com.mobapphome.mahads.sample"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 14
