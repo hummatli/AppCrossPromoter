@@ -38,7 +38,6 @@ class ACPDlgExit(
         var mahRequestResult: MAHRequestResult? = null)
     : MAHDialogFragment() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(DialogFragment.STYLE_NORMAL, R.style.MAHAdsDlgExit)
@@ -53,7 +52,7 @@ class ACPDlgExit(
 
             val args = arguments
             val gson = Gson()
-            mahRequestResult = gson.fromJson(args!!.getString("_mahRequestResult"), MAHRequestResult::class.java)
+            mahRequestResult = gson.fromJson(args!!.getString("mahRequestResult"), MAHRequestResult::class.java)
             urls = gson.fromJson(args.getString("urls"), Urls::class.java)
             fontName = args.getString("fontName")
             btnInfoVisibility = args.getBoolean("btnInfoVisibility")
@@ -95,8 +94,8 @@ class ACPDlgExit(
 
         btnYes.setOnClickListener { sorrWithMAHExeption { onYes() } }
         btnNo.setOnClickListener { sorrWithMAHExeption { onNo() } }
-        ivBtnCancel.setOnClickListener { sorrWithMAHExeption { dismissAllowingStateLoss() } }
-        ivBtnInfo.setOnClickListener { v ->
+        ivBtnCancel?.setOnClickListener { sorrWithMAHExeption { dismissAllowingStateLoss() } }
+        ivBtnInfo?.setOnClickListener { v ->
             sorrWithMAHExeption {
                 if (btnInfoWithMenu) {
                     val itemIdForInfo = 1
@@ -117,7 +116,9 @@ class ACPDlgExit(
                 }
             }
         }
-        lytBtnOther.setOnClickListener {
+
+        //I get view by findViewById. Because in client I may use image view rather than LinearLayout
+        view.findViewById<View>(R.id.lytBtnOther).setOnClickListener {
             sorrWithMAHExeption {
                 ACPController.showDlg(activityMAH,
                         ACPDlgPrograms.newInstance(mahRequestResult, urls, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle!!, btnInfoActionURL!!),
@@ -125,37 +126,37 @@ class ACPDlgExit(
             }
         }
 
-        if (btnInfoVisibility) ivBtnInfo.makeVisible() else ivBtnInfo.makeInvisible()
+        if (btnInfoVisibility) ivBtnInfo?.makeVisible() else ivBtnInfo?.makeInvisible()
 
 
         tvFreshnestProg1.makeGone()
         tvFreshnestProg2.makeGone()
 
-        iconBtnOther.setColorFilterCompat(R.color.acp_all_and_btn_text_color)
-        ivBtnCancel.setColorFilterCompat(R.color.acp_title_bar_text_color)
-        ivBtnInfo.setColorFilterCompat( R.color.acp_title_bar_text_color)
+        iconBtnOther?.setColorFilterCompat(R.color.acp_all_and_btn_text_color)
+        ivBtnCancel?.setColorFilterCompat(R.color.acp_title_bar_text_color)
+        ivBtnInfo?.setColorFilterCompat( R.color.acp_title_bar_text_color)
 
-        mah_ads_dlg_scroll.post { mah_ads_dlg_scroll.fullScroll(ScrollView.FOCUS_DOWN) }
+        mah_ads_dlg_scroll?.post { mah_ads_dlg_scroll.fullScroll(ScrollView.FOCUS_DOWN) }
 
         setUi(mahRequestResult)
 
         if (savedInstanceState == null) Updater.updateProgramList(activityMAH, urls!!)
 
 
-        tvTitle.setFontTextView(fontName)
-        tvFreshnestProg1.setFontTextView(fontName)
-        tvFreshnestProg2.setFontTextView(fontName)
-        tvProg1NameMAHAdsExtDlg.setFontTextView(fontName)
-        tvProg2NameMAHAdsExtDlg.setFontTextView(fontName)
-        mah_ads_dlg_exit_tv_btn_other.setFontTextView(fontName)
-        tvQuestionTxt.setFontTextView(fontName)
-        btnYes.setFontTextView(fontName)
-        btnNo.setFontTextView(fontName)
+        tvTitle?.setFontTextView(fontName)
+        tvFreshnestProg1?.setFontTextView(fontName)
+        tvFreshnestProg2?.setFontTextView(fontName)
+        tvProg1NameMAHAdsExtDlg?.setFontTextView(fontName)
+        tvProg2NameMAHAdsExtDlg?.setFontTextView(fontName)
+        mah_ads_dlg_exit_tv_btn_other?.setFontTextView(fontName)
+        tvQuestionTxt?.setFontTextView(fontName)
+        btnYes?.setFontTextView(fontName)
+        btnNo?.setFontTextView(fontName)
 
         //Minimize the lines of question textview in  languages where question str
         val strQuest = getString(R.string.acp_dlg_exit_question)
         if (strQuest.length > 20) {
-            tvQuestionTxt.minLines = 2
+            tvQuestionTxt?.minLines = 2
         }
         //            else {
         //                tvQuestionTxt.setMinLines(1);
@@ -165,18 +166,18 @@ class ACPDlgExit(
     fun setUi(mahRequestResult: MAHRequestResult?) {
         val imgNotFoundDrawable = context!!.getDrawableWithColorFilter( R.drawable.img_not_found, R.color.acp_no_image_color)
 
-        //if (_mahRequestResult == null || _mahRequestResult.programsSelected == null || _mahRequestResult.programsSelected!!.isEmpty() ) {
+        //if (mahRequestResult == null || mahRequestResult.programsSelected == null || mahRequestResult.programsSelected!!.isEmpty() ) {
         if (mahRequestResult?.programsSelected?.isEmpty() ?: true) {
 
             if (mahRequestResult != null && mahRequestResult.programsSelected == null) {
                 exitCallback!!.onEventHappened("ACPController programSelected is null")
             }
 
-            lytProgsPanel.makeGone()
-            mah_ads_dlg_exit_tv_btn_other.text = view!!.resources.getString(R.string.acp_dlg_exit_btn_more_txt_1)
+            lytProgsPanel?.makeGone()
+            mah_ads_dlg_exit_tv_btn_other?.text = view!!.resources.getString(R.string.acp_dlg_exit_btn_more_txt_1)
         } else if (mahRequestResult?.programsSelected?.size == 1) {
-            lytProgsPanel.makeVisible()
-            lytProg2MAHAdsExtDlg.makeGone()
+            lytProgsPanel?.makeVisible()
+            view?.findViewById<View>(R.id.lytProg2MAHAdsExtDlg)?.makeGone()
             prog1 = mahRequestResult.programsSelected!![0]
             tvProg1NameMAHAdsExtDlg.text = prog1!!.name
 
@@ -199,15 +200,15 @@ class ACPDlgExit(
                 tvFreshnestProg1.makeGone()
             }
 
-            lytProg1MAHAdsExtDlg.setOnClickListener {
+            view?.findViewById<View>(R.id.lytProg1MAHAdsExtDlg)?.setOnClickListener {
                 sorrWithMAHExeption {
                     if (prog1 != null) openAppOrMarketAcitivity(prog1!!.uri.trim { it <= ' ' })
                 }
             }
-            mah_ads_dlg_exit_tv_btn_other.text = view!!.resources.getString(R.string.acp_dlg_exit_btn_more_txt_2)
+            mah_ads_dlg_exit_tv_btn_other?.text = view!!.resources.getString(R.string.acp_dlg_exit_btn_more_txt_2)
         } else {
-            lytProgsPanel.makeVisible()
-            lytProg2MAHAdsExtDlg.makeVisible()
+            lytProgsPanel?.makeVisible()
+            view?.findViewById<View>(R.id.lytProg2MAHAdsExtDlg)?.makeVisible()
 
             prog1 = mahRequestResult!!.programsSelected!![0]
             tvProg1NameMAHAdsExtDlg.text = prog1!!.name
@@ -255,18 +256,18 @@ class ACPDlgExit(
                 tvFreshnestProg2.makeGone()
             }
 
-            lytProg1MAHAdsExtDlg.setOnClickListener {
+            view?.findViewById<View>(R.id.lytProg1MAHAdsExtDlg)?.setOnClickListener {
                 sorrWithMAHExeption {
                     if (prog1 != null) openAppOrMarketAcitivity(prog1!!.uri.trim { it <= ' ' })
 
                 }
             }
-            lytProg2MAHAdsExtDlg.setOnClickListener {
+            view?.findViewById<View>(R.id.lytProg2MAHAdsExtDlg)?.setOnClickListener {
                 sorrWithMAHExeption {
                     if (prog2 != null) openAppOrMarketAcitivity(prog2!!.uri.trim { it <= ' ' })
                 }
             }
-            mah_ads_dlg_exit_tv_btn_other.text = view!!.resources.getString(R.string.acp_dlg_exit_btn_more_txt_2)
+            mah_ads_dlg_exit_tv_btn_other?.text = view!!.resources.getString(R.string.acp_dlg_exit_btn_more_txt_2)
             //Log.i(Constants.LOG_TAG_MAH_ADS, "freshnestStr1 = " + freshnestStr + " freshnestStr2 = " + freshnestStr2);
         }
     }
@@ -314,7 +315,7 @@ class ACPDlgExit(
 
 
     val isProgramsPanelVisible: Boolean
-        get() = lytProgsPanel!!.isVisible()
+        get() = lytProgsPanel.isVisible()
 
 
     companion object {
@@ -329,7 +330,7 @@ class ACPDlgExit(
             val dialog = ACPDlgExit()
             val args = Bundle()
             val gson = Gson()
-            args.putString("_mahRequestResult", gson.toJson(mahRequestResult))
+            args.putString("mahRequestResult", gson.toJson(mahRequestResult))
             args.putString("urls", gson.toJson(urls))
             args.putString("fontName", fontName)
             args.putBoolean("btnInfoVisibility", btnInfoVisibility)

@@ -313,7 +313,7 @@
         android:paddingRight="10dp"
         android:paddingTop="2dp">
 
-        <Button
+        <TextView
             android:id="@+id/btnYes"
             style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
             android:layout_width="wrap_content"
@@ -323,7 +323,7 @@
             android:textColor="@color/acp_yes_no_txt_color"
             android:textSize="17sp" />
 
-        <Button
+        <TextView
             android:id="@+id/btnNo"
             style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
             android:layout_width="wrap_content"
