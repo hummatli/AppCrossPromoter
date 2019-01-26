@@ -53,7 +53,7 @@ class ACPDlgExit(
 
             val args = arguments
             val gson = Gson()
-            mahRequestResult = gson.fromJson(args!!.getString("mahRequestResult"), MAHRequestResult::class.java)
+            mahRequestResult = gson.fromJson(args!!.getString("_mahRequestResult"), MAHRequestResult::class.java)
             urls = gson.fromJson(args.getString("urls"), Urls::class.java)
             fontName = args.getString("fontName")
             btnInfoVisibility = args.getBoolean("btnInfoVisibility")
@@ -165,7 +165,7 @@ class ACPDlgExit(
     fun setUi(mahRequestResult: MAHRequestResult?) {
         val imgNotFoundDrawable = context!!.getDrawableWithColorFilter( R.drawable.img_not_found, R.color.acp_no_image_color)
 
-        //if (mahRequestResult == null || mahRequestResult.programsSelected == null || mahRequestResult.programsSelected!!.isEmpty() ) {
+        //if (_mahRequestResult == null || _mahRequestResult.programsSelected == null || _mahRequestResult.programsSelected!!.isEmpty() ) {
         if (mahRequestResult?.programsSelected?.isEmpty() ?: true) {
 
             if (mahRequestResult != null && mahRequestResult.programsSelected == null) {
@@ -329,7 +329,7 @@ class ACPDlgExit(
             val dialog = ACPDlgExit()
             val args = Bundle()
             val gson = Gson()
-            args.putString("mahRequestResult", gson.toJson(mahRequestResult))
+            args.putString("_mahRequestResult", gson.toJson(mahRequestResult))
             args.putString("urls", gson.toJson(urls))
             args.putString("fontName", fontName)
             args.putBoolean("btnInfoVisibility", btnInfoVisibility)

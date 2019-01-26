@@ -12,9 +12,11 @@ import com.mobapphome.appcrosspromoter.tools.*
 class ACPController private constructor(){
 
     private var urls: Urls? = null
-    private var isInternalCalled = false
+    private var _isInternalCalled = false
     var fontName: String? = null//This variable saves in savedInstanceState
 
+    val isInternalCalled: Boolean
+        get() = _isInternalCalled
 
     /**
      * Initializes MAHAds library
@@ -48,16 +50,16 @@ class ACPController private constructor(){
                            urlForProgramList: String = "program_list.php") {
 
         urls = Urls(urlForProgramVersion, urlForProgramList, getRootFromUrl(urlForProgramList))
-        isInternalCalled = activity.intent.getBooleanExtra(Constants.MAH_ADS_INTERNAL_CALLED, false)
+        _isInternalCalled = activity.intent.getBooleanExtra(Constants.MAH_ADS_INTERNAL_CALLED, false)
 
         if (savedInstanceState != null) {
             val gson = Gson()
 
-            mahRequestResult = gson.fromJson(savedInstanceState.getString("mahRequestResult"), MAHRequestResult::class.java)
+            _mahRequestResult = gson.fromJson(savedInstanceState.getString("_mahRequestResult"), MAHRequestResult::class.java)
             fontName = savedInstanceState.getString("fontName")
 
-            if (mahRequestResult != null) {
-                //If mahRequestResult is exists in savedInstanceState then don't need do request service again. return;
+            if (_mahRequestResult != null) {
+                //If _mahRequestResult is exists in savedInstanceState then don't need do request service again. return;
                 return
             }
         }
@@ -68,7 +70,7 @@ class ACPController private constructor(){
 
     fun onSaveInstanceState(savedInstanceState: Bundle) {
         val gson = Gson()
-        savedInstanceState.putString("mahRequestResult", gson.toJson(mahRequestResult))
+        savedInstanceState.putString("_mahRequestResult", gson.toJson(_mahRequestResult))
         savedInstanceState.putString("fontName", fontName)
     }
 
@@ -92,7 +94,7 @@ class ACPController private constructor(){
                                      btnInfoActionURL: String = Constants.MAH_ADS_GITHUB_LINK) {
         //When is internal call is true then exit dialog will not open.
         //It will be true only program opens through MAHAds components
-        if (isInternalCalled) {
+        if (_isInternalCalled) {
             // This makes sure that the container activity has implemented
             // the callback interface. If not, it throws an exception
             try {
@@ -104,7 +106,7 @@ class ACPController private constructor(){
 
         } else {
             showDlg(activity,
-                    ACPDlgExit.newInstance(mahRequestResult, urls, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
+                    ACPDlgExit.newInstance(_mahRequestResult, urls, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
                     Constants.TAG_MAH_ADS_DLG_EXIT)
         }
     }
@@ -127,7 +129,7 @@ class ACPController private constructor(){
                                          btnInfoMenuItemTitle: String = activity.getString(R.string.acp_info_popup_text),
                                          btnInfoActionURL: String = Constants.MAH_ADS_GITHUB_LINK) {
         showDlg(activity,
-                ACPDlgPrograms.newInstance(mahRequestResult, urls, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
+                ACPDlgPrograms.newInstance(_mahRequestResult, urls, fontName, btnInfoVisibility, btnInfoWithMenu, btnInfoMenuItemTitle, btnInfoActionURL),
                 Constants.TAG_MAH_ADS_DLG_PROGRAMS)
     }
 
@@ -143,7 +145,10 @@ class ACPController private constructor(){
             return field
         }
 
-        var mahRequestResult: MAHRequestResult? = null //This variable saves in savedInstanceState
+        var _mahRequestResult: MAHRequestResult? = null //This variable saves in savedInstanceState
+
+        public val mahRequestResult: MAHRequestResult?
+            get() = _mahRequestResult
 
 
         internal fun showDlg(activity: FragmentActivity, frag: Fragment, fragTag: String) {

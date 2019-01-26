@@ -40,7 +40,7 @@ object Updater {
                 var requestResult = HttpUtils.jsonToProgramList(readStringFromCache(activity))
                 //Here we filter and set ACPController for first time from cache
                 filterMAHRequestResult(activity, requestResult)
-                ACPController.mahRequestResult = requestResult
+                ACPController._mahRequestResult = requestResult
 
 
                 try {
@@ -86,7 +86,7 @@ object Updater {
                 super.onPostExecute(mahRequestResult)
                 Log.i(Constants.LOG_TAG_MAH_ADS, "MAHRequestResult isReadFromWeb = " + mahRequestResult!!.isReadFromWeb)
 
-                //It calls twise. Needs to solve. I can not use this "mahRequestResult.isReadFromWeb".
+                //It calls twise. Needs to solve. I can not use this "_mahRequestResult.isReadFromWeb".
                 // Cause in first time needs to show retry button. if I check it does not show
                 fragDlgPrograms?.setUI(mahRequestResult, false)
 
@@ -97,7 +97,7 @@ object Updater {
 
 
                 //In this place we set ACPController's mahrequest from web
-                ACPController.mahRequestResult = mahRequestResult
+                ACPController._mahRequestResult = mahRequestResult
 
                 //Setting loading to false
                 loading = false

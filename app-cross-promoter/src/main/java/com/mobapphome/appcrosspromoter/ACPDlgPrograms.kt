@@ -56,7 +56,7 @@ class ACPDlgPrograms(val items: MutableList<Any> = LinkedList<Any>(),
 
             val args = arguments
             val gson = Gson()
-            mahRequestResult = gson.fromJson(args!!.getString("mahRequestResult"), MAHRequestResult::class.java)
+            mahRequestResult = gson.fromJson(args!!.getString("_mahRequestResult"), MAHRequestResult::class.java)
             urls = gson.fromJson(args.getString("urls"), Urls::class.java)
             fontName = args.getString("fontName")
             btnInfoVisibility = args.getBoolean("btnInfoVisibility")
@@ -276,7 +276,7 @@ class ACPDlgPrograms(val items: MutableList<Any> = LinkedList<Any>(),
             val dialog = ACPDlgPrograms()
             val args = Bundle()
             val gson = Gson()
-            args.putString("mahRequestResult", gson.toJson(mahRequestResult))
+            args.putString("_mahRequestResult", gson.toJson(mahRequestResult))
             args.putString("urls", gson.toJson(urls))
             args.putString("fontName", fontName)
             args.putBoolean("btnInfoVisibility", btnInfoVisibility)
