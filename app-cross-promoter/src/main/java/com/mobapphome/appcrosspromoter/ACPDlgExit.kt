@@ -24,24 +24,52 @@ import com.mobapphome.appcrosspromoter.tools.*
 import kotlinx.android.synthetic.main.acp_dialog_exit.*
 
 
-class ACPDlgExit(
-        var prog1: Program? = null,
-        var prog2: Program? = null,
-        var exitCallback: ACPDlgExitListener? = null,
+class ACPDlgExit : MAHDialogFragment() {
 
-        var urls: Urls? = null,
-        var fontName: String? = null,
-        var btnInfoVisibility: Boolean = false,
-        var btnInfoWithMenu: Boolean = false,
-        var btnInfoMenuItemTitle: String? = null,
-        var btnInfoActionURL: String? = null,
-        var mahRequestResult: MAHRequestResult? = null)
-    : MAHDialogFragment() {
+    var prog1: Program? = null
+    var prog2: Program? = null
+    var exitCallback: ACPDlgExitListener? = null
+    var urls: Urls? = null
+    var fontName: String? = null
+    var btnInfoVisibility: Boolean = false
+    var btnInfoWithMenu: Boolean = false
+    var btnInfoMenuItemTitle: String? = null
+    var btnInfoActionURL: String? = null
+    var mahRequestResult: MAHRequestResult? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(DialogFragment.STYLE_NORMAL, R.style.MAHAdsDlgExit)
         Log.i(Constants.LOG_TAG_MAH_ADS, "Exit dialog greated")
+
+        try {
+            Log.i(Constants.LOG_TAG_MAH_ADS, "MAH Ads Dld exit Created ")
+
+            arguments?.let {
+                val gson = Gson()
+                mahRequestResult = gson.fromJson(it.getString("mahRequestResult"), MAHRequestResult::class.java)
+                urls = gson.fromJson(it.getString("urls"), Urls::class.java)
+                fontName = it.getString("fontName")
+                btnInfoVisibility = it.getBoolean("btnInfoVisibility")
+                btnInfoWithMenu = it.getBoolean("btnInfoWithMenu")
+                btnInfoMenuItemTitle = it.getString("btnInfoMenuItemTitle")
+                btnInfoActionURL = it.getString("btnInfoActionURL")
+
+                Log.i(Constants.LOG_TAG_MAH_ADS, "With popInfoMenu" + btnInfoWithMenu)
+                // This makes sure that the container activity has implemented
+                // the callback interface. If not, it throws an exception
+                try {
+                    exitCallback = activityMAH as ACPDlgExitListener
+                } catch (e: ClassCastException) {
+                    throw ClassCastException(activityMAH.toString() + " must implement ACPDlgExitListener")
+                }
+            }
+
+        } catch (e: MAHFragmentExeption) {
+            Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
+        }
+
     }
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -49,39 +77,39 @@ class ACPDlgExit(
                               savedInstanceState: Bundle?): View? {
         try {
             Log.i(Constants.LOG_TAG_MAH_ADS, "MAH Ads Dld exit Created ")
-
-            val args = arguments
-            val gson = Gson()
-            mahRequestResult = gson.fromJson(args!!.getString("mahRequestResult"), MAHRequestResult::class.java)
-            urls = gson.fromJson(args.getString("urls"), Urls::class.java)
-            fontName = args.getString("fontName")
-            btnInfoVisibility = args.getBoolean("btnInfoVisibility")
-            btnInfoWithMenu = args.getBoolean("btnInfoWithMenu")
-            btnInfoMenuItemTitle = args.getString("btnInfoMenuItemTitle")
-            btnInfoActionURL = args.getString("btnInfoActionURL")
-
-            Log.i(Constants.LOG_TAG_MAH_ADS, "With popInfoMenu" + btnInfoWithMenu)
-            // This makes sure that the container activity has implemented
-            // the callback interface. If not, it throws an exception
-            try {
-                exitCallback = activityMAH as ACPDlgExitListener
-            } catch (e: ClassCastException) {
-                throw ClassCastException(activityMAH.toString() + " must implement ACPDlgExitListener")
-            }
+//
+//            val args = arguments
+//            val gson = Gson()
+//            mahRequestResult = gson.fromJson(args!!.getString("mahRequestResult"), MAHRequestResult::class.java)
+//            urls = gson.fromJson(args.getString("urls"), Urls::class.java)
+//            fontName = args.getString("fontName")
+//            btnInfoVisibility = args.getBoolean("btnInfoVisibility")
+//            btnInfoWithMenu = args.getBoolean("btnInfoWithMenu")
+//            btnInfoMenuItemTitle = args.getString("btnInfoMenuItemTitle")
+//            btnInfoActionURL = args.getString("btnInfoActionURL")
+//
+//            Log.i(Constants.LOG_TAG_MAH_ADS, "With popInfoMenu" + btnInfoWithMenu)
+//            // This makes sure that the container activity has implemented
+//            // the callback interface. If not, it throws an exception
+//            try {
+//                exitCallback = activityMAH as ACPDlgExitListener
+//            } catch (e: ClassCastException) {
+//                throw ClassCastException(activityMAH.toString() + " must implement ACPDlgExitListener")
+//            }
 
 
             dialog.window!!.attributes.windowAnimations = R.style.MAHAdsDialogAnimation
             dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             //getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
             dialog.setCanceledOnTouchOutside(false)
-            dialog.setOnKeyListener { dialog, keyCode, event ->
+            dialog.setOnKeyListener { _, keyCode, event ->
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
                     onNo()
                 }
                 false
             }
 
-            return inflater!!.inflate(R.layout.acp_dialog_exit, container)
+            return inflater.inflate(R.layout.acp_dialog_exit, container)
         } catch (e: MAHFragmentExeption) {
             Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
             return null
@@ -134,7 +162,7 @@ class ACPDlgExit(
 
         iconBtnOther?.setColorFilterCompat(R.color.acp_all_and_btn_text_color)
         ivBtnCancel?.setColorFilterCompat(R.color.acp_title_bar_text_color)
-        ivBtnInfo?.setColorFilterCompat( R.color.acp_title_bar_text_color)
+        ivBtnInfo?.setColorFilterCompat(R.color.acp_title_bar_text_color)
 
         mah_ads_dlg_scroll?.post { mah_ads_dlg_scroll.fullScroll(ScrollView.FOCUS_DOWN) }
 
@@ -164,19 +192,9 @@ class ACPDlgExit(
     }
 
     fun setUi(mahRequestResult: MAHRequestResult?) {
-        val imgNotFoundDrawable = context!!.getDrawableWithColorFilter( R.drawable.img_not_found, R.color.acp_no_image_color)
+        val imgNotFoundDrawable = context!!.getDrawableWithColorFilter(R.drawable.img_not_found, R.color.acp_no_image_color)
 
-        //if (mahRequestResult == null || mahRequestResult.programsSelected == null || mahRequestResult.programsSelected!!.isEmpty() ) {
-        if (mahRequestResult?.programsSelected?.isEmpty() ?: true) {
-
-            if (mahRequestResult != null && mahRequestResult.programsSelected == null) {
-                exitCallback!!.onEventHappened("ACPController programSelected is null")
-            }
-
-            lytProgsPanel?.makeGone()
-            mah_ads_dlg_exit_tv_btn_other?.text = view!!.resources.getString(R.string.acp_dlg_exit_btn_more_txt_1)
-        } else if (mahRequestResult?.programsSelected?.size == 1) {
-            lytProgsPanel?.makeVisible()
+        if (mahRequestResult?.programsSelected?.size == 1) {
             view?.findViewById<View>(R.id.lytProg2MAHAdsExtDlg)?.makeGone()
             prog1 = mahRequestResult.programsSelected!![0]
             tvProg1NameMAHAdsExtDlg.text = prog1!!.name
@@ -207,7 +225,6 @@ class ACPDlgExit(
             }
             mah_ads_dlg_exit_tv_btn_other?.text = view!!.resources.getString(R.string.acp_dlg_exit_btn_more_txt_2)
         } else {
-            lytProgsPanel?.makeVisible()
             view?.findViewById<View>(R.id.lytProg2MAHAdsExtDlg)?.makeVisible()
 
             prog1 = mahRequestResult!!.programsSelected!![0]
@@ -303,7 +320,7 @@ class ACPDlgExit(
         if (checkPackageIfExists(activityMAH, pckgName)) {
             val pack = activityMAH.packageManager
             val app = pack.getLaunchIntentForPackage(pckgName)
-            app.putExtra(Constants.MAH_ADS_INTERNAL_CALLED, true)
+            app?.putExtra(Constants.MAH_ADS_INTERNAL_CALLED, true)
             context!!.startActivity(app)
         } else {
             if (!pckgName.isEmpty()) {
@@ -314,32 +331,29 @@ class ACPDlgExit(
     }
 
 
-    val isProgramsPanelVisible: Boolean
-        get() = lytProgsPanel.isVisible()
-
-
     companion object {
 
+        @JvmStatic
         fun newInstance(mahRequestResult: MAHRequestResult?,
                         urls: Urls?,
                         fontName: String?,
                         btnInfoVisibility: Boolean,
                         btnInfoWithMenu: Boolean,
                         btnInfoMenuItemTitle: String,
-                        btnInfoActionURL: String): ACPDlgExit {
-            val dialog = ACPDlgExit()
-            val args = Bundle()
-            val gson = Gson()
-            args.putString("mahRequestResult", gson.toJson(mahRequestResult))
-            args.putString("urls", gson.toJson(urls))
-            args.putString("fontName", fontName)
-            args.putBoolean("btnInfoVisibility", btnInfoVisibility)
-            args.putBoolean("btnInfoWithMenu", btnInfoWithMenu)
-            args.putString("btnInfoMenuItemTitle", btnInfoMenuItemTitle)
-            args.putString("btnInfoActionURL", btnInfoActionURL)
-            dialog.arguments = args
-            return dialog
-        }
+                        btnInfoActionURL: String) =
+                ACPDlgExit().apply {
+                    arguments = Bundle().apply {
+                        val gson = Gson()
+                        putString("mahRequestResult", gson.toJson(mahRequestResult))
+                        putString("urls", gson.toJson(urls))
+                        putString("fontName", fontName)
+                        putBoolean("btnInfoVisibility", btnInfoVisibility)
+                        putBoolean("btnInfoWithMenu", btnInfoWithMenu)
+                        putString("btnInfoMenuItemTitle", btnInfoMenuItemTitle)
+                        putString("btnInfoActionURL", btnInfoActionURL)
+                    }
+                }
+
     }
 
     interface ACPDlgExitListener {

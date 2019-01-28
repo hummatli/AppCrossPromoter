@@ -91,7 +91,7 @@ class ACPController private constructor(){
                                      btnInfoActionURL: String = Constants.MAH_ADS_GITHUB_LINK) {
         //When is internal call is true then exit dialog will not open.
         //It will be true only program opens through MAHAds components
-        if (isInternalCalled) {
+        if (isInternalCalled || mahRequestResult?.programsSelected?.isEmpty() ?: true) {
             // This makes sure that the container activity has implemented
             // the callback interface. If not, it throws an exception
             try {

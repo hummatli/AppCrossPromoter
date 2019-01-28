@@ -91,7 +91,7 @@ object Updater {
                 fragDlgPrograms?.setUI(mahRequestResult, false)
 
                 val fragDlgExit = activity.supportFragmentManager.findFragmentByTag(Constants.TAG_MAH_ADS_DLG_EXIT) as ACPDlgExit?
-                if (fragDlgExit != null && (mahRequestResult.isReadFromWeb || !fragDlgExit.isProgramsPanelVisible)) {
+                if (fragDlgExit != null && mahRequestResult.isReadFromWeb ) {
                     fragDlgExit.setUi(mahRequestResult)
                 }
 

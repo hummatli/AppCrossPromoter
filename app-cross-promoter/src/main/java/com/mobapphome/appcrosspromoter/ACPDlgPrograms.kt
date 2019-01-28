@@ -32,21 +32,39 @@ import kotlinx.android.synthetic.main.acp_dialog_programs.*
 import java.util.*
 
 
-class ACPDlgPrograms(val items: MutableList<Any> = LinkedList<Any>(),
-                     var mahRequestResult: MAHRequestResult? = null,
-                     var urls: Urls? = null,
-                     var fontName: String? = null,
-                     var btnInfoVisibility: Boolean = false,
-                     var btnInfoWithMenu: Boolean = false,
-                     var btnInfoMenuItemTitle: String? = null,
-                     var btnInfoActionURL: String? = null,
-                     var dataHasAlreadySet: Boolean = false)
-    : MAHDialogFragment() {
+class ACPDlgPrograms : MAHDialogFragment() {
 
+    val items: MutableList<Any> = LinkedList<Any>()
+    var mahRequestResult: MAHRequestResult? = null
+    var urls: Urls? = null
+    var fontName: String? = null
+    var btnInfoVisibility: Boolean = false
+    var btnInfoWithMenu: Boolean = false
+    var btnInfoMenuItemTitle: String? = null
+    var btnInfoActionURL: String? = null
+    var dataHasAlreadySet: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(DialogFragment.STYLE_NORMAL, R.style.MAHAdsDlgPrograms)
+
+        try {
+            Log.i(Constants.LOG_TAG_MAH_ADS, "MAH Ads Programs Dlg Created ")
+
+            arguments?.let {
+                val gson = Gson()
+                mahRequestResult = gson.fromJson(it.getString("mahRequestResult"), MAHRequestResult::class.java)
+                urls = gson.fromJson(it.getString("urls"), Urls::class.java)
+                fontName = it.getString("fontName")
+                btnInfoVisibility = it.getBoolean("btnInfoVisibility")
+                btnInfoWithMenu = it.getBoolean("btnInfoWithMenu")
+                btnInfoMenuItemTitle = it.getString("btnInfoMenuItemTitle")
+                btnInfoActionURL = it.getString("btnInfoActionURL")
+            }
+        } catch (e: MAHFragmentExeption) {
+            Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
+        }
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -54,15 +72,15 @@ class ACPDlgPrograms(val items: MutableList<Any> = LinkedList<Any>(),
         try {
             Log.i(Constants.LOG_TAG_MAH_ADS, "MAH Ads Programs Dlg Created ")
 
-            val args = arguments
-            val gson = Gson()
-            mahRequestResult = gson.fromJson(args!!.getString("mahRequestResult"), MAHRequestResult::class.java)
-            urls = gson.fromJson(args.getString("urls"), Urls::class.java)
-            fontName = args.getString("fontName")
-            btnInfoVisibility = args.getBoolean("btnInfoVisibility")
-            btnInfoWithMenu = args.getBoolean("btnInfoWithMenu")
-            btnInfoMenuItemTitle = args.getString("btnInfoMenuItemTitle")
-            btnInfoActionURL = args.getString("btnInfoActionURL")
+//            val args = arguments
+//            val gson = Gson()
+//            mahRequestResult = gson.fromJson(args!!.getString("mahRequestResult"), MAHRequestResult::class.java)
+//            urls = gson.fromJson(args.getString("urls"), Urls::class.java)
+//            fontName = args.getString("fontName")
+//            btnInfoVisibility = args.getBoolean("btnInfoVisibility")
+//            btnInfoWithMenu = args.getBoolean("btnInfoWithMenu")
+//            btnInfoMenuItemTitle = args.getString("btnInfoMenuItemTitle")
+//            btnInfoActionURL = args.getString("btnInfoActionURL")
 
             dialog.window!!.attributes.windowAnimations = R.style.MAHAdsDialogAnimation
             dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -75,7 +93,7 @@ class ACPDlgPrograms(val items: MutableList<Any> = LinkedList<Any>(),
                 false
             }
 
-            return inflater!!.inflate(R.layout.acp_dialog_programs, container)
+            return inflater.inflate(R.layout.acp_dialog_programs, container)
         } catch (e: MAHFragmentExeption) {
             Log.d(Constants.LOG_TAG_MAH_ADS, e.message, e)
             return null
@@ -157,7 +175,7 @@ class ACPDlgPrograms(val items: MutableList<Any> = LinkedList<Any>(),
                             if (checkPackageIfExists(context!!, pckgName)) {
                                 val pack = context!!.packageManager
                                 val app = pack.getLaunchIntentForPackage(pckgName)
-                                app.putExtra(Constants.MAH_ADS_INTERNAL_CALLED, true)
+                                app?.putExtra(Constants.MAH_ADS_INTERNAL_CALLED, true)
                                 context!!.startActivity(app)
                             } else {
                                 if (!pckgName.isEmpty()) {
@@ -272,19 +290,19 @@ class ACPDlgPrograms(val items: MutableList<Any> = LinkedList<Any>(),
                 btnInfoVisibility: Boolean,
                 btnInfoWithMenu: Boolean,
                 btnInfoMenuItemTitle: String,
-                btnInfoActionURL: String): ACPDlgPrograms {
-            val dialog = ACPDlgPrograms()
-            val args = Bundle()
-            val gson = Gson()
-            args.putString("mahRequestResult", gson.toJson(mahRequestResult))
-            args.putString("urls", gson.toJson(urls))
-            args.putString("fontName", fontName)
-            args.putBoolean("btnInfoVisibility", btnInfoVisibility)
-            args.putBoolean("btnInfoWithMenu", btnInfoWithMenu)
-            args.putString("btnInfoMenuItemTitle", btnInfoMenuItemTitle)
-            args.putString("btnInfoActionURL", btnInfoActionURL)
-            dialog.arguments = args
-            return dialog
-        }
+                btnInfoActionURL: String) =
+
+            ACPDlgPrograms().apply {
+               arguments = Bundle().apply {
+                   val gson = Gson()
+                   putString("mahRequestResult", gson.toJson(mahRequestResult))
+                   putString("urls", gson.toJson(urls))
+                   putString("fontName", fontName)
+                   putBoolean("btnInfoVisibility", btnInfoVisibility)
+                   putBoolean("btnInfoWithMenu", btnInfoWithMenu)
+                   putString("btnInfoMenuItemTitle", btnInfoMenuItemTitle)
+                   putString("btnInfoActionURL", btnInfoActionURL)
+               }
+            }
     }
 }// Empty constructor required for DialogFragment
