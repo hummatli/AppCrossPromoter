@@ -7,7 +7,7 @@
   <a target="_blank" href="http://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/hexpm/l/plug.svg?maxAge=2592000"></a>
 </p>
 
-<p align="center">Cross-promote your own apps and manage the direct-sold campaigns. he free, open source, third party Android library to cross-promote advertise of your own apps through your other Android apps. This library has been built with the Kotlin language in the Android Studio IDE. Check out the <a href="https://github.com/hummatli/AppCrossPromoter/wiki">wiki</a>.</p>
+<p align="center">Cross-promote your own apps and manage the direct-sold campaigns. he free, open source, third party Android library to cross-promote advertise of your own apps through your other Android apps. This library has been built with the Kotlin language in the Android Studio IDE. Check out the <a href="https://github.com/hummatli/AppCrossPromoter/wiki">wiki</a>. To support, <a href="https://www.buymeacoffee.com/hummatli" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a></p>
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/hummatli/AppCrossPromoter/master/imgs/exit_dlg.png" width="200px"/>
