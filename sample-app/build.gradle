@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply from: 'signing_confs/conf.gradle'
+
 
 android {
     compileSdkVersion 28
@@ -9,25 +11,22 @@ android {
         applicationId "com.mobapphome.mahads.sample"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 14
-        versionName "2.2.0"
+        versionCode 15
+        versionName "2.3.0"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
-    }
-
-    signingConfigs {
-        release {
-            storeFile file("../key/keystore_for_test.jks")
-            storePassword "123456"
-            keyAlias "appcrosspromoter"
-            keyPassword "123456"
-        }
     }
 
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), '../proguard-rules-mah-ads.pro'
-            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), '../proguard-rules-app-cross-promoter.pro'
+            signingConfig signingConfigs.defaultSigningConf
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), '../proguard-rules-app-cross-promoter.pro'
+            signingConfig signingConfigs.defaultSigningConf
         }
     }
 
