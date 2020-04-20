@@ -53,7 +53,7 @@ There is a list of [the applications which uses AppCrossPromoter](https://github
 * [Applications using AppCrossPromoter](https://github.com/hummatli/AppCrossPromoter#applications-using-appcrosspromoter)
 * [Other libraries by developer](https://github.com/hummatli/AppCrossPromoter#other-libraries-by-developer)
 
-### A sample App in PlayStore
+### Demo App
 Download the demo app from this link - <a href="https://github.com/hummatli/AppCrossPromoter/releases/download/v2.1.5/DemoApp-AppCrossPromoter.apk">Demo App</a>. You can easly test the lib's functionality.
 
 ### Service structure
