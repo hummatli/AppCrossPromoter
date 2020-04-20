@@ -54,7 +54,7 @@ There is a list of [the applications which uses AppCrossPromoter](https://github
 * [Other libraries by developer](https://github.com/hummatli/AppCrossPromoter#other-libraries-by-developer)
 
 ### A sample App in PlayStore
-Download the demo app from this link - <a href="https://github.com/hummatli/AppCrossPromoter/releases/download/v2.1.5/DemoApp.-.AppCrossPromoter.apk">Demo App</a>. You can easly test the lib's functionality.
+Download the demo app from this link - <a href="https://github.com/hummatli/AppCrossPromoter/releases/download/v2.1.5/DemoApp-AppCrossPromoter.apk">Demo App</a>. You can easly test the lib's functionality.
 
 ### Service structure
 To provide your apps' list, you have to implement the service provider. The structure of the service is as below. Your root folder has to contain a `imgs` folder and two files - `program_version.json`, `program_list.json`.
